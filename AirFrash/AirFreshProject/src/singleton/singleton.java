@@ -1,7 +1,7 @@
 package singleton;
 
-import Service.MemberService;
-import ServiceITF.MemberServiceInterface;
+import Service.MemberServiceInterface;
+import Service.impl.MemberService;
 
 public class singleton {
 	

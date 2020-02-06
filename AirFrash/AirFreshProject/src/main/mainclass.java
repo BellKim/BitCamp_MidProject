@@ -1,6 +1,6 @@
 package main;
 
-import Service.MemberService;
+import Service.impl.MemberService;
 
 public class mainclass {
 //	public static void main(String[] args) {

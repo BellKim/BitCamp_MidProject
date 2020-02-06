@@ -1,6 +1,6 @@
 <%@page import="singleton.singleton"%>
-<%@page import="Service.MemberService"%>
-<%@page import="ServiceITF.MemberServiceInterface"%>
+<%@page import="Service.impl.MemberService"%>
+<%@page import="Service.MemberServiceInterface"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
