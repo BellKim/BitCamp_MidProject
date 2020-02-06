@@ -30,7 +30,7 @@ public class NoticeBbsDto implements Serializable {
 	private int noti_index;
 	private String noti_title;
 	private String noti_content;
-	private String noti_catagory;
+	private int noti_catagory;
 	private String noti_writer;
 	private String wdate;
 	private String filename;
@@ -40,7 +40,7 @@ public class NoticeBbsDto implements Serializable {
 	public NoticeBbsDto() {
 	}
 
-	public NoticeBbsDto(int noti_index, String noti_title, String noti_content, String noti_catagory,
+	public NoticeBbsDto(int noti_index, String noti_title, String noti_content, int noti_catagory,
 			String noti_writer, String wdate, String filename, int readcount, int noti_del) {
 		this.noti_index = noti_index;
 		this.noti_title = noti_title;
@@ -53,7 +53,7 @@ public class NoticeBbsDto implements Serializable {
 		this.noti_del = noti_del;
 	}
 
-	public NoticeBbsDto(String noti_title, String noti_content, String noti_catagory, String filename) {
+	public NoticeBbsDto(String noti_title, String noti_content, int noti_catagory, String filename) {
 		this.noti_title = noti_title;
 		this.noti_content = noti_content;
 		this.noti_catagory = noti_catagory;
@@ -91,11 +91,11 @@ public class NoticeBbsDto implements Serializable {
 		this.noti_content = noti_content;
 	}
 
-	public String getNoti_catagory() {
+	public int getNoti_catagory() {
 		return noti_catagory;
 	}
 
-	public void setNoti_catagory(String noti_catagory) {
+	public void setNoti_catagory(int noti_catagory) {
 		this.noti_catagory = noti_catagory;
 	}
 
