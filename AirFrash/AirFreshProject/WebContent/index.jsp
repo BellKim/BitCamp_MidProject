@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h1>hello world</h1>
+	<a href="hellotest"> 이 동 </a>
 </body>
 </html>
