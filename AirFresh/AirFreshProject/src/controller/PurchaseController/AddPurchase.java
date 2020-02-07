@@ -43,8 +43,7 @@ public class AddPurchase  extends HttpServlet {
 		
 		singleton s = singleton.getInstance();
 		boolean isS = s.ps.purachaseInsert(mem.getMem_id(), model.getPrd_index(), ins_date);
-	
-		req.getRequestDispatcher("purcomplete.jsp?isS="+isS).forward(req, resp);
+		req.getRequestDispatcher("./client_view/rental/purcomplete.jsp?isS="+isS).forward(req, resp);
 	}
 	
 	

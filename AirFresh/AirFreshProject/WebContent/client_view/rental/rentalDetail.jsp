@@ -18,7 +18,7 @@
 	//제품 index get
 	
 	
-	ModelDto model = new ModelDto(10000,"공기청정기1","ACL141MA","28900");
+	ModelDto model = new ModelDto(10000,"공기청정기1","ACL141MA",28900);
 	session.setAttribute("model", model);
 	
 	int cell = 0101234567;
