@@ -10,12 +10,13 @@
 <body>
 	<h3> input data </h3>
 	
-	<form id="addManagerMem" name="addManagerMem" action="../../addMrgMember"  method="post">
-		<input type="textarea">
+	<form id="addManagerMem" name="addManagerMem" action="../../AddMgrMember"  method="post">
+		<input type="textarea" id="test" name="_test" >
 	
 		<input type="submit"  value="전송버튼">
 		
 	</form>
+	
 	
 
 

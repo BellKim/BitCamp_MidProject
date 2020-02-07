@@ -10,29 +10,29 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/addMrgMember")
+@WebServlet("/AddMgrMember")
 public class AddMrgMember extends HttpServlet {
 	
 	private static AddMrgMember addMrgMember = null;
 	
 	private AddMrgMember() {
 	}
-	public AddMrgMember getInstance() {
-		if(addMrgMember == null) {
-			addMrgMember = new AddMrgMember();
-		}
-		return addMrgMember;
-	}
+//	public AddMrgMember getInstance() {
+//		if(addMrgMember == null) {
+//			addMrgMember = new AddMrgMember();
+//		}
+//		return addMrgMember;
+//	}
 	
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		processing(req, resp);
+		System.out.println("hello AddMrgMember do get ");
 	}
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		processing(req, resp);
+		System.out.println("hello AddMrgMember doPost do get ");
 	}
 
 	protected void processing(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
