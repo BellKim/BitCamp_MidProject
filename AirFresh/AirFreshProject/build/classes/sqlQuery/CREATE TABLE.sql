@@ -1,4 +1,4 @@
-﻿DROP TABLE orderReview 
+DROP TABLE orderReview 
 CASCADE CONSTRAINTS;
 DROP TABLE purchase 
 CASCADE CONSTRAINTS;
@@ -92,24 +92,20 @@ CREATE TABLE members
  
 
 -- members Table Create SQL
-
---	날짜 : 2020 - 02 - 07
--- 	변경자 : 박지훈        
---  mgr_id 컬럼 -->  mgr_index 로 변경,  FK부여
---  model_name 컬럼 --> pur_index 로 변경 , FK 부여       
 CREATE TABLE asApplication
 (
     as_index       NUMBER(6)         NOT NULL, 
     mem_id         VARCHAR2(20)      NULL, 
     wdate          VARCHAR2(20)      NULL, 
     req_date       VARCHAR2(20)      NULL, 
-    mgr_index      NUMBER(6)     	 NULL, 
+    mrg_id         VARCHAR2(50)      NULL, 
     as_title       VARCHAR2(200)     NULL, 
     as_content     VARCHAR2(4000)    NULL, 
     as_img_path    VARCHAR2(100)     NULL, 
-    pur_index      NUMBER(6)            NULL, 
+    prd_index     NUMBER(6)            NULL, 
     CONSTRAINT ASAPPLICATION_PK PRIMARY KEY (as_index)
 );
+
 
 
 ALTER TABLE asApplication
@@ -120,15 +116,10 @@ ALTER TABLE asApplication
     ADD CONSTRAINT FK_asApplication_prd_index_modelList FOREIGN KEY (prd_index)
         REFERENCES modelList (prd_index);
 
- 
 
-ALTER TABLE asApplication
-    ADD CONSTRAINT FK_asApplication_mrg_id_mgrMem FOREIGN KEY (mgr_index)
-        REFERENCES managerMember(mgr_index);
-
-ALTER TABLE asApplication
-    ADD CONSTRAINT FK_asApplication_pur_index_pur FOREIGN KEY (pur_index)
-        REFERENCES purchase(pur_index);        
+        
+        
+        
         
 -- members Table Create SQL
 CREATE TABLE modelList
@@ -146,24 +137,23 @@ CREATE TABLE modelList
 
 
 -- members Table Create SQL
-
--- 날짜 : 2020-02-07
--- 수정자 : 박지훈 
--- 컬럼명 변경 :installation_date -->>>  ins_date  
-
 CREATE TABLE purchase
 (
     pur_index        NUMBER(6)       NOT NULL, 
     mem_id             VARCHAR2(50)    NULL, 
     prd_index         NUMBER(6)       NULL, 
     pur_date             DATE            NULL, 
-    ins_date    DATE            NULL, 
+    installation_date    DATE            NULL, 
     order_num            NUMBER(3)       NULL, 
     review               NUMBER(1)       NULL, 
     order_auth           NUMBER(1)       NULL, 
     CONSTRAINT PURCHASE_PK PRIMARY KEY (pur_index)
 );
  
+
+
+
+
 
 
 ALTER TABLE purchase
@@ -299,48 +289,7 @@ ALTER TABLE asReview
 ALTER TABLE asReview
     ADD CONSTRAINT FK_asReview_as_index_asApplica FOREIGN KEY (as_index)
         REFERENCES asApplication (as_index);
-
-
---작성자: 박지훈
---날짜 : 2020- 02 - 07
---기능 : 설치신청을 저장하는 테이블
-
-
-
-DROP TABLE INSTALL
-CASCADE CONSTRAINT;
-
-
-CREATE SEQUENCE INSTALL_SEQ
-START WITH 70000
-INCREMENT BY 1
-MAXVALUE 79999
-NOCYCLE;
-
-
-CREATE TABLE INSTALL(
-	--제품설치 인덱스(PK)
-	ins_index NUMBER(6) PRIMARY KEY,
-	--제품렌탈 인덱스(FK)
-	pur_index NUMBER(6) NOT NULL,
-	--설치 희망일
-	ins_date  DATE  NULL,
-	--설치 완료일
-	comp_date DATE  NULL,
-	--매니저 인덱스(FK)
-	mgr_index NUMBER(6)  NULL,
-	--처리상태 (1/0)
-	ins_state NUMBER(1)  NOT NULL
-
-);
-
-ALTER TABLE INSTALL
-ADD CONSTRAINTS FK_INSTALL_pur_index_purchase FOREIGN KEY(pur_index)
-REFERENCES purchase(pur_index);
-
-ALTER TABLE INSTALL
-ADD CONSTRAINTS FK_INSTALL_mgr_index_purchase FOREIGN KEY(mgr_index)
-REFERENCES managerMember(mgr_index);
+ 
  
 -- commit;
 

@@ -150,5 +150,7 @@ hs_err_pid*
 # /Folder08_Front/Servers/Tomcat v8.5 Server at localhost-config/tomcat-users.xml
 # /Folder08_Front/Servers/Tomcat v8.5 Server at localhost-config/web.xml
 
+
+build/
 Servers/
 Tomcat v8.5 Server at localhost-config/
