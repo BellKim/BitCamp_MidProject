@@ -1,5 +1,13 @@
+<%@page import="Dto.NoticeBbsDto"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+    <%
+    
+    	List<NoticeBbsDto> list = (List<NoticeBbsDto>)request.getAttribute("noticeList");
+    
+    %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,13 +15,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<!-- <a href="login.jsp"> 이 동 </a> -->
-	
-<%
-response.sendRedirect("login.jsp");
-%>
-
-	<a href="hellotest"> </a>
 
 </body>
 </html>

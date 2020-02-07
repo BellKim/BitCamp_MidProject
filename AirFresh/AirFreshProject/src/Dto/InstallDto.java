@@ -80,4 +80,8 @@ public class InstallDto implements Serializable {
 	}
 	
 	
+<<<<<<< HEAD
+=======
+	
+>>>>>>> origin/sujin
 }
