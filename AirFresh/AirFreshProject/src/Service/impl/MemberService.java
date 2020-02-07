@@ -9,20 +9,20 @@ public class MemberService implements MemberServiceInterface{
 	 
 		MemberDaoInterface dao = new MemberDao();
 //		MemberDao dao = new MemberDao();
-
+		/*
 		@Override
 		public boolean getId(String mem_id) {			
 			return dao.getId(mem_id);
 		}
-
+		*/
 		@Override
-		public boolean addMember(MemberDto dto) {			
-			return dao.addMember(dto);
+		public boolean addMem(MemberDto dto) {			
+			return dao.addMem(dto);
 		}
 
 		@Override
-		public MemberDto login(String mem_id, String mem_pw) {			
-			return dao.login(mem_id, mem_pw);
+		public MemberDto memLogin(String mem_id, String mem_pw) {			
+			return dao.memLogin(mem_id, mem_pw);
 		}
 	
 	/*

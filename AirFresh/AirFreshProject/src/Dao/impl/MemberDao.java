@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import Dao.MemberDaoInterface;
 import Dto.MemberDto;
@@ -11,7 +13,7 @@ import db.DBClose;
 import db.DBConnection;
 
 public class MemberDao implements MemberDaoInterface{	
-	
+	/*
 	@Override
 	public boolean getId(String mem_id) {
 		String sql = " SELECT ID "
@@ -46,9 +48,9 @@ public class MemberDao implements MemberDaoInterface{
 		return findid;		
 		
 	}
-
+*/
 	@Override
-	public boolean addMember(MemberDto dto) {
+	public boolean addMem(MemberDto dto) {
 		String sql = " INSERT INTO MEMBERS(MEM_ID, MEM_PW, "
 				+ " MEM_NAME, MEM_CELL, MEM_BIRTH, "
 				+ " MEM_ADDR1, MEM_ADDR2, MEM_ADDR3, MEM_AUTH) "
@@ -86,7 +88,7 @@ public class MemberDao implements MemberDaoInterface{
 	}
 
 	@Override
-	public MemberDto login(String mem_id, String mem_pw) {
+	public MemberDto memLogin(String mem_id, String mem_pw) {
 		String sql = " SELECT MEM_ID, MEM_NAME, MEM_CELL, MEM_BIRTH, "
 				+ " MEM_ADDR1, MEM_ADDR2, MEM_ADDR3, MEM_AUTH "
 				+ " FROM MEMBERS "
@@ -128,13 +130,105 @@ public class MemberDao implements MemberDaoInterface{
 		}
 		return mem;
 	}
-
-	/*
-	public String hello() {
-		System.out.println("hello dao???");
+								// TODO 인자 바꿀? class.png에 MemberDto dto로 되어있음
+	public boolean updateMem(String mem_pw, int mem_cell, int mem_addr1, String mem_addr2, String mem_addr3) {
 		
-		String hello="hello world jsp";
-		return hello;
-	}*/
+		String sql = " UPDATE MEMBERS "
+				+ " SET MEM_PW=?, MEM_CELL=?, MEM_ADDR1=?, MEM_ADDR2=?, MEM_ADDR3=? "
+				+ " WHERE MEM_ID=? ";
+		
+		Connection conn = DBConnection.getConnection();
+		PreparedStatement psmt = null;
+		
+		int count = 0;
+		
+		System.out.println("sql:" + sql);
+		
+		try {
+			psmt = conn.prepareStatement(sql);
+			/* SET MEM_PW=?, MEM_CELL=?, MEM_ADDR1=?, MEM_ADDR2=?, MEM_ADDR3=? */
+			psmt.setString(1, mem_pw);
+			psmt.setInt(2, mem_cell);
+			psmt.setInt(3, mem_addr1);
+			psmt.setString(4, mem_addr2);
+			psmt.setString(5, mem_addr3);
+			
+			count = psmt.executeUpdate(sql);
+			
+		} catch (SQLException e) {			
+			e.printStackTrace();
+		} finally {
+			DBClose.close(psmt, conn, null);
+		}
+		return count>0?true:false;
+	}
+	
+	public boolean delMem(String mem_id, String mem_pw) {
+		String sql = "DELETE FROM MEMBERS "
+				+ " WHERE MEM_ID=? AND MEM_PW=? ";
+		
+		Connection conn = null;
+		PreparedStatement psmt = null;
+		
+		int count = 0;
+		
+		try {
+			conn = DBConnection.getConnection();
+			
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, mem_id.trim());
+			psmt.setString(2, mem_pw);
+			
+			count = psmt.executeUpdate();
+			
+		} catch (SQLException e) {			
+			e.printStackTrace();
+		} finally {
+			DBClose.close(psmt, conn, null);			
+		}
+		
+		return count>0?true:false;
+	}
+	
+	public List<MemberDto> getMemList() {
+		String sql = " SELECT MEM_ID, MEM_NAME, MEM_CELL, MEM_BIRTH, MEM_ADDR1, " 
+					+ " MEM_ADDR2, MEM_ADDR3 ";
+		
+	 Connection conn = null;
+	 PreparedStatement psmt = null;
+	 ResultSet rs = null;
+		
+		List<MemberDto> list = new ArrayList<MemberDto>();
+		
+		try {
+			conn = DBConnection.getConnection();
+			psmt = conn.prepareStatement(sql);
+			rs = psmt.executeQuery();
+			/*
+			 * String mem_id, String mem_name, int mem_cell, String
+			 * mem_birth, int mem_addr1, String mem_addr2, String mem_addr3
+			 */
+			while(rs.next()) {
+				
+				MemberDto dto = new MemberDto(rs.getString(1),
+											  rs.getString(2),
+											  rs.getInt(3),
+											  rs.getString(4),
+											  rs.getInt(5),
+											  rs.getString(6),
+											  rs.getString(7)
+											);
+				list.add(dto);				
+			}			
+			
+		} catch (SQLException e) {			
+			e.printStackTrace();
+		} finally {
+			DBClose.close(psmt, conn, rs);			
+		}
+		
+		return list;
+	}
+
 
 }

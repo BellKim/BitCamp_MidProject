@@ -22,9 +22,8 @@
 				</tr>
 				<tr>
 					<td>아이디(이메일)</td>
-					<td>
-						<input type="text" id="mem_id" name="mem_id" size="20" placeholder="아이디">
-						id 확인
+					<td colspan="2">
+						<input type="text" id="mem_id" name="mem_id" size="20" placeholder="아이디">						
 						<p id="idcheck" style="font-size: 8px"></p>
 						<input type="button" id="btn" value="id확인">		
 					</td>

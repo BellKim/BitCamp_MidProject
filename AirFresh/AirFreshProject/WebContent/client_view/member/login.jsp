@@ -23,7 +23,7 @@
 					<input type="checkbox" id="remember_id" name="remember_id">
 					<label for="saveid">아이디 저장</label>
 				</div>
-			<button type="button" id="btnlogin" value="로그인" width="140px" height="100px"></button>
+			<button type="button" id="btnlogin" value="로그인"></button>
 				<div>
 					<a href="">아이디·패스워드 찾기</a>
 					<a href="register.jsp">회원가입</a>
@@ -39,7 +39,7 @@ $("#btnlogin").click(function () {
 		alert("id를 입력해 주십시오");
 		$("#mem_id").focus();
 	}
-	else if( $("mem_pw").val().trim() == "" ){
+	else if( $("#mem_pw").val().trim() == "" ){
 		alert("password를 입력해 주십시오");
 		$("#mem_pw").focus();
 	}

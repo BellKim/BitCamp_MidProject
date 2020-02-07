@@ -15,13 +15,16 @@ import singleton.singleton;
 public class AddMem extends HttpServlet {
 
 	@Override
-	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		super.doGet(req, resp);
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {		
+		processFunc(req, resp);
 	}
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		processFunc(req, resp);		
+	}
+
+	private void processFunc(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String mem_id = req.getParameter("mem_id");		
 		String mem_pw = req.getParameter("mem_pw");		
 		String mem_name = req.getParameter("mem_name");		
@@ -42,10 +45,10 @@ public class AddMem extends HttpServlet {
 		
 		req.setAttribute("dto", dto);		
 		
-		boolean isS = s.ms.addMember(dto);
-		//TODO instance, sendRedirect
+		boolean isS = s.ms.addMem(dto);
+		
 		resp.sendRedirect("login.jsp?isS=" + isS);
 		
+		
 	}
-
 }
