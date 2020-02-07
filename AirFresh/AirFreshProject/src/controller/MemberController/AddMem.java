@@ -45,10 +45,10 @@ public class AddMem extends HttpServlet {
 		
 		req.setAttribute("dto", dto);		
 		
-	/*	boolean isS = s.ms.addMem(dto);
+		boolean isS = s.ms.addMem(dto);
 		
 		resp.sendRedirect("login.jsp?isS=" + isS);
-		*/
+		
 		
 	}
 }

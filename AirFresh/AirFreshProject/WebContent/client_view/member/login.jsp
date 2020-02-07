@@ -10,7 +10,7 @@
 </head>
 <body>
 
-<div>
+<div align="center">
 	<div class="title">
 		<h2>로그인</h2>
 		<p>Air FRESH 홈페이지에 오신 것을 환영합니다.</p>
