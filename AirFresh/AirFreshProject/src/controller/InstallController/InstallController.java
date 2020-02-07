@@ -1,5 +1,4 @@
-package controller.MrgController;
-
+package controller.InstallController;
 
 import java.io.IOException;
 
@@ -10,18 +9,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/addMrgMember")
-public class AddMrgMember extends HttpServlet {
+import controller.AsController.AddAs;
+
+@WebServlet("/install")
+public class InstallController extends HttpServlet {
 	
-	private static AddMrgMember addMrgMember = null;
+private static InstallController installController = null;
 	
-	private AddMrgMember() {
+	private InstallController() {
 	}
-	public AddMrgMember getInstance() {
-		if(addMrgMember == null) {
-			addMrgMember = new AddMrgMember();
+	public InstallController getInstance() {
+		if(installController == null) {
+			installController = new InstallController();
 		}
-		return addMrgMember;
+		return installController;
 	}
 	
 	
@@ -36,6 +37,7 @@ public class AddMrgMember extends HttpServlet {
 	}
 
 	protected void processing(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		// 들어온 정보를 원하는 곳으로 보내주는 함수 
 		
 	}
 	
@@ -45,7 +47,5 @@ public class AddMrgMember extends HttpServlet {
 		RequestDispatcher dispatch = req.getRequestDispatcher(url);
 		dispatch.forward(req, resp);	
 	}
-	
-	
 	
 }
