@@ -7,10 +7,14 @@
 <title>Insert title here</title>
 </head>
 <body>
+<<<<<<< HEAD
 	<!-- <a href="login.jsp"> 이 동 </a> -->
 	
 <%
 response.sendRedirect("login.jsp");
 %>
+=======
+
+>>>>>>> subMaster
 </body>
 </html>
