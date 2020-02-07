@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<a href="hellotest"> 이 동 </a>
+<a href="Mrg">직원뷰로 이동</a>
 </body>
 </html>
