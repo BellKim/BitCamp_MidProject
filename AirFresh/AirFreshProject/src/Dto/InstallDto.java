@@ -79,9 +79,4 @@ public class InstallDto implements Serializable {
 				+ ", comp_date=" + comp_date + ", mgr_index=" + mgr_index + ", ins_state=" + ins_state + "]";
 	}
 	
-	
-<<<<<<< HEAD
-=======
-	
->>>>>>> origin/sujin
 }
