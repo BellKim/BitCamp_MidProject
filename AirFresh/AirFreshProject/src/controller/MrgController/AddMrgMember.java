@@ -40,8 +40,8 @@ public class AddMrgMember extends HttpServlet {
 	}
 	
 	protected void forward(String url, HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		//»ç¿ëÀÚ°¡ º¸³»¿Â ¿äÃ»¿¡ ÀÇÇÑ µ¥ÀÌÅÍ¸¦ °¡Áö°í ¿Í¼­ 
-		//»ç¿ëÀÚ°¡ ¿äÃ»ÇÑ µ¥ÀÌÅÍ¸¦ °¡Áö°í ÇØ´ç View·Î ÀÌµ¿ÇÏ´Â ÇÔ¼ö 
+		//ì‚¬ìš©ìê°€ ë³´ë‚´ì˜¨ ìš”ì²­ì— ì˜í•œ ë°ì´í„°ë¥¼ ê°€ì§€ê³  ì™€ì„œ 
+		//ì‚¬ìš©ìê°€ ìš”ì²­í•œ ë°ì´í„°ë¥¼ ê°€ì§€ê³  í•´ë‹¹ Viewë¡œ ì´ë™í•˜ëŠ” í•¨ìˆ˜ 
 		RequestDispatcher dispatch = req.getRequestDispatcher(url);
 		dispatch.forward(req, resp);	
 	}
