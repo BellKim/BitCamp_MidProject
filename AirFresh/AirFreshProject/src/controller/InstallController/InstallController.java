@@ -1,4 +1,4 @@
-package controller.AsController;
+package controller.InstallController;
 
 import java.io.IOException;
 
@@ -9,21 +9,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import controller.AsController.AddAs;
 
-
-
-@WebServlet("/addAs")
-public class AddAs  extends HttpServlet  {
-
-	private static AddAs addAs = null;
+@WebServlet("/install")
+public class InstallController extends HttpServlet {
 	
-	private AddAs() {
+private static InstallController installController = null;
+	
+	private InstallController() {
 	}
-	public AddAs getInstance() {
-		if(addAs == null) {
-			addAs = new AddAs();
+	public InstallController getInstance() {
+		if(installController == null) {
+			installController = new InstallController();
 		}
-		return addAs;
+		return installController;
 	}
 	
 	
@@ -38,6 +37,7 @@ public class AddAs  extends HttpServlet  {
 	}
 
 	protected void processing(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		// 들어온 정보를 원하는 곳으로 보내주는 함수 
 		
 	}
 	

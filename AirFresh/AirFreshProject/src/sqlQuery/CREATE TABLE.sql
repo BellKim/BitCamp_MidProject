@@ -1,5 +1,8 @@
 ﻿DROP TABLE orderReview 
 CASCADE CONSTRAINTS;
+
+
+
 DROP TABLE purchase 
 CASCADE CONSTRAINTS;
 DROP TABLE modelList 
@@ -16,6 +19,10 @@ DROP TABLE members
 CASCADE CONSTRAINTS;
 DROP TABLE managerMember 
 CASCADE CONSTRAINTS;
+DROP TABLE INSTALL
+CASCADE CONSTRAINT;
+
+
 
 
 DROP SEQUENCE asReview_SEQ; 
@@ -26,6 +33,9 @@ DROP SEQUENCE orderReview_SEQ;
 DROP SEQUENCE purchase_SEQ;
 DROP SEQUENCE modelList_SEQ;
 DROP SEQUENCE asApplication_SEQ;
+DROP SEQUENCE INSTALL_SEQ;
+
+
 
 
 CREATE SEQUENCE modelList_SEQ
@@ -74,6 +84,11 @@ INCREMENT BY 1
 MAXVALUE 59999
 NOCYCLE;
 
+CREATE SEQUENCE INSTALL_SEQ
+START WITH 70000
+INCREMENT BY 1
+MAXVALUE 79999
+NOCYCLE;
 
 -- members Table Create SQL
 CREATE TABLE members
@@ -112,23 +127,7 @@ CREATE TABLE asApplication
 );
 
 
-ALTER TABLE asApplication
-    ADD CONSTRAINT FK_asApplication_mem_id_member FOREIGN KEY (mem_id)
-        REFERENCES members (mem_id);
         
-ALTER TABLE asApplication
-    ADD CONSTRAINT FK_asApplication_prd_index_modelList FOREIGN KEY (prd_index)
-        REFERENCES modelList (prd_index);
-
- 
-
-ALTER TABLE asApplication
-    ADD CONSTRAINT FK_asApplication_mrg_id_mgrMem FOREIGN KEY (mgr_index)
-        REFERENCES managerMember(mgr_index);
-
-ALTER TABLE asApplication
-    ADD CONSTRAINT FK_asApplication_pur_index_pur FOREIGN KEY (pur_index)
-        REFERENCES purchase(pur_index);        
         
 -- members Table Create SQL
 CREATE TABLE modelList
@@ -165,18 +164,11 @@ CREATE TABLE purchase
 );
  
 
-ALTER TABLE purchase
-    ADD CONSTRAINT FK_purchase_prd_index_model FOREIGN KEY (prd_index)
-        REFERENCES modelList (prd_index);
- 
 
-ALTER TABLE purchase
-    ADD CONSTRAINT FK_purchase_mem_id_members_m FOREIGN KEY (mem_id)
-        REFERENCES members (mem_id);
- 
 
 
 -- members Table Create SQL
+
 CREATE TABLE orderReview
 (
     re_index             NUMBER(6)         NOT NULL, 
@@ -198,14 +190,7 @@ CREATE TABLE orderReview
 
  
 
-ALTER TABLE orderReview
-    ADD CONSTRAINT FK_orderReview_pur_index_asApp FOREIGN KEY (pur_index)
-        REFERENCES asApplication (as_index);
- 
 
-ALTER TABLE orderReview
-    ADD CONSTRAINT FK_orderReview_mem_id_members_ FOREIGN KEY (mem_id)
-        REFERENCES members (mem_id);
  
 
 
@@ -229,12 +214,6 @@ CREATE TABLE qnaBbs
 
 
 
-ALTER TABLE qnaBbs
-    ADD CONSTRAINT FK_qnaBbs_mem_id_members_mem_i FOREIGN KEY (mem_id)
-        REFERENCES members (mem_id);
- 
-
-
 -- members Table Create SQL
 CREATE TABLE noticeBbs
 (
@@ -250,8 +229,6 @@ CREATE TABLE noticeBbs
     CONSTRAINT NOTICEBBS_PK PRIMARY KEY (noti_index)
 );
  
-
-
 
 
 -- members Table Create SQL
@@ -290,31 +267,12 @@ CREATE TABLE asReview
  
 
 
-ALTER TABLE asReview
-    ADD CONSTRAINT FK_asReview_mem_id_members_mem FOREIGN KEY (mem_id)
-        REFERENCES members (mem_id);
- 
-
-ALTER TABLE asReview
-    ADD CONSTRAINT FK_asReview_as_index_asApplica FOREIGN KEY (as_index)
-        REFERENCES asApplication (as_index);
-
-
 --작성자: 박지훈
 --날짜 : 2020- 02 - 07
 --기능 : 설치신청을 저장하는 테이블
 
 
 
-DROP TABLE INSTALL
-CASCADE CONSTRAINT;
-
-
-CREATE SEQUENCE INSTALL_SEQ
-START WITH 70000
-INCREMENT BY 1
-MAXVALUE 79999
-NOCYCLE;
 
 
 CREATE TABLE INSTALL(
@@ -333,6 +291,58 @@ CREATE TABLE INSTALL(
 
 );
 
+ALTER TABLE asApplication
+    ADD CONSTRAINT FK_asApplication_mem_id_member FOREIGN KEY (mem_id)
+        REFERENCES members (mem_id);
+
+ALTER TABLE asApplication
+    ADD CONSTRAINT FK_asApplication_mrg_id_mgrMem FOREIGN KEY (mgr_index)
+        REFERENCES managerMember(mgr_index);
+
+ALTER TABLE asApplication
+    ADD CONSTRAINT FK_asApplication_pur_index_pur FOREIGN KEY (pur_index)
+        REFERENCES purchase(pur_index);
+
+
+
+
+ALTER TABLE purchase
+    ADD CONSTRAINT FK_purchase_prd_index_model FOREIGN KEY (prd_index)
+        REFERENCES modelList (prd_index);
+ 
+
+ALTER TABLE purchase
+    ADD CONSTRAINT FK_purchase_mem_id_members_m FOREIGN KEY (mem_id)
+        REFERENCES members (mem_id);
+ 
+
+ALTER TABLE asReview
+    ADD CONSTRAINT FK_asReview_mem_id_members_mem FOREIGN KEY (mem_id)
+        REFERENCES members (mem_id);
+ 
+
+ALTER TABLE asReview
+    ADD CONSTRAINT FK_asReview_as_index_asApplica FOREIGN KEY (as_index)
+        REFERENCES asApplication (as_index);
+
+
+ALTER TABLE orderReview
+    ADD CONSTRAINT FK_orderReview_pur_index_asApp FOREIGN KEY (pur_index)
+        REFERENCES asApplication (as_index);
+ 
+
+ALTER TABLE orderReview
+    ADD CONSTRAINT FK_orderReview_mem_id_members_ FOREIGN KEY (mem_id)
+        REFERENCES members (mem_id);
+        
+
+
+
+ALTER TABLE qnaBbs
+    ADD CONSTRAINT FK_qnaBbs_mem_id_members_mem_i FOREIGN KEY (mem_id)
+        REFERENCES members (mem_id);
+         
+        
 ALTER TABLE INSTALL
 ADD CONSTRAINTS FK_INSTALL_pur_index_purchase FOREIGN KEY(pur_index)
 REFERENCES purchase(pur_index);
