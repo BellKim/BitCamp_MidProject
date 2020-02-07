@@ -2,7 +2,7 @@ package Dto;
 
 import java.io.Serializable;
 
-public class ModeDto implements Serializable {
+public class ModelDto implements Serializable {
 
 	private int prd_index;					//번호
 	private String prd_name;				//제품명
@@ -10,12 +10,12 @@ public class ModeDto implements Serializable {
 	private String prd_price;				//가격
 
 	
-	public ModeDto() {
+	public ModelDto() {
 	
 	}
 
 
-	public ModeDto(int prd_index, String prd_name, String prd_model_name, String prd_price) {
+	public ModelDto(int prd_index, String prd_name, String prd_model_name, String prd_price) {
 		super();
 		this.prd_index = prd_index;
 		this.prd_name = prd_name;
