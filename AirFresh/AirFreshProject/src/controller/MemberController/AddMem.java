@@ -40,12 +40,11 @@ public class AddMem extends HttpServlet {
 		MemberDto dto = new MemberDto(mem_id, mem_pw, mem_name, mem_cell, mem_birth, mem_addr1,
 				mem_addr2, mem_addr3, mem_auth);
 		
-		req.setAttribute("dto", dto);
+		req.setAttribute("dto", dto);		
 		
-		/* requestDispatcher dispatcher = req.getRequestDispatcher(path); */
 		boolean isS = s.ms.addMember(dto);
 		//TODO instance, sendRedirect
-		resp.sendRedirect("login.jsp");
+		resp.sendRedirect("login.jsp?isS=" + isS);
 		
 	}
 
