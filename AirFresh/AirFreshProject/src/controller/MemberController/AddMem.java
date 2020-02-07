@@ -9,7 +9,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/addmem")
+import Dto.MemberDto;
+import singleton.singleton;
+
+@WebServlet("/addMem")
 public class AddMem extends HttpServlet {
 
 	private static AddMem addMem = null;
@@ -34,16 +37,7 @@ public class AddMem extends HttpServlet {
 		processFunc(req, resp);		
 	}
 
-	protected void processFunc(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		
-	}	
-	
-	protected void forward(String url, HttpServlet req, HttpServletResponse resp) throws ServletException, IOException {
-		RequestDispatcher dispatch = req.getRequestDispatcher(url);
-		dispatch.forward(req, resp);	
-	}
-	
-	/*
+	public void processFunc(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String mem_id = req.getParameter("mem_id");		
 		String mem_pw = req.getParameter("mem_pw");		
 		String mem_name = req.getParameter("mem_name");		
@@ -65,9 +59,13 @@ public class AddMem extends HttpServlet {
 		req.setAttribute("dto", dto);		
 		
 		boolean isS = s.ms.addMem(dto);
-		
-		resp.sendRedirect("login.jsp?isS=" + isS);
-		*/
-		
+		forward("./client_view/member/finding.jsp?isS=" + isS, req, resp);		
+	}	
+	
+	public void forward(String url, HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		RequestDispatcher dispatch = req.getRequestDispatcher(url);
+		dispatch.forward(req, resp);	
+	}
+			
 	
 }

@@ -13,9 +13,9 @@ import db.DBClose;
 import db.DBConnection;
 
 public class MemberDao implements MemberDaoInterface{	
-	/*
+	
 	@Override
-	public boolean getId(String mem_id) {
+	public boolean idCheck(String mem_id) {
 		String sql = " SELECT ID "
 				+ " FROM MEMBERS "
 				+ " WHERE ID = ? ";
@@ -48,7 +48,7 @@ public class MemberDao implements MemberDaoInterface{
 		return findid;		
 		
 	}
-*/
+
 	@Override
 	public boolean addMem(MemberDto dto) {
 		String sql = " INSERT INTO MEMBERS(MEM_ID, MEM_PW, "

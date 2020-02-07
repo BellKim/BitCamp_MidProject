@@ -9,12 +9,12 @@ public class MemberService implements MemberServiceInterface{
 	 
 		MemberDaoInterface dao = new MemberDao();
 //		MemberDao dao = new MemberDao();
-		/*
+		
 		@Override
-		public boolean getId(String mem_id) {			
-			return dao.getId(mem_id);
+		public boolean idCheck(String mem_id) {			
+			return dao.idCheck(mem_id);
 		}
-		*/
+		
 		@Override
 		public boolean addMem(MemberDto dto) {			
 			return dao.addMem(dto);

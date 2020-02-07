@@ -4,7 +4,7 @@ import Dto.MemberDto;
 
 public interface MemberServiceInterface {
 	
-	//public boolean getId(String mem_id);
+	public boolean idCheck(String mem_id);
 	
 	public boolean addMem(MemberDto dto);
 	
