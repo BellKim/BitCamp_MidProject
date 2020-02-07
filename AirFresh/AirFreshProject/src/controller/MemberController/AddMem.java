@@ -2,18 +2,28 @@ package controller.MemberController;
 
 import java.io.IOException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import Dto.MemberDto;
-import singleton.singleton;
-
 @WebServlet("/addmem")
 public class AddMem extends HttpServlet {
 
+	private static AddMem addMem = null;
+	
+	private AddMem() {		
+	}
+	
+	public AddMem getInstance() {
+		if(addMem == null) {
+			addMem = new AddMem();
+		}
+		return addMem;
+	}
+	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {		
 		processFunc(req, resp);
@@ -24,7 +34,16 @@ public class AddMem extends HttpServlet {
 		processFunc(req, resp);		
 	}
 
-	private void processFunc(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+	protected void processFunc(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		
+	}	
+	
+	protected void forward(String url, HttpServlet req, HttpServletResponse resp) throws ServletException, IOException {
+		RequestDispatcher dispatch = req.getRequestDispatcher(url);
+		dispatch.forward(req, resp);	
+	}
+	
+	/*
 		String mem_id = req.getParameter("mem_id");		
 		String mem_pw = req.getParameter("mem_pw");		
 		String mem_name = req.getParameter("mem_name");		
@@ -48,7 +67,7 @@ public class AddMem extends HttpServlet {
 		boolean isS = s.ms.addMem(dto);
 		
 		resp.sendRedirect("login.jsp?isS=" + isS);
+		*/
 		
-		
-	}
+	
 }
