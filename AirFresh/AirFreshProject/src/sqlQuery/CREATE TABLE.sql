@@ -150,13 +150,17 @@ CREATE TABLE modelList
 -- 수정자 : 박지훈 
 -- 컬럼명 변경 :installation_date -->>>  ins_date  
 
+-- 날짜 : 2020-02-07
+-- 수정자 : 조지현
+-- INS_DATE 컬럼 타입 변경 : DATE -> VARCHAR2(15) 
+
 CREATE TABLE purchase
 (
     pur_index        NUMBER(6)       NOT NULL, 
     mem_id             VARCHAR2(50)    NULL, 
     prd_index         NUMBER(6)       NULL, 
     pur_date             DATE            NULL, 
-    ins_date    DATE            NULL, 
+    ins_date    		VARCHAR2(15)            NULL, 
     order_num            NUMBER(3)       NULL, 
     review               NUMBER(1)       NULL, 
     order_auth           NUMBER(1)       NULL, 
