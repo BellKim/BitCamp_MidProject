@@ -10,8 +10,8 @@ import Dto.MemberDto;
 import db.DBClose;
 import db.DBConnection;
 
-public class MemberDao implements MemberDaoInterface{
-
+public class MemberDao implements MemberDaoInterface{	
+	
 	@Override
 	public boolean getId(String mem_id) {
 		String sql = " SELECT ID "

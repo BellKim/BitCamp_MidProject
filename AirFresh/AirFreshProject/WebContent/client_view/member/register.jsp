@@ -8,25 +8,22 @@
 </head>
 <body>
 
-<div id="header">
-
-</div>
-	<div id="member">
+	<div id="member" align="center">
 		<div>
 		<h2>Air FRESH 회원가입</h2>
 		</div>
-		<form id="joinInfo" method="post">
+		<form id="joinInfo" action="addmem" method="post">			
 			<table>
 				<tr>
 					<td>이름</td>
 					<td>
-						<input type="text" name="name" size="20">
+						<input type="text" id="mem_name" name="mem_name" size="20" placeholder="이름">
 					</td>
 				</tr>
 				<tr>
 					<td>아이디(이메일)</td>
 					<td>
-						<input type="text" id="mem_id" name="mem_id" size="20" placeholder="이름을 입력해주세요.">
+						<input type="text" id="mem_id" name="mem_id" size="20" placeholder="아이디">
 						id 확인
 						<p id="idcheck" style="font-size: 8px"></p>
 						<input type="button" id="btn" value="id확인">		
@@ -35,34 +32,35 @@
 				<tr>
 					<td>패스워드</td>
 					<td>
-						<input type="text" name="pwd" size="20">
+						<input type="password" id="mem_pw" name="mem_pw" size="20" placeholder="패스워드">
 					</td>
 				</tr>				
 				<tr>
 					<td>휴대폰번호</td>
 					<td>
-						<input type="text" name="name" size="20">
+						<input type="text" id="mem_cell" name="mem_cell" size="20" placeholder="휴대폰번호">
 					</td>
 				</tr>
 				<tr>
 					<td>생년월일</td>
 					<td>
-						<input type="text" name="name" size="20">
+						<input type="text" id="mem_birth" name="mem_birth" size="20" placeholder="생년월일">
 					</td>
 				</tr>
 				<tr>
 					<td>주소</td>
 					<td>
-						<input type="text" id="mem_addr1" placeholder="우편번호">
+						<input type="text" id="mem_addr1" name="mem_addr1" placeholder="우편번호">
 						<input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"><br>
-						<input type="text" id="mem_addr2" placeholder="주소"><br>
-						<input type="text" id="mem_addr3" placeholder="상세주소">
+						<input type="text" id="mem_addr2" name="mem_addr2" placeholder="주소"><br>
+						<input type="text" id="mem_addr3" name="mem_addr3" placeholder="상세주소">
 						<input type="text" id="sample6_extraAddress" placeholder="참고항목">
 					</td>
 				</tr>
 				<tr>
-					<td colspan="2">
+					<td colspan="2" align="center">
 						<input type="submit" value="회원가입">
+						<input type="reset" value="이전으로">
 					</td>
 				</tr>
 
