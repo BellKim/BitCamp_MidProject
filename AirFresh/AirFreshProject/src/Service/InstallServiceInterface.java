@@ -1,0 +1,12 @@
+package Service;
+
+import java.util.List;
+
+import Dto.InstallDto;
+
+public interface InstallServiceInterface {
+
+	public List<InstallDto> getInstallListAll();
+	
+	public boolean addInstall(InstallDto dto);
+}
