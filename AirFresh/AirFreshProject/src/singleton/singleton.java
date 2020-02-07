@@ -11,13 +11,12 @@ public class singleton {
 	private singleton() {
 		ms = new MemberService();
 		
-	}
+	}	
 	
 	public static singleton getInstance() {
 		if(s == null) {
 			s = new singleton();
 		}
-		
 		return s;
 	}
 
