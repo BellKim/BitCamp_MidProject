@@ -7,6 +7,10 @@
 <title>Insert title here</title>
 </head>
 <body>
+<<<<<<< HEAD
 	<a href="hellotest"> </a>
+=======
+
+>>>>>>> origin/subMaster
 </body>
 </html>
