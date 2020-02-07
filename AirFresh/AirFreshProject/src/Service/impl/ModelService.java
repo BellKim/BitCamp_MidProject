@@ -1,0 +1,19 @@
+package Service.impl;
+
+import java.util.List;
+
+import Dao.ModelDaoInterface;
+import Dao.impl.ModelDao;
+import Dto.ModelDto;
+import Service.ModelServiceInterface;
+
+public class ModelService implements ModelServiceInterface {
+	
+	ModelDaoInterface mdi = new ModelDao();
+	
+	@Override
+	public List<ModelDto> getModelList() {
+		return mdi.getModelList();
+	}
+
+}

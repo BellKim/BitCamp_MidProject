@@ -7,13 +7,18 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<!-- <a href="login.jsp"> 이 동 </a> -->
-	
 <%
-response.sendRedirect("login.jsp");
+	String isS = request.getParameter("isS");
+
+	if(isS.equals("true")){
 %>
-
-	<a href="hellotest"> </a>
-
+	<h1>결제완료</h1>
+<%
+	} else {
+%>
+	<h1>결제실패</h1>
+<%
+	}
+%>
 </body>
 </html>

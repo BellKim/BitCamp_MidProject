@@ -1,15 +1,18 @@
 package Dto;
 
-public class InstallDto {
-	
-	private int ins_index;	//¼³Ä¡½ÅÃ» ÀÎµ¦½º
-	private int pur_index;	//Á¦Ç°·»Å» ÀÎµ¦½º
-	private String ins_date; //¼³Ä¡Èñ¸ÁÀÏ 
-	private String comp_date; //¼³Ä¡¿Ï·áÀÏ 
-	private int mgr_index; // ¸Å´ÏÀú(Á÷¿ø) ÀÎµ¦½º
-	private int ins_state; // Ã³¸®»óÅÂ 
+import java.io.Serializable;
+
+public class InstallDto implements Serializable {
+	//ì„¤ì¹˜í…Œì´ë¸”
+	private int ins_index;					//ì œí’ˆì„¤ì¹˜ index
+	private int pur_index;					//ì œí’ˆë Œíƒˆ index
+	private String ins_date;				//ì„¤ì¹˜í¬ë§ì¼
+	private String comp_date;				//ì„¤ì¹˜ì™„ë£Œì¼
+	private int mgr_index;					//ë§¤ë‹ˆì €index
+	private int ins_state;					//ì²˜ë¦¬ìƒíƒœ   ì™„ë£Œ1 ë¯¸ì²˜ë¦¬0
 	
 	public InstallDto() {
+		
 	}
 
 	public InstallDto(int ins_index, int pur_index, String ins_date, String comp_date, int mgr_index, int ins_state) {
@@ -75,7 +78,5 @@ public class InstallDto {
 		return "InstallDto [ins_index=" + ins_index + ", pur_index=" + pur_index + ", ins_date=" + ins_date
 				+ ", comp_date=" + comp_date + ", mgr_index=" + mgr_index + ", ins_state=" + ins_state + "]";
 	}
-	
-	
 	
 }
