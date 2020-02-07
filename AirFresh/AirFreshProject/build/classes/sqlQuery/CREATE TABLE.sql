@@ -25,12 +25,54 @@ DROP SEQUENCE qnaBbs_SEQ;
 DROP SEQUENCE orderReview_SEQ;
 DROP SEQUENCE purchase_SEQ;
 DROP SEQUENCE modelList_SEQ;
+DROP SEQUENCE asApplication_SEQ;
+
+
+CREATE SEQUENCE modelList_SEQ
+START WITH 10000
+INCREMENT BY 1
+MAXVALUE 19999
+NOCYCLE;
+
+CREATE SEQUENCE purchase_SEQ
+START WITH 20000
+INCREMENT BY 1
+MAXVALUE 29999
+NOCYCLE;
+ 
+CREATE SEQUENCE orderReview_SEQ
+START WITH 30000
+INCREMENT BY 1
+MAXVALUE 39999
+NOCYCLE;
  
 
+CREATE SEQUENCE qnaBbs_SEQ
+START WITH 1
+INCREMENT BY 1;
+ 
+CREATE SEQUENCE noticeBbs_SEQ
+START WITH 1
+INCREMENT BY 1;
+ 
+CREATE SEQUENCE managerMember_SEQ
+START WITH 60000
+INCREMENT BY 1
+MAXVALUE 69999
+NOCYCLE;
+ 
 
-
-
-
+CREATE SEQUENCE asReview_SEQ
+START WITH 40000
+INCREMENT BY 1
+MAXVALUE 49999
+NOCYCLE;
+ 
+CREATE SEQUENCE asApplication_SEQ
+START WITH 50000
+INCREMENT BY 1
+MAXVALUE 59999
+NOCYCLE;
 
 
 -- members Table Create SQL
@@ -60,7 +102,7 @@ CREATE TABLE asApplication
     as_title       VARCHAR2(200)     NULL, 
     as_content     VARCHAR2(4000)    NULL, 
     as_img_path    VARCHAR2(100)     NULL, 
-    model_name     NUMBER            NULL, 
+    prd_index     NUMBER(6)            NULL, 
     CONSTRAINT ASAPPLICATION_PK PRIMARY KEY (as_index)
 );
 
@@ -69,9 +111,16 @@ CREATE TABLE asApplication
 ALTER TABLE asApplication
     ADD CONSTRAINT FK_asApplication_mem_id_member FOREIGN KEY (mem_id)
         REFERENCES members (mem_id);
+        
+ALTER TABLE asApplication
+    ADD CONSTRAINT FK_asApplication_prd_index_modelList FOREIGN KEY (prd_index)
+        REFERENCES modelList (prd_index);
 
 
-
+        
+        
+        
+        
 -- members Table Create SQL
 CREATE TABLE modelList
 (
@@ -83,9 +132,6 @@ CREATE TABLE modelList
 );
 
 
-CREATE SEQUENCE modelList_SEQ
-START WITH 1
-INCREMENT BY 1;
 
 
 
@@ -105,10 +151,6 @@ CREATE TABLE purchase
 );
  
 
-CREATE SEQUENCE purchase_SEQ
-START WITH 1
-INCREMENT BY 1;
- 
 
 
 
@@ -142,10 +184,7 @@ CREATE TABLE orderReview
 );
  
 
-CREATE SEQUENCE orderReview_SEQ
-START WITH 1
-INCREMENT BY 1;
- 
+
 
 
  
@@ -178,11 +217,6 @@ CREATE TABLE qnaBbs
 );
  
 
-CREATE SEQUENCE qnaBbs_SEQ
-START WITH 1
-INCREMENT BY 1;
- 
-
 
 
 
@@ -208,10 +242,6 @@ CREATE TABLE noticeBbs
 );
  
 
-CREATE SEQUENCE noticeBbs_SEQ
-START WITH 1
-INCREMENT BY 1;
- 
 
 
 
@@ -230,10 +260,6 @@ CREATE TABLE managerMember
 );
  
 
-CREATE SEQUENCE managerMember_SEQ
-START WITH 1
-INCREMENT BY 1;
- 
 
 
 
@@ -253,13 +279,6 @@ CREATE TABLE asReview
     CONSTRAINT ASREVIEW_PK PRIMARY KEY (as_re_index)
 );
  
-
-CREATE SEQUENCE asReview_SEQ
-START WITH 1
-INCREMENT BY 1;
- 
-
-
 
 
 ALTER TABLE asReview
