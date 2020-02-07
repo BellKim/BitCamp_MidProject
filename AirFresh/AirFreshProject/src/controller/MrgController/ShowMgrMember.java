@@ -8,24 +8,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
-
-//메니저 추가를 하기 위한 컨트롤러.
-@WebServlet("/AddMgrMember")
-public class AddMrgMember extends HttpServlet {
+//메니저 리스트를 보여주기 위한 컨트롤러
+@WebServlet("/ShowMgrMember")
+public class ShowMgrMember extends HttpServlet  {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		System.out.println("hello AddMrgMember do get ");
+		System.out.println("hello ShowMgrMember do get ");
 	}
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		System.out.println("hello AddMrgMember doPost do get ");
+		System.out.println("hello ShowMgrMember do post  ");
 	}
+	
+	
 
-	
-	
-	
-	
-}//end AddMrgMember class
+}//end ShowMgrMember class
