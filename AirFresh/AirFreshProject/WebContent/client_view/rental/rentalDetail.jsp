@@ -16,9 +16,9 @@
 <body>
 <%
 	//제품 index get
+	String seq = request.getParameter("seq");
 	
-	
-	ModelDto model = new ModelDto(10000,"공기청정기1","ACL141MA",28900);
+	ModelDto model = new ModelDto();
 	session.setAttribute("model", model);
 	
 	int cell = 0101234567;
