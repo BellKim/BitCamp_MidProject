@@ -1,6 +1,7 @@
 package controller.PurchaseController;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,8 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 import Dto.PurchaseDto;
 import singleton.singleton;
 
-@WebServlet("/delPur")
-public class delPurchase  extends HttpServlet  {
+@WebServlet("/printPurchase")
+public class PrintPurchase extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -24,23 +25,17 @@ public class delPurchase  extends HttpServlet  {
 		this.process(req, resp);
 	}
 
-	public void process(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		//System.out.println("delPur 도착");
-		String seq = req.getParameter("seq");
-		int pur_index = Integer.parseInt(seq);
+	public void process(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
+		System.out.println("PrintPurchase 도착");
+		String mem_id = req.getParameter("id");
+		System.out.println("id: "+mem_id);
 		
-
-		System.out.println("delPur seq: "+seq);
 		singleton s = singleton.getInstance();
+		List<PurchaseDto> list = s.ps.memPurchaseList(mem_id);
 		
-		//제품 삭제를 위해 dto 던져줌
-		/*
-		 * PurchaseDto pur = s.ps.getPurchaseOne(pur_index); req.setAttribute("pur",
-		 * pur);
-		 */
+		req.setAttribute("list", list);
+		req.getRequestDispatcher("./client_view/rental/paytable.jsp").forward(req, resp);
 		
-		boolean command = s.ps.purchaseDelete(pur_index);
-		System.out.println("del pur command: "+command);
-		req.getRequestDispatcher("./client_view/rental/delcomplete.jsp?command="+command).forward(req, resp);
+		
 	}
 }

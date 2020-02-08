@@ -26,6 +26,10 @@ public class PurchaseService implements PurchaseServiceInterface {
 	public List<PurchaseDto> memPurchaseList(String mem_id) {
 		return dao.memPurchaseList(mem_id);
 	}
+	@Override
+	public PurchaseDto getPurchaseOne(int pur_index) {
+		return dao.getPurchaseOne(pur_index);
+	}
 
 	
 }

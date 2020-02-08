@@ -17,4 +17,7 @@ public interface PurchaseServiceInterface {
 	
 	//회원별 구매 list 보기
 	List<PurchaseDto> memPurchaseList(String mem_id);
+	
+	 //구매 상세 dto 보기
+    PurchaseDto getPurchaseOne(int pur_index);
 }

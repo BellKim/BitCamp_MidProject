@@ -6,6 +6,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import Dao.PurchaseDaoInterface;
@@ -53,8 +54,8 @@ public class PurchaseDao implements PurchaseDaoInterface {
 		return count>0?true:false;
 	}
 	
+	
 	public boolean purchaseDelete(int pur_index) {
-		//파라미터 뭐로 타고 들어갈지 물어보기
 		String sql = " UPDATE PURCHASE "
 				+ " SET ORDER_AUTH=1 "
 				+ " WHERE PUR_INDEX=? ";
@@ -94,7 +95,7 @@ public class PurchaseDao implements PurchaseDaoInterface {
 		PreparedStatement psmt = null;
 		ResultSet rs = null;
 		
-		List<PurchaseDto> list = null;
+		List<PurchaseDto> list = new ArrayList<PurchaseDto>();
 		
 		try {
 			conn = DBConnection.getConnection();
@@ -137,7 +138,7 @@ public class PurchaseDao implements PurchaseDaoInterface {
 		PreparedStatement psmt = null;
 		ResultSet rs = null;
 		
-		List<PurchaseDto> list = null;
+		List<PurchaseDto> list = new ArrayList<PurchaseDto>();
 		
 		try {
 			conn = DBConnection.getConnection();
@@ -148,7 +149,7 @@ public class PurchaseDao implements PurchaseDaoInterface {
 			psmt.setString(1, mem_id);
 			
 			rs = psmt.executeQuery();
-			if(rs.next()) {
+			while(rs.next()) {
 				int i = 1;
 				PurchaseDto dto = new PurchaseDto(rs.getInt(i++),//pur_index, 
 												rs.getString(i++),//mem_id, 
@@ -170,6 +171,52 @@ public class PurchaseDao implements PurchaseDaoInterface {
 		}
 		
 		return list;
+	}
+
+	@Override
+	public PurchaseDto getPurchaseOne(int pur_index) {
+		//구매 내역 상세
+		String sql =" SELECT PUR_INDEX, MEM_ID, PRD_INDEX, PUR_DATE, INS_DATE, "
+					+ " ORDER_NUM, REVIEW, ORDER_AUTH "
+					+ " FROM PURCHASE "
+					+ " WHERE PUR_INDEX=? ";
+		
+		Connection conn = null;
+		PreparedStatement psmt = null;
+		ResultSet rs = null;
+		
+		PurchaseDto dto = null;
+		
+		try {
+			conn = DBConnection.getConnection();
+			System.out.println("1/6 getPurchaseOne success");
+			psmt = conn.prepareStatement(sql);
+			System.out.println("2/6 getPurchaseOne success");
+			psmt.setInt(1, pur_index);
+			
+			rs = psmt.executeQuery();
+			if(rs.next()) {
+				int i = 1;
+				dto = new PurchaseDto(rs.getInt(i++),//pur_index, 
+									 rs.getString(i++),//mem_id, 
+									 rs.getInt(i++),//prd_index, 
+									 rs.getString(i++),//pur_date, 
+									 rs.getString(i++),//ins_date, 
+									 rs.getInt(i++),//order_num, 
+									 rs.getInt(i++),//review, 
+									 rs.getInt(i++));	//order_auth)
+			}
+			
+			System.out.println("3/6 getPurchaseOne success");
+		} catch (SQLException e) {
+			System.out.println("getPurchaseOne fail");
+			e.printStackTrace();
+		} finally {
+			DBClose.close(psmt, conn, rs);
+		}
+		
+		
+		return dto;
 	}
 }
 
