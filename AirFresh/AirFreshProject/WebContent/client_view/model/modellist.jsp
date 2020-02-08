@@ -12,8 +12,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="./css/bootstrap.css">
-<link rel="stylesheet" href="./css/bootstrap.min.css">
+<link rel="stylesheet" href="<%=request.getContextPath() %>/css/bootstrap.css">
+<link rel="stylesheet" href="<%=request.getContextPath() %>/css/bootstrap.min.css">
 </head>
 <body>
 
