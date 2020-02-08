@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <%
 String str = request.getParameter("isS");
-int count = request.getParameter("count");
+int count = Integer.parseInt(request.getParameter("count"));
 String str1 = request.getParameter("isS1");
 %>
 <!DOCTYPE html>
@@ -42,7 +42,7 @@ if(str.equals("true")) {
 	location.href = "";	// model의 CustUserAdd controller로 보냄
 	</script>
 <%
-else if(str1.equals("true")){
+}else if(str1.equals("true")){
 %>	
 	<script type="text/javascript">
 	alert("중복된 아이디가 있습니다.");

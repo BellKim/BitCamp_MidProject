@@ -24,7 +24,7 @@ public class idCheck extends HttpServlet{
 		this.processFunc(req, resp);
 	}
 
-	public void processFunc(HttpServletRequest req, HttpServletResponse resp) {
+	public void processFunc(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String mem_id = req.getParameter("mem_id");
 		System.out.println("id:" + mem_id);
 		

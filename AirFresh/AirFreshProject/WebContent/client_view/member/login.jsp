@@ -20,10 +20,10 @@
 			<input type="text" placeholder="아이디(이메일)을 입력해주세요." id="mem_id" name="mem_id">
 			<input type="text" placeholder="비밀번호를 입력해주세요." id="mem_pw" name="mem_pw">	
 				<div class="idcheck">
-					<input type="checkbox" id="remember_id" name="remember_id">
+					<input type="checkbox" id="chk_save_id">
 					<label for="saveid">아이디 저장</label>
 				</div>
-			<button type="button" id="btnlogin" value="로그인"></button>
+			<button type="button" id="btnlogin" style="width:140px; height:100px;" value="로그인"></button>
 				<div>
 					<a href="">아이디·패스워드 찾기</a>
 					<a href="register.jsp">회원가입</a>
@@ -51,15 +51,15 @@ $("#btnlogin").click(function () {
 		var user_id = $.cookie("user_id");
 		if(user_id != null){			
 			$("#mem_id").val( user_id );
-			$("#remember_id").attr("checked", "checked");
+			$("#chk_save_id").attr("checked", "checked");
 		}
 
-		$("#remember_id").click(function() {
+		$("#chk_save_id").click(function() {
 			
-			if( $("#remember_id").is(":checked") ){			
+			if( $("#chk_save_id").is(":checked") ){			
 				if( $("#mem_id").val().trim() == "" ){
-					alert("id를 입력해 주십시오");
-					$("#remember_id").prop("checked", false);			
+					alert("ID를 입력해 주십시오");
+					$("#chk_save_id").prop("checked", false);			
 				}else{					
 					$.cookie("user_id", $("#mem_id").val().trim(), {expires:7, path:'./'});
 				}
