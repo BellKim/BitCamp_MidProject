@@ -22,7 +22,8 @@
 %>
 
     <h3 class="card-header"><%=list.get(i).getPrd_name()%></h3>
-   <a href ="modelDetail.jsp?seq=<%=list.get(i).getPrd_index() %>"><img src="./client_view/model/prd_img/<%=list.get(i).getPrd_model_name()%>.png" width="300"></a>
+   <a href ="./client_view/rental/rentalDetail.jsp?seq=<%=list.get(i).getPrd_index() %>">
+   <img src="./client_view/model/prd_img/<%=list.get(i).getPrd_model_name()%>.png" width="300"></a>
 
 
 <%

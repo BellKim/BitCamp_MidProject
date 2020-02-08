@@ -17,6 +17,7 @@
 <%
 	//제품 index get
 	String seq = request.getParameter("seq");
+	System.out.println("seq: "+seq);
 	
 	ModelDto model = new ModelDto();
 	session.setAttribute("model", model);
