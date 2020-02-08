@@ -19,13 +19,13 @@ public class testController extends HttpServlet{
 		
 		
 		singleton si = singleton.getInstance();
-		
+		/*
 		String hel = si.ms.hello();
 		System.out.println("hel = " + hel);
 		//req.setAttribute("syshello", hel);
 		
 		resp.sendRedirect("./Sample/helloTest.jsp?hel="+hel);
-		
+		*/
 	}
 
 	@Override

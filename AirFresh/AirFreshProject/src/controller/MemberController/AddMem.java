@@ -12,21 +12,9 @@ import javax.servlet.http.HttpServletResponse;
 import Dto.MemberDto;
 import singleton.singleton;
 
-@WebServlet("/addMem")
+@WebServlet("/addmem")
 public class AddMem extends HttpServlet {
 
-	private static AddMem addMem = null;
-	
-	private AddMem() {		
-	}
-	
-	public AddMem getInstance() {
-		if(addMem == null) {
-			addMem = new AddMem();
-		}
-		return addMem;
-	}
-	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {		
 		processFunc(req, resp);
@@ -56,7 +44,7 @@ public class AddMem extends HttpServlet {
 		MemberDto dto = new MemberDto(mem_id, mem_pw, mem_name, mem_cell, mem_birth, mem_addr1,
 				mem_addr2, mem_addr3, mem_auth);
 		
-		req.setAttribute("dto", dto);		
+		//req.setAttribute("dto", dto);		
 		
 		boolean isS = s.ms.addMem(dto);
 		forward("./client_view/member/finding.jsp?isS=" + isS, req, resp);		

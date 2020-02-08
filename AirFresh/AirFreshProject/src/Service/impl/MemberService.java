@@ -24,6 +24,11 @@ public class MemberService implements MemberServiceInterface{
 		public MemberDto memLogin(String mem_id, String mem_pw) {			
 			return dao.memLogin(mem_id, mem_pw);
 		}
+
+		@Override
+		public boolean delMem(String mem_id, String mem_pw) {
+			return dao.delMem(mem_id, mem_pw);
+		}
 	
 	/*
 	@Override

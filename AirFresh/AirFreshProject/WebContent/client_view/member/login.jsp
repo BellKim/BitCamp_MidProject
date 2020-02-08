@@ -16,18 +16,24 @@
 		<p>Air FRESH 홈페이지에 오신 것을 환영합니다.</p>
 	</div>	
 	<div class="login">
-		<form id="loginInfo" method="post">			
-			<input type="text" placeholder="아이디(이메일)을 입력해주세요." id="mem_id" name="mem_id">
-			<input type="text" placeholder="비밀번호를 입력해주세요." id="mem_pw" name="mem_pw">	
-				<div class="idcheck">
-					<input type="checkbox" id="chk_save_id">
-					<label for="saveid">아이디 저장</label>
-				</div>
-			<button type="button" id="btnlogin" style="width:140px; height:100px;" value="로그인"></button>
-				<div>
-					<a href="">아이디·패스워드 찾기</a>
-					<a href="register.jsp">회원가입</a>
-				</div>		
+		<form id="loginInfo" action="./../../memlogin" method="post">			
+			<div>
+			<div>
+				<input type="text" placeholder="아이디(이메일)을 입력해주세요." id="mem_id" name="mem_id">
+			</div>
+			<div>
+				<input type="password" placeholder="비밀번호를 입력해주세요." id="mem_pw" name="mem_pw">	
+			</div>
+			<div class="idcheck">
+				<input type="checkbox" id="chk_save_id">
+				<label for="saveid">아이디 저장</label>
+			</div>
+			</div>
+			<button type="button" id="btnlogin">로그인</button>
+			<div>
+				<a href="">아이디·패스워드 찾기</a>
+				<a href="register.jsp">회원가입</a>
+			</div>		
 		</form>
 	</div>
 </div>
@@ -44,7 +50,7 @@ $("#btnlogin").click(function () {
 		$("#mem_pw").focus();
 	}
 	else{
-		$("#loginInfo").attr({"action":"mypage.jsp", "target":"_self"}).submit();
+		$("#loginInfo").submit();
 	}
 });
 

@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import singleton.singleton;
 
-@WebServlet("/idCheck")
+@WebServlet("/idcheck")
 public class idCheck extends HttpServlet{
 
 	@Override
