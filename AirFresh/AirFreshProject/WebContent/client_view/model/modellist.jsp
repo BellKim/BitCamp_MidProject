@@ -22,7 +22,9 @@
 %>
 
     <h3 class="card-header"><%=list.get(i).getPrd_name()%></h3>
-   <a href ="./client_view/rental/rentalDetail.jsp?seq=<%=list.get(i).getPrd_index() %>">
+   <%--  <a href ="./client_view/rental/rentalDetail.jsp?seq=<%=list.get(i).getPrd_index() %>"> modelDetail --%>
+   <input type="hidden" name="command" value="detail">
+   <a href ="./modelDetail?seq=<%=list.get(i).getPrd_index() %>&command=detail"> 
    <img src="./client_view/model/prd_img/<%=list.get(i).getPrd_model_name()%>.png" width="300"></a>
 
 

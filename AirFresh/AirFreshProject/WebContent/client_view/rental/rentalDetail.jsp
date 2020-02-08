@@ -1,4 +1,5 @@
 
+<%@page import="javax.print.attribute.ResolutionSyntax"%>
 <%@page import="Dao.impl.MemberDao"%>
 <%@page import="Dto.ModelDto"%>
 <%@page import="Dto.MemberDto"%>
@@ -16,11 +17,11 @@
 <body>
 <%
 	//제품 index get
-	String seq = request.getParameter("seq");
-	System.out.println("seq: "+seq);
+	/* String seq = request.getParameter("seq");
+	System.out.println("seq: "+seq); */
 	
-	ModelDto model = new ModelDto();
-	session.setAttribute("model", model);
+	ModelDto model = (ModelDto)request.getAttribute("model");
+	//System.out.println("model :"+model.toString());
 	
 	int cell = 0101234567;
 	MemberDto mem = new MemberDto();
@@ -28,20 +29,22 @@
 	mem.setMem_name("홍길동");
 	mem.setMem_cell(cell);
 	mem.setMem_addr2("서울특별시 강서구");
-
 	session.setAttribute("login", mem);
 	
+	//model session
+	session.setAttribute("model", model);
+
 %>
 <table border="1">
 	<tr>
 		<!-- left 상품명, 상품이미지 --> 
-		<td>상품명</td>
-		<td><img src="../model/prd_img/thumb-4_450x450.png" alt="xx"></td>
+		<td><%=model.getPrd_name() %></td>
+		<td><img src="./client_view/model/prd_img/<%=model.getPrd_model_name() %>.png" alt="xx" style="width: 180px"></td>
 		<td><!-- right 모델명, 방문주기, Q&A, 신청 -->
 			<table border="1">
 				<tr>
 					<td>모델명</td>
-					<td>ACL141MA (14평형)</td>
+					<td><%=model.getPrd_model_name() %></td>
 				</tr>
 				<tr>
 					<td>방문주기</td>
@@ -53,12 +56,13 @@
 				</tr>
 				<tr>
 					<td>렌탈가</td>
-					<td>28,900</td>
+					<td><%=model.getPrd_price() %></td>
 				</tr>
 				<tr>
 					<td colspan="2">
-						<input type="button" id="_qnawrite" value="Q&A">
-						<input type="button" value="바로신청하기" onclick="location.href='purchase.jsp'" >
+						<input type="button" id="_qnawrite" value="Q&A" onclick="location.href='#'">
+						<input type="hidden" name="command" value="purcha">
+						<input type="button" value="바로신청하기" onclick="location.href='./modelDetail?seq=<%=model.getPrd_index() %>&command=purcha'" >
 					</td>
 				</tr>
 			</table>
@@ -70,5 +74,6 @@
 		<td>상세이미지</td>
 	</tr>
 </table>
+
 </body>
 </html>
