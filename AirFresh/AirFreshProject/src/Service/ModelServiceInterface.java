@@ -6,4 +6,5 @@ import Dto.ModelDto;
 
 public interface ModelServiceInterface {
 	public List<ModelDto> getModelList();
+	ModelDto getModelDetail(int prd_index);
 }

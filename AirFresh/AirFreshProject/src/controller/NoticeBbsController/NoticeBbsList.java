@@ -32,7 +32,7 @@ public class NoticeBbsList extends HttpServlet{
 		List<NoticeBbsDto> list = s.nbsi.getNoticeList();
 		
 		req.setAttribute("noticeList", list);
-		forward("noticelist.jsp", req, resp);
+		forward("./admin_view/board/noticelist.jsp", req, resp);
 		
 	}
 	

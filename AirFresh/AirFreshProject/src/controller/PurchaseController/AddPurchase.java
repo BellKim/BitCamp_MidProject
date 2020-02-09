@@ -36,14 +36,16 @@ public class AddPurchase  extends HttpServlet {
 		MemberDto mem = (MemberDto) session.getAttribute("login");
 		ModelDto model = (ModelDto) session.getAttribute("model");
 		
+		
 		System.out.println("id : " + mem.getMem_id());
 		System.out.println("제품idx : "+model.getPrd_index());
 		System.out.println("설치희망일: "+ ins_date);
 		
 		
 		singleton s = singleton.getInstance();
-		boolean isS = s.ps.purachaseInsert(mem.getMem_id(), model.getPrd_index(), ins_date);
-		req.getRequestDispatcher("./client_view/rental/purcomplete.jsp?isS="+isS).forward(req, resp);
+		
+		boolean command = s.ps.purchaseInsert(mem.getMem_id(), model.getPrd_index(), ins_date);
+		req.getRequestDispatcher("./client_view/rental/purcomplete.jsp?command="+command).forward(req, resp);
 	}
 	
 	

@@ -16,4 +16,9 @@ public class ModelService implements ModelServiceInterface {
 		return mdi.getModelList();
 	}
 
+	@Override
+	public ModelDto getModelDetail(int prd_index) {
+		return mdi.getModelDetail(prd_index);
+	}
+
 }
