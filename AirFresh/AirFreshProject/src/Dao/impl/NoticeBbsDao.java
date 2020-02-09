@@ -69,5 +69,40 @@ public class NoticeBbsDao implements NoticeBbsDaoInterface {
 		return list;
 	}
 
-	
+	@Override
+	public boolean writeNotice(NoticeBbsDto notice) {
+		String sql = " INSERT INTO NOTICEBBS "
+				+ " (NOTI_INDEX, NOTI_TITLE, NOTI_CONTENT, NOTI_CATAGORY," 
+				+ " NOTI_WRITER, NOTI_WDATE, FILENAME, READCOUNT, NOTI_DEL) "
+				+ " VALUES (noticeBbs_SEQ.NEXTVAL, ?, ?, ?,"
+				+ " '관리자', SYSDATE, ?, 0, 0) ";
+		
+		Connection conn = null;
+		PreparedStatement psmt = null;
+		
+		int count = 0;
+		
+		try {
+			conn = DBConnection.getConnection();
+			System.out.println("1/6 writeNotice success");
+				
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, notice.getNoti_title());
+			psmt.setString(2, notice.getNoti_content());
+			psmt.setInt(3, notice.getNoti_catagory());
+			psmt.setString(4, notice.getFilename());
+			System.out.println("2/6 writeNotice success");
+			
+			count = psmt.executeUpdate();
+			System.out.println("3/6 writeNotice success");
+			
+		} catch (SQLException e) {
+			System.out.println("writeNotice fail");
+			e.printStackTrace();
+		} finally {
+			DBClose.close(psmt, conn, null);			
+		}
+		
+		return count>0?true:false;		
+	}
 }

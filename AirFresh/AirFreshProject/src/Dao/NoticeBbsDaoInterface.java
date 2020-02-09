@@ -6,5 +6,5 @@ import Dto.NoticeBbsDto;
 
 public interface NoticeBbsDaoInterface {
 	public List<NoticeBbsDto> getNoticeList();
-	
+	public boolean writeNotice(NoticeBbsDto notice);
 }
