@@ -6,6 +6,7 @@
     
     DBConnection.initConnection();
     
+    session.setAttribute("login",null );
     %>
 <!DOCTYPE html>
 <html>
@@ -14,8 +15,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<form action = "">
-</form>
+
 <a href = "./../../noticelist">공지사항 본다</a>
 </body>
 </html>
