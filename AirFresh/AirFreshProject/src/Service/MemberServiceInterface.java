@@ -10,5 +10,7 @@ public interface MemberServiceInterface {
 	
 	public MemberDto memLogin(String mem_id, String mem_pw);
 
+	public boolean updateMem(MemberDto dto);
+	
 	public boolean delMem(String mem_id, String mem_pw);
 }

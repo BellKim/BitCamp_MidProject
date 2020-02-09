@@ -17,13 +17,11 @@ public class MemberDto implements Serializable {
 	public MemberDto() {		
 	}	
 
-	public MemberDto(String mem_id, String mem_name, int mem_cell, String mem_birth, int mem_addr1, String mem_addr2,
-			String mem_addr3) {
+	public MemberDto(String mem_id, String mem_pw, int mem_cell, int mem_addr1, String mem_addr2, String mem_addr3) {
 		super();
 		this.mem_id = mem_id;
-		this.mem_name = mem_name;
-		this.mem_cell = mem_cell;
-		this.mem_birth = mem_birth;
+		this.mem_name = mem_pw;
+		this.mem_cell = mem_cell;		
 		this.mem_addr1 = mem_addr1;
 		this.mem_addr2 = mem_addr2;
 		this.mem_addr3 = mem_addr3;
@@ -43,6 +41,18 @@ public class MemberDto implements Serializable {
 		this.mem_auth = mem_auth;
 	}
 
+	
+	public MemberDto(String mem_id, String mem_name, int mem_cell, String mem_birth, int mem_addr1, String mem_addr2,
+			String mem_addr3) {
+		super();
+		this.mem_id = mem_id;		
+		this.mem_name = mem_name;
+		this.mem_cell = mem_cell;
+		this.mem_birth = mem_birth;
+		this.mem_addr1 = mem_addr1;
+		this.mem_addr2 = mem_addr2;
+		this.mem_addr3 = mem_addr3;
+	}
 
 	public String getMem_id() {
 		return mem_id;

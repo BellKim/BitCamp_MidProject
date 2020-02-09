@@ -29,6 +29,11 @@ public class MemberService implements MemberServiceInterface{
 		public boolean delMem(String mem_id, String mem_pw) {
 			return dao.delMem(mem_id, mem_pw);
 		}
+
+		@Override
+		public boolean updateMem(MemberDto dto) {			
+			return dao.updateMem(dto);
+		}
 	
 	/*
 	@Override

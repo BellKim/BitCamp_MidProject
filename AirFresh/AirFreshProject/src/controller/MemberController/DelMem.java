@@ -25,6 +25,8 @@ public class DelMem extends HttpServlet{
 	}
 
 	protected void processFunc(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		req.setCharacterEncoding("utf-8");
+		
 		String mem_id = req.getParameter("mem_id");
 		String mem_pw = req.getParameter("mem_pw");
 		

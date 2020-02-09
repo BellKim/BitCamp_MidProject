@@ -26,6 +26,8 @@ public class AddMem extends HttpServlet {
 	}
 
 	public void processFunc(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		req.setCharacterEncoding("utf-8");
+		
 		String mem_id = req.getParameter("mem_id");		
 		String mem_pw = req.getParameter("mem_pw");		
 		String mem_name = req.getParameter("mem_name");		

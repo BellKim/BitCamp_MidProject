@@ -60,16 +60,16 @@
 				</tr>
 				<tr>
 					<td colspan="2" align="center">
-						<input type="button" value="회원가입" id="_btnJoin">
+						<input type="button" value="회원가입" id="_btnJoin" >
 						<input type="button" value="이전으로" onclick="location.href='login.jsp'">
 					</td>
 				</tr>
 
-</table>
-
-</form>
-
-</div>
+	</table>
+	
+	</form>
+	
+	</div>
 
 <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script type="text/javascript">
