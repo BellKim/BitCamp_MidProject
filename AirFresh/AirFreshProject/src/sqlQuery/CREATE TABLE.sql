@@ -144,7 +144,7 @@ CREATE TABLE modelList
 
 
 
--- members Table Create SQL
+-- purchase Table Create SQL
 
 -- 날짜 : 2020-02-07
 -- 수정자 : 박지훈 
