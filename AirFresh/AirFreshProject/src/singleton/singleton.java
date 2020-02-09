@@ -1,9 +1,11 @@
 package singleton;
 
+import Service.ManageMemberInterface;
 import Service.MemberServiceInterface;
 import Service.ModelServiceInterface;
 import Service.NoticeBbsServiceInterface;
 import Service.PurchaseServiceInterface;
+import Service.impl.ManageMemberService;
 import Service.impl.MemberService;
 import Service.impl.ModelService;
 import Service.impl.NoticeBbsService;
@@ -16,12 +18,18 @@ public class singleton {
 	public NoticeBbsServiceInterface nbsi = null;
 	public ModelServiceInterface msi = null;
 	public PurchaseServiceInterface ps = null;
+	public ManageMemberInterface managerMember = null;
+	
+	
+	
 
 	private singleton() {
 		ms = new MemberService();
 		nbsi = new NoticeBbsService();
 		msi = new ModelService();
 		ps = new PurchaseService();
+		managerMember = new ManageMemberService();
+		
 		
 	}
 	
