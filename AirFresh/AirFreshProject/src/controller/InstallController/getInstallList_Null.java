@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.google.gson.Gson;
+
 import Dto.InstallDto;
 import Service.InstallServiceInterface;
 import Service.impl.InstallService;
@@ -33,13 +35,38 @@ public class getInstallList_Null extends HttpServlet {
 	protected void processing(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		System.out.println("addAs 도착");
 		InstallServiceInterface isif = InstallService.getInstance();
+		//명령어 판단 
+		String command = null;
+		if(req.getParameter("command") != null) {
+			command = req.getParameter("command");
+			if(command.equals("list")) {
+				String date = "";
+				String year = req.getParameter("year");
+				String month = req.getParameter("month");
+				String day = req.getParameter("day");
+				date += year + "/" + month + "/" + day;
+				
+				System.out.println(date);
+				
+				
+			}
+			
+		}
 		
 		List<InstallDto> list = isif.getNullInstallList();
-		System.out.println(list.get(0).toString());
+		
+
+		//리턴값 타입 json 으로 지정 
+		resp.setContentType("application/json");
+		resp.setCharacterEncoding("UTF-8");
+		
+		//list를 json형식의 string으로 변환
+		String gson = new Gson().toJson(list);
+		
+		//변환한 json형식을 리턴 
+		resp.getWriter().write(gson);
 		
 		
-		req.setAttribute("NullList", list);
-		forward("/admin_view/InstallList/addInstall.jsp", req, resp);
 	}
 	
 	protected void forward(String url, HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

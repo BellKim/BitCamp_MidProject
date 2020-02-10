@@ -28,8 +28,7 @@ public class AddMrgMember extends HttpServlet {
 	}
 	
 	protected void forward(String url, HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		//사용자가 보내온 요청에 의한 데이터를 가지고 와서 
-		//사용자가 요청한 데이터를 가지고 해당 View로 이동하는 함수 
+		
 		RequestDispatcher dispatch = req.getRequestDispatcher(url);
 		dispatch.forward(req, resp);	
 	}

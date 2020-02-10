@@ -7,6 +7,6 @@ import Dto.InstallDto;
 public interface InstallServiceInterface {
 
 	public List<InstallDto> getNullInstallList();
-	
+	public List<InstallDto> getNullInstallList(String date);
 	public boolean addInstall(InstallDto dto);
 }

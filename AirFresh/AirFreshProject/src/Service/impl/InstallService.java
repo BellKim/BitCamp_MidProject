@@ -28,6 +28,11 @@ public class InstallService implements InstallServiceInterface {
 		
 	}
 	
+	public List<InstallDto> getNullInstallList(String date){
+		return dao.getNullInstallList(date);
+	}
+	
+	
 	public boolean addInstall(InstallDto dto) {
 		
 		return dao.addInstall(dto);

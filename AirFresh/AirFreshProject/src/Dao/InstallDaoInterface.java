@@ -8,6 +8,6 @@ public interface InstallDaoInterface {
 
 	
 	public List<InstallDto> getNullInstallList();
-	
+	public List<InstallDto> getNullInstallList(String date);
 	public boolean addInstall(InstallDto dto);
 }
