@@ -1,6 +1,7 @@
 package controller.AsController;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -8,25 +9,20 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import Dto.MemberDto;
+import Dto.PurchaseNameDto;
+import singleton.singleton;
 
 
 
 
-@WebServlet("/addAs")
-public class AddAs  extends HttpServlet  {
-
-	private static AddAs addAs = null;
+@WebServlet("/asAppPage")
+public class AsAppPage  extends HttpServlet  {
 	
-	private AddAs() {
-	}
-	public AddAs getInstance() {
-		if(addAs == null) {
-			addAs = new AddAs();
-		}
-		return addAs;
-	}
-	
-	
+	//ë§ˆì´í˜ì´ì§€ì—ì„œ asì‹ ì²­ëˆŒë €ì„ë•Œ  id, modelëª… ë°›ì•„ì˜¤ëŠ” ê³³
+
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		processing(req, resp);
@@ -38,14 +34,18 @@ public class AddAs  extends HttpServlet  {
 	}
 
 	protected void processing(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		req.setCharacterEncoding("utf-8");
+		System.out.println("asì‹ ì²­ ì»¨íŠ¸ë¡¤ëŸ¬ ë„ì°©");
 		
-	}
-	
-	protected void forward(String url, HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		//»ç¿ëÀÚ°¡ º¸³»¿Â ¿äÃ»¿¡ ÀÇÇÑ µ¥ÀÌÅÍ¸¦ °¡Áö°í ¿Í¼­ 
-		//»ç¿ëÀÚ°¡ ¿äÃ»ÇÑ µ¥ÀÌÅÍ¸¦ °¡Áö°í ÇØ´ç View·Î ÀÌµ¿ÇÏ´Â ÇÔ¼ö 
-		RequestDispatcher dispatch = req.getRequestDispatcher(url);
-		dispatch.forward(req, resp);	
+
+		//asì‹ ì²­í•  ì£¼ë¬¸ë‚´ì—­ index,  ì œí’ˆëª…
+		String seq = req.getParameter("seq");
+		
+		String prd_name =  req.getParameter("prd_name");
+		System.out.println("ì œí’ˆëª…: "+prd_name);
+				
+		req.getRequestDispatcher("./client_view/as/asapply.jsp?prd="+prd_name+"&seq="+seq).forward(req, resp);
+
 	}
 	
 }

@@ -29,6 +29,8 @@ public class AddPurchase  extends HttpServlet {
 	}
 
 	public void proccess(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		req.setCharacterEncoding("utf-8");
+		
 		String ins_date = req.getParameter("ins_date");
 		//System.out.println("희망설치일: "+ins_date);
 		

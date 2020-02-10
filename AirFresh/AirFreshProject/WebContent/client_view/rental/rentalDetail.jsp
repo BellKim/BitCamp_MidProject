@@ -25,10 +25,12 @@
 	
 	int cell = 0101234567;
 	MemberDto mem = new MemberDto();
-	mem.setMem_id("aaa");
-	mem.setMem_name("홍길동");
+	mem.setMem_id("bbb");
+	mem.setMem_name("성춘향");
 	mem.setMem_cell(cell);
-	mem.setMem_addr2("서울특별시 강서구");
+	mem.setMem_addr1(15402);
+	mem.setMem_addr2("서울특별시어쩌구");
+	mem.setMem_addr3("모모아파트 101동101호");
 	session.setAttribute("login", mem);
 	
 	//model session

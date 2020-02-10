@@ -1,14 +1,13 @@
-package Service;
+package Dao;
 
 import java.util.List;
 
 import Dto.AsAppDto;
 
-public interface AsServiceInterface {
-
+public interface AsDaoInterface {	
 	//as신청
 	boolean addAsApplictaion(AsAppDto dto);
-	
+
 	//as전체 list
 	List<AsAppDto> getAsAll();
 	
@@ -23,4 +22,5 @@ public interface AsServiceInterface {
 	
 	//as신청취소
 	boolean deleteAsApp(int as_index);
+
 }
