@@ -34,6 +34,16 @@ public class MemberService implements MemberServiceInterface{
 		public boolean updateMem(MemberDto dto) {			
 			return dao.updateMem(dto);
 		}
+
+		@Override
+		public String findID(String mem_name, int mem_cell) {			
+			return dao.findID(mem_name, mem_cell);
+		}
+
+		@Override
+		public String findPW(String mem_id, String mem_name) {			
+			return dao.findPW(mem_id, mem_name);
+		}
 	
 	/*
 	@Override

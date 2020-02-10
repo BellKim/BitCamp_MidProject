@@ -1,10 +1,14 @@
+<%@page import="db.DBConnection"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%
+    DBConnection.initConnection();
+    %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>login.jsp</title>
+<title>login</title>
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script src="http://lab.alexcican.com/set_cookies/cookie.js" type="text/javascript" ></script>
 </head>
@@ -31,7 +35,7 @@
 			</div>
 			<button type="button" id="btnlogin">로그인</button>
 			<div>
-				<a href="">아이디·패스워드 찾기</a>
+				<a href="searchidpw.jsp">아이디·패스워드 찾기</a>
 				<a href="register.jsp">회원가입</a>
 			</div>		
 		</form>

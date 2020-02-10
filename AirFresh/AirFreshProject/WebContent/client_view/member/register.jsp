@@ -9,7 +9,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>register</title>
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 </head>
 <body>
@@ -81,10 +81,11 @@
 $(document).ready(function () {
 	
 	$("#_btnid").click(function () {
-		
+		$("#mem_id").submit();	
+		<%--
 		$.ajax({
 			type:"post",
-			url:"./idCheck",		
+			url:"<%=request.getContextPath() %>/idCheck",	/* "./idCheck",	*/	
 			data:{ "mem_id":$("#mem_id").val() },
 			success:function( data ){		
 				if(data.trim() == "YES"){
@@ -99,8 +100,8 @@ $(document).ready(function () {
 			error:function(){
 				alert("error");
 			}
+		--%>
 		});
-		
 	});
 	
 	
@@ -191,8 +192,8 @@ function validate() {
 	var pw = $("#mem_pw").val();	// 특수문자 / 문자 / 숫자 포함 형태의 6~20자리 이내의 암호 정규식
 	var pwReg = /^.*(?=^.{6,20}$)(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$/;
 		
-	var cell= $("#mem_cell").val();	// 핸드폰번호 정규식
-	var cellReg = /^01([0|1|6|7|8|9]?)?([0-9]{3,4})?([0-9]{4})$/;
+	var cell= $("#mem_cell").val();	// 핸드폰번호 정규식, members table에 010~으로 안들어가고 10~으로 들어가서 수정 요!(id 찾기)
+	var cellReg = /^([0-9]{3})?([0-9]{3,4})?([0-9]{4})$/;
 	
 	if(idReg.test(id)==false){
 		alert("적합하지 않은 이메일 형식입니다.");

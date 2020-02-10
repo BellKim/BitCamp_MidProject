@@ -39,6 +39,7 @@ public class MemLogin extends HttpServlet{
 
 	public void processFunc(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		req.setCharacterEncoding("utf-8");
+		System.out.println("memlogin 도착");	// ok!
 		
 		String mem_id = req.getParameter("mem_id");
 		String mem_pw = req.getParameter("mem_pw");
@@ -48,8 +49,9 @@ public class MemLogin extends HttpServlet{
 		singleton s = singleton.getInstance();
 				
 		MemberDto mem = s.ms.memLogin(mem_id, mem_pw);
+		System.out.println(mem.getMem_id());
 		req.setAttribute("login", mem);
-		
+		System.out.println("memlogin 도착2");		// ok!
 		//resp.sendRedirect(req.getContextPath() + "/WebContent/client_view/member/finding.jsp?login=" + mem);
 		forward("./client_view/member/finding.jsp?login=" + mem, req, resp);		
 	}
