@@ -12,7 +12,6 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </head>
 <body>
-	<!-- 여기서 purchase 테이블의  index를 어떻ㄱㅔ 넘길까....??? -->
 	<%
 		MemberDto mem = (MemberDto) session.getAttribute("login");
 		ModelDto model = (ModelDto) session.getAttribute("model");
@@ -25,6 +24,7 @@
 	<a href="index.jsp">[홈으로]</a>
 	<a href="#">[마이페이지]</a>
 	<a href="printPurchase?id=<%=mem.getMem_id() %>">[결제내역]</a>
+	<a href="printAsApp?id=<%=mem.getMem_id()%>">[as신청내역]</a>
 	<%-- <a href="delPur?seq=<%=pur.getPur_index()%>">[구매취소]</a> --%>
 
 	<script>

@@ -18,7 +18,11 @@
 		<div>
 		<h2>Air FRESH 회원가입</h2>
 		</div>
+<<<<<<< HEAD
 		<form id="frm" onsubmit="return validate();" action="<%=request.getContextPath() %>/addmem" method="post">			
+=======
+		<form id="joinInfo" action="<%=request.getContextPath() %>/addmem" method="post">			
+>>>>>>> origin/subMaster
 			<table>
 				<tr>
 					<td>이름</td>

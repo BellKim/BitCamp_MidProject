@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import Dto.ModelDto;
+import projectutil.ProjectUtil;
 import singleton.singleton;
 @WebServlet("/modelist")
 public class ModelList extends HttpServlet {
@@ -33,13 +34,9 @@ public class ModelList extends HttpServlet {
 		List<ModelDto> list = s.msi.getModelList();
 
 		System.out.println(list.size());
-		req.setAttribute("modelList", list);
-		forward("./client_view/model/modellist.jsp", req, resp);
 		
+		req.setAttribute("modelList", list);
+		ProjectUtil.forward("./client_view/model/modellist.jsp", req, resp);
 	}
 	
-	public void forward(String link, HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		RequestDispatcher dispatch = req.getRequestDispatcher(link);
-		dispatch.forward(req,resp);
-	}
 }

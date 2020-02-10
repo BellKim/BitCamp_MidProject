@@ -27,6 +27,7 @@ public class PrintPurchase extends HttpServlet {
 	}
 
 	public void process(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
+		req.setCharacterEncoding("utf-8");
 		System.out.println("PrintPurchase 도착");
 		String mem_id = req.getParameter("id");
 		//String prd_indexs = req.getParameter("prd_index");

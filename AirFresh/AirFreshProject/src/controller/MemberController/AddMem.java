@@ -35,7 +35,11 @@ public class AddMem extends HttpServlet {
 		String mem_birth = req.getParameter("mem_birth"); 
 		int mem_addr1 = Integer.parseInt(req.getParameter("mem_addr1"));
 		String mem_addr2 = req.getParameter("mem_addr2");
+<<<<<<< HEAD
 		String mem_addr3 = req.getParameter("mem_addr3");
+=======
+		String mem_addr3 = req.getParameter("addr3");
+>>>>>>> origin/subMaster
 		
 		System.out.println(mem_id + " " + mem_pw + " " + mem_name + " " + mem_cell + " " + mem_birth + " " + 
 							mem_addr1 + " " + mem_addr2 + " " + mem_addr3);
@@ -44,6 +48,16 @@ public class AddMem extends HttpServlet {
 						
 		MemberDto dto = new MemberDto(mem_id, mem_pw, mem_name, mem_cell, mem_birth, mem_addr1,
 				mem_addr2, mem_addr3, 3);
+<<<<<<< HEAD
+=======
+		
+		req.setAttribute("dto", dto);
+		
+		/* requestDispatcher dispatcher = req.getRequestDispatcher(path); */
+		boolean isS = s.ms.addMember(dto);
+		//TODO instance, sendRedirect
+		resp.sendRedirect("login.jsp");
+>>>>>>> origin/subMaster
 		
 		boolean isS = s.ms.addMem(dto);
 		req.setAttribute("isS", isS);		

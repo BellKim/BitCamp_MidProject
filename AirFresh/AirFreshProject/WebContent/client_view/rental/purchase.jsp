@@ -42,7 +42,9 @@
 			</tr>
 			<tr>
 				<td>주소</td>
+				<td><input type="text" value="<%=mem.getMem_addr1() %>" readonly="readonly"></td>
 				<td><input type="text" value="<%=mem.getMem_addr2() %>" readonly="readonly"></td>
+				<td><input type="text" value="<%=mem.getMem_addr3() %>" readonly="readonly"></td>
 			</tr>
 			<tr>
 				<td>설치 희망일</td>
@@ -101,7 +103,7 @@
 		  $( function() {
 			
 		    $( "#datepicker" ).datepicker(
-		    			{ minDate: -20, 
+		    			{ minDate: 0, 
 		    			  maxDate: "+1M +10D",
 		    			  dateFormat: "yy/mm/dd"
 		    			});
