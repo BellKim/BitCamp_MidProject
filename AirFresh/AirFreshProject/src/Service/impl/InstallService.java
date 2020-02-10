@@ -22,9 +22,9 @@ public class InstallService implements InstallServiceInterface {
 		return installService;
 	}
 	
-	public List<InstallDto> getInstallListAll(){
+	public List<InstallDto> getNullInstallList(){
 		
-		return dao.getInstallListAll();
+		return dao.getNullInstallList();
 		
 	}
 	

@@ -1,6 +1,7 @@
 package controller.AsController;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -9,23 +10,15 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import Dto.InstallDto;
+import Service.InstallServiceInterface;
+import Service.impl.InstallService;
+
 
 
 
 @WebServlet("/addAs")
 public class AddAs  extends HttpServlet  {
-
-	private static AddAs addAs = null;
-	
-	private AddAs() {
-	}
-	public AddAs getInstance() {
-		if(addAs == null) {
-			addAs = new AddAs();
-		}
-		return addAs;
-	}
-	
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -38,12 +31,20 @@ public class AddAs  extends HttpServlet  {
 	}
 
 	protected void processing(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		System.out.println("addAs ë„ì°©");
+		InstallServiceInterface isif = InstallService.getInstance();
 		
+		List<InstallDto> list = isif.getNullInstallList();
+		System.out.println(list.get(0).toString());
+		
+		
+		req.setAttribute("NullList", list);
+		forward("/admin_view/InstallList/addInstall.jsp", req, resp);
 	}
 	
 	protected void forward(String url, HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		//»ç¿ëÀÚ°¡ º¸³»¿Â ¿äÃ»¿¡ ÀÇÇÑ µ¥ÀÌÅÍ¸¦ °¡Áö°í ¿Í¼­ 
-		//»ç¿ëÀÚ°¡ ¿äÃ»ÇÑ µ¥ÀÌÅÍ¸¦ °¡Áö°í ÇØ´ç View·Î ÀÌµ¿ÇÏ´Â ÇÔ¼ö 
+		//ìœ„ì—ì„œ ë¡œì§ì²˜ë¦¬í›„ urlì£¼ì†Œì™€  req(ë¦¬í„´ê°’), resp(ë¦¬í„´)
+		//ëŒì•„ê°€ëŠ” í•¨ìˆ˜
 		RequestDispatcher dispatch = req.getRequestDispatcher(url);
 		dispatch.forward(req, resp);	
 	}

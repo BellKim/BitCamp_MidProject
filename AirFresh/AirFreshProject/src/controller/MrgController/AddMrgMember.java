@@ -13,18 +13,6 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/addMrgMember")
 public class AddMrgMember extends HttpServlet {
 	
-	private static AddMrgMember addMrgMember = null;
-	
-	private AddMrgMember() {
-	}
-	public AddMrgMember getInstance() {
-		if(addMrgMember == null) {
-			addMrgMember = new AddMrgMember();
-		}
-		return addMrgMember;
-	}
-	
-	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		processing(req, resp);

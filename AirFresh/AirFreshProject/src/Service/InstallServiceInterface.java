@@ -6,7 +6,7 @@ import Dto.InstallDto;
 
 public interface InstallServiceInterface {
 
-	public List<InstallDto> getInstallListAll();
+	public List<InstallDto> getNullInstallList();
 	
 	public boolean addInstall(InstallDto dto);
 }
