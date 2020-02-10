@@ -43,21 +43,21 @@ public class MemLogin extends HttpServlet{
 		String mem_id = req.getParameter("mem_id");
 		String mem_pw = req.getParameter("mem_pw");
 		
-		System.out.println("id:" + mem_id + "pw:" + mem_pw);
+		System.out.println("id:" + mem_id + " pw:" + mem_pw);
 		
 		singleton s = singleton.getInstance();
 				
 		MemberDto mem = s.ms.memLogin(mem_id, mem_pw);
 		req.setAttribute("login", mem);
 		
-		resp.sendRedirect(req.getContextPath() + "./client_view/member/finding.jsp?login=" + mem);
-		//forward("./client_view/member/finding.jsp?login=" + mem, req, resp);		
+		//resp.sendRedirect(req.getContextPath() + "/WebContent/client_view/member/finding.jsp?login=" + mem);
+		forward("./client_view/member/finding.jsp?login=" + mem, req, resp);		
 	}
-/*
+
 	public void forward(String url, HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		RequestDispatcher dispatch = req.getRequestDispatcher(url);
 		dispatch.forward(req, resp);
 		
 	}
-*/
+
 }

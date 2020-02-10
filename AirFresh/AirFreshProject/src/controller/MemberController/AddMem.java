@@ -35,7 +35,7 @@ public class AddMem extends HttpServlet {
 		String mem_birth = req.getParameter("mem_birth"); 
 		int mem_addr1 = Integer.parseInt(req.getParameter("mem_addr1"));
 		String mem_addr2 = req.getParameter("mem_addr2");
-		String mem_addr3 = req.getParameter("addr3");
+		String mem_addr3 = req.getParameter("mem_addr3");
 		
 		System.out.println(mem_id + " " + mem_pw + " " + mem_name + " " + mem_cell + " " + mem_birth + " " + 
 							mem_addr1 + " " + mem_addr2 + " " + mem_addr3);
@@ -45,10 +45,12 @@ public class AddMem extends HttpServlet {
 		MemberDto dto = new MemberDto(mem_id, mem_pw, mem_name, mem_cell, mem_birth, mem_addr1,
 				mem_addr2, mem_addr3, 3);
 		
-		//req.setAttribute("dto", dto);		
-		
 		boolean isS = s.ms.addMem(dto);
-		forward("./client_view/member/finding.jsp?isS=" + isS, req, resp);		
+		req.setAttribute("isS", isS);		
+		forward("./client_view/member/finding.jsp?isS=" + isS, req, resp);
+		//resp.sendRedirect(req.getContextPath() + "/폴더명/파일명")
+		//resp.sendRedirect(req.getContextPath() + "/WebContent/client_view/member/finding.jsp?isS=" + isS);
+		//AirFreshProject/WebContent/client_view/member/finding.jsp
 	}	
 	
 	public void forward(String url, HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

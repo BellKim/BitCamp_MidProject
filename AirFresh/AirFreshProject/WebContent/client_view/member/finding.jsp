@@ -22,14 +22,14 @@ if(str.equals("true")) {
 %>
 	<script type="text/javascript">
 	alert("회원이 되신 것을 환영합니다!");
-	location.href = "memlogin";
+	location.href = getContextPath() + "/memlogin";
 	</script>
 <%
 }else if(str.equals("false")) {
 %>
 	<script type="text/javascript">
 	alert("가입 실패!");
-	location.href = "addmem";
+	location.href = "./client_view/member/register.jsp";
 	</script>
 <% 
 }else if(mem != null && !mem.getMem_id().equals("")){
@@ -38,21 +38,21 @@ if(str.equals("true")) {
 %>
 	<script type="text/javascript">
 	alert("안녕하세요 <%=mem.getMem_name() %>님");
-	location.href = "./mypage.jsp";
+	location.href = "./client_view/member/mypage.jsp";
 	</script>
 <%
 }else if(mem == null || mem.getMem_id().equals("")){
 %>
 	<script type="text/javascript">
 	alert("id나 password를 확인하십시오");
-	location.href = "./login.jsp";
+	location.href = "./client_view/member/login.jsp";
 	</script>	
 <%
 }else if(str1.equals("true")){
 %>	
 	<script type="text/javascript">
 	alert("중복된 아이디가 있습니다.");
-	location.href = "memlogin";
+	location.href = getContextPath() + "/memlogin";
 	</script>
 <%
 }else if(str1.equals("false")){
@@ -65,14 +65,14 @@ if(str.equals("true")) {
 %>	
 	<script type="text/javascript">
 	alert("정상적으로 삭제되었습니다");
-	location.href = "memLogin";
+	location.href = getContextPath() + "/memLogin";
 	</script>
 <%
 }else if(str2.equals("false")){
 %>
 	<script type="text/javascript">
 	alert("삭제되지 않았습니다");
-	location.href = "./mypage.jsp";
+	location.href = "./client_view/member/mypage.jsp";
 	</script>
 <%
 }else if(str3.equals("true")){

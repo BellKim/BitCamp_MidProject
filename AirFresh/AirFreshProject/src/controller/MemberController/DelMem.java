@@ -34,12 +34,14 @@ public class DelMem extends HttpServlet{
 		
 		singleton s = singleton.getInstance();
 		boolean isS2 = s.ms.delMem(mem_id, mem_pw);
+		req.setAttribute("isS2", isS2);	
+		//resp.sendRedirect(req.getContextPath() + "/WebContent/client_view/member/finding.jsp?isS2" + isS2);
 		forward("./client_view/member/finding.jsp?isS2" + isS2, req, resp);
 	}
-
+	
 	public void forward(String url, HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		RequestDispatcher dispatch = req.getRequestDispatcher(url);
 		dispatch.forward(req, resp);		
 	}
-
+	
 }

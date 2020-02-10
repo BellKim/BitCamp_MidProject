@@ -33,12 +33,13 @@ public class idCheck extends HttpServlet{
 		singleton s = singleton.getInstance();
 		
 		boolean isS1 = s.ms.idCheck(mem_id);
-		
 		if(isS1 = true) {	//중복되는 id가 있음
 			System.out.println("NO");
 		}else {				// id가 없음
 			System.out.println("YES");
 		}
+		req.setAttribute("isS1", isS1);	
+		//resp.sendRedirect(req.getContextPath() + "/WebContent/client_view/member/finding.jsp?isS1=" + isS1);
 		forward("./client_view/member/finding.jsp?isS1=" + isS1, req, resp);
 	}
 	
@@ -46,5 +47,5 @@ public class idCheck extends HttpServlet{
 		RequestDispatcher dispatch = req.getRequestDispatcher(url);
 		dispatch.forward(req, resp);	
 	}
-
+	 
 }

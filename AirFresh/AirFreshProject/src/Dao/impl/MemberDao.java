@@ -16,9 +16,9 @@ public class MemberDao implements MemberDaoInterface{
 	
 	@Override
 	public boolean idCheck(String mem_id) {
-		String sql = " SELECT ID "
+		String sql = " SELECT MEM_ID "
 				+ " FROM MEMBERS "
-				+ " WHERE ID = ? ";
+				+ " WHERE MEM_ID = ? ";
 		
 		Connection conn = null;
 		PreparedStatement psmt = null;
@@ -92,7 +92,7 @@ public class MemberDao implements MemberDaoInterface{
 		String sql = " SELECT MEM_ID, MEM_NAME, MEM_CELL, MEM_BIRTH, "
 				+ " MEM_ADDR1, MEM_ADDR2, MEM_ADDR3, MEM_AUTH "
 				+ " FROM MEMBERS "
-				+ " WHERE ID=? AND PWD=? ";
+				+ " WHERE MEM_ID=? AND MEM_PW=? ";
 	
 		Connection conn = null;
 		PreparedStatement psmt = null;

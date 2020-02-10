@@ -43,12 +43,14 @@ public class UpdateMem extends HttpServlet{
 		MemberDto dto = new MemberDto(mem_id, mem_pw, mem_cell, mem_addr1, mem_addr2, mem_addr3);
 		
 		boolean isS3 = s.ms.updateMem(dto);
+		req.setAttribute("isS3", isS3);	
+		//resp.sendRedirect(req.getContextPath() + "/WebContent/client_view/member/finding.jsp?isS3=" + isS3);
 		forward("./client_view/member/finding.jsp?isS3=" + isS3, req, resp);		
 	}
-
+	
 	public void forward(String url, HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		RequestDispatcher dispatch = req.getRequestDispatcher(url);
 		dispatch.forward(req, resp);	
 	}
-
+	
 }
