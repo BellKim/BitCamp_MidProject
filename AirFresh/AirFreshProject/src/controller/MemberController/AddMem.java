@@ -30,15 +30,14 @@ public class AddMem extends HttpServlet {
 		int mem_addr1 = Integer.parseInt(req.getParameter("mem_addr1"));
 		String mem_addr2 = req.getParameter("mem_addr2");
 		String mem_addr3 = req.getParameter("addr3");
-		int mem_auth = Integer.parseInt(req.getParameter("mem_auth"));
 		
 		System.out.println(mem_id + " " + mem_pw + " " + mem_name + " " + mem_cell + " " + mem_birth + " " + 
-							mem_addr1 + " " + mem_addr2 + " " + mem_addr3 + " " + mem_auth);
+							mem_addr1 + " " + mem_addr2 + " " + mem_addr3);
 		
 		singleton s = singleton.getInstance();
 						
 		MemberDto dto = new MemberDto(mem_id, mem_pw, mem_name, mem_cell, mem_birth, mem_addr1,
-				mem_addr2, mem_addr3, mem_auth);
+				mem_addr2, mem_addr3, 3);
 		
 		req.setAttribute("dto", dto);
 		
