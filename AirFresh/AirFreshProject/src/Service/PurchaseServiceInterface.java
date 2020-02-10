@@ -3,6 +3,7 @@ package Service;
 import java.util.List;
 
 import Dto.PurchaseDto;
+import Dto.PurchaseNameDto;
 
 public interface PurchaseServiceInterface {
 
@@ -20,4 +21,7 @@ public interface PurchaseServiceInterface {
 	
 	 //구매 상세 dto 보기
     PurchaseDto getPurchaseOne(int pur_index);
+    
+   //model name뽑아오기
+    List<PurchaseNameDto> getModelName(String mem_id);
 }
