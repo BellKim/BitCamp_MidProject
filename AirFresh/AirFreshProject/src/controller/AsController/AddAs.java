@@ -31,15 +31,7 @@ public class AddAs  extends HttpServlet  {
 	}
 
 	protected void processing(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		System.out.println("addAs 도착");
-		InstallServiceInterface isif = InstallService.getInstance();
 		
-		List<InstallDto> list = isif.getNullInstallList();
-		System.out.println(list.get(0).toString());
-		
-		
-		req.setAttribute("NullList", list);
-		forward("/admin_view/InstallList/addInstall.jsp", req, resp);
 	}
 	
 	protected void forward(String url, HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
