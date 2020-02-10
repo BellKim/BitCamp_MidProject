@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import controller.AsController.AddAs;
+import controller.AsController.AsAppPage;
 
 @WebServlet("/install")
 public class InstallController extends HttpServlet {

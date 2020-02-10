@@ -22,6 +22,7 @@ public class InstallDto {
 	
 	
 	public InstallDto() {
+		
 	}
 
 	
@@ -352,8 +353,6 @@ public class InstallDto {
 	}
 
 
-	
-	
 	
 	
 }

@@ -1,8 +1,5 @@
 ﻿DROP TABLE orderReview 
 CASCADE CONSTRAINTS;
-
-
-
 DROP TABLE purchase 
 CASCADE CONSTRAINTS;
 DROP TABLE modelList 
@@ -144,11 +141,15 @@ CREATE TABLE modelList
 
 
 
--- members Table Create SQL
+-- purchase Table Create SQL
 
 -- 날짜 : 2020-02-07
 -- 수정자 : 박지훈 
 -- 컬럼명 변경 :installation_date -->>>  ins_date  
+
+-- 날짜 : 2020-02-07
+-- 수정자 : 조지현
+-- INS_DATE 컬럼 타입 변경 : DATE -> VARCHAR2(15) 
 
 CREATE TABLE purchase
 (
@@ -156,7 +157,7 @@ CREATE TABLE purchase
     mem_id             VARCHAR2(50)    NULL, 
     prd_index         NUMBER(6)       NULL, 
     pur_date             DATE            NULL, 
-    ins_date    DATE            NULL, 
+    ins_date    		VARCHAR2(15)            NULL, 
     order_num            NUMBER(3)       NULL, 
     review               NUMBER(1)       NULL, 
     order_auth           NUMBER(1)       NULL, 
@@ -214,7 +215,11 @@ CREATE TABLE qnaBbs
 
 
 
--- members Table Create SQL
+-- noticeBbs Table Create SQL
+
+-- 날짜 : 2020-02-10
+-- 수정자 : 박수진
+-- tempfile 컬럼 추가 : VARCHAR2(100) 
 CREATE TABLE noticeBbs
 (
     noti_index       NUMBER(6)         NOT NULL, 
@@ -223,7 +228,8 @@ CREATE TABLE noticeBbs
     noti_catagory    NUMBER(1)         NULL, 
     noti_writer      VARCHAR2(20)      NULL, 
     noti_wdate       DATE              NULL, 
-    filename         VARCHAR2(100)     NULL, 
+    filename         VARCHAR2(100)     NULL,
+    tempfile		 VARCHAR2(100)	   NULL,	
     readcount        NUMBER(10)        NULL, 
     noti_del         NUMBER(1)         NULL, 
     CONSTRAINT NOTICEBBS_PK PRIMARY KEY (noti_index)
