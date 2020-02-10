@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import Dao.impl.NoticeBbsDao;
 import Dto.NoticeBbsDto;
+import projectutil.ProjectUtil;
 import singleton.singleton;
 @WebServlet("/noticelist")
 public class NoticeBbsList extends HttpServlet{
@@ -32,12 +33,8 @@ public class NoticeBbsList extends HttpServlet{
 		List<NoticeBbsDto> list = s.nbsi.getNoticeList();
 		
 		req.setAttribute("noticeList", list);
-		forward("noticelist.jsp", req, resp);
+		ProjectUtil.forward("./admin_view/board/noticelist.jsp", req, resp);
 		
 	}
-	
-	public void forward(String link, HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		RequestDispatcher dispatch = req.getRequestDispatcher(link);
-		dispatch.forward(req,resp);
-	}
+
 }

@@ -21,10 +21,10 @@
 	
 %>
 <h1>주문결제</h1>
-	<form id="frm" action="./../../addPurchase" method="post">
+	<form id="frm" action="./addPurchase" method="post">
 		<table border="1">
 			<tr>
-				<td><img src="../model/prd_img/thumb-4_450x450.png" alt="xx"
+				<td><img src="./client_view/model/prd_img/<%=model.getPrd_model_name() %>.png" alt="xx"
 					style="width: 80px; height: 80px;"></td>
 				<td>신청상품: <%=model.getPrd_model_name() %></td>
 			</tr>
@@ -89,7 +89,9 @@
 			<tr>
 				<td colspan="2">
 					<!-- rentalDetail.jsp?seq=model.getPrd_index() -->
-					<input type="button" value="취소" onclick="location.href='rentalDetail.jsp'">
+					 <input type="hidden" name="command" value="detail">
+ 				
+					<input type="button" value="취소" onclick="location.href='./modelDetail?seq=<%=model.getPrd_index()%>&command=detail'">
 					<input type="button" value="신청하기" id="_purBtn">
 				</td>
 			</tr>

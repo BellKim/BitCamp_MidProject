@@ -1,6 +1,8 @@
 package Dto;
 
-public class ManagerMemberDto {
+import java.io.Serializable;
+
+public class ManagerMemberDto implements Serializable {
 	/*
 	// members Table Create SQL
 	CREATE TABLE managerMember
