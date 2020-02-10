@@ -8,6 +8,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import Dto.AsAppDto;
+import singleton.singleton;
+
 
 @WebServlet("/asDetail")
 public class AsApplicationDetail extends HttpServlet {
@@ -24,6 +27,16 @@ public class AsApplicationDetail extends HttpServlet {
 
 	
 	public void process(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		System.out.println("AsApplicatonDetail 도착");
+		//System.out.println("AsApplicatonDetail 도착");
+		String seq = req.getParameter("seq");
+		
+		System.out.println("AsApplicatonDetail seq : "+seq);
+		int as_index = Integer.parseInt(seq);
+		
+		singleton s = singleton.getInstance();
+		AsAppDto dto = s.asi.getDetailAs(as_index);
+		
+		req.setAttribute("dto", dto);
+		req.getRequestDispatcher("./client_view/as/asDetail.jsp").forward(req, resp);
 	}
 }

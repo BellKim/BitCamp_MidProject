@@ -24,14 +24,15 @@ public class AsAppDto implements Serializable {
 	private String asContent;			//as신청 내용
 	private String asImgPath;			//as신청 이미지첨부
 	private int pur_index;				//렌탈 index
-	private String model_name;			//제품명
+	private String model_name;			//모델명
+	private String prd_name;			//제품명
 	
 	public AsAppDto() {
 	}
 	
 	
 
-	public AsAppDto(String memId, String req_date, String asTitle, String asContent, String asImgPath, int pur_index, String model_name) {
+	public AsAppDto(String memId, String req_date, String asTitle, String asContent, String asImgPath, int pur_index, String prd_name) {
 		super();
 		this.memId = memId;
 		this.req_date = req_date;
@@ -39,14 +40,14 @@ public class AsAppDto implements Serializable {
 		this.asContent = asContent;
 		this.asImgPath = asImgPath;
 		this.pur_index = pur_index;
-		this.model_name = model_name;
+		this.prd_name = prd_name;
 
 	}
 
 
 
 	public AsAppDto(int asSeq, String memId, String wdate, String req_date, int mgr_index, String asTitle,
-			String asContent, String asImgPath, int pur_index, String model_name) {
+			String asContent, String asImgPath, int pur_index, String prd_name) {
 		super();
 		this.asSeq = asSeq;
 		this.memId = memId;
@@ -57,7 +58,7 @@ public class AsAppDto implements Serializable {
 		this.asContent = asContent;
 		this.asImgPath = asImgPath;
 		this.pur_index = pur_index;
-		this.model_name = model_name;
+		this.prd_name = prd_name;
 	}
 
 
@@ -144,12 +145,29 @@ public class AsAppDto implements Serializable {
 
 
 
+	public String getPrd_name() {
+		return prd_name;
+	}
+
+
+
+	public void setPrd_name(String prd_name) {
+		this.prd_name = prd_name;
+	}
+
+
+
 	@Override
 	public String toString() {
 		return "AsAppDto [asSeq=" + asSeq + ", memId=" + memId + ", wdate=" + wdate + ", req_date=" + req_date
 				+ ", mgr_index=" + mgr_index + ", asTitle=" + asTitle + ", asContent=" + asContent + ", asImgPath="
-				+ asImgPath + ", pur_index=" + pur_index + ", model_name=" + model_name + "]";
+				+ asImgPath + ", pur_index=" + pur_index + ", model_name=" + model_name + ", prd_name=" + prd_name
+				+ "]";
 	}
+
+
+
+
 	
 	
 	
