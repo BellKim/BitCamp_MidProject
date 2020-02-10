@@ -50,10 +50,18 @@ for(ManagerMemberDto a : managerMemberDto){
     	Second item
     </li>
     <%
-    for(ManagerMemberDto a : managerMemberDto){
+    for(ManagerMemberDto memberdto : managerMemberDto){
     %>	
     <li class="list-group-item">
-    	<%=a.getMgr_name() %>
+    	<span><%=memberdto.getMgr_index()%> </span>
+    	<span><%=memberdto.getMgr_id() %></span>
+    	<span><%=memberdto.getMgr_pw() %> </span>
+    	<span><%=memberdto.getMgr_name() %> </span>
+    	<span><%=memberdto.getMgr_loc() %> </span>
+    	<span><%=memberdto.getMgr_cell() %> </span>
+    	<span><%=memberdto.getMgr_auth() %> </span>
+    	<span><%=memberdto.getMgr_del() %> </span>
+    	
     	<button>자세히보기</button>
     </li>
     
