@@ -15,6 +15,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<a href="./../../noticelist">공지사항 본다</a>
+	<a href="<%=request.getContextPath()%>/noticelist">공지사항 본다</a>
 </body>
 </html>

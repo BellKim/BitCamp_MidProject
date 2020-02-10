@@ -14,5 +14,15 @@ public class NoticeBbsService implements NoticeBbsServiceInterface {
 	public List<NoticeBbsDto> getNoticeList() {
 		return nbd.getNoticeList();
 	}
+
+	@Override
+	public boolean writeNotice(NoticeBbsDto notice) {
+		return nbd.writeNotice(notice);
+	}
+
+	@Override
+	public NoticeBbsDto getNoticeBbs(int noti_index) {
+		return nbd.getNoticeBbs(noti_index);
+	}
 	
 }

@@ -1,18 +1,12 @@
 <%@page import="Dto.ManagerMemberDto"%>
-<%@page import="java.util.Date"%>
+<%@page import="Dto.NoticeBbsDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"%>
+    <%
+    	NoticeBbsDto notice = (NoticeBbsDto)request.getAttribute("noticeBbs");
 
-<%
-	// 시간을 취득
-	String fname = (new Date().getTime()) + "";
-	System.out.println("fname:" + fname);
-
-	// old			 new 	
-	// mydata.txt -> 1580695728906.txt -> upload
-	// 1580695728906.txt -> download -> mydata.txt
-	ManagerMemberDto mrgMem = (ManagerMemberDto) session.getAttribute("mrgLogin");
-%>
+		ManagerMemberDto mrgMem = (ManagerMemberDto) session.getAttribute("mrgLogin");
+    %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -25,9 +19,6 @@
 </head>
 <body>
 	<div class="container">
-		<form
-			action="<%=request.getContextPath()%>/noticeupload?command=upload"
-			method="post" enctype="multipart/form-data">
 			<fieldset>
 				<div class="form-group">
 					<label class="col-form-label" for="inputDefault">제목</label>
@@ -60,7 +51,6 @@
 					<button type="submit" class="btn btn-primary">글쓰기</button>
 				</div>
 			</fieldset>
-		</form>
 	</div>
 </body>
 </html>

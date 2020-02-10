@@ -101,8 +101,8 @@
 		} else {
 			System.out.println("multipart가 아님");
 		}
-
-		// DB에 저장
+%>
+	<%--	// DB에 저장
 		PdsDao dao = PdsDao.getInstance();
 		boolean isS = dao.writePds(new PdsDto(id, title, content, filename));
 		if (isS) {
@@ -120,6 +120,6 @@
 	</script>
 	<%
 		}
-	%>
+	--%>
 </body>
 </html>

@@ -51,9 +51,25 @@
 				%>
 				<tr align="center">
 					<th><%=i + 1%></th>
-					<td align="left"><a
-						href="<%=request.getContextPath()%>/admin_view/board/noticedetail.jsp?seq="<%=notice.getNoti_index()%>"><%=notice.getNoti_title()%></a></td>
-					<td><%=notice.getWdate()%></td>
+					<td align="left">
+						<%
+							if (mrgMem.getMgr_auth() == 0) {
+								if (notice.getNoti_catagory() == 1) {
+						%> 
+							고객&nbsp;
+						<%
+					 	} else{
+					 	%>
+					 		매니저&nbsp;
+					 	<%
+					 	}
+					 		}
+				 %> 
+					<a
+						href="<%=request.getContextPath()%>/noticedetail?noti_index=<%=notice.getNoti_index()%>"><%=notice.getNoti_title()%></a></td>
+					<td>
+
+ 						<%=notice.getWdate()%></td>
 					<td><%=notice.getNoti_writer()%></td>
 					<td><%=notice.getReadcount()%></td>
 				</tr>
@@ -69,7 +85,7 @@
 		%>
 		<div align="right">
 			<button type="button" class="btn btn-primary"
-				onclick="location.href='<%=request.getContextPath()%>/admin_view/board/notice_write.jsp'">글쓰기</button>
+				onclick="location.href='<%=request.getContextPath()%>/noticeupload?command=add'">글쓰기</button>
 		</div>
 		<%
 			}
