@@ -16,7 +16,7 @@
 		<p>Air FRESH 홈페이지에 오신 것을 환영합니다.</p>
 	</div>	
 	<div class="login">
-		<form id="loginInfo" action="./../../memlogin" method="post">			
+		<form id="loginInfo" action="<%=request.getContextPath() %>/memlogin" method="post">			
 			<div>
 			<div>
 				<input type="text" placeholder="아이디(이메일)을 입력해주세요." id="mem_id" name="mem_id">

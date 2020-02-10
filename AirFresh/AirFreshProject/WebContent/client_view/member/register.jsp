@@ -1,5 +1,10 @@
+<%@page import="db.DBConnection"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%
+    DBConnection.initConnection();
+    
+    %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,7 +18,7 @@
 		<div>
 		<h2>Air FRESH 회원가입</h2>
 		</div>
-		<form id="frm" onsubmit="return validate();" action="./../../addmem" method="post">			
+		<form id="frm" onsubmit="return validate();" action="<%=request.getContextPath() %>/addmem" method="post">			
 			<table>
 				<tr>
 					<td>이름</td>
