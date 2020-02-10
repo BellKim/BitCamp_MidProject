@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import controller.AsController.AddAs;
+import controller.AsController.AsAppPage;
 
 @WebServlet("/install")
 public class InstallController extends HttpServlet {
@@ -37,13 +37,13 @@ private static InstallController installController = null;
 	}
 
 	protected void processing(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		// µé¾î¿Â Á¤º¸¸¦ ¿øÇÏ´Â °÷À¸·Î º¸³»ÁÖ´Â ÇÔ¼ö 
+		// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ö´ï¿½ ï¿½Ô¼ï¿½ 
 		
 	}
 	
 	protected void forward(String url, HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		//»ç¿ëÀÚ°¡ º¸³»¿Â ¿äÃ»¿¡ ÀÇÇÑ µ¥ÀÌÅÍ¸¦ °¡Áö°í ¿Í¼­ 
-		//»ç¿ëÀÚ°¡ ¿äÃ»ÇÑ µ¥ÀÌÅÍ¸¦ °¡Áö°í ÇØ´ç View·Î ÀÌµ¿ÇÏ´Â ÇÔ¼ö 
+		//ï¿½ï¿½ï¿½ï¿½Ú°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã»ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Í¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Í¼ï¿½ 
+		//ï¿½ï¿½ï¿½ï¿½Ú°ï¿½ ï¿½ï¿½Ã»ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Í¸ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ø´ï¿½ Viewï¿½ï¿½ ï¿½Ìµï¿½ï¿½Ï´ï¿½ ï¿½Ô¼ï¿½ 
 		RequestDispatcher dispatch = req.getRequestDispatcher(url);
 		dispatch.forward(req, resp);	
 	}

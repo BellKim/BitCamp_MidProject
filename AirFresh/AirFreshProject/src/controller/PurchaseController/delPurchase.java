@@ -25,6 +25,7 @@ public class delPurchase  extends HttpServlet  {
 	}
 
 	public void process(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		req.setCharacterEncoding("utf-8");
 		//System.out.println("delPur 도착");
 		String seq = req.getParameter("seq");
 		int pur_index = Integer.parseInt(seq);

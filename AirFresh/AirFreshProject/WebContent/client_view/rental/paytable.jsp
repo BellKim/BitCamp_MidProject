@@ -24,8 +24,8 @@
 
 <table>
 	<tr>
-		<td>번호</td><td>구매일</td><td>제품index</td><td>상품명</td><td>[구매취소]</td><td>구매취소여부</td>
-	</tr>;
+		<td>번호</td><td>구매일</td><td>제품index</td><td>상품명</td><td>[구매취소]</td><td>A/S신청</td>
+	</tr>
 		<% 
 			for(int i=0; i<list.size(); i++)  { 
 				PurchaseNameDto pur = list.get(i);
@@ -38,16 +38,12 @@
 				<td><%= pur.getPrd_name() %></td>
 				<td><a href="delPur?seq=<%=pur.getPur_index() %>">[구매취소]</a></td>
 				<%	
-					if(pur.getOrder_auth()==1) {
+					if(pur.getOrder_auth()==0) {
 				
 				%>
-					<td> 구매취소함 </td>
+					<td> <a href="asAppPage?seq=<%= pur.getPur_index()%>&prd_name=<%=pur.getPrd_name() %>">[A/S신청]</a></td>
 				<%
-				} else {
-				%>
-					<td>구매중</td>
-				<%
-				}
+					} 
 				%>
 			</tr>
 		<%
