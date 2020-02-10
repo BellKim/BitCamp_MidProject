@@ -53,7 +53,7 @@ for(ManagerMemberDto a : managerMemberDto){
     for(ManagerMemberDto memberdto : managerMemberDto){
     %>	
     <li class="list-group-item">
-    	<span><%=memberdto.getMgr_index()%> </span>
+    	
     	<span><%=memberdto.getMgr_id() %></span>
     	<span><%=memberdto.getMgr_pw() %> </span>
     	<span><%=memberdto.getMgr_name() %> </span>
@@ -61,8 +61,10 @@ for(ManagerMemberDto a : managerMemberDto){
     	<span><%=memberdto.getMgr_cell() %> </span>
     	<span><%=memberdto.getMgr_auth() %> </span>
     	<span><%=memberdto.getMgr_del() %> </span>
-    	
-    	<button>자세히보기</button>
+    	<form action="<%=request.getContextPath() %>/showMgrMemberDetail.jsp">
+    		<input type="submit" value="자세히보기" method="GET">
+	    	<span><%=memberdto.getMgr_id() %></span>
+    	</form>
     </li>
     
     
