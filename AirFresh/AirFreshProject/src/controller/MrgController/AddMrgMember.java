@@ -16,11 +16,6 @@ import singleton.singleton;
 @WebServlet("/addMrgMember")
 			  
 public class AddMrgMember extends HttpServlet {
-	
-	singleton si = null;
-	
-	
-
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
@@ -48,7 +43,7 @@ public class AddMrgMember extends HttpServlet {
 		ManagerMemberDto managermem =
 				new ManagerMemberDto(mgr_index, mgr_auth, mgr_id, mgr_pw, mgr_name, mgr_loc, mgr_cell);
 		System.out.println(managermem);
-		si = singleton.getInstance();
+		singleton si = singleton.getInstance();
 		si.managerMember.insertManagerMember(managermem);
 		
 		
