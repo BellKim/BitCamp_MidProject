@@ -53,7 +53,7 @@ public class ManagerMemberDto {
 	}
 	
 	public ManagerMemberDto(int mgr_auth, String mgr_id, String mgr_pw, String mgr_name, int mgr_loc,
-			int mgr_cell) {
+			int mgr_cell, int mgr_del) {
 		super();
 		this.mgr_auth = mgr_auth;
 		this.mgr_id = mgr_id;
@@ -61,6 +61,7 @@ public class ManagerMemberDto {
 		this.mgr_name = mgr_name;
 		this.mgr_loc = mgr_loc;
 		this.mgr_cell = mgr_cell;
+		this.mgr_del = mgr_del;
 	}
 
 	public int getMgr_index() {
@@ -129,11 +130,12 @@ public class ManagerMemberDto {
 
 	@Override
 	public String toString() {
-		return "ManageMemberDto [mgr_index=" + mgr_index + ", mgr_auth=" + mgr_auth + ", mgr_id=" + mgr_id + ", mgr_pw="
-				+ mgr_pw + ", mgr_name=" + mgr_name + ", mgr_loc=" + mgr_loc + ", mgr_cell=" + mgr_cell + ", mgr_del="
-				+ mgr_del + "]";
-	} 
-	
+		return "ManagerMemberDto [mgr_index=" + mgr_index + ", mgr_auth=" + mgr_auth + ", mgr_id=" + mgr_id
+				+ ", mgr_pw=" + mgr_pw + ", mgr_name=" + mgr_name + ", mgr_loc=" + mgr_loc + ", mgr_cell=" + mgr_cell
+				+ ", mgr_del=" + mgr_del + "]";
+	}
+
+
 	
 
 }//end of class

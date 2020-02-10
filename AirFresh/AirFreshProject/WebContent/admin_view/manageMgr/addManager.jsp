@@ -5,11 +5,11 @@
 <head>
 <meta charset="UTF-8">
 <title>직원관리 시스템</title>
-<%@ include file="../../include/include.jsp" %>
+
 </head>
 <%-- 메니저 전체 리스트를 열람, 추가/삭제 해줌. --%>
 <body>
-<%@ include file="../../TopNBottom/page_top.jsp" %>
+
 
 
 
@@ -44,7 +44,7 @@
 	
 	</form>
 
-<%@ include file="../../TopNBottom/page_Bottom.jsp" %>
+
 
 
 
