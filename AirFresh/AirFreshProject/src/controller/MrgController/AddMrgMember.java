@@ -10,41 +10,56 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/addMrgMember")
-public class AddMrgMember extends HttpServlet {
-	
-	private static AddMrgMember addMrgMember = null;
-	
-	private AddMrgMember() {
-	}
-	public AddMrgMember getInstance() {
-		if(addMrgMember == null) {
-			addMrgMember = new AddMrgMember();
-		}
-		return addMrgMember;
-	}
-	
-	
-	@Override
-	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		processing(req, resp);
-	}
+import Dto.ManagerMemberDto;
+import singleton.singleton;
 
+@WebServlet("/addMrgMember")
+			  
+public class AddMrgMember extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		processing(req, resp);
-	}
-
-	protected void processing(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-	}
-	
-	protected void forward(String url, HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		//»ç¿ëÀÚ°¡ º¸³»¿Â ¿äÃ»¿¡ ÀÇÇÑ µ¥ÀÌÅÍ¸¦ °¡Áö°í ¿Í¼­ 
-		//»ç¿ëÀÚ°¡ ¿äÃ»ÇÑ µ¥ÀÌÅÍ¸¦ °¡Áö°í ÇØ´ç View·Î ÀÌµ¿ÇÏ´Â ÇÔ¼ö 
-		RequestDispatcher dispatch = req.getRequestDispatcher(url);
-		dispatch.forward(req, resp);	
-	}
+		System.out.println("hello AddMrgMember doPost do get ");
+		String mgr_id= req.getParameter("manager_id");
+		String mgr_pw= req.getParameter("manager_pw");
+		String mgr_name= req.getParameter("manager_name");
+		
+		String Str_mgr_loc= req.getParameter("manager_loc");	// 1 : ê°•ë‚¨êµ¬ 2: ì„±ë™êµ¬ 3: ì¤‘ë‘êµ¬
+		int mgr_loc = Integer.parseInt(Str_mgr_loc);
+		String Str_mgr_auth = req.getParameter("authLevel");
+		int mgr_auth = Integer.parseInt(Str_mgr_auth);
+		
+		String Str_mgr_cell= req.getParameter("manager_phNum");
+		int mgr_cell = Integer.parseInt(Str_mgr_cell);
+		
+		
+		System.out.println("test1 = " + mgr_id + " " +
+				" " +mgr_pw+
+				" " +mgr_name+
+				" " +mgr_loc+
+				" " +mgr_cell);
+		int mgr_index = 0;
+		int mgr_del = 0; 
+		ManagerMemberDto managermem =
+				new ManagerMemberDto(mgr_index, mgr_auth, mgr_id, mgr_pw, mgr_name, mgr_loc, mgr_cell);
+		System.out.println(managermem);
+		singleton si = singleton.getInstance();
+		si.managerMember.insertManagerMember(managermem);
+		
+		
+		
+	}//end of doPost
+
+//	protected void processing(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+//		
+//	}
+//	
+//	protected void forward(String url, HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+//		//ì‚¬ìš©ìê°€ ë³´ë‚´ì˜¨ ìš”ì²­ì— ì˜í•œ ë°ì´í„°ë¥¼ ê°€ì§€ê³  ì™€ì„œ 
+//		//ì‚¬ìš©ìê°€ ìš”ì²­í•œ ë°ì´í„°ë¥¼ ê°€ì§€ê³  í•´ë‹¹ Viewë¡œ ì´ë™í•˜ëŠ” í•¨ìˆ˜ 
+//		RequestDispatcher dispatch = req.getRequestDispatcher(url);
+//		dispatch.forward(req, resp);	
+//	}
 	
 	
 	
