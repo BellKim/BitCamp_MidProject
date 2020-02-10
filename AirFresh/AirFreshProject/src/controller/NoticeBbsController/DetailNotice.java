@@ -1,21 +1,19 @@
 package controller.NoticeBbsController;
 
 import java.io.IOException;
-import java.util.List;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import Dao.impl.NoticeBbsDao;
 import Dto.NoticeBbsDto;
 import projectutil.ProjectUtil;
 import singleton.singleton;
-@WebServlet("/noticelist")
-public class NoticeBbsList extends HttpServlet{
+
+@WebServlet("/noticedetail")
+public class DetailNotice extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -28,13 +26,18 @@ public class NoticeBbsList extends HttpServlet{
 	}
 	
 	public void processFunc(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		req.setCharacterEncoding("utf-8");
+		int noti_index = Integer.parseInt(req.getParameter("noti_index"));
 		singleton s = singleton.getInstance();
+		s.nbsi.readcount(noti_index);
 		
-		List<NoticeBbsDto> list = s.nbsi.getNoticeList();
+		NoticeBbsDto notice = s.nbsi.getNoticeBbs(noti_index);
 		
-		req.setAttribute("noticeList", list);
-		ProjectUtil.forward("./admin_view/board/noticelist.jsp", req, resp);
+		req.setAttribute("noticeBbs", notice);
+		
+		ProjectUtil.forward("./admin_view/board/noticedetail.jsp", req, resp);
+		
 		
 	}
-
+	
 }
