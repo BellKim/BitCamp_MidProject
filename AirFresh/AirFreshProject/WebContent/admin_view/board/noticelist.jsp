@@ -19,7 +19,8 @@
 	href="<%=request.getContextPath()%>/css/bootstrap.min.css">
 </head>
 <body>
-	<div class="container">
+	<div class="container">		
+	<h3>공지사항</h3>
 		<table class="table table-hover">
 			<col width="70">
 			<col width="400">
@@ -56,11 +57,11 @@
 							if (mrgMem.getMgr_auth() == 0) {
 								if (notice.getNoti_catagory() == 1) {
 						%> 
-							고객&nbsp;
+							<span style="font-size:0.8em;">고객&nbsp;</span>
 						<%
 					 	} else{
 					 	%>
-					 		매니저&nbsp;
+					 		<span style="font-size:0.8em;">매니저&nbsp;</span>
 					 	<%
 					 	}
 					 		}
@@ -69,7 +70,7 @@
 						href="<%=request.getContextPath()%>/noticedetail?noti_index=<%=notice.getNoti_index()%>"><%=notice.getNoti_title()%></a></td>
 					<td>
 
- 						<%=notice.getWdate()%></td>
+ 						<%=notice.getWdate().substring(0, 10)%></td>
 					<td><%=notice.getNoti_writer()%></td>
 					<td><%=notice.getReadcount()%></td>
 				</tr>

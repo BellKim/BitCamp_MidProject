@@ -10,7 +10,8 @@ CREATE TABLE noticeBbs
     noti_catagory    NUMBER(1)         NULL, 
     noti_writer      VARCHAR2(20)      NULL, 
     noti_wdate       DATE              NULL, 
-    filename         VARCHAR2(100)     NULL, 
+    filename         VARCHAR2(100)     NULL,
+    tempfile		 VARCHAR2(100)	   NULL,	
     readcount        NUMBER(10)        NULL, 
     noti_del         NUMBER(1)         NULL, 
     CONSTRAINT NOTICEBBS_PK PRIMARY KEY (noti_index)
@@ -34,14 +35,16 @@ public class NoticeBbsDto implements Serializable {
 	private String noti_writer;
 	private String wdate;
 	private String filename;
+	private String tempfile;
 	private int readcount;
 	private int noti_del;
 	
 	public NoticeBbsDto() {
 	}
 
-	public NoticeBbsDto(int noti_index, String noti_title, String noti_content, int noti_catagory,
-			String noti_writer, String wdate, String filename, int readcount, int noti_del) {
+	public NoticeBbsDto(int noti_index, String noti_title, String noti_content, int noti_catagory, String noti_writer,
+			String wdate, String filename, String tempfile, int readcount, int noti_del) {
+		super();
 		this.noti_index = noti_index;
 		this.noti_title = noti_title;
 		this.noti_content = noti_content;
@@ -49,22 +52,18 @@ public class NoticeBbsDto implements Serializable {
 		this.noti_writer = noti_writer;
 		this.wdate = wdate;
 		this.filename = filename;
+		this.tempfile = tempfile;
 		this.readcount = readcount;
 		this.noti_del = noti_del;
 	}
 
-	public NoticeBbsDto(String noti_title, String noti_content, int noti_catagory, String filename) {
+	public NoticeBbsDto(String noti_title, String noti_content, int noti_catagory, String filename, String tempfile) {
+		super();
 		this.noti_title = noti_title;
 		this.noti_content = noti_content;
 		this.noti_catagory = noti_catagory;
 		this.filename = filename;
-	}
-
-	@Override
-	public String toString() {
-		return "NoticeBbsDto [noti_index=" + noti_index + ", noti_title=" + noti_title + ", noti_content="
-				+ noti_content + ", noti_catagory=" + noti_catagory + ", noti_writer=" + noti_writer + ", wdate="
-				+ wdate + ", filename=" + filename + ", readcount=" + readcount + ", noti_del=" + noti_del + "]";
+		this.tempfile = tempfile;
 	}
 
 	public int getNoti_index() {
@@ -123,6 +122,14 @@ public class NoticeBbsDto implements Serializable {
 		this.filename = filename;
 	}
 
+	public String getTempfile() {
+		return tempfile;
+	}
+
+	public void setTempfile(String tempfile) {
+		this.tempfile = tempfile;
+	}
+
 	public int getReadcount() {
 		return readcount;
 	}
@@ -139,7 +146,5 @@ public class NoticeBbsDto implements Serializable {
 		this.noti_del = noti_del;
 	}
 	
-	
-
 	
 }

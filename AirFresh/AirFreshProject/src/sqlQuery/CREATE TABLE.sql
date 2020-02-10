@@ -1,8 +1,5 @@
 ﻿DROP TABLE orderReview 
 CASCADE CONSTRAINTS;
-
-
-
 DROP TABLE purchase 
 CASCADE CONSTRAINTS;
 DROP TABLE modelList 
@@ -218,7 +215,11 @@ CREATE TABLE qnaBbs
 
 
 
--- members Table Create SQL
+-- noticeBbs Table Create SQL
+
+-- 날짜 : 2020-02-10
+-- 수정자 : 박수진
+-- tempfile 컬럼 추가 : VARCHAR2(100) 
 CREATE TABLE noticeBbs
 (
     noti_index       NUMBER(6)         NOT NULL, 
@@ -227,7 +228,8 @@ CREATE TABLE noticeBbs
     noti_catagory    NUMBER(1)         NULL, 
     noti_writer      VARCHAR2(20)      NULL, 
     noti_wdate       DATE              NULL, 
-    filename         VARCHAR2(100)     NULL, 
+    filename         VARCHAR2(100)     NULL,
+    tempfile		 VARCHAR2(100)	   NULL,	
     readcount        NUMBER(10)        NULL, 
     noti_del         NUMBER(1)         NULL, 
     CONSTRAINT NOTICEBBS_PK PRIMARY KEY (noti_index)

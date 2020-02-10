@@ -24,5 +24,10 @@ public class NoticeBbsService implements NoticeBbsServiceInterface {
 	public NoticeBbsDto getNoticeBbs(int noti_index) {
 		return nbd.getNoticeBbs(noti_index);
 	}
+
+	@Override
+	public void readcount(int noti_index) {
+		nbd.readcount(noti_index);
+	}
 	
 }

@@ -1,16 +1,9 @@
 <%@page import="Dto.ManagerMemberDto"%>
-<%@page import="java.util.Date"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
 <%
-	// 시간을 취득
-	String fname = (new Date().getTime()) + "";
-	System.out.println("fname:" + fname);
 
-	// old			 new 	
-	// mydata.txt -> 1580695728906.txt -> upload
-	// 1580695728906.txt -> download -> mydata.txt
 	ManagerMemberDto mrgMem = (ManagerMemberDto) session.getAttribute("mrgLogin");
 %>
 <!DOCTYPE html>
@@ -25,6 +18,8 @@
 </head>
 <body>
 	<div class="container">
+		<h3>공지사항</h3>
+		<hr>
 		<form
 			action="<%=request.getContextPath()%>/noticeupload?command=upload"
 			method="post" enctype="multipart/form-data">

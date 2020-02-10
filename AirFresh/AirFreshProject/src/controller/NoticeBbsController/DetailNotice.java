@@ -29,6 +29,7 @@ public class DetailNotice extends HttpServlet {
 		req.setCharacterEncoding("utf-8");
 		int noti_index = Integer.parseInt(req.getParameter("noti_index"));
 		singleton s = singleton.getInstance();
+		s.nbsi.readcount(noti_index);
 		
 		NoticeBbsDto notice = s.nbsi.getNoticeBbs(noti_index);
 		

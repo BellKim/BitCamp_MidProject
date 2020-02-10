@@ -20,7 +20,8 @@ public class NoticeBbsDao implements NoticeBbsDaoInterface {
 	@Override
 	public List<NoticeBbsDto> getNoticeList() {
 		String sql = " SELECT NOTI_INDEX, NOTI_TITLE, NOTI_CONTENT, NOTI_CATAGORY, "
-				+ " NOTI_WRITER, NOTI_WDATE, FILENAME, READCOUNT, NOTI_DEL " + " FROM NOTICEBBS ";
+				+ " NOTI_WRITER, NOTI_WDATE, FILENAME, TEMPFILE, READCOUNT, NOTI_DEL " + " FROM NOTICEBBS "
+				+ " ORDER BY NOTI_WDATE DESC ";
 
 		Connection conn = null;
 		PreparedStatement psmt = null;
@@ -43,8 +44,8 @@ public class NoticeBbsDao implements NoticeBbsDaoInterface {
 				int i = 1;
 
 				NoticeBbsDto nbd = new NoticeBbsDto(rs.getInt(i++), rs.getString(i++), rs.getString(i++),
-						rs.getInt(i++), rs.getString(i++), rs.getString(i++), rs.getString(i++), rs.getInt(i++),
-						rs.getInt(i++));
+						rs.getInt(i++), rs.getString(i++), rs.getString(i++), rs.getString(i++), rs.getString(i++),
+						rs.getInt(i++), rs.getInt(i++));
 				list.add(nbd);
 			}
 
@@ -65,8 +66,8 @@ public class NoticeBbsDao implements NoticeBbsDaoInterface {
 	@Override
 	public boolean writeNotice(NoticeBbsDto notice) {
 		String sql = " INSERT INTO NOTICEBBS " + " (NOTI_INDEX, NOTI_TITLE, NOTI_CONTENT, NOTI_CATAGORY,"
-				+ " NOTI_WRITER, NOTI_WDATE, FILENAME, READCOUNT, NOTI_DEL) "
-				+ " VALUES (noticeBbs_SEQ.NEXTVAL, ?, ?, ?," + " '관리자', SYSDATE, ?, 0, 0) ";
+				+ " NOTI_WRITER, NOTI_WDATE, FILENAME, TEMPFILE, READCOUNT, NOTI_DEL) "
+				+ " VALUES (noticeBbs_SEQ.NEXTVAL, ?, ?, ?," + " '관리자', SYSDATE, ?, ?, 0, 0) ";
 
 		System.out.println("입력하러 와따");
 		Connection conn = null;
@@ -83,6 +84,7 @@ public class NoticeBbsDao implements NoticeBbsDaoInterface {
 			psmt.setString(2, notice.getNoti_content());
 			psmt.setInt(3, notice.getNoti_catagory());
 			psmt.setString(4, notice.getFilename());
+			psmt.setString(5, notice.getTempfile());
 			System.out.println("2/6 writeNotice success");
 
 			count = psmt.executeUpdate();
@@ -101,7 +103,7 @@ public class NoticeBbsDao implements NoticeBbsDaoInterface {
 	@Override
 	public NoticeBbsDto getNoticeBbs(int noti_index) {
 		String sql = " SELECT NOTI_INDEX, NOTI_TITLE, NOTI_CONTENT, NOTI_CATAGORY, "
-				+ " NOTI_WRITER, NOTI_WDATE, FILENAME, READCOUNT, NOTI_DEL " 
+				+ " NOTI_WRITER, NOTI_WDATE, FILENAME, TEMPFILE, READCOUNT, NOTI_DEL " 
 				+ " FROM NOTICEBBS "
 				+ " WHERE NOTI_INDEX = ? ";
 
@@ -127,7 +129,7 @@ public class NoticeBbsDao implements NoticeBbsDaoInterface {
 				int i = 1;
 
 				notice = new NoticeBbsDto(rs.getInt(i++), rs.getString(i++), rs.getString(i++), rs.getInt(i++),
-						rs.getString(i++), rs.getString(i++), rs.getString(i++), rs.getInt(i++), rs.getInt(i++));
+						rs.getString(i++), rs.getString(i++), rs.getString(i++), rs.getString(i++), rs.getInt(i++), rs.getInt(i++));
 			}
 
 			System.out.println("4/4 getNoticeBbs s");
@@ -144,4 +146,37 @@ public class NoticeBbsDao implements NoticeBbsDaoInterface {
 		return notice;
 	}
 
+	@Override
+	public void readcount(int noti_index) {
+		String sql = " UPDATE NOTICEBBS "
+				+ " SET READCOUNT = READCOUNT + 1 "
+				+ " WHERE noti_index = ? ";
+
+		Connection conn = null;
+		PreparedStatement psmt = null;
+		
+		int count = 0;
+		try {
+			conn = DBConnection.getConnection();
+			System.out.println("1/6 readcount success");
+	
+			psmt = conn.prepareStatement(sql);
+			System.out.println("2/6 readcount success");
+			
+			psmt.setInt(1, noti_index);
+			
+			count = psmt.executeUpdate();
+			System.out.println("3/6 readcount success");
+			
+		} catch (SQLException e) {
+			System.out.println("readcount fail");
+			e.printStackTrace();
+		} finally {
+			DBClose.close(psmt, conn, null);
+		}
+		
+		if(count==0) {
+			System.out.println("안됨");
+		}
+	}
 }

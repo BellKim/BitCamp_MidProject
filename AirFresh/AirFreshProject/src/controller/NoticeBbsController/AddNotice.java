@@ -2,6 +2,7 @@ package controller.NoticeBbsController;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
@@ -57,6 +58,7 @@ public class AddNotice extends HttpServlet {
 			// file name
 
 			String filename = "";
+			String fname ="";
 
 			boolean isMultipart = ServletFileUpload.isMultipartContent(req);
 
@@ -90,7 +92,15 @@ public class AddNotice extends HttpServlet {
 							
 						} else {
 							if (item.getFieldName().equals("fileload")) {
-								filename = processUploadFile(item, fupload);
+								
+								// 시간을 취득
+								fname = (new Date().getTime()) + "";
+
+								// old			 new 	
+								// mydata.txt -> 1580695728906.txt -> upload
+								// 1580695728906.txt -> download -> mydata.txt
+								
+								filename = processUploadFile(item, fupload, fname);
 							}
 						}
 					}
@@ -102,14 +112,14 @@ public class AddNotice extends HttpServlet {
 				System.out.println("멀티파트가 아닙니다");
 			}
 			singleton s = singleton.getInstance();
-			boolean isS = s.nbsi.writeNotice(new NoticeBbsDto(noti_title, noti_content, noti_catagory, filename));
+			boolean isS = s.nbsi.writeNotice(new NoticeBbsDto(noti_title, noti_content, noti_catagory, filename, fname));
 			
 			resp.sendRedirect(req.getContextPath() + "/admin_view/board/finding.jsp?command=upload&isS="+isS);
 		}
 
 	}
 
-	private String processUploadFile(FileItem fileItem, String dir) {
+	private String processUploadFile(FileItem fileItem, String dir, String fname) {
 		String filename = fileItem.getName();
     	long sizeInBytes = fileItem.getSize();
     	
@@ -123,8 +133,11 @@ public class AddNotice extends HttpServlet {
     		}
     		
     		filename = filename.substring(idx+1); // abc.txt
+    		System.out.println(filename);
     		
-    		File uploadFile = new File(dir, filename);
+    		String str = filename.substring(filename.lastIndexOf("."));
+    		System.out.println(str);
+    		File uploadFile = new File(dir, fname+str);
     		
     		try{
     		fileItem.write(uploadFile); //실제 업로드 부분 
