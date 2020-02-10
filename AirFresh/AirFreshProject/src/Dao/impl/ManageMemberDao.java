@@ -13,6 +13,10 @@ import db.DBConnection;
 
 
 public class ManageMemberDao implements ManageMemberDaoInterface {
+	
+	public ManageMemberDao() {
+		DBConnection.getConnection();
+	}
 
 	@Override
 	public boolean insertManagerMember(ManagerMemberDto dto) {

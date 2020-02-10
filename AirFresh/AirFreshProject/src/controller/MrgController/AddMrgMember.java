@@ -17,7 +17,7 @@ import singleton.singleton;
 			  
 public class AddMrgMember extends HttpServlet {
 	
-	singleton si = null;
+	
 	
 	
 
@@ -48,7 +48,7 @@ public class AddMrgMember extends HttpServlet {
 		ManagerMemberDto managermem =
 				new ManagerMemberDto(mgr_index, mgr_auth, mgr_id, mgr_pw, mgr_name, mgr_loc, mgr_cell);
 		System.out.println(managermem);
-		si = singleton.getInstance();
+		singleton si = singleton.getInstance();
 		si.managerMember.insertManagerMember(managermem);
 		
 		
