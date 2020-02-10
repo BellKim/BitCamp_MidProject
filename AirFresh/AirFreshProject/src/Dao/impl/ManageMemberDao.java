@@ -13,10 +13,6 @@ import db.DBConnection;
 
 
 public class ManageMemberDao implements ManageMemberDaoInterface {
-	
-	public ManageMemberDao() {
-		DBConnection.initConnection();
-	}
 
 	@Override
 	public boolean insertManagerMember(ManagerMemberDto dto) {
@@ -24,10 +20,8 @@ public class ManageMemberDao implements ManageMemberDaoInterface {
 				+ " mgr_pw, mgr_name, mgr_loc, mgr_cell, mgr_del) "
 				+ " VALUES(managerMember_SEQ.NEXTVAL, ?, ?, ?, ?, ?, ?, ? ) ";
 		System.out.println(" 1/6 ManageMemberDao success ");
-		
 		Connection conn = null;
 		PreparedStatement psmt = null;
-		
 		System.out.println( "sql = " + sql );
 		System.out.println(" 2/6 ManageMemberDao success ");
 		int count = 0;
