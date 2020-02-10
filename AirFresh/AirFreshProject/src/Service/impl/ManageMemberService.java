@@ -10,8 +10,8 @@ public class ManageMemberService implements ManageMemberInterface{
 	ManageMemberDaoInterface mmdao= new ManageMemberDao();
 
 	@Override
-	public void insertManagerMember(ManagerMemberDto dto) {
-		mmdao.insertManagerMember(dto);
+	public boolean insertManagerMember(ManagerMemberDto dto) {
+		return mmdao.insertManagerMember(dto);
 	}
 	
 	

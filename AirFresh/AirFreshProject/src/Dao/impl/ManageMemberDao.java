@@ -15,7 +15,7 @@ import db.DBConnection;
 public class ManageMemberDao implements ManageMemberDaoInterface {
 	
 	public ManageMemberDao() {
-		DBConnection.getConnection();
+	
 	}
 
 	@Override
@@ -50,10 +50,10 @@ public class ManageMemberDao implements ManageMemberDaoInterface {
 			count = psmt.executeUpdate();
 			
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+			System.out.println(" ManageMemberDao  DB FAIL ");
 			e.printStackTrace();
 		}finally {
-			System.out.println(" 6/6 ManageMemberDao success ");
+			System.out.println(" 6/6 ManageMemberDao DBCLOSE ");
 			DBClose.close(psmt, conn, null);
 		}
 		
