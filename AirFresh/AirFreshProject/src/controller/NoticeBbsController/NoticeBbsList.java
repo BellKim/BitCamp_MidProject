@@ -28,10 +28,25 @@ public class NoticeBbsList extends HttpServlet{
 	}
 	
 	public void processFunc(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		
+		String opt = req.getParameter("opt");
+		String keyword = req.getParameter("keyword");
+
+		if (opt == null || opt.equals("")) {
+			opt = "sel";
+		}
+		// 검색어를 지정하지 않고 choice가 넘어 왔을 때
+		if (opt.equals("sel")) {
+			keyword = "";
+		}
+		if (keyword == null) {
+			keyword = "";
+			opt = "sel";
+		}
 		singleton s = singleton.getInstance();
 		
-		List<NoticeBbsDto> list = s.nbsi.getNoticeList();
-		
+		//List<NoticeBbsDto> list = s.nbsi.getNoticeList();
+		List<NoticeBbsDto> list = s.nbsi.getNoticeList(opt, keyword);
 		req.setAttribute("noticeList", list);
 		ProjectUtil.forward("./admin_view/board/noticelist.jsp", req, resp);
 		

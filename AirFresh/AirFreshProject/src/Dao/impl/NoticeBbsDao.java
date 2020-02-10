@@ -235,4 +235,10 @@ public class NoticeBbsDao implements NoticeBbsDaoInterface {
 
 		return list;
 	}
+
+	@Override
+	public List<NoticeBbsDto> getNoticePaging(String opt, String keyword, int page) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

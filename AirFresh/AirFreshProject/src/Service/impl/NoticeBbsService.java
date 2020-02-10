@@ -29,5 +29,10 @@ public class NoticeBbsService implements NoticeBbsServiceInterface {
 	public void readcount(int noti_index) {
 		nbd.readcount(noti_index);
 	}
+
+	@Override
+	public List<NoticeBbsDto> getNoticeList(String opt, String keyword) {
+		return nbd.getNoticeList(opt, keyword);
+	}
 	
 }
