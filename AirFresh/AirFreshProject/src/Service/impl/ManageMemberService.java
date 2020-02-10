@@ -1,5 +1,7 @@
 package Service.impl;
 
+import java.util.List;
+
 import Dao.ManageMemberDaoInterface;
 import Dao.impl.ManageMemberDao;
 import Dto.ManagerMemberDto;
@@ -10,10 +12,17 @@ public class ManageMemberService implements ManageMemberInterface{
 	ManageMemberDaoInterface mmdao= new ManageMemberDao();
 
 	@Override
-	public void insertManagerMember(ManagerMemberDto dto) {
-		mmdao.insertManagerMember(dto);
+	public boolean insertManagerMember(ManagerMemberDto dto) {
+		return mmdao.insertManagerMember(dto);
 	}
 	
+	
+	@Override
+	public List<ManagerMemberDto> receiveManagerMemberAll() {
+		return mmdao.receiveManagerMemberAll();
+	}
+	
+	//receiveManagerMemberAll
 	
 	
 

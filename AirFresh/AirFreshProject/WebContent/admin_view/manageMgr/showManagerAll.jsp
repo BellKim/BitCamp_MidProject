@@ -1,54 +1,88 @@
+<%@page import="Dto.ManagerMemberDto"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+<%
+request.setCharacterEncoding("utf-8");
+
+
+List<ManagerMemberDto> managerMemberDto =
+		(List<ManagerMemberDto>)request.getAttribute("managerMemberList");
+%>
+
+<%
+for(ManagerMemberDto a : managerMemberDto){
+	System.out.println(a);
+}
+%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>직원관리 시스템</title>
-</head>
-<%-- 메니저 전체 리스트를 열람, 추가/삭제 해줌. --%>
-<body>
-	<h3> input data </h3>
-	<%=request.getContextPath() %>
-	<%--<%=request.getContextPath()%>/addMrgMember --%>
-	<form id="addManagerMem" name="addManagerMem" action="<%=request.getContextPath()%>/addMrgMember"  method="POST">
-		<div>id<input type="text" id="manager_id" name="manager_id" ></div>
-		<div>pw<input type="text" id="manager_pw" name="manager_pw" ></div>
-		<div>이름<input type="text" id="manager_name" name="manager_name" ></div>
-		<!-- 
-		<div>근무지<input type="text" id="manager_loc" name="manager_loc" ></div>
-		 -->
-		<div>
-		근무지역선택 
-			<select name="manager_loc">
-			  <option value="1">강남구</option>
-			  <option value="2">성동구</option>
-			  <option value="3" selected="selected">중랑구</option>
-			</select>
-		</div>
-		<div>
-		직원구분
-			<select name="authLevel">
-				<option value="0"> 최고관리자</option>
-				<option value="1"> 매니저</option>
-				<option value="2"> 설치기사</option>
-			</select>
-		</div>
-		<div>핸드폰번호<input type="text" id="manager_phNum" name="manager_phNum" ></div>
-		
-		
-	<input type="submit"  value="전송버튼">
-	
-	
-	
-	
-		
-		
-	</form>
-	
-	
+<title>Insert title here</title>
 
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+  
+  
+  
+</head>
+<%-- 메니저 전체 추가 해줌.  --%>
+<body>
+
+<div class="container">
+
+  <h2>직원리스트</h2>
+  <ul class="list-group">
+    <li class="list-group-item">
+    	<div class="container-fluid">
+    		<ul class="nav navbar-nav">0</ul>
+			<ul class="nav navbar-nav">1</ul>
+			<ul class="nav navbar-nav">2</ul>
+			<ul class="nav navbar-nav">3</ul>
+    	</div>
+    </li>
+    
+    <li class="list-group-item">
+    	Second item
+    </li>
+    <%
+    for(ManagerMemberDto memberdto : managerMemberDto){
+    %>	
+    <li class="list-group-item">
+    	
+    	<span><%=memberdto.getMgr_id() %></span>
+    	<span><%=memberdto.getMgr_pw() %> </span>
+    	<span><%=memberdto.getMgr_name() %> </span>
+    	<span><%=memberdto.getMgr_loc() %> </span>
+    	<span><%=memberdto.getMgr_cell() %> </span>
+    	<span><%=memberdto.getMgr_auth() %> </span>
+    	<span><%=memberdto.getMgr_del() %> </span>
+    	<form action="<%=request.getContextPath() %>/showMgrMemberDetail.jsp">
+    		<input type="submit" value="자세히보기" method="GET">
+	    	<span><%=memberdto.getMgr_id() %></span>
+    	</form>
+    </li>
+    
+    
+    	
+   <%
+    }
+    
+    %>
+    
+    
+    <li class="list-group-item">
+    	Third item
+    </li>
+    
+  </ul>
+</div>
+
+	
 
 </body>
-
 </html>

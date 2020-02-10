@@ -16,15 +16,9 @@ import singleton.singleton;
 @WebServlet("/addMrgMember")
 			  
 public class AddMrgMember extends HttpServlet {
-	
-	singleton si = null;
-	
-	
-
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		
-		System.out.println("hello AddMrgMember doPost do get ");
+//		System.out.println("hello AddMrgMember doPost do get ");
 		String mgr_id= req.getParameter("manager_id");
 		String mgr_pw= req.getParameter("manager_pw");
 		String mgr_name= req.getParameter("manager_name");
@@ -48,8 +42,11 @@ public class AddMrgMember extends HttpServlet {
 		ManagerMemberDto managermem =
 				new ManagerMemberDto(mgr_index, mgr_auth, mgr_id, mgr_pw, mgr_name, mgr_loc, mgr_cell);
 		System.out.println(managermem);
-		si = singleton.getInstance();
-		si.managerMember.insertManagerMember(managermem);
+		singleton si = singleton.getInstance();
+		boolean res = si.managerMember.insertManagerMember(managermem);
+		System.out.println("AddMrgMember insert result " + res );
+		
+//		if()
 		
 		
 		

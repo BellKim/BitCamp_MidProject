@@ -2,9 +2,10 @@ package Dao.impl;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
-
-
+import java.util.ArrayList;
+import java.util.List;
 
 import Dao.ManageMemberDaoInterface;
 import Dto.ManagerMemberDto;
@@ -13,6 +14,10 @@ import db.DBConnection;
 
 
 public class ManageMemberDao implements ManageMemberDaoInterface {
+	
+	public ManageMemberDao() {
+	
+	}
 
 	@Override
 	public boolean insertManagerMember(ManagerMemberDto dto) {
@@ -46,10 +51,10 @@ public class ManageMemberDao implements ManageMemberDaoInterface {
 			count = psmt.executeUpdate();
 			
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+			System.out.println(" ManageMemberDao  DB FAIL ");
 			e.printStackTrace();
 		}finally {
-			System.out.println(" 6/6 ManageMemberDao success ");
+			System.out.println(" 6/6 ManageMemberDao DBCLOSE ");
 			DBClose.close(psmt, conn, null);
 		}
 		
@@ -57,6 +62,58 @@ public class ManageMemberDao implements ManageMemberDaoInterface {
 		return count>0?true:false;
 		
 	}//end insertManagerMember
+
+	@Override
+	public List<ManagerMemberDto> receiveManagerMemberAll() {
+		
+		String sql = " SELECT mgr_index, mgr_auth, mgr_id, mgr_pw, mgr_name, mgr_loc, mgr_cell, mgr_del "
+				+ " FROM managerMember "; 
+		
+		System.out.println(" 1/6 receiveManagerMemberAll success ");
+		Connection conn = null;
+		PreparedStatement psmt = null;
+		ResultSet rs = null;
+		List<ManagerMemberDto> list=  new ArrayList<ManagerMemberDto>();
+		
+		System.out.println( "sql = " + sql );
+		
+		System.out.println(" 2/6 receiveManagerMemberAll success ");
+
+		
+		try {
+			System.out.println(" 3/6 receiveManagerMemberAll success ");
+			conn = DBConnection.getConnection();
+			psmt = conn.prepareStatement(sql);
+			rs = psmt.executeQuery();
+
+			System.out.println(" 4/6 receiveManagerMemberAll success ");
+			while(rs.next()) {
+				  int mgr_index = rs.getInt("mgr_index");
+				  int mgr_auth = rs.getInt("mgr_auth");
+				  String mgr_id = rs.getString("mgr_id");
+				  String mgr_pw = rs.getString("mgr_pw");
+				  String mgr_name = rs.getString("mgr_name"); 
+				  int mgr_loc = rs.getInt("mgr_loc");
+				  int mgr_cell = rs.getInt("mgr_cell");
+				  int mgr_del = rs.getInt("mgr_del");
+				  
+				  list.add(new ManagerMemberDto(mgr_index, mgr_auth, mgr_id, mgr_pw, mgr_name, mgr_loc, mgr_cell, mgr_del));
+				  
+			}//end while()
+			System.out.println(" 5/6 receiveManagerMemberAll success ");
+			
+		} catch (SQLException e) {
+			System.out.println(" receiveManagerMemberAll  FAIL ");
+			e.printStackTrace();
+		}finally {
+			System.out.println(" 6/6 receiveManagerMemberAll DB CLOSE ");
+//			DBClose.close(psmt, conn, null);
+			DBClose.close(psmt, conn, rs);
+		}
+		
+		return list;
+	}
+	
 	
 	
 }// end of ManagerMemberDao class
