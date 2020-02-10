@@ -61,14 +61,12 @@ for(ManagerMemberDto a : managerMemberDto){
     	<span><%=memberdto.getMgr_cell() %> </span>
     	<span><%=memberdto.getMgr_auth() %> </span>
     	<span><%=memberdto.getMgr_del() %> </span>
-    	<form action="<%=request.getContextPath() %>/showMgrMemberDetail">
-    		<input type="submit" value="자세히보기" method="GET">
+    	<form action="<%=request.getContextPath() %>/showMgrMemberDetail?mgr_id=<%=memberdto.getMgr_id() %>" method="POST">
+    		<input type="submit" value="자세히보기">
 	    	<span><%=memberdto.getMgr_id() %></span>
     	</form>
     </li>
-    
-    
-    	
+
    <%
     }
     
