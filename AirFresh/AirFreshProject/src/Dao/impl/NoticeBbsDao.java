@@ -69,7 +69,6 @@ public class NoticeBbsDao implements NoticeBbsDaoInterface {
 				+ " NOTI_WRITER, NOTI_WDATE, FILENAME, TEMPFILE, READCOUNT, NOTI_DEL) "
 				+ " VALUES (noticeBbs_SEQ.NEXTVAL, ?, ?, ?," + " '관리자', SYSDATE, ?, ?, 0, 0) ";
 
-		System.out.println("입력하러 와따");
 		Connection conn = null;
 		PreparedStatement psmt = null;
 
@@ -178,5 +177,62 @@ public class NoticeBbsDao implements NoticeBbsDaoInterface {
 		if(count==0) {
 			System.out.println("안됨");
 		}
+	}
+
+	@Override
+	public List<NoticeBbsDto> getNoticeList(String opt, String keyword) {
+		String sql = " SELECT NOTI_INDEX, NOTI_TITLE, NOTI_CONTENT, NOTI_CATAGORY, " + 
+				" NOTI_WRITER, NOTI_WDATE, FILENAME, TEMPFILE, READCOUNT, NOTI_DEL FROM NOTICEBBS ";
+		
+		String sqlword = "";
+		
+		if(opt.contentEquals("title")) {
+			sqlword = " WHERE NOTI_TITLE LIKE '%"+keyword.trim()+"%'";
+		} else if(opt.contentEquals("content")) {
+			sqlword = " WHERE NOTI_CONTENT LIKE '%"+keyword.trim()+"%'";
+		}
+		
+		sql += sqlword;
+		
+		sql += " ORDER BY NOTI_WDATE DESC ";
+		
+		Connection conn = null;
+		PreparedStatement psmt = null;
+		ResultSet rs = null;
+
+		List<NoticeBbsDto> list = new ArrayList<NoticeBbsDto>();
+
+		try {
+
+			conn = DBConnection.getConnection();
+			System.out.println("1/4 getNoticeList s");
+
+			psmt = conn.prepareStatement(sql);
+			System.out.println("2/4 getNoticeList s");
+
+			rs = psmt.executeQuery();
+			System.out.println("3/4 getNoticeList s");
+
+			while (rs.next()) {
+				int i = 1;
+
+				NoticeBbsDto nbd = new NoticeBbsDto(rs.getInt(i++), rs.getString(i++), rs.getString(i++),
+						rs.getInt(i++), rs.getString(i++), rs.getString(i++), rs.getString(i++), rs.getString(i++),
+						rs.getInt(i++), rs.getInt(i++));
+				list.add(nbd);
+			}
+
+			System.out.println("4/4 getNoticeList s");
+		} catch (SQLException e) {
+
+			System.out.println("getNoticeList f");
+			e.printStackTrace();
+
+		} finally {
+			DBClose.close(psmt, conn, rs);
+
+		}
+
+		return list;
 	}
 }

@@ -21,6 +21,18 @@
 <body>
 	<div class="container">		
 	<h3>공지사항</h3>
+	<div style="float:right">
+		<div class="form-group" style ="float : left; width : 100px; margin-right : 5px;" >
+		    <select class="form-control" id="exampleSelect2" name = "search">
+		    	<option value = "1">제목</option>
+		    	<option value = "2">내용</option>
+		    </select>
+	    </div>
+		<div class="form-group" style ="float : left">
+  			 <input type="text" class="form-control" id="inputDefault">
+		</div>
+    </div>
+    <div style="clear : left"></div>
 		<table class="table table-hover">
 			<col width="70">
 			<col width="400">
@@ -57,11 +69,11 @@
 							if (mrgMem.getMgr_auth() == 0) {
 								if (notice.getNoti_catagory() == 1) {
 						%> 
-							<span style="font-size:0.8em;">고객&nbsp;</span>
+							<span class="badge badge-success">고객</span>
 						<%
 					 	} else{
 					 	%>
-					 		<span style="font-size:0.8em;">매니저&nbsp;</span>
+					 		<span class="badge badge-warning">매니저</span>
 					 	<%
 					 	}
 					 		}
