@@ -14,6 +14,7 @@
 		
 		String str = "";
 		
+		//여기 servlet으로 어떻게 보내고 받을것인지 확인 
 		str += String.format("&nbsp;<a href='#' onclick='atagClick(%d,%d,%d,'list')'>", 
 							year, month, day);
 		
