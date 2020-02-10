@@ -12,7 +12,7 @@
 		<div>
 		<h2>Air FRESH 회원가입</h2>
 		</div>
-		<form id="joinInfo" action="addmem" method="post">			
+		<form id="joinInfo" action="<%=request.getContextPath() %>/addmem" method="post">			
 			<table>
 				<tr>
 					<td>이름</td>
