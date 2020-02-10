@@ -5,6 +5,7 @@ import java.util.List;
 import Dao.PurchaseDaoInterface;
 import Dao.impl.PurchaseDao;
 import Dto.PurchaseDto;
+import Dto.PurchaseNameDto;
 import Service.PurchaseServiceInterface;
 
 public class PurchaseService implements PurchaseServiceInterface {
@@ -30,6 +31,12 @@ public class PurchaseService implements PurchaseServiceInterface {
 	public PurchaseDto getPurchaseOne(int pur_index) {
 		return dao.getPurchaseOne(pur_index);
 	}
+	@Override
+	public List<PurchaseNameDto> getModelName(String mem_id) {
+		return dao.getModelName(mem_id);
+	}
+	
+	
 
 	
 }
