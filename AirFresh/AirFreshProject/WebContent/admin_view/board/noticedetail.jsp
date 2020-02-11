@@ -74,7 +74,7 @@
 				if (mrgMem.getMgr_auth() == 0) {
 			%>
 			<button type="button" class="btn btn-primary btn-lg"
-				onclick="location.href='<%=request.getContextPath()%>/noticeupdate'">수정</button>
+				onclick="location.href='<%=request.getContextPath()%>/noticeupdate?noti_index=<%=notice.getNoti_index()%>&command=update'">수정</button>
 			<button type="button" class="btn btn-primary btn-lg"
 				onclick="deleteFunc(<%=notice.getNoti_index()%>)">삭제</button>
 			<%
