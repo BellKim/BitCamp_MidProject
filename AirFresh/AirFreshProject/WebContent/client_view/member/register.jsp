@@ -1,10 +1,16 @@
+<%@page import="db.DBConnection"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%
+    DBConnection.initConnection();
+    
+    %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>register</title>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 </head>
 <body>
 
@@ -12,7 +18,9 @@
 		<div>
 		<h2>Air FRESH 회원가입</h2>
 		</div>
-		<form id="joinInfo" action="<%=request.getContextPath() %>/addmem" method="post">			
+
+		<form id="frm" onsubmit="return validate();" action="<%=request.getContextPath() %>/addmem" method="post">			
+
 			<table>
 				<tr>
 					<td>이름</td>
@@ -23,28 +31,28 @@
 				<tr>
 					<td>아이디(이메일)</td>
 					<td>
-						<input type="text" id="mem_id" name="mem_id" size="20" placeholder="아이디">
-						id 확인
-						<p id="idcheck" style="font-size: 8px"></p>
-						<input type="button" id="btn" value="id확인">		
+						<input type="text" id="mem_id" name="mem_id" size="20" placeholder="ID@email_account.com" maxlength="50">
+						<p id="idcheck" style="font-size: 8px"></p>							
+						<input type="button" id="_btnid" value="id확인">						
 					</td>
 				</tr>
 				<tr>
 					<td>패스워드</td>
 					<td>
-						<input type="password" id="mem_pw" name="mem_pw" size="20" placeholder="패스워드">
+						<input type="password" id="mem_pw" name="mem_pw" size="20" placeholder="6자리 이상 입력해주세요." maxlength="20">
+						<p style="font-size: 8px; color: gray;">영문,숫자,특수문자 3가지를 조합한 6자리 이상으로 입력해주세요.</p>												
 					</td>
 				</tr>				
 				<tr>
 					<td>휴대폰번호</td>
 					<td>
-						<input type="text" id="mem_cell" name="mem_cell" size="20" placeholder="휴대폰번호">
+						<input type="text" id="mem_cell" name="mem_cell" size="20" placeholder="- 없이 숫자만 입력해주세요." maxlength="12">
 					</td>
 				</tr>
 				<tr>
 					<td>생년월일</td>
 					<td>
-						<input type="text" id="mem_birth" name="mem_birth" size="20" placeholder="생년월일">
+						<input type="text" id="mem_birth" name="mem_birth" size="20" placeholder="ex) 19801012">
 					</td>
 				</tr>
 				<tr>
@@ -59,28 +67,27 @@
 				</tr>
 				<tr>
 					<td colspan="2" align="center">
-						<input type="submit" value="회원가입">
-						<input type="reset" value="이전으로">
+						<input type="button" value="회원가입" id="_btnJoin" >
+						<input type="button" value="이전으로" onclick="location.href='login.jsp'">
 					</td>
 				</tr>
 
-</table>
-
-</form>
-
-</div>
+	</table>
+	
+	</form>
+	
+	</div>
 
 <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script type="text/javascript">
-$(function () {
+$(document).ready(function () {
 	
-	$("#btn").click(function () {
-	
-	
+	$("#_btnid").click(function () {		
+		
 		$.ajax({
 			type:"post",
-			url:"./idcheck.jsp",		
-			data:{ "id":$("#id").val() },
+			url:"./idcheck.jsp",
+			data:{ "_id":$("#mem_id").val() },
 			success:function( data ){		
 				if(data.trim() == "YES"){
 					$("#idcheck").css("color", "#0000ff");
@@ -88,17 +95,47 @@ $(function () {
 				}else{
 					$("#idcheck").css("color", "#ff0000");
 					$("#idcheck").html('사용 중인 id입니다');
-					$("#id").val("");
+					$("#mem_id").val("");
 				}			
 			},
 			error:function(){
 				alert("error");
-			}
+			}		
 		});
-		
 	});
 	
-});
+	
+	$("#_btnJoin").click(function () {
+		if( $("#mem_id").val().trim() == "" ){
+			alert("id를 입력해 주십시오");
+			$("#mem_id").focus();
+		}
+		else if( $("#mem_pw").val().trim() == "" ){
+			alert("password를 입력해 주십시오");
+			$("#mem_pw").focus();
+		}
+		else if( $("#mem_name").val().trim() == "" ){
+			alert("이름을 입력해 주십시오");
+			$("#mem_name").focus();
+		}
+		else if( $("#mem_cell").val().trim() == "" ){
+			alert("휴대폰번호를 입력해 주십시오");
+			$("#mem_cell").focus();
+		}
+		else if( $("#mem_birth").val().trim() == "" ){
+			alert("생년월일을 입력해 주십시오");
+			$("#mem_birth").focus();
+		}
+		else if( $("#mem_addr1").val().trim() == "" ){
+			alert("주소를 입력해 주십시오");
+			$("#mem_addr1").focus();
+		}
+		else{
+			$("#frm").submit();		
+		}	
+	});
+	
+
 
 function sample6_execDaumPostcode() {
     new daum.Postcode({
@@ -147,6 +184,37 @@ function sample6_execDaumPostcode() {
         }
     }).open();
 }
+
+function validate() {
+	var id = $("#mem_id").val();	// 이메일 정규식
+	var idReg = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+		
+	var pw = $("#mem_pw").val();	// 특수문자 / 문자 / 숫자 포함 형태의 6~20자리 이내의 암호 정규식
+	var pwReg = /^.*(?=^.{6,20}$)(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$/;
+		
+	var cell= $("#mem_cell").val();	// 핸드폰번호 정규식, members table에 010~으로 안들어가고 10~으로 들어가서 수정 요!(id 찾기)
+	var cellReg = /^([0-9]{3})?([0-9]{3,4})?([0-9]{4})$/;
+	
+	if(idReg.test(id)==false){
+		alert("적합하지 않은 이메일 형식입니다.");
+		id = "";
+		$("#mem_id").focus();
+		return false;
+	}else if(pwReg.test(pw)==false){
+		alert("패스워드는 6~20자리 이내의 영문,숫자,특수문자로만 입력해주세요.");
+		pw = "";
+		$("#mem_id").focus();
+		return false;
+	}else if(cellReg.test(cell)==false){
+		alert("적합하지 않은 휴대폰번호 형식입니다.");
+		cell = "";
+		$("#mem_id").focus();
+		return false;
+	}
+	return true;	
+};
+
+
 </script>
 
 

@@ -13,7 +13,5 @@
 response.sendRedirect("login.jsp");
 %>
 
-	<a href="hellotest"> </a>
-
 </body>
 </html>
