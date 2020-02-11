@@ -31,44 +31,83 @@ List<ManagerMemberDto> managerMemberDto1 =
   <h2>직원리스트</h2>
   <ul class="list-group">
     <li class="list-group-item">
+    <!-- 
     	<div class="container-fluid">
     		<ul class="nav navbar-nav">0</ul>
 			<ul class="nav navbar-nav">1</ul>
 			<ul class="nav navbar-nav">2</ul>
 			<ul class="nav navbar-nav">3</ul>
     	</div>
-    </li>
-    
-    <li class="list-group-item">
-    	Second item
-    </li>
-    <%
-    for(ManagerMemberDto memberdto : managerMemberDto1){
-    %>	
-    <li class="list-group-item">
-    	
-    	<span><%=memberdto.getMgr_id() %></span>
-    	<span><%=memberdto.getMgr_pw() %> </span>
-    	<span><%=memberdto.getMgr_name() %> </span>
-    	<span><%=memberdto.getMgr_loc() %> </span>
-    	<span><%=memberdto.getMgr_cell() %> </span>
-    	<span><%=memberdto.getMgr_auth() %> </span>
-    	<span><%=memberdto.getMgr_del() %> </span>
-    	<form action="<%=request.getContextPath() %>/showMgrMemberDetail">
-    		
-	<%--    	<span><%=memberdto.getMgr_id() %></span> --%>
-    	</form>
+     -->
     </li>
 
+    <%
+  //for(ManagerMemberDto memberdto : managerMemberDto1){
+   for(int i=0; i<managerMemberDto1.size(); i++){
+    	
+    	String managerId = request.getParameter("mgr_id");
+    	System.out.println("managerId = " + managerId);
+    	if((managerMemberDto1.get(i).getMgr_id()).equals(managerId)){
+    %>	
+    <li class="list-group-item">
+    	<span><%=managerMemberDto1.get(i).getMgr_id() %></span>
+    </li>
+    <li class="list-group-item">	
+    	<span><%=managerMemberDto1.get(i).getMgr_pw() %> </span>
+    </li>	
+    <li class="list-group-item">	
+    	<span><%=managerMemberDto1.get(i).getMgr_name() %> </span>
+    </li>	
+    <li class="list-group-item">	
+    	<span><%=managerMemberDto1.get(i).getMgr_loc() %> </span>
+    </li>	
+    <li class="list-group-item">	
+    	<span><%=managerMemberDto1.get(i).getMgr_cell() %> </span>
+    </li>	
+    <li class="list-group-item">	
+    	<span><%=managerMemberDto1.get(i).getMgr_auth() %> </span>
+    </li>	
+    <li class="list-group-item">	
+    	<span><%=managerMemberDto1.get(i).getMgr_del() %> </span>
+    </li>	
+    <li class="list-group-item">	
+    	<form action="<%=request.getContextPath() %>/showMgrMemberDetail">
+    		
+	<%--    	<span><%=managerMemberDto1.get(i).getMgr_id() %></span> --%>
+    	</form>
+    </li>
    <%
+    	}
     }
     %>
     
     
-    <li class="list-group-item">
-    	Third item
-    </li>
     
+    <a href="#layer2" class="btn-example">딤처리 팝업레이어 1</a>
+	<div class="dim-layer">
+	    <div class="dimBg"></div>
+	    <div id="layer2" class="pop-layer">
+	        <div class="pop-container">
+	            <div class="pop-conts">
+	                <!--content //-->
+	                <p class="ctxt mb20">Thank you.<br>
+	                    Your registration was submitted successfully.<br>
+	                    Selected invitees will be notified by e-mail on JANUARY 24th.<br><br>
+	                    Hope to see you soon!
+	                </p>
+	
+	                <div class="btn-r">
+	                    <a href="#" class="btn-layerClose">Close</a>
+	                </div>
+	                <!--// content-->
+	            </div>
+	        </div>
+	    </div>
+	</div>
+
+
+
+
   </ul>
 </div>
 	

@@ -52,24 +52,23 @@ for(ManagerMemberDto a : managerMemberDto){
     <%
     for(ManagerMemberDto memberdto : managerMemberDto){
     %>	
-    <li class="list-group-item">
-    	
-    	<span><%=memberdto.getMgr_id() %></span>
-    	<span><%=memberdto.getMgr_pw() %> </span>
-    	<span><%=memberdto.getMgr_name() %> </span>
-    	<span><%=memberdto.getMgr_loc() %> </span>
-    	<span><%=memberdto.getMgr_cell() %> </span>
-    	<span><%=memberdto.getMgr_auth() %> </span>
-    	<span><%=memberdto.getMgr_del() %> </span>
-    	<form action="<%=request.getContextPath() %>/showMgrMemberDetail?mgr_id=<%=memberdto.getMgr_id() %>" method="POST">
-    		<input type="submit" value="자세히보기">
+	    <li class="list-group-item">
+	    	
 	    	<span><%=memberdto.getMgr_id() %></span>
-    	</form>
-    </li>
+	    	<span><%=memberdto.getMgr_pw() %> </span>
+	    	<span><%=memberdto.getMgr_name() %> </span>
+	    	<span><%=memberdto.getMgr_loc() %> </span>
+	    	<span><%=memberdto.getMgr_cell() %> </span>
+	    	<span><%=memberdto.getMgr_auth() %> </span>
+	    	<span><%=memberdto.getMgr_del() %> </span>
+	    	<form action="<%=request.getContextPath() %>/showMgrMemberDetail?mgr_id=<%=memberdto.getMgr_id() %>" method="POST">
+	    		<input type="submit" value="자세히보기">
+		    	<span><%=memberdto.getMgr_id() %></span>
+	    	</form>
+	    </li>
 
    <%
     }
-    
     %>
     
     
