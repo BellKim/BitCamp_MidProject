@@ -1,5 +1,6 @@
 package Service.impl;
 
+import java.io.Serializable;
 import java.util.List;
 
 import Dao.InstallDaoInterface;
@@ -7,7 +8,7 @@ import Dao.impl.InstallDao;
 import Dto.InstallDto;
 import Service.InstallServiceInterface;
 
-public class InstallService implements InstallServiceInterface {
+public class InstallService implements InstallServiceInterface,Serializable {
 	
 	private static InstallServiceInterface installService = null;
 	private InstallDaoInterface dao = new InstallDao();

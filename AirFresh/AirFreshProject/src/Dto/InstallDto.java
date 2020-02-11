@@ -1,6 +1,8 @@
 package Dto;
 
-public class InstallDto {
+import java.io.Serializable;
+
+public class InstallDto implements Serializable{
 	
 	private int ins_index;	//제품 설치 인덱스
 	private int pur_index;	//렌탈 인덱스

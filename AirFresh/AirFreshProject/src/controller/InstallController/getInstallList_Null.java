@@ -1,6 +1,7 @@
 package controller.InstallController;
 
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -20,7 +21,7 @@ import Service.impl.InstallService;
  * Servlet implementation class getInstallList_Null
  */
 @WebServlet("/getInstallList_Null")
-public class getInstallList_Null extends HttpServlet {
+public class getInstallList_Null extends HttpServlet implements Serializable{
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -33,26 +34,30 @@ public class getInstallList_Null extends HttpServlet {
 	}
 
 	protected void processing(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		System.out.println("addAs 도착");
+		System.out.println("getInstallList_Null 도착");
 		InstallServiceInterface isif = InstallService.getInstance();
 		//명령어 판단 
 		String command = null;
 		if(req.getParameter("command") != null) {
 			command = req.getParameter("command");
-			if(command.equals("list")) {
-				String date = "";
-				String year = req.getParameter("year");
-				String month = req.getParameter("month");
-				String day = req.getParameter("day");
-				date += year + "/" + month + "/" + day;
+			if(command.equals("getDayList")) {
+				String date = req.getParameter("date");
 				
 				System.out.println(date);
+				List<InstallDto> list = isif.getNullInstallList(date);
+				//리턴값 타입 json 으로 지정 
+				resp.setContentType("application/json");
+				resp.setCharacterEncoding("UTF-8");
 				
+				//list를 json형식의 string으로 변환
+				String gson = new Gson().toJson(list);
 				
-			}
+				//변환한 json형식을 리턴 
+				resp.getWriter().write(gson);
+			}			
 			
 		}
-		
+		/*
 		List<InstallDto> list = isif.getNullInstallList();
 		
 
@@ -65,8 +70,7 @@ public class getInstallList_Null extends HttpServlet {
 		
 		//변환한 json형식을 리턴 
 		resp.getWriter().write(gson);
-		
-		
+		*/
 	}
 	
 	protected void forward(String url, HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
