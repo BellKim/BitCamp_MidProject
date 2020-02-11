@@ -45,7 +45,7 @@ public class UpdateMem extends HttpServlet{
 		boolean isS3 = s.ms.updateMem(dto);
 		req.setAttribute("isS3", isS3);	
 		//resp.sendRedirect(req.getContextPath() + "/WebContent/client_view/member/finding.jsp?isS3=" + isS3);
-		forward("./client_view/member/finding.jsp?isS3=" + isS3, req, resp);		
+		forward("./client_view/member/finding.jsp", req, resp);		
 	}
 	
 	public void forward(String url, HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

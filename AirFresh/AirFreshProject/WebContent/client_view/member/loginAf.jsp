@@ -19,11 +19,11 @@ if(mem != null && !mem.getMem_id().equals("")){
 	session.setMaxInactiveInterval(30*60*60);
 %>
 	<script type="text/javascript">
-	alert("안녕하세요 <%=mem.getMem_name() %>님");
+	alert("안녕하세요 ♥<%=mem.getMem_name() %>♥님");
 	location.href = "./client_view/member/mypage.jsp";
 	</script>
 <%
-}else if(mem == null || mem.getMem_id().equals("")){
+}else{	// 왜 밑에 창이 안뜰까?
 %>
 	<script type="text/javascript">
 	alert("id나 password를 확인하십시오");

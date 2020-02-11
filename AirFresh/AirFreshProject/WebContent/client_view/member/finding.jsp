@@ -2,7 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
-String str = request.getParameter("isS");	// addMem 	null;//
+String str = request.getParameter("isS");	// addMem
 MemberDto mem = (MemberDto)request.getAttribute("login");	//memLogin
 String str1 = request.getParameter("isS1");		// idCheck	null;//
 String str2 = request.getParameter("isS2");		// delMem	null;//

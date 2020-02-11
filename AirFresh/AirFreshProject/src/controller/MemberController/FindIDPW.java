@@ -40,7 +40,7 @@ public class FindIDPW extends HttpServlet {
 			String id = s.ms.findID(_name, _cell);
 			req.setAttribute("id", id);	
 			System.out.println("FindIDPW 도착2");
-			forward("./client_view/member/finding.jsp", req, resp);
+			forward("./client_view/member/findid.jsp", req, resp);
 		}
 		else if(gubun.equals("PW")) {	
 			String _id = req.getParameter("mem_id");
@@ -49,7 +49,7 @@ public class FindIDPW extends HttpServlet {
 			String pw = s.ms.findPW(_id, _name);
 			req.setAttribute("pw", pw);
 			System.out.println("FindIDPW 도착2");
-			forward("./client_view/member/finding.jsp", req, resp);
+			forward("./client_view/member/findpw.jsp", req, resp);
 		}		
 	}
 	
