@@ -1,12 +1,14 @@
 package Service;
 
+import java.util.List;
+
 import Dto.ManagerMemberDto;
 
 public interface ManageMemberInterface {
 
-	void insertManagerMember(ManagerMemberDto dto);
+	boolean insertManagerMember(ManagerMemberDto dto);
 	
-
+	List<ManagerMemberDto> receiveManagerMemberAll();
 	
 	
 
