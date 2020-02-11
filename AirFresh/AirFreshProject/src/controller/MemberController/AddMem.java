@@ -55,7 +55,7 @@ public class AddMem extends HttpServlet {
 		
 		boolean isS = s.ms.addMem(dto);
 		req.setAttribute("isS", isS);		
-		forward("./client_view/member/finding.jsp?isS=" + isS, req, resp);
+		forward("./client_view/member/regiAf.jsp", req, resp);
 		//resp.sendRedirect(req.getContextPath() + "/폴더명/파일명")
 		//resp.sendRedirect(req.getContextPath() + "/WebContent/client_view/member/finding.jsp?isS=" + isS);
 		//AirFreshProject/WebContent/client_view/member/finding.jsp

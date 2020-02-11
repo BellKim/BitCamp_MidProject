@@ -82,13 +82,12 @@
 <script type="text/javascript">
 $(document).ready(function () {
 	
-	$("#_btnid").click(function () {
-		$("#mem_id").submit();	
-		<%--
+	$("#_btnid").click(function () {		
+		
 		$.ajax({
 			type:"post",
-			url:"<%=request.getContextPath() %>/idCheck",	/* "./idCheck",	*/	
-			data:{ "mem_id":$("#mem_id").val() },
+			url:"./idcheck.jsp",
+			data:{ "_id":$("#mem_id").val() },
 			success:function( data ){		
 				if(data.trim() == "YES"){
 					$("#idcheck").css("color", "#0000ff");
@@ -101,8 +100,7 @@ $(document).ready(function () {
 			},
 			error:function(){
 				alert("error");
-			}
-		--%>
+			}		
 		});
 	});
 	

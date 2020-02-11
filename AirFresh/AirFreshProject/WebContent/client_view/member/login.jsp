@@ -36,7 +36,7 @@
 			<button type="button" id="btnlogin">로그인</button>
 			<div>
 				<a href="searchidpw.jsp">아이디·패스워드 찾기</a>
-				<a href="register.jsp">회원가입</a>
+				<a href="terms.jsp">회원가입</a>
 			</div>		
 		</form>
 	</div>

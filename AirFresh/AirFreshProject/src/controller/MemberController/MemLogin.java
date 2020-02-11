@@ -53,7 +53,7 @@ public class MemLogin extends HttpServlet{
 		req.setAttribute("login", mem);
 		System.out.println("memlogin 도착2");		// ok!
 		//resp.sendRedirect(req.getContextPath() + "/WebContent/client_view/member/finding.jsp?login=" + mem);
-		forward("./client_view/member/finding.jsp?login=" + mem, req, resp);		
+		forward("./client_view/member/loginAf.jsp", req, resp);		
 	}
 
 	public void forward(String url, HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

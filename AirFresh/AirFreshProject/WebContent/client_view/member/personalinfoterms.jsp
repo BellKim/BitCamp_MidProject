@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>PersonalInfoTerms</title>
 </head>
 <body>
 
@@ -1094,6 +1094,12 @@
 		※ 고객님께서는 동의를 거부할 권리가 있으나, 미 동의 시 AirFresh몰 서비스 이용이 불가능합니다.​&nbsp;
 	</p>
 							</div>
+					</div>
+				</div>
+			</div>								
+		</div>
+	</div>
+</div>							
 							
 </body>
 </html>

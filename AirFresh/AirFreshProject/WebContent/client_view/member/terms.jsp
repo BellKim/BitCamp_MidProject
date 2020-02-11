@@ -150,7 +150,7 @@
 									<input type="checkbox" id="agreePrivacyUse" name="agree">
 									<label for="agreePrivacyUse"><em class="blue">[선택]</em> 개인 정보 수집/이용 동의</label>
 								</div>
-					  			<a href="/introduce/privacy/privacyAgree" class="link2" target="_blank">전문보기</a>
+					  			<a href="privacyuseterms.jsp" class="link2" target="_blank">전문보기</a>
 							</div>												
 						</div>
 						<input type="hidden" name="piUseYn" value="">
@@ -165,7 +165,7 @@
 
 					<div class="btnArea half">
 						<a href="login.jsp" class="btnb"><span>이전</span></a>
-						<a href="#" class="btnb bk" id="btnJoinNextStep"><span>다음</span></a>
+						<a href="register.jsp" class="btnb bk" id="btnJoinNextStep"><span>다음</span></a>
 					</div>
 				</div>
 			</div>

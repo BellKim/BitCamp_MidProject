@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>SearchIDPW</title>
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 </head>
 <body>
@@ -81,9 +81,7 @@
 			alert("휴대전화 번호를  입력하세요");
 			mobile.focus();
 			return;
-		}			
-		
-		
+		}				
 
 		frminfo1.submit();
 	}

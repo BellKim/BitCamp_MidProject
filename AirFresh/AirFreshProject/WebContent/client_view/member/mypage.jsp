@@ -17,7 +17,7 @@ MemberDto mem = (MemberDto)session.getAttribute("login");
 		<div>
 		<h2>Air FRESH 마이페이지</h2>
 		</div>
-		<form id="frm" onsubmit="return validate();" action="./../../updatemem" method="post">			
+		<form id="frm" onsubmit="return validate();" action="<%=request.getContextPath() %>/updatemem" method="post">			
 			<table>
 				<tr>
 					<td>이름</td>
@@ -53,11 +53,11 @@ MemberDto mem = (MemberDto)session.getAttribute("login");
 				<tr>
 					<td>주소</td>
 					<td>
-						<input type="text" id="mem_addr1" name="mem_addr1" placeholder="우편번호">
+						<input type="text" id="mem_addr1" name="mem_addr1" value="<%=mem.getMem_addr1() %>">
 						<input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"><br>
-						<input type="text" id="mem_addr2" name="mem_addr2" placeholder="주소"><br>
-						<input type="text" id="mem_addr3" name="mem_addr3" placeholder="상세주소">
-						<input type="text" id="sample6_extraAddress" placeholder="참고항목">
+						<input type="text" id="mem_addr2" name="mem_addr2" value="<%=mem.getMem_addr2() %>"><br>
+						<input type="text" id="mem_addr3" name="mem_addr3" value="<%=mem.getMem_addr3() %>">
+						<input type="text" id="sample6_extraAddress" placeholder="참고항목"> <!-- 불러올까열? -->
 					</td>
 				</tr>
 				<tr>
