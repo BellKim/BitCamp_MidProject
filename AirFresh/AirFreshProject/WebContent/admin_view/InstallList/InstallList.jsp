@@ -95,14 +95,19 @@
 			.list{
 				
 			}
-			.list th{
-				font-size: 10px;
-			}
 			a{
-				text-decoration:none;
+				text-decoration:none;	/*a 태그 밑줄 제거  */
 			}
 			
-			
+			table {
+			    width: 100%;
+			    border-top: 1px solid #444444;
+			    border-collapse: collapse;
+			}
+			th, td {
+			    border-bottom: 1px solid #444444;
+			    padding: 10px;
+			}
 
 		</style>
 	</head>
@@ -144,20 +149,20 @@
 			// <<	year--
 			String pp = String.format("<a href='%s?year=%d&month=%d'>"
 										+"<img src='../image/left.gif'></a>",
-										"addInstall.jsp", year-1, month);
+										"InstallList.jsp", year-1, month);
 			// <	month--
 			String p = String.format("<a href='%s?year=%d&month=%d'>"
 										+"<img src='../image/prec.gif'></a>",
-										"addInstall.jsp", year, month-1);
+										"InstallList.jsp", year, month-1);
 			// >	month++ 
 			String n = String.format("<a href='%s?year=%d&month=%d'>"
 										+"<img src='../image/next.gif'></a>",
-										"addInstall.jsp", year, month+1);
+										"InstallList.jsp", year, month+1);
 			
 			// >>	year++
 			String nn = String.format("<a href='%s?year=%d&month=%d'>"
 										+"<img src='../image/last.gif'></a>",
-										"addInstall.jsp", year+1, month);
+										"InstallList.jsp", year+1, month);
 			
 		%>
 		<div class="content" align="center">
