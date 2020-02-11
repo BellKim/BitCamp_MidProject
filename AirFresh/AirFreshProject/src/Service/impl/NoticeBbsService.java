@@ -44,5 +44,10 @@ public class NoticeBbsService implements NoticeBbsServiceInterface {
 	public int getAllBbsLength(String opt, String keyword) {
 		return nbd.getAllBbsLength(opt, keyword);
 	}
+
+	@Override
+	public boolean deleteNotice(int noti_index) {
+		return nbd.deleteNotice(noti_index);
+	}
 	
 }

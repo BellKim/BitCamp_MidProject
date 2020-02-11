@@ -239,11 +239,13 @@ public class NoticeBbsDao implements NoticeBbsDaoInterface {
 	@Override
 	public List<NoticeBbsDto> getNoticePaging(String opt, String keyword, int page) {
 		String sql =" SELECT NOTI_INDEX, NOTI_TITLE, NOTI_CONTENT, NOTI_CATAGORY, " + 
-				" NOTI_WRITER, NOTI_WDATE, FILENAME, TEMPFILE, READCOUNT, NOTI_DEL FROM ";
+				" NOTI_WRITER, NOTI_WDATE, FILENAME, TEMPFILE, READCOUNT, NOTI_DEL " + 
+				" FROM ";
 		
-		sql += " (SELECT ROWNUM AS RNUM, NOTI_INDEX, NOTI_TITLE, NOTI_CONTENT, NOTI_CATAGORY, " + 
-				" NOTI_WRITER, NOTI_WDATE, FILENAME, TEMPFILE, READCOUNT, NOTI_DEL FROM NOTICEBBS "
-				+ " WHERE NOTI_DEL = 0";
+		sql += " (select ROWNUM AS RNUM, NOTI_INDEX, NOTI_TITLE, NOTI_CONTENT, NOTI_CATAGORY, " + 
+				"			NOTI_WRITER, NOTI_WDATE, FILENAME, TEMPFILE, READCOUNT, NOTI_DEL " + 
+				"			FROM (SELECT * FROM NOTICEBBS " + 
+				"			WHERE NOTI_DEL = 0";
 		
 		String sqlword = "";
 		
@@ -255,7 +257,7 @@ public class NoticeBbsDao implements NoticeBbsDaoInterface {
 		
 		sql += sqlword;
 		
-		sql	+= "ORDER BY NOTI_WDATE DESC) ";
+		sql	+= "ORDER BY NOTI_WDATE DESC)) ";
 		sql += " WHERE RNUM >= ? AND RNUM <= ? ";
 		
 		System.out.println(sql);
@@ -307,13 +309,14 @@ public class NoticeBbsDao implements NoticeBbsDaoInterface {
 
 	@Override
 	public int getAllBbsLength(String opt, String keyword) {
-		String sql = " SELECT COUNT(*) FROM NOTICEBBS ";
+		String sql = " SELECT COUNT(*) FROM NOTICEBBS"
+				+ " WHERE NOTI_DEL = 0 ";
 		String sqlword = "";
 		
 		if(opt.contentEquals("title")) {
-			sqlword = " WHERE NOTI_TITLE LIKE '%"+keyword.trim()+"%'";
+			sqlword = " AND NOTI_TITLE LIKE '%"+keyword.trim()+"%'";
 		} else if(opt.contentEquals("content")) {
-			sqlword = " WHERE NOTI_CONTENT LIKE '%"+keyword.trim()+"%'";
+			sqlword = " AND NOTI_CONTENT LIKE '%"+keyword.trim()+"%'";
 		}
 		
 		sql += sqlword;
@@ -337,6 +340,37 @@ public class NoticeBbsDao implements NoticeBbsDaoInterface {
 			DBClose.close(psmt, conn, rs);			
 		}
 		return len;	
+	}
+
+	@Override
+	public boolean deleteNotice(int noti_index) {
+		String sql = " UPDATE NOTICEBBS "
+				+ " SET NOTI_DEL = 1 "
+				+ " WHERE NOTI_INDEX = ? ";
+		
+		Connection conn = null;
+		PreparedStatement psmt = null;
+		int count = 0;
+		
+		try {
+			conn = DBConnection.getConnection();
+			System.out.println("1/6 S deleteBbs");
+			
+			psmt = conn.prepareStatement(sql);
+			psmt.setInt(1, noti_index);
+			System.out.println("2/6 S deleteBbs");
+			
+			count = psmt.executeUpdate();
+			System.out.println("3/6 S deleteBbs");
+			
+		} catch (Exception e) {		
+			System.out.println("fail deleteBbs");
+			e.printStackTrace();
+		} finally {
+			DBClose.close(psmt, conn, null);			
+		}
+		
+		return count>0?true:false;
 	}
 
 }

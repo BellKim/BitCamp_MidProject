@@ -76,12 +76,25 @@
 			<button type="button" class="btn btn-primary btn-lg"
 				onclick="location.href='<%=request.getContextPath()%>/noticeupdate'">수정</button>
 			<button type="button" class="btn btn-primary btn-lg"
-				onclick="location.href='<%=request.getContextPath()%>/noticedelete'">삭제</button>
+				onclick="deleteFunc(<%=notice.getNoti_index()%>)">삭제</button>
 			<%
 				}
 			%>
 			
 		</div>
 	</div>
+	
+	<script type="text/javascript">
+	
+		function deleteFunc(noti_index) {
+			var answer = confirm("정말 삭제하시겠습니까?");
+			
+			if(answer){
+				location.href="<%=request.getContextPath()%>/noticedelete?noti_index="+noti_index;
+			} else {
+				return;
+			}
+		}
+	</script>
 </body>
 </html>
