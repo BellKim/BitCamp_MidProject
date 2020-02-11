@@ -20,7 +20,11 @@ public class ShowMrgMember extends HttpServlet{
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		System.out.println("hello ShowMrgMember doGet do get ");
-		receiveManagerMember(req, resp);//DB에서 전체 리스트를 받아오는것.
+//		receiveManagerMember(req, resp);//DB에서 전체 리스트를 받아오는것.
+		
+		forward("admin_view/manageMgr/showManagerAll.jsp", req, resp);
+		
+		
 		
 	}//end of doGet
 

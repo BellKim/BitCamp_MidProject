@@ -35,7 +35,7 @@
 		직원구분
 			<select name="authLevel">
 				<option value="0"> 최고관리자</option>
-				<option value="1"> 매니저</option>
+				<option value="1" selected="selected"> 매니저</option>
 				<option value="2"> 설치기사</option>
 			</select>
 		</div>

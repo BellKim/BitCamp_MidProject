@@ -44,15 +44,25 @@ public class AddMrgMember extends HttpServlet {
 		System.out.println(managermem);
 		singleton si = singleton.getInstance();
 		boolean res = si.managerMember.insertManagerMember(managermem);
-		System.out.println("AddMrgMember insert result " + res );
+		System.out.println("AddMrgMember insert result  =  " + res );
 		
-//		if()
+		if(res==true) {
+			
+//			forward("admin_view/manageMgr/showManagerAll.jsp", req, resp);
+			forward("showMrgMember", req, resp);
+		} else {
+			System.out.println("insert 실패함. ");
+		}
 		
 		
 		
-	}//end of doPost
-
+	}//end of receiveManagerMember
 	
+	public void forward(String link, HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		RequestDispatcher dispatch = req.getRequestDispatcher(link);
+		dispatch.forward(req, resp);
+			
+	}//end forward method
 	
 	
 }
