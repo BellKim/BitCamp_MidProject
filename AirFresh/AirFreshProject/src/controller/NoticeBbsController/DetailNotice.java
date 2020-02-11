@@ -32,12 +32,13 @@ public class DetailNotice extends HttpServlet {
 		s.nbsi.readcount(noti_index);
 		
 		NoticeBbsDto notice = s.nbsi.getNoticeBbs(noti_index);
-		
 		req.setAttribute("noticeBbs", notice);
 		
 		ProjectUtil.forward("./admin_view/board/noticedetail.jsp", req, resp);
 		
 		
 	}
+	
+	
 	
 }

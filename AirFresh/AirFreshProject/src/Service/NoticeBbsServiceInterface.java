@@ -10,4 +10,6 @@ public interface NoticeBbsServiceInterface {
 	public NoticeBbsDto getNoticeBbs(int noti_index);
 	public void readcount(int noti_index);
 	public List<NoticeBbsDto> getNoticeList(String opt, String keyword);
+	public List<NoticeBbsDto> getNoticePaging(String opt, String keyword, int page);
+	public int getAllBbsLength(String opt, String keyword);
 }

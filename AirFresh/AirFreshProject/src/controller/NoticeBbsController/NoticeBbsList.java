@@ -31,6 +31,12 @@ public class NoticeBbsList extends HttpServlet{
 		
 		String opt = req.getParameter("opt");
 		String keyword = req.getParameter("keyword");
+		String spageNumber = req.getParameter("pageNumber");
+		
+		int pageNumber = 0;
+		if(spageNumber != null && !spageNumber.equals("")){
+			pageNumber = Integer.parseInt(spageNumber);
+		}
 
 		if (opt == null || opt.equals("")) {
 			opt = "sel";
@@ -43,10 +49,13 @@ public class NoticeBbsList extends HttpServlet{
 			keyword = "";
 			opt = "sel";
 		}
-		singleton s = singleton.getInstance();
 		
+		singleton s = singleton.getInstance();
 		//List<NoticeBbsDto> list = s.nbsi.getNoticeList();
-		List<NoticeBbsDto> list = s.nbsi.getNoticeList(opt, keyword);
+		//List<NoticeBbsDto> list = s.nbsi.getNoticeList(opt, keyword);
+		List<NoticeBbsDto> list = s.nbsi.getNoticePaging(opt, keyword, pageNumber);
+		int len = s.nbsi.getAllBbsLength(opt, keyword);
+		req.setAttribute("len", len);
 		req.setAttribute("noticeList", list);
 		ProjectUtil.forward("./admin_view/board/noticelist.jsp", req, resp);
 		

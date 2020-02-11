@@ -34,5 +34,15 @@ public class NoticeBbsService implements NoticeBbsServiceInterface {
 	public List<NoticeBbsDto> getNoticeList(String opt, String keyword) {
 		return nbd.getNoticeList(opt, keyword);
 	}
+
+	@Override
+	public List<NoticeBbsDto> getNoticePaging(String opt, String keyword, int page) {
+		return nbd.getNoticePaging(opt, keyword, page);
+	}
+
+	@Override
+	public int getAllBbsLength(String opt, String keyword) {
+		return nbd.getAllBbsLength(opt, keyword);
+	}
 	
 }

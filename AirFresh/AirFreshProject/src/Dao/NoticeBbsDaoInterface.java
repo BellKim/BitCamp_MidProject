@@ -11,4 +11,5 @@ public interface NoticeBbsDaoInterface {
 	public boolean writeNotice(NoticeBbsDto notice);
 	public NoticeBbsDto getNoticeBbs(int noti_index);
 	public void readcount(int noti_index);
+	public int getAllBbsLength(String opt, String keyword);
 }

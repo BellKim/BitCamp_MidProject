@@ -7,11 +7,19 @@
 <%
 	List<NoticeBbsDto> list = (List<NoticeBbsDto>) request.getAttribute("noticeList");
 	ManagerMemberDto mrgMem = (ManagerMemberDto) session.getAttribute("mrgLogin");
-	
+
+	int len = (int)request.getAttribute("len");
+	System.out.println("총 글의 갯수 " + len);
+
+	int bbsPage = len / 10;
+	if (len % 10 > 0) {
+		bbsPage = bbsPage + 1;
+	}
+
 	String spageNumber = request.getParameter("pageNumber");
 	int pageNumber = 0;
-	
-	if(spageNumber != null && !spageNumber.equals("")){
+
+	if (spageNumber != null && !spageNumber.equals("")) {
 		pageNumber = Integer.parseInt(spageNumber);
 	}
 %>
@@ -39,7 +47,7 @@
 					<option value="content">내용</option>
 				</select>
 			</div>
-			<div class="form-group" style="float: left; margin-right:5px;">
+			<div class="form-group" style="float: left; margin-right: 5px;">
 				<input type="text" class="form-control" id="inputDefault"
 					name="keyword">
 			</div>
@@ -103,6 +111,26 @@
 			</tbody>
 
 		</table>
+		<div align = "center">
+			<ul class="pagination" style = "display : inline-flex;">
+			
+				<%
+					for (int i = 0; i < bbsPage; i++) { // [1] 2 [3]
+						if (pageNumber == i) { // 현재 페이지
+				%>
+				<li class="page-item active"><a class="page-link" href ="#"><%=i + 1%></a></li>
+				<%
+					} else { // 그 외의 페이지
+				%>
+				<li class="page-item"><a href="#none" class="page-link"
+					title="<%=i + 1%>페이지" onclick="goPage(<%=i%>)"><%=i + 1%></a></li>
+				<%
+					}
+					}
+				%>
+			</ul>
+		</div>
+
 		<%
 			if (mrgMem.getMgr_auth() == 0) { // 왕관리자일 경우 글쓰기 버튼 활성화
 		%>
@@ -125,6 +153,20 @@
 		location.href="<%=request.getContextPath()%>/noticelist?opt=" + opt + "&keyword=" + keyword;
 		}
 	
+	function goPage( pageNum ) {
+		var opt = document.getElementById("exampleSelect2").value;
+		var keyword = $("#inputDefault").val();
+//		alert("pageNum:" + pageNum);
+		if(keyword == ""){
+			document.getElementById("exampleSelect2").value = "sel";
+		}
+		var linkStr = "<%=request.getContextPath()%>/noticelist?pageNumber=" + pageNum;
+		if(opt != 'sel' && keyword != ""){
+			linkStr = linkStr + "&opt=" + opt + "&keyword=" + keyword;
+		}
+		location.href = linkStr;
+//		location.href = "bbslist.jsp?pageNumber=" + pageNum;
+	}
 
 	</script>
 </body>

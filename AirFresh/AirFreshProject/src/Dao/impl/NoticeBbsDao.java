@@ -238,7 +238,105 @@ public class NoticeBbsDao implements NoticeBbsDaoInterface {
 
 	@Override
 	public List<NoticeBbsDto> getNoticePaging(String opt, String keyword, int page) {
-		// TODO Auto-generated method stub
-		return null;
+		String sql =" SELECT NOTI_INDEX, NOTI_TITLE, NOTI_CONTENT, NOTI_CATAGORY, " + 
+				" NOTI_WRITER, NOTI_WDATE, FILENAME, TEMPFILE, READCOUNT, NOTI_DEL FROM ";
+		
+		sql += " (SELECT ROWNUM AS RNUM, NOTI_INDEX, NOTI_TITLE, NOTI_CONTENT, NOTI_CATAGORY, " + 
+				" NOTI_WRITER, NOTI_WDATE, FILENAME, TEMPFILE, READCOUNT, NOTI_DEL FROM NOTICEBBS "
+				+ " WHERE NOTI_DEL = 0";
+		
+		String sqlword = "";
+		
+		if(opt.contentEquals("title")) {
+			sqlword = " AND NOTI_TITLE LIKE '%"+keyword.trim()+"%'";
+		} else if(opt.contentEquals("content")) {
+			sqlword = " AND NOTI_CONTENT LIKE '%"+keyword.trim()+"%'";
+		}
+		
+		sql += sqlword;
+		
+		sql	+= "ORDER BY NOTI_WDATE DESC) ";
+		sql += " WHERE RNUM >= ? AND RNUM <= ? ";
+		
+		System.out.println(sql);
+		Connection conn = null;
+		PreparedStatement psmt = null;
+		ResultSet rs = null;
+		
+		List<NoticeBbsDto> list = new ArrayList<NoticeBbsDto>();
+		
+		int start, end;
+		start = 1 + 10 * page;	// 0 -> 1	1 -> 11
+		end = 10 + 10 * page;	// 0 -> 10  1 -> 20
+
+		try {
+
+			conn = DBConnection.getConnection();
+			System.out.println("1/4 getNoticeList s");
+
+			psmt = conn.prepareStatement(sql);
+			psmt.setInt(1, start);
+			psmt.setInt(2, end);	
+			System.out.println("2/4 getNoticeList s");
+
+			rs = psmt.executeQuery();
+			System.out.println("3/4 getNoticeList s");
+
+			while (rs.next()) {
+				int i = 1;
+
+				NoticeBbsDto nbd = new NoticeBbsDto(rs.getInt(i++), rs.getString(i++), rs.getString(i++),
+						rs.getInt(i++), rs.getString(i++), rs.getString(i++), rs.getString(i++), rs.getString(i++),
+						rs.getInt(i++), rs.getInt(i++));
+				list.add(nbd);
+			}
+
+			System.out.println("4/4 getNoticeList s");
+		} catch (SQLException e) {
+
+			System.out.println("getNoticeList f");
+			e.printStackTrace();
+
+		} finally {
+			DBClose.close(psmt, conn, rs);
+
+		}
+
+		return list;
 	}
+
+	@Override
+	public int getAllBbsLength(String opt, String keyword) {
+		String sql = " SELECT COUNT(*) FROM NOTICEBBS ";
+		String sqlword = "";
+		
+		if(opt.contentEquals("title")) {
+			sqlword = " WHERE NOTI_TITLE LIKE '%"+keyword.trim()+"%'";
+		} else if(opt.contentEquals("content")) {
+			sqlword = " WHERE NOTI_CONTENT LIKE '%"+keyword.trim()+"%'";
+		}
+		
+		sql += sqlword;
+		
+		Connection conn = null;
+		PreparedStatement psmt = null;
+		ResultSet rs = null;
+		int len = 0;
+		
+		try {
+			conn = DBConnection.getConnection();
+			psmt = conn.prepareStatement(sql);
+			rs = psmt.executeQuery();
+			if(rs.next()) {
+				len = rs.getInt(1);
+			}			
+		} catch (SQLException e) {
+			System.out.println("getAllBbsLength fail");
+			e.printStackTrace();
+		} finally {
+			DBClose.close(psmt, conn, rs);			
+		}
+		return len;	
+	}
+
 }
