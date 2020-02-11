@@ -198,7 +198,7 @@ public class AsDao implements AsDaoInterface {
 	public boolean updateAsApp(int as_index, AsAppDto dto) {
 		//as신청 수정
 		String sql = " UPDATE ASAPPLICATION "
-				+ " SET REQ_DATE=? , AS_TITLE=?, AS_CONTENT=?, AS_IMG_PATH=? , WDATE=SYSDATE "
+				+ " SET REQ_DATE=? , AS_TITLE=?, AS_CONTENT=?, AS_IMG_PATH=?  "
 				+ " WHERE MEM_ID=? AND AS_INDEX=?";
 		
 		Connection conn = null;

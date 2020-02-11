@@ -32,6 +32,18 @@ public class AsAppDto implements Serializable {
 	
 	
 
+	public AsAppDto(String memId, String req_date, String asTitle, String asContent, String asImgPath, int asSeq) {
+		super();
+		this.memId = memId;
+		this.req_date = req_date;
+		this.asTitle = asTitle;
+		this.asContent = asContent;
+		this.asImgPath = asImgPath;
+		this.asSeq = asSeq;
+	}
+
+
+
 	public AsAppDto(String memId, String req_date, String asTitle, String asContent, String asImgPath, int pur_index, String prd_name) {
 		super();
 		this.memId = memId;

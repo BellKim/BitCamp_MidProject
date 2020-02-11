@@ -118,12 +118,22 @@ public class updateAsApplication extends HttpServlet {
 				
 				int pur_index = Integer.parseInt(spur_index);
 				
+				System.out.println("------ update AS mem_id: "+mem_id);
+				System.out.println("------ update AS req_date: "+req_date);
+				System.out.println("------ update AS astitle: "+astitle);
+				System.out.println("------ update AS ascontent: "+ascontent);
+				System.out.println("------ update AS filename: "+filename);
+				System.out.println("------ update AS pur_index: "+pur_index);
+				System.out.println("------ update AS prd_name: "+prd_name);
+				System.out.println("------ update AS oldfilename: "+oldfile);
+				System.out.println("------ update게시물 seq: "+sseq);
 				singleton s = singleton.getInstance();
-				AsAppDto dto = new AsAppDto(mem_id, req_date, astitle, ascontent, filename, pur_index, prd_name);
 				
 				int as_index = Integer.parseInt(sseq);
+				AsAppDto dto =
+						new AsAppDto(mem_id, req_date, astitle, ascontent, filename, as_index);
 				//boolean isS = s.asi.addAsApplictaion(dto);
-				boolean isS = s.asi.updateAsApp(as_index,dto);
+				boolean isS = s.asi.updateAsApp(as_index,dto); 
 
 				if(isS) {
 					System.out.println("수정 성공");

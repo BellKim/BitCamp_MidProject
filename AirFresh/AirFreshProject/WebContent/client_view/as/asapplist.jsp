@@ -17,7 +17,7 @@
 <h1>수리신청내역</h1>
 	<table border="1">
 			<tr>
-				<td>a/s요청제품</td><td>a/s희망일</td><td>제목</td>
+				<td>a/s요청제품</td><td>a/s희망일</td><td>제목</td><td>수리취소</td>
 			</tr>
 				<% 
 					for(int i=0; i<list.size(); i++){
@@ -28,6 +28,7 @@
 				<td><%=dto.getPrd_name() %></td>
 				<td><%=dto.getReq_date() %></td>
 				<td><a href="asDetail?seq=<%=dto.getAsSeq() %>"><%=dto.getAsTitle() %></a></td>
+				<td><a href="delAsApp?seq=<%=dto.getAsSeq()%>">[수리취소]</a></td>
 			</tr>
 	
 			<%
