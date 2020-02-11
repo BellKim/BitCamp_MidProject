@@ -14,14 +14,19 @@ public class showMgrMemberDetail extends HttpServlet{
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		super.doGet(req, resp);
+		System.out.println("detail do get  ");
+		
+		forward("admin_view/manageMgr/showMgrMemberDetail.jsp", req, resp);
+		
+		
+		
 	}
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		super.doPost(req, resp);
+		System.out.println("detail do post ");
+		
+		forward("admin_view/manageMgr/showMgrMemberDetail.jsp", req, resp);
 	}
 	
 	
