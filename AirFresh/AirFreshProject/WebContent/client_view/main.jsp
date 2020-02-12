@@ -11,24 +11,18 @@
       </ol>
       <div class="carousel-inner" role="listbox">
         <!-- Slide One - Set the background image for this slide in the line below -->
-        <div class="carousel-item active" style="background-image: url('http://placehold.it/1900x1080')">
+        <div class="carousel-item active" style="background-image: url('<%=request.getContextPath()%>/client_view/img/slide01.jpg')">
           <div class="carousel-caption d-none d-md-block">
-            <h3>공기청정기1</h3>
-            <p>This is a description for the first slide.</p>
           </div>
         </div>
         <!-- Slide Two - Set the background image for this slide in the line below -->
-        <div class="carousel-item" style="background-image: url('http://placehold.it/1900x1080')">
+        <div class="carousel-item" style="background-image: url('<%=request.getContextPath()%>/client_view/img/slide02.jpg')">
           <div class="carousel-caption d-none d-md-block">
-            <h3>공기청정기2</h3>
-            <p>This is a description for the second slide.</p>
           </div>
         </div>
         <!-- Slide Three - Set the background image for this slide in the line below -->
-        <div class="carousel-item" style="background-image: url('http://placehold.it/1900x1080')">
+        <div class="carousel-item" style="background-image: url('<%=request.getContextPath()%>/client_view/img/slide03.jpg'">
           <div class="carousel-caption d-none d-md-block">
-            <h3>공기청정기3</h3>
-            <p>This is a description for the third slide.</p>
           </div>
         </div>
       </div>
@@ -48,33 +42,33 @@
 
    
     <!-- Portfolio Section -->
-    <h1 class="my-4">에프 Best</h1>
+    <h1 class="my-4">Best Product</h1>
     <div class="row">
       <div class="col-lg-4 col-sm-6 portfolio-item">
         <div class="card h-100">
-          <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
+          <a href="#"><img class="card-img-top" src="<%=request.getContextPath()%>/client_view/model/prd_img/ACL120UASKCG.png" alt=""></a>
           <div class="card-body">
             <h4 class="card-title">
               <a href="#">공기청정기 블라</a>
             </h4>
-            <p class="card-text">3번 공청</p>
+            <p class="card-text">1번 공청</p>
           </div>
         </div>
       </div>
       <div class="col-lg-4 col-sm-6 portfolio-item">
         <div class="card h-100">
-          <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
+          <a href="#"><img class="card-img-top" src="<%=request.getContextPath()%>/client_view/model/prd_img/ACL121CZSKYL.png" alt=""></a>
           <div class="card-body">
             <h4 class="card-title">
               <a href="#">공기청정기 블라</a>
             </h4>
-            <p class="card-text">3번 공청</p>
+            <p class="card-text">2번 공청</p>
           </div>
         </div>
       </div>
       <div class="col-lg-4 col-sm-6 portfolio-item">
         <div class="card h-100">
-          <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
+          <a href="#"><img class="card-img-top" src="<%=request.getContextPath()%>/client_view/model/prd_img/ACL141MASKWH.png" alt=""></a>
           <div class="card-body">
             <h4 class="card-title">
               <a href="#">공기청정기 블라</a>

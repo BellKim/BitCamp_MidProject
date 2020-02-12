@@ -30,37 +30,9 @@
 		<li class="breadcrumb-item active">공지사항</li>
 	</ol>
 
-	<!-- Content Row -->
-	<div class="row">
-		<!-- Sidebar Column -->
-		<div class="col-lg-3 mb-4">
-			<div class="list-group">
-				<a href="<%=request.getContextPath()%>/noticelist?command=user" class="list-group-item">공지사항</a> 
-				<a href="#" class="list-group-item">QNA</a>
-				<a href="#" class="list-group-item">FAQ</a>
-			</div>
-		</div>
+
 		<!-- Content Column -->
-		<div class="col-lg-9 mb-4">
-			<div style="float: right">
-				<div class="form-group"
-					style="float: left; width: 100px; margin-right: 5px;">
-					<select class="form-control" id="exampleSelect2" name="opt">
-						<option value="sel">선택</option>
-						<option value="title">제목</option>
-						<option value="content">내용</option>
-					</select>
-				</div>
-				<div class="form-group" style="float: left; margin-right: 5px;">
-					<input type="text" class="form-control" id="inputDefault"
-						name="keyword">
-				</div>
-				<div class="form-group" style="float: left">
-					<button type="button" class="btn btn-primary"
-						onclick="searchNotice()">검색</button>
-				</div>
-			</div>
-			<div style="clear: left"></div>
+			
 			<table class="table table-hover">
 				<col width="70">
 				<col width="400">
@@ -124,13 +96,29 @@
 						}
 					%>
 				</ul>
-			</div>
 		</div>
+		<div style="float: right">
+				<div class="form-group"
+					style="float: left; width: 100px; margin-right: 5px;">
+					<select class="form-control" id="exampleSelect2" name="opt">
+						<option value="sel">선택</option>
+						<option value="title">제목</option>
+						<option value="content">내용</option>
+					</select>
+				</div>
+				<div class="form-group" style="float: left; margin-right: 5px;">
+					<input type="text" class="form-control" id="inputDefault"
+						name="keyword">
+				</div>
+				<div class="form-group" style="float: left">
+					<button type="button" class="btn btn-primary"
+						onclick="searchNotice()">검색</button>
+				</div>
+			</div>
+			<div style="clear: left"></div>
+			<div style="clear: right"></div>
 	</div>
 	<!-- /.row -->
-
-
-</div>
 
 <script type="text/javascript">
 	function searchNotice(){
