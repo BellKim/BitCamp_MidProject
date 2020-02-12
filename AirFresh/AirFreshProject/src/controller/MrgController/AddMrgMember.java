@@ -11,14 +11,41 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import Dto.ManagerMemberDto;
+import projectutil.ProjectUtil;
 import singleton.singleton;
 
 @WebServlet("/addMrgMember")
 			  
 public class AddMrgMember extends HttpServlet {
+	
+
+	
 	@Override
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-//		System.out.println("hello AddMrgMember doPost do get ");
+	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		req.setCharacterEncoding("utf-8"); 
+		
+		String status=req.getParameter("status");
+		System.out.println("status값 출력 = " + status);
+		System.out.println("hello AddMrgMember doPost do get ");
+		
+		
+		if(status == null){
+			receiveManagerAll(req, resp);
+		}else if(status.equals("enter")) {
+			System.out.println("page redirect to add member " );
+			ProjectUtil.forward("/admin_view/manageMgr/addManager.jsp", req, resp);
+		} else {
+			System.out.println("AddMrgMember 오류. 로직 확인해주세요 ");
+		}
+			
+		
+
+		
+		
+		
+	}//end of receiveManagerMember
+	
+	public void receiveManagerAll(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
 		String mgr_id= req.getParameter("manager_id");
 		String mgr_pw= req.getParameter("manager_pw");
 		String mgr_name= req.getParameter("manager_name");
@@ -49,6 +76,7 @@ public class AddMrgMember extends HttpServlet {
 		if(res==true) {
 			
 //			forward("admin_view/manageMgr/showManagerAll.jsp", req, resp);
+			resp.setContentType("text/html;charset=utf-8"); 
 			forward("showMrgMember", req, resp);
 		} else {
 			System.out.println("insert 실패함. ");
@@ -56,10 +84,11 @@ public class AddMrgMember extends HttpServlet {
 		
 		
 		
-	}//end of receiveManagerMember
+	}
 	
 	public void forward(String link, HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		RequestDispatcher dispatch = req.getRequestDispatcher(link);
+//		dispatch.include(req, resp);
 		dispatch.forward(req, resp);
 			
 	}//end forward method

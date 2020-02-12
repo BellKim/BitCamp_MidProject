@@ -18,22 +18,21 @@ import singleton.singleton;
 public class ShowMrgMember extends HttpServlet{
 
 	@Override
-	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		System.out.println("hello ShowMrgMember doGet do get ");
-//		receiveManagerMember(req, resp);//DB에서 전체 리스트를 받아오는것.
 		
-		forward("admin_view/manageMgr/showManagerAll.jsp", req, resp);
-		
-		
-		
+		req.setCharacterEncoding("UTF-8");
+		receiveManagerMember(req, resp);//DB에서 전체 리스트를 받아오는것.
+
 	}//end of doGet
 
-	@Override
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		System.out.println("hello ShowMrgMember doPost do get ");
-		receiveManagerMember(req, resp);//DB에서 전체 리스트를 받아오는것. 
-	}//end of doPost
-	
+//	@Override
+//	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+//		System.out.println("hello ShowMrgMember doPost do get ");
+//		receiveManagerMember(req, resp);//DB에서 전체 리스트를 받아오는것. 
+//	}//end of doPost
+
+
 	public void receiveManagerMember(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
 		
 		singleton si = singleton.getInstance();
@@ -41,12 +40,13 @@ public class ShowMrgMember extends HttpServlet{
 		System.out.println(listmanagermemberlist);
 		
 		req.setAttribute("managerMemberList", listmanagermemberlist);
+
 		
 		for (ManagerMemberDto managerMemberDto : listmanagermemberlist) {
 			System.out.println(managerMemberDto);
 		}
-		
-		forward("admin_view/manageMgr/showManagerAll.jsp", req, resp);
+		System.out.println("리스트찍기 ");
+		forward("./admin_view/manageMgr/showManagerAll.jsp", req, resp);
 		
 	}//end of receiveManagerMember
 	

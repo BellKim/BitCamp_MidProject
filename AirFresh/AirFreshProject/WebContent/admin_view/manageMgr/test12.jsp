@@ -2,8 +2,7 @@
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
-<%
+    <%
 request.setCharacterEncoding("utf-8");
 List<ManagerMemberDto> managerMemberDto =
 		(List<ManagerMemberDto>)request.getAttribute("managerMemberList");
@@ -14,6 +13,7 @@ for(ManagerMemberDto a : managerMemberDto){
 	System.out.println(a);
 }
 %>
+    
 <!DOCTYPE html>
 <html>
 <head>
@@ -24,11 +24,9 @@ for(ManagerMemberDto a : managerMemberDto){
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-  
-</head>
-<%-- 메니저 전체 추가 해줌.  --%>
-<body>
 
+</head>
+<body>
 <div class="container">
 
   <h2>직원리스트</h2>
@@ -43,28 +41,15 @@ for(ManagerMemberDto a : managerMemberDto){
     	</div>
     </li>
      -->
-    <ul class="list-group">   
+       <ul class="list-group">
     <li class="list-group-item">
 	    <div style="
 				    border: 1px solid black;
 				    width: 210px;
 				    height: 39px;
-				    background-color: black; 
-				    border-radius: 200px;
-				    text-align:center;
-				    
-				    ">
-			<div style="display:inline-block;
-						height:100%;
-						vertical-align: sub;
-						">
-		    	<!-- <a href="./admin_view/manageMgr/addManager.jsp" style="color:red;"> -->
-		    	<a href="<%=request.getContextPath() %>/addMrgMember?status=enter" style="color:white;">
-		    	
-		    	
-		    		 매니저 및 관리자 추가하기 
-		    	</a>
-	    	</div>
+				    background-color: green; 
+				    border-radius: 200px;">
+	    	<a href="./admin_view/manageMgr/addManager.jsp" style="color:red;"> 매니저 및 관리자 추가하기 </a>
 	    </div>
     	
     </li>
@@ -89,7 +74,7 @@ for(ManagerMemberDto a : managerMemberDto){
 			    	<span>메니저 휴대폰번호 : <%=memberdto.getMgr_cell() %> </span>
 			    	</li>
 			    	<li>
-			    	<span>메니저 권한부여번호 : <%=memberdto.getMgr_auth() %> </span>
+			    	<span>메니저 권한부여번호sdfasf : <%=memberdto.getMgr_auth() %> </span>
 			    	</li>
 			    	<li>
 			    	<span>메니저 삭제여부 : <%=memberdto.getMgr_del() %> </span>
@@ -114,8 +99,6 @@ for(ManagerMemberDto a : managerMemberDto){
     
   </ul>
 </div>
-
-	
 
 </body>
 </html>

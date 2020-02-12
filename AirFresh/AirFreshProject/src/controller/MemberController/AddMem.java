@@ -14,16 +14,14 @@ import singleton.singleton;
 
 @WebServlet("/addmem")
 public class AddMem extends HttpServlet {
+ 
 
 	@Override
-	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {		
+	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		
 		processFunc(req, resp);
-	}
-
-	@Override
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		processFunc(req, resp);		
-	}
+		
+	}//end do post 
 
 	public void processFunc(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		req.setCharacterEncoding("utf-8");

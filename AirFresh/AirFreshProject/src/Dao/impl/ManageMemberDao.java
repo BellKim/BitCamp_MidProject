@@ -67,7 +67,8 @@ public class ManageMemberDao implements ManageMemberDaoInterface {
 	public List<ManagerMemberDto> receiveManagerMemberAll() {
 		
 		String sql = " SELECT mgr_index, mgr_auth, mgr_id, mgr_pw, mgr_name, mgr_loc, mgr_cell, mgr_del "
-				+ " FROM managerMember "; 
+				+ " FROM managerMember "
+				+ " order by MGR_INDEX ASC "; 
 		
 		System.out.println(" 1/6 receiveManagerMemberAll success ");
 		Connection conn = null;
