@@ -81,6 +81,17 @@ List<ManagerMemberDto> managerMemberDto1 =
     }
     %>
     
+    <%-- 
+    	권한변경 		auth를 0, 1, 2  로 변경한다. 
+    	
+    	아이디 삭제하기 => del=0 에서 1로 변경 
+    	
+    	
+    	
+    	
+    
+     --%>
+    
     
 
 
