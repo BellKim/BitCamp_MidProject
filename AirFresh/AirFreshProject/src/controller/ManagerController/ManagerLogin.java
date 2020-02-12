@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.catalina.Session;
+
 import Dto.ManagerMemberDto;
 import projectutil.ProjectUtil;
 import singleton.singleton;
@@ -38,13 +40,20 @@ public class ManagerLogin extends HttpServlet {
 		
 		singleton si = singleton.getInstance();
 		
-		boolean check = si.managerMember.loginManagerMembercheck(managermemdto);
 		
 		
-		if(check == true ) {
+		ManagerMemberDto check = si.managerMember.loginManagerMembercheck(managermemdto);
+		System.out.print("check 내용 출력  ");
+		System.out.println(check);
+		
+		if(check.getMgr_id().equals(managermemdto.getMgr_id())) {
+			
 			req.getSession().setAttribute("managerLogin", managermemdto);
+			
+			System.out.println("아이디 확인 성공하였습니다. " + check + "]]]]");
+		}else {
+			System.out.println("아이디 확인에 실패했습니다. 다시확인해 주세요 ");
 		}
-		System.out.println("아이디 확인 성공하였습니다. " + check + "]]]]");
 		
 		
 //		ProjectUtil.forward("/admin_view/manageMgr/showManagerAll.jsp", req, resp);

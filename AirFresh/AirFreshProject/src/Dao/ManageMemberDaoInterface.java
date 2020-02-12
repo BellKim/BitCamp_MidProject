@@ -10,7 +10,7 @@ public interface ManageMemberDaoInterface {
 	
 	public List<ManagerMemberDto> receiveManagerMemberAll();
 	
-	public boolean loginManagerMemberCehck(ManagerMemberDto managermemberdto);
+	public ManagerMemberDto loginManagerMemberCehck(ManagerMemberDto managermemberdto);
 	
 	
 

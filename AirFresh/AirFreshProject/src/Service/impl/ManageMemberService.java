@@ -24,7 +24,7 @@ public class ManageMemberService implements ManageMemberInterface{
 
 
 	@Override
-	public boolean loginManagerMembercheck(ManagerMemberDto managermemberdto) {		
+	public ManagerMemberDto loginManagerMembercheck(ManagerMemberDto managermemberdto) {		
 		return mmdao.loginManagerMemberCehck(managermemberdto);
 	}
 	
