@@ -23,7 +23,7 @@
 	ModelDto model = (ModelDto)request.getAttribute("model");
 	//System.out.println("model :"+model.toString());
 	
-	int cell = 0101234567;
+	String cell = "0101234567";
 	MemberDto mem = new MemberDto();
 	mem.setMem_id("bbb");
 	mem.setMem_name("성춘향");
