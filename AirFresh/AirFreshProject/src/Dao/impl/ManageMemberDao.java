@@ -117,7 +117,7 @@ public class ManageMemberDao implements ManageMemberDaoInterface {
 
 	@Override
 	public boolean loginManagerMemberCehck(ManagerMemberDto managermemberdto) {
-		String sql = " SELECT mgr_id, mgr_pw "
+		String sql = " SELECT mgr_id, mgr_pw,  "
 				+ " FROM MANAGERMEMBER "
 				+ " WHERE mgr_id=? AND mgr_pw=? ";
 		
