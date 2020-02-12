@@ -15,7 +15,7 @@ import db.DBConnection;
 public class AsDao implements AsDaoInterface {
 
 	public AsDao() {
-		
+		DBConnection.initConnection();
 	}
 	
 	public boolean addAsApplictaion(AsAppDto dto) {
