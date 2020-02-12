@@ -1,0 +1,13 @@
+
+SELECT * FROM MODELLIST;
+
+SELECT * FROM managerMember;
+
+
+SELECT * FROM MEMBERS;
+
+
+
+
+SELECT * FROM managerMember;
+

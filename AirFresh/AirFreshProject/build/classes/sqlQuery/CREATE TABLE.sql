@@ -251,7 +251,7 @@ CREATE TABLE managerMember
     CONSTRAINT MANAGERMEMBER_PK PRIMARY KEY (mgr_index)
 );
  
-
+SELECT * FROM managerMember;
 
 
 
