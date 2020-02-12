@@ -35,8 +35,14 @@ public class showMgrMemberDetail extends HttpServlet{
 //	}
 
 	@Override
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		System.out.println("detail do post ");
+		
+		String status = req.getParameter("status");
+		
+		System.out.println("!!!!!!status = " + status );
+		
+		
 		
 		
 		singleton si = singleton.getInstance();

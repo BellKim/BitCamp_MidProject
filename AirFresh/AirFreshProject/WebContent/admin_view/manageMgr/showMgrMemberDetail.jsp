@@ -72,9 +72,10 @@ List<ManagerMemberDto> managerMemberDto1 =
     </li>	
     <li class="list-group-item">	
     	<form action="<%=request.getContextPath() %>/showMgrMemberDetail">
-    		
-	<%--    	<span><%=managerMemberDto1.get(i).getMgr_id() %></span> --%>
     	</form>
+			<a href="<%=request.getContextPath() %>/showMgrMemberDetail?status=delete" style="border:1px solid black"> 삭 제 </a>
+			<br><br>
+			<a href="<%=request.getContextPath() %>/showMgrMemberDetail?status=modify" style="border:1px solid black"> 수 정 </a>
     </li>
    <%
     	}
