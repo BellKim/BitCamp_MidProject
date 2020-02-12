@@ -168,6 +168,8 @@ public class AsAppDto implements Serializable {
 	}
 
 
+	
+
 
 	@Override
 	public String toString() {

@@ -40,9 +40,10 @@ public class ModelDetail extends HttpServlet {
 		if(command.equals("detail")) {	
 			//전체목록-> 상세페이지로 넘어갈때
 			req.getRequestDispatcher("./client_view/rental/rentalDetail.jsp").forward(req, resp);
-		
+			
 		} else if(command.equals("purcha")) {
-			req.getRequestDispatcher("./client_view/rental/purchase.jsp").forward(req, resp);
+			//req.getRequestDispatcher("./client_view/rental/purchase.jsp").forward(req, resp);
+			req.getRequestDispatcher("./client_view/rental/purchasetest.jsp").forward(req, resp);
 		}
 		
 		

@@ -9,25 +9,30 @@
 <meta name="viewport" content="width=1100">
 <meta http-equiv="imagetoolbar" content="no">
 <meta http-equiv="X-UA-Compatible" content="IE=10,chrome=1">
+
+<!-- 구매 페이지 link -->
 <link rel="stylesheet" href="http://candy.otorental.kr/css/default.css">
 <script src="http://candy.otorental.kr/js/jquery-1.8.3.min.js"></script>
 <script src="http://candy.otorental.kr/js/jquery.menu.js"></script>
 <script src="http://candy.otorental.kr/js/common.js"></script>
 <script src="http://candy.otorental.kr/js/wrest.js"></script>
+<link rel="stylesheet" href="http://candy.otorental.kr/css/base.css"	type="text/css">
+
+
+<!-- datepicker link -->
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-<link rel="stylesheet"
-	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link rel="stylesheet" 	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<script type="text/javascript"
-	src="http://candy.otorental.kr/js/jquery.vticker-min.js"></script>
-<link rel="stylesheet" href="http://candy.otorental.kr/css/base.css"
-	type="text/css">
+<script type="text/javascript"	src="http://candy.otorental.kr/js/jquery.vticker-min.js"></script>
+
+
 <title>Insert title here</title>
 </head>
 <body>
 	<%
 		MemberDto mem = (MemberDto) session.getAttribute("login");
 		ModelDto model = (ModelDto) session.getAttribute("model");
+		String addr = mem.getMem_addr1()+" "+mem.getMem_addr2()+" "+mem.getMem_addr3();
 	%>
 	<div class='clear' style='clear: both'></div>
 	<div class="row">
@@ -56,7 +61,7 @@
 												width='60px' alt="xx">
 										</div>
 										<div style="width: 560px; float: left"><%=model.getPrd_name()%>
-											<%=model.getPrd_model_name()%>24개월약정 등록비0원 / 렌탈금액 : <%=model.getPrd_price() %>원
+											<%=model.getPrd_model_name()%>24개월약정 등록비0원 / <span style="color: #ff0000"><strong>렌탈금액 : <%=model.getPrd_price() %>원</strong></span>
 										</div>
 									</td>
 								</tr>
@@ -78,9 +83,8 @@
 								<tr>
 									<th scope="row">주소</th>
 									<td colspan='3'>
-									<input type="text" class="input" name="address1" id="customer_name" value="<%=mem.getMem_addr1() %>" readonly="readonly">
-									<input type="text" class="input" name="address1" id="customer_name" value="<%=mem.getMem_addr2() %>" readonly="readonly">
-									<input type="text" class="input" name="address1" id="customer_name" value="<%=mem.getMem_addr3() %>" readonly="readonly"></td>
+									<input type="text" class="input" name="address1" id="customer_name" value="<%=addr%>" readonly="readonly" size="80px">
+									</td>
 								</tr>
 								
 
@@ -96,7 +100,7 @@
 						<dt class="pt10">2. 수집하려는 개인정보 항목 :</dt>
 						<dd class="pl15">
 							원활한 상담 및 주문을 위해 다음과 같은 항목의 개인정보를 수집하고 있습니다.<br>수집항목 : 이름 ,
-							연락처
+							연락처, 주소
 						</dd>
 						<dt class="pt10">3. 개인정보의 보유 및 이용기간 :</dt>
 						<dd class="pl15">원활한 서비스제공을 위해 수집일부터 90일까지 보관되며, 이전이라도 개인정보
@@ -120,51 +124,63 @@
 					</div>
 
 					<div class="btn">
-						<input type="submit" value="신청하기">
+						<input type="button" value="신청하기" id="_purBtn">
 					</div>
 				</fieldset>
 		</div>
 		</form>
 	</div>
-
-
-
-
-
-
 	<script>
-		function checkForm(f) {
+		$(document).ready(function() {
+			
+			var check = $("input:checkbox[name='agree']").val();
+			alert(check);
+			
+			 $( "#datepicker" ).datepicker(
+		    			{ minDate: 0, 
+		    			  maxDate: "+1M +10D",
+		    			  dateFormat: "yy/mm/dd"
+		    			});
+			 
+			$("#_purBtn").click(function() {
+				if( $("#datepicker").val() == "" ){
+					alert("설치를 희망하는 날짜를 선택해주세요.");
+					$("#datepicker").focus();
+				} else if(){
+					
+				}
+			});
+			 
+			 function checkForm(f) {
 
-			var regExp = /^(01[016789]{1}|02|0[3-9]{1}[0-9]{1})-?[0-9]{3,4}-?[0-9]{4}$/;
+					var regExp = /^(01[016789]{1}|02|0[3-9]{1}[0-9]{1})-?[0-9]{3,4}-?[0-9]{4}$/;
 
-			f = document.writeForm;
-			if (f.name.value == "") {
-				alert("이름을 입력하세요");
-				return;
-			}
-			if (!f.tel.value) {
-				alert("연락처를 입력하세요.");
-				obj.subject.focus();
-				return false;
-			} else if (!regExp.test(f.tel.value)) {
-				alert("잘못된 전화번호입니다. 다시 입력해주세요. 예) 010-XXXX-XXXX");
-				f.tel.focus();
-				f.tel.select();
-				return false
-			}
+					f = document.writeForm;
+					if (f.name.value == "") {
+						alert("이름을 입력하세요");
+						return;
+					}
+					if (!f.tel.value) {
+						alert("연락처를 입력하세요.");
+						obj.subject.focus();
+						return false;
+					} else if (!regExp.test(f.tel.value)) {
+						alert("잘못된 전화번호입니다. 다시 입력해주세요. 예) 010-XXXX-XXXX");
+						f.tel.focus();
+						f.tel.select();
+						return false
+					}
 
-			var chkCount = $("input:checkbox[name='agree']:checked").length;
-			if (chkCount < 1) {
-				alert('개인정보 수집 및 이용에 대해 동의하셔야 합니다.');
-				return false;
-			}
-		    $( "#datepicker" ).datepicker(
-	    			{ minDate: 0, 
-	    			  maxDate: "+1M +10D",
-	    			  dateFormat: "yy/mm/dd"
-	    			});
-			/* f.action = "http://candy.otorental.kr/buy_ok.php"; */
-		}
+					var chkCount = $("input:checkbox[name='agree']:checked").length;
+					if (chkCount < 1) {
+						alert('개인정보 수집 및 이용에 대해 동의하셔야 합니다.');
+						return false;
+					}
+				   
+				}
+
+		});
+		
 	</script>
 </body>
 </html>

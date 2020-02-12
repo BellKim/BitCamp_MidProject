@@ -36,6 +36,18 @@ public class AsApplicationDetail extends HttpServlet {
 		singleton s = singleton.getInstance();
 		AsAppDto dto = s.asi.getDetailAs(as_index);
 		
+		//확인용
+		System.out.println("이미지경로: "+dto.getAsImgPath());
+		
+		String savePath = req.getServletContext().getRealPath("/asupload");
+		int idx = dto.getAsImgPath().lastIndexOf(".");
+		String str = dto.getAsImgPath().substring(idx+1);	//확장자
+		
+		//System.out.println("savePath: "+savePath);
+		System.out.println("이미지 확장자: "+str);
+		
+		
+		//////////////////////////////////////
 		req.setAttribute("dto", dto);
 		req.getRequestDispatcher("./client_view/as/asDetail.jsp").forward(req, resp);
 	}
