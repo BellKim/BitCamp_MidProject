@@ -26,8 +26,8 @@ public class AsService implements AsServiceInterface {
 	}
 
 	@Override
-	public boolean updateAsApp(AsAppDto dto) {
-		return dao.updateAsApp(dto);
+	public boolean updateAsApp(int as_index,AsAppDto dto) {
+		return dao.updateAsApp(as_index, dto);
 	}
 
 	@Override

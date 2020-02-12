@@ -20,7 +20,7 @@
 
 	if(isS.equals("true")){
 %>
-		<a href="printAsApp?id=<%=mem.getMem_id()%>">수리내역</a>
+		<a href="<%=request.getContextPath() %>/printAsApp?id=<%=mem.getMem_id()%>">수리내역</a>
 <%
 	} else {
 %>

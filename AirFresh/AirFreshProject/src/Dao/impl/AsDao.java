@@ -56,8 +56,9 @@ public class AsDao implements AsDaoInterface {
 	
 	public List<AsAppDto> getAsAll() {
 		//AS신청 전체보기
-		String sql = " SELECT AS_INDEX, MEM_ID, WDATE, REQ_DATE, MGR_INDEX, AS_TITLE, AS_CONTENT, AS_IMG_PATH, PUR_INDEX "
-				+ " FROM ASAPPLICATION ";
+		String sql = " SELECT AS_INDEX , a.MEM_ID, WDATE , REQ_DATE, AS_TITLE, AS_CONTENT, AS_IMG_PATH, a.PUR_INDEX, m.prd_name  "
+				+ " FROM ASAPPLICATION a, PURCHASE p, MODELLIST m "
+				+ " WHERE a.pur_index=p.pur_index AND p.prd_index=m.prd_index ";
 		
 		Connection conn = null;
 		PreparedStatement psmt = null;
@@ -83,7 +84,7 @@ public class AsDao implements AsDaoInterface {
 											rs.getString(i++),//asContent, 
 											rs.getString(i++),//asImgPath, 
 											rs.getInt(i++),//pur_index, 
-											null);
+											rs.getString(i++));//prd_name
 				
 				list.add(dto);
 			}
@@ -100,9 +101,9 @@ public class AsDao implements AsDaoInterface {
 	
 	public List<AsAppDto> memAsAppList(String mem_id) {
 		//회원별 AS신청내역보기
-		String sql = " SELECT MEM_ID, REQ_DATE, AS_TITLE, AS_CONTENT, AS_IMG_PATH, PUR_INDEX "
-				+ " FROM ASAPPLICATION "
-				+ " WHERE MEM_ID=? ";
+		String sql = " SELECT AS_INDEX, a.MEM_ID, WDATE , REQ_DATE, MGR_INDEX, AS_TITLE, AS_CONTENT, AS_IMG_PATH, a.PUR_INDEX, m.prd_name "
+				+ " FROM ASAPPLICATION a, PURCHASE p, MODELLIST m "
+				+ " WHERE a.pur_index=p.pur_index AND p.prd_index=m.prd_index AND a.mem_id = ? ";
 		
 		Connection conn = null;
 		PreparedStatement psmt = null;
@@ -121,14 +122,16 @@ public class AsDao implements AsDaoInterface {
 			
 			while(rs.next()) {
 				int i = 1;
-				AsAppDto dto = new AsAppDto(
+				AsAppDto dto = new AsAppDto(rs.getInt(i++),
 											rs.getString(i++),//memId, 
+											rs.getString(i++),//WDATE
 											rs.getString(i++),//req_date,
+											rs.getInt(i++),//mgr_index
 											rs.getString(i++),//asTitle, 
 											rs.getString(i++),//asContent, 
 											rs.getString(i++),//asImgPath, 
 											rs.getInt(i++), //pur_index,
-											null
+											rs.getString(i++)//PRD_NAME
 											);
 				
 				list.add(dto);
@@ -148,8 +151,8 @@ public class AsDao implements AsDaoInterface {
 	
 	public AsAppDto getDetailAs(int as_index) {
 		//as상세 
-		String sql = " SELECT AS_INDEX, MEM_ID, WDATE, REQ_DATE, MGR_INDEX, AS_TITLE, AS_CONTENT, AS_IMG_PATH, PUR_INDEX "
-				+ " FROM ASAPPLICATION "
+		String sql = " SELECT AS_INDEX, MEM_ID, WDATE, REQ_DATE, MGR_INDEX, AS_TITLE, AS_CONTENT, AS_IMG_PATH, a.PUR_INDEX, m.PRD_NAME  "
+				+ " FROM ASAPPLICATION a, MODELLIST m "
 				+ " WHERE AS_INDEX=? ";
 
 		Connection conn = null;
@@ -177,7 +180,7 @@ public class AsDao implements AsDaoInterface {
 											rs.getString(i++),//asContent, 
 											rs.getString(i++),//asImgPath, 
 											rs.getInt(i++),//pur_index, 
-											null);
+											rs.getString(i++));//PRD_NAME
 			}
 			System.out.println("3/6 getDetailAs success");
 			
@@ -192,11 +195,11 @@ public class AsDao implements AsDaoInterface {
 		
 	}
 	
-	public boolean updateAsApp(AsAppDto dto) {
+	public boolean updateAsApp(int as_index, AsAppDto dto) {
 		//as신청 수정
 		String sql = " UPDATE ASAPPLICATION "
-				+ " SET REQ_DATE=? , AS_TITLE=?, AS_CONTENT=?, AS_IMG_PATH=? "
-				+ " WHERE MEM_ID=? ";
+				+ " SET REQ_DATE=? , AS_TITLE=?, AS_CONTENT=?, AS_IMG_PATH=?  "
+				+ " WHERE MEM_ID=? AND AS_INDEX=?";
 		
 		Connection conn = null;
 		PreparedStatement psmt = null;
@@ -214,6 +217,7 @@ public class AsDao implements AsDaoInterface {
 			psmt.setString(3, dto.getAsContent());
 			psmt.setString(4, dto.getAsImgPath());
 			psmt.setString(5, dto.getMemId());
+			psmt.setInt(6, dto.getAsSeq());
 			
 			count = psmt.executeUpdate();			
 			System.out.println("3/6 updateAsApp success");
