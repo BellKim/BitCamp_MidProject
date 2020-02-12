@@ -69,7 +69,7 @@
 		</div>
 		<div align="center">
 		<button type="button" class="btn btn-primary btn-lg"
-				onclick="location.href='<%=request.getContextPath()%>/noticelist'">목록</button>
+				onclick="location.href='<%=request.getContextPath()%>/noticelist?command=admin'">목록</button>
 			<%
 				if (mrgMem.getMgr_auth() == 0) {
 			%>

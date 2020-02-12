@@ -98,7 +98,7 @@
  	}
  			}
  %> <a
-						href="<%=request.getContextPath()%>/noticedetail?noti_index=<%=notice.getNoti_index()%>"><%=notice.getNoti_title()%></a>
+						href="<%=request.getContextPath()%>/noticedetail?command=admin&noti_index=<%=notice.getNoti_index()%>"><%=notice.getNoti_title()%></a>
 					</td>
 					<td><%=notice.getWdate().substring(0, 10)%></td>
 					<td><%=notice.getNoti_writer()%></td>
@@ -160,7 +160,7 @@
 		if(keyword == ""){
 			document.getElementById("exampleSelect2").value = "sel";
 		}
-		var linkStr = "<%=request.getContextPath()%>/noticelist?pageNumber=" + pageNum;
+		var linkStr = "<%=request.getContextPath()%>/noticelist?command=admin&pageNumber=" + pageNum;
 		if(opt != 'sel' && keyword != ""){
 			linkStr = linkStr + "&opt=" + opt + "&keyword=" + keyword;
 		}

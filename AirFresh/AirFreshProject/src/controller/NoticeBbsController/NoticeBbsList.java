@@ -33,6 +33,8 @@ public class NoticeBbsList extends HttpServlet{
 		String keyword = req.getParameter("keyword");
 		String spageNumber = req.getParameter("pageNumber");
 		
+		String command = req.getParameter("command");
+		
 		int pageNumber = 0;
 		if(spageNumber != null && !spageNumber.equals("")){
 			pageNumber = Integer.parseInt(spageNumber);
@@ -53,12 +55,22 @@ public class NoticeBbsList extends HttpServlet{
 		singleton s = singleton.getInstance();
 		//List<NoticeBbsDto> list = s.nbsi.getNoticeList();
 		//List<NoticeBbsDto> list = s.nbsi.getNoticeList(opt, keyword);
-		List<NoticeBbsDto> list = s.nbsi.getNoticePaging(opt, keyword, pageNumber);
-		int len = s.nbsi.getAllBbsLength(opt, keyword);
-		req.setAttribute("len", len);
-		req.setAttribute("noticeList", list);
-		ProjectUtil.forward("./admin_view/board/noticelist.jsp", req, resp);
-		
+		if(command.contentEquals("user")) {
+			
+			List<NoticeBbsDto> list = s.nbsi.getNoticeUser(opt, keyword, pageNumber);
+			int len = s.nbsi.getUserLength(opt, keyword);
+			req.setAttribute("len", len);
+			req.setAttribute("noticeList", list);
+			ProjectUtil.forward("./client_view/board/noticelist.jsp", req, resp);
+			
+		} else if(command.contentEquals("admin")){
+			
+			List<NoticeBbsDto> list = s.nbsi.getNoticePaging(opt, keyword, pageNumber);
+			int len = s.nbsi.getAllBbsLength(opt, keyword);
+			req.setAttribute("noticeList", list);
+			req.setAttribute("len", len);
+			ProjectUtil.forward("./admin_view/board/noticelist.jsp", req, resp);
+		}
 	}
 
 }

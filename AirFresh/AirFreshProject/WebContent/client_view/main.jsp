@@ -1,95 +1,93 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ include file="./include/header.jsp" %>
 
-	<!-- Banner -->
-	<section class="banner full">
-		<article>
-			<img src="<%=request.getContextPath()%>/client_view/img/slide01.jpg"
-				alt="" />
-			<div class="inner">
-				<header>
-					<p>공기청정기 블라블라</p>
-					<h2>공기청정기1</h2>
-				</header>
-			</div>
-		</article>
-		<article>
-			<img src="<%=request.getContextPath()%>/client_view/img/slide02.jpg"
-				alt="" />
-			<div class="inner">
-				<header>
-					<p>공기청정기 블라블라</p>
-					<h2>공기청정기2</h2>
-				</header>
-			</div>
-		</article>
-		<article>
-			<img src="<%=request.getContextPath()%>/client_view/img/slide03.jpg"
-				alt="" />
-			<div class="inner">
-				<header>
-					<p>공기청정기 블라블라</p>
-					<h2>공기청정기3</h2>
-				</header>
-			</div>
-		</article>
+ <header>
+    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+      <ol class="carousel-indicators">
+        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+        <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+        <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+      </ol>
+      <div class="carousel-inner" role="listbox">
+        <!-- Slide One - Set the background image for this slide in the line below -->
+        <div class="carousel-item active" style="background-image: url('http://placehold.it/1900x1080')">
+          <div class="carousel-caption d-none d-md-block">
+            <h3>공기청정기1</h3>
+            <p>This is a description for the first slide.</p>
+          </div>
+        </div>
+        <!-- Slide Two - Set the background image for this slide in the line below -->
+        <div class="carousel-item" style="background-image: url('http://placehold.it/1900x1080')">
+          <div class="carousel-caption d-none d-md-block">
+            <h3>공기청정기2</h3>
+            <p>This is a description for the second slide.</p>
+          </div>
+        </div>
+        <!-- Slide Three - Set the background image for this slide in the line below -->
+        <div class="carousel-item" style="background-image: url('http://placehold.it/1900x1080')">
+          <div class="carousel-caption d-none d-md-block">
+            <h3>공기청정기3</h3>
+            <p>This is a description for the third slide.</p>
+          </div>
+        </div>
+      </div>
+      <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+      </a>
+      <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+      </a>
+    </div>
+  </header>
 
-	</section>
+  <!-- Page Content -->
+  <div class="container">
 
-	<!-- One -->
-	<section id="one" class="wrapper style2">
-		<div class="inner">
-			<div class="grid-style">
+   
+    <!-- Portfolio Section -->
+    <h1 class="my-4">에프 Best</h1>
+    <div class="row">
+      <div class="col-lg-4 col-sm-6 portfolio-item">
+        <div class="card h-100">
+          <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
+          <div class="card-body">
+            <h4 class="card-title">
+              <a href="#">공기청정기 블라</a>
+            </h4>
+            <p class="card-text">3번 공청</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 col-sm-6 portfolio-item">
+        <div class="card h-100">
+          <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
+          <div class="card-body">
+            <h4 class="card-title">
+              <a href="#">공기청정기 블라</a>
+            </h4>
+            <p class="card-text">3번 공청</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 col-sm-6 portfolio-item">
+        <div class="card h-100">
+          <a href="#"><img class="card-img-top" src="http://placehold.it/700x400" alt=""></a>
+          <div class="card-body">
+            <h4 class="card-title">
+              <a href="#">공기청정기 블라</a>
+            </h4>
+            <p class="card-text">3번 공청</p>
+          </div>
+        </div>
+      </div>      
+    </div>
+    <!-- /.row -->
+   </div>
 
-				<div>
-					<div class="box">
-						<div class="image fit">
-							<img
-								src="<%=request.getContextPath()%>/client_view/img/pic02.jpg"
-								alt="" />
-						</div>
-						<div class="content">
-							<header class="align-center">
-								<p>maecenas sapien feugiat ex purus</p>
-								<h2>Lorem ipsum dolor</h2>
-							</header>
-							<p>Cras aliquet urna ut sapien tincidunt, quis malesuada elit
-								facilisis. Vestibulum sit amet tortor velit. Nam elementum nibh
-								a libero pharetra elementum. Maecenas feugiat ex purus, quis
-								volutpat lacus placerat malesuada.</p>
-							<footer class="align-center">
-								<a href="#" class="button alt">Learn More</a>
-							</footer>
-						</div>
-					</div>
-				</div>
-
-				<div>
-					<div class="box">
-						<div class="image fit">
-							<img
-								src="<%=request.getContextPath()%>/client_view/img/pic03.jpg"
-								alt="" />
-						</div>
-						<div class="content">
-							<header class="align-center">
-								<p>mattis elementum sapien pretium tellus</p>
-								<h2>Vestibulum sit amet</h2>
-							</header>
-							<p>Cras aliquet urna ut sapien tincidunt, quis malesuada elit
-								facilisis. Vestibulum sit amet tortor velit. Nam elementum nibh
-								a libero pharetra elementum. Maecenas feugiat ex purus, quis
-								volutpat lacus placerat malesuada.</p>
-							<footer class="align-center">
-								<a href="#" class="button alt">Learn More</a>
-							</footer>
-						</div>
-					</div>
-				</div>
-
-			</div>
-		</div>
-	</section>
+  <!-- /.container -->
 <%@ include file="./include/footer.jsp" %>
 
 	

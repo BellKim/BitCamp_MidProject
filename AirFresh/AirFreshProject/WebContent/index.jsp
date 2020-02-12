@@ -7,13 +7,9 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<!-- <a href="login.jsp"> 이 동 </a> -->
-	
 <%
-response.sendRedirect("login.jsp");
+response.sendRedirect(request.getContextPath()+"/client_view/main.jsp");
 %>
-
-	<a href="hellotest"> </a>
 
 </body>
 </html>

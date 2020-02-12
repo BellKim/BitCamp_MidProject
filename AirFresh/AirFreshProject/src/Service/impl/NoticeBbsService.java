@@ -54,5 +54,15 @@ public class NoticeBbsService implements NoticeBbsServiceInterface {
 	public boolean updateNotice(int noti_index, NoticeBbsDto notice) {
 		return nbd.updateNotice(noti_index, notice);
 	}
+
+	@Override
+	public List<NoticeBbsDto> getNoticeUser(String opt, String keyword, int page) {
+		return nbd.getNoticeUser(opt, keyword, page);
+	}
+
+	@Override
+	public int getUserLength(String opt, String keyword) {
+		return nbd.getUserLength(opt, keyword);
+	}
 	
 }
