@@ -187,15 +187,12 @@ CREATE TABLE orderReview
  
 
 
+--작성자: 박지훈
+--날짜 : 2020- 02 - 12
+--기능 : qnabbs 비밀글 기능을 위한 qna_secret추가
+--del -> qna_del로 컬럼명 변경
 
-
- 
-
-
- 
-
-
--- members Table Create SQL
+-- qnaBbs Table Create SQL
 CREATE TABLE qnaBbs
 (
     qna_index      NUMBER(6)         NOT NULL, 
@@ -203,11 +200,12 @@ CREATE TABLE qnaBbs
     qna_title      VARCHAR2(20)      NULL, 
     qna_content    VARCHAR2(20)      NULL, 
     wdate          DATE              NULL, 
+    qna_secret	   NUMBER(1)		 NULL,
     re_content     VARCHAR2(4000)    NULL, 
     re_date        DATE              NULL, 
     readcount      NUMBER(10)        NULL, 
     depth          NUMBER(2)         NULL, 
-    del         NUMBER(1)         NULL, 
+    qna_del         NUMBER(1)         NULL, 
     CONSTRAINT QNABBS_PK PRIMARY KEY (qna_index)
 );
  

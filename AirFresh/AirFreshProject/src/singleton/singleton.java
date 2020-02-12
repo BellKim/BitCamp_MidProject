@@ -1,6 +1,5 @@
 package singleton;
 
-
 import Service.AsServiceInterface;
 import Service.InstallServiceInterface;
 import Service.ManageMemberInterface;
@@ -8,6 +7,7 @@ import Service.MemberServiceInterface;
 import Service.ModelServiceInterface;
 import Service.NoticeBbsServiceInterface;
 import Service.PurchaseServiceInterface;
+import Service.QnaBbsServiceInterface;
 import Service.impl.AsService;
 import Service.impl.InstallService;
 import Service.impl.ManageMemberService;
@@ -15,6 +15,7 @@ import Service.impl.MemberService;
 import Service.impl.ModelService;
 import Service.impl.NoticeBbsService;
 import Service.impl.PurchaseService;
+import Service.impl.QnaBbsService;
 
 public class singleton {
 	
@@ -26,6 +27,7 @@ public class singleton {
 	public AsServiceInterface asi = null;
 	public ManageMemberInterface managerMember = null;
 	public InstallServiceInterface is = null;
+	public QnaBbsServiceInterface qbs = null;
 	
 	
 	
@@ -38,6 +40,7 @@ public class singleton {
 		asi = new AsService();
 		managerMember = new ManageMemberService();
 		is = new InstallService();
+		qbs = new QnaBbsService();
 		
 	}
 	
