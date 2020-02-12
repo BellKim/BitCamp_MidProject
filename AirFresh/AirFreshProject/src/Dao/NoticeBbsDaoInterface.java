@@ -13,4 +13,5 @@ public interface NoticeBbsDaoInterface {
 	public void readcount(int noti_index);  //공지사항 조회수 수정
 	public int getAllBbsLength(String opt, String keyword);  //공지사항 전체 갯수 
 	public boolean deleteNotice(int noti_index);	//공지사항 삭제
+	public boolean updateNotice(int noti_index, NoticeBbsDto notice);
 }

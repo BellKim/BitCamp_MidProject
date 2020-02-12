@@ -373,4 +373,43 @@ public class NoticeBbsDao implements NoticeBbsDaoInterface {
 		return count>0?true:false;
 	}
 
+	@Override
+	public boolean updateNotice(int noti_index, NoticeBbsDto notice) {
+		String sql = " UPDATE NOTICEBBS "
+				+ " SET NOTI_TITLE=?, NOTI_CATAGORY=?, NOTI_CONTENT=?, FILENAME=?, TEMPFILE =? "
+				+ " WHERE NOTI_INDEX=? ";
+		
+		Connection conn = null;
+		PreparedStatement psmt = null;
+		int count=0;
+		
+		System.out.println("notice : "+ notice.toString());
+		System.out.println(noti_index);
+		
+		try {
+			conn=DBConnection.getConnection();
+			System.out.println("1/6 S updateNotice");
+			
+			psmt=conn.prepareStatement(sql);
+			psmt.setString(1, notice.getNoti_title());
+			psmt.setInt(2, notice.getNoti_catagory());
+			psmt.setString(3, notice.getNoti_content());
+			psmt.setString(4, notice.getFilename());
+			psmt.setString(5, notice.getTempfile());
+			psmt.setInt(6, noti_index);
+			System.out.println(sql);
+			System.out.println("2/6 S updateNotice");
+			
+			count = psmt.executeUpdate();
+			System.out.println("3/6 S updateNotice");
+			
+		} catch (Exception e) {
+			System.out.println("F updateNotice");
+		}finally{
+			DBClose.close(psmt, conn, null);			
+		}
+		
+		return count>0?true:false;
+	}
+
 }

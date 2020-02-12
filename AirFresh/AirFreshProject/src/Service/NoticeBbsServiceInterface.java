@@ -13,4 +13,5 @@ public interface NoticeBbsServiceInterface {
 	public List<NoticeBbsDto> getNoticePaging(String opt, String keyword, int page);
 	public int getAllBbsLength(String opt, String keyword);
 	public boolean deleteNotice(int noti_index);
+	public boolean updateNotice(int noti_index, NoticeBbsDto notice);
 }

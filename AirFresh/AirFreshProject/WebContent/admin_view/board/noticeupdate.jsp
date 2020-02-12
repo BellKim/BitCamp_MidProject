@@ -28,6 +28,7 @@
 			action="<%=request.getContextPath()%>/noticeupdate?command=updateAf"
 			method="post" enctype="multipart/form-data">
 			<input type="hidden" name ="noti_index" value ="<%=notice.getNoti_index() %>">
+			<input type="hidden" name ="fname" value ="<%=notice.getTempfile() %>">
 			<fieldset>
 				<div class="form-group">
 					<label class="col-form-label" for="inputDefault">제목</label>
@@ -58,12 +59,19 @@
 
 				</div>
 				<div class="form-group">
+				
+				<% if(notice.getFilename()!=null){ %>
 				<label class="col-form-label" for="inputDefault">업로드 파일</label>
 					<input type="text"class="form-control" id="inputDefault"
 						name="oldfile" value = <%=notice.getFilename() %>>
 				<label class="col-form-label" for="inputDefault">변경파일 업로드</label>
 					<input type="file" class="form-control-file" id="exampleInputFile"
 						aria-describedby="fileHelp" name="fileload">
+						<%} else { %>
+				<label class="col-form-label" for="inputDefault">파일 업로드</label>
+					<input type="file" class="form-control-file" id="exampleInputFile"
+						aria-describedby="fileHelp" name="fileload">						
+						<% } %>
 				</div>
 				<div align="center">
 					<button type="submit" class="btn btn-primary">수정하기</button>

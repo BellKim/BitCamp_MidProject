@@ -49,5 +49,10 @@ public class NoticeBbsService implements NoticeBbsServiceInterface {
 	public boolean deleteNotice(int noti_index) {
 		return nbd.deleteNotice(noti_index);
 	}
+
+	@Override
+	public boolean updateNotice(int noti_index, NoticeBbsDto notice) {
+		return nbd.updateNotice(noti_index, notice);
+	}
 	
 }
