@@ -6,9 +6,11 @@ import Dto.ManagerMemberDto;
 
 public interface ManageMemberInterface {
 
-	boolean insertManagerMember(ManagerMemberDto dto);
+	public boolean insertManagerMember(ManagerMemberDto dto);
 	
-	List<ManagerMemberDto> receiveManagerMemberAll();
+	public List<ManagerMemberDto> receiveManagerMemberAll();
+	
+	public boolean loginManagerMembercheck(ManagerMemberDto managermemberdto);
 	
 	
 

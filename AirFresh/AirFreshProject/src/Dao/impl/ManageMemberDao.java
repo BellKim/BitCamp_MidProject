@@ -16,7 +16,7 @@ import db.DBConnection;
 public class ManageMemberDao implements ManageMemberDaoInterface {
 	
 	public ManageMemberDao() {
-	
+		DBConnection.initConnection();
 	}
 
 	@Override
@@ -67,7 +67,8 @@ public class ManageMemberDao implements ManageMemberDaoInterface {
 	public List<ManagerMemberDto> receiveManagerMemberAll() {
 		
 		String sql = " SELECT mgr_index, mgr_auth, mgr_id, mgr_pw, mgr_name, mgr_loc, mgr_cell, mgr_del "
-				+ " FROM managerMember "; 
+				+ " FROM managerMember "
+				+ " order by MGR_INDEX ASC "; 
 		
 		System.out.println(" 1/6 receiveManagerMemberAll success ");
 		Connection conn = null;
@@ -113,6 +114,44 @@ public class ManageMemberDao implements ManageMemberDaoInterface {
 		
 		return list;
 	}
+
+	@Override
+	public boolean loginManagerMemberCehck(ManagerMemberDto managermemberdto) {
+		String sql = " SELECT mgr_id, mgr_pw "
+				+ " FROM MANAGERMEMBER "
+				+ " WHERE mgr_id=? AND mgr_pw=? ";
+		
+		Connection conn = null;
+		PreparedStatement psmt = null;
+		System.out.println( "sql = " + sql );
+		System.out.println(" 2/6 loginManagerMemberCehck success ");
+		int count = 0;
+
+		
+		try {
+			System.out.println(" 3/6 loginManagerMemberCehck success ");
+			conn = DBConnection.getConnection();
+			psmt = conn.prepareStatement(sql);
+			System.out.println(" 4/6 loginManagerMemberCehck success ");
+			
+			psmt.setString(1, managermemberdto.getMgr_id());
+			psmt.setString(2, managermemberdto.getMgr_pw());
+			
+			System.out.println(" 5/6 loginManagerMemberCehck success ");
+			
+			count = psmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			System.out.println(" loginManagerMemberCehck  DB FAIL ");
+			e.printStackTrace();
+		}finally {
+			System.out.println(" 6/6 loginManagerMemberCehck DBCLOSE ");
+			DBClose.close(psmt, conn, null);
+		}
+		
+		
+		return count>0?true:false;
+	}//end of loginManagerMemberCehck
 	
 	
 	

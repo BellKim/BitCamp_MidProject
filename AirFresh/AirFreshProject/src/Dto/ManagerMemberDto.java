@@ -29,6 +29,14 @@ public class ManagerMemberDto implements Serializable {
 	private int mgr_del;
 	
 	
+	
+	
+	public ManagerMemberDto(String mgr_id, String mgr_pw) {
+		super();
+		this.mgr_id = mgr_id;
+		this.mgr_pw = mgr_pw;
+	}
+
 	public ManagerMemberDto(int mgr_index, int mgr_auth, String mgr_id, String mgr_pw, String mgr_name, int mgr_loc,
 			int mgr_cell, int mgr_del) {
 		super();

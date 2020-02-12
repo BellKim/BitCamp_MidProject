@@ -1,4 +1,3 @@
-<%@page import="com.sun.xml.internal.bind.CycleRecoverable.Context"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -11,8 +10,11 @@
 <%=request.getContextPath() %>
 	<a href="<%=request.getContextPath() %>/showMrgMember"> 페이지 이동 </a>
 	<script type="text/javascript">
-	window.location.href = '<%=request.getContextPath() %>/showMrgMember';
 	
+	
+	<%--
+	window.location.href = './addManager.jsp';
+	--%>
 	</script>
 </body>
 </html>

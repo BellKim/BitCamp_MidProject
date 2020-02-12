@@ -7,19 +7,16 @@
     List<ModelDto> list = (List<ModelDto>)request.getAttribute("modelList");
     
     %>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-<link rel="stylesheet" href="<%=request.getContextPath() %>/css/bootstrap.css">
-<link rel="stylesheet" href="<%=request.getContextPath() %>/css/bootstrap.min.css">
-</head>
-<body>
-
+<%@ include file="./../include/header.jsp" %>
 
 
 <div class = "container">
+	<h1 class="mt-4 mb-3">공기청정기</h1>
+
+	<ol class="breadcrumb">
+		<li class="breadcrumb-item"><a href="index.html">Home</a></li>
+		<li class="breadcrumb-item active">렌탈하기</li>
+	</ol>
 <%
 	for(int i = 0; i < list.size(); i++){
 		if((i+1)%4==0||i==0){
@@ -49,5 +46,4 @@
 	}
 %>
 </div>
-</body>
-</html>
+<%@ include file="./../include/footer.jsp" %>

@@ -4,10 +4,17 @@ import Dto.MemberDto;
 
 public interface MemberServiceInterface {
 	
-	public boolean getId(String mem_id);
+	public boolean idCheck(String mem_id);
 	
-	public boolean addMember(MemberDto dto);
+	public boolean addMem(MemberDto dto);
 	
-	public MemberDto login(String mem_id, String mem_pw);
+	public MemberDto memLogin(String mem_id, String mem_pw);
 
+	public boolean updateMem(MemberDto dto);
+	
+	public boolean delMem(String mem_id, String mem_pw);
+	
+	public String findID(String mem_name, String mem_cell);
+	
+	public String findPW(String mem_id, String mem_name);
 }
