@@ -39,4 +39,11 @@ public class InstallService implements InstallServiceInterface,Serializable {
 		return dao.addInstall(dto);
 	}
 	
+	public boolean insertMgrID(int ins_index, int mgr_index) {
+		return dao.insertMgrID(ins_index, mgr_index);
+	}
+	
+	public boolean insertNull(int ins_index, int mgr_index) {
+		return dao.insertNull(ins_index, mgr_index);
+	}
 }

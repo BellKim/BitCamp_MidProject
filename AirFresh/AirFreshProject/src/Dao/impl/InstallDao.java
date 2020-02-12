@@ -172,4 +172,69 @@ public class InstallDao implements InstallDaoInterface, Serializable {
 		
 		return count > 0? true:false;
 	}
+	
+	public boolean insertMgrID(int ins_index, int mgr_index) {
+		
+		String sql =" UPDATE INSTALL "
+				+ " SET mgr_index =? "
+				+ " WHERE ins_index =? ";
+		
+		
+		Connection conn = null;
+		PreparedStatement psmt = null;
+		int count = 0;
+		
+		System.out.println("[insertMgrID] sql = " + sql);
+		
+		
+		try {
+			conn = DBConnection.getConnection();
+			psmt = conn.prepareStatement(sql);
+			psmt.setInt(1, ins_index);
+			psmt.setInt(2, mgr_index);
+			
+			count = psmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			System.out.println("[insertMgrID] fail");
+			e.printStackTrace();
+		}finally {
+			DBClose.close(psmt, conn, null);
+		}
+		
+		return count>0?true:false;
+	}
+	
+	
+	
+	public boolean insertNull(int ins_index, int mgr_index) {
+		String sql =" UPDATE INSTALL "
+				+ " SET mgr_index =? "
+				+ " WHERE ins_index =? ";
+		
+		
+		Connection conn = null;
+		PreparedStatement psmt = null;
+		int count = 0;
+		
+		System.out.println("[insertMgrID] sql = " + sql);
+		
+		
+		try {
+			conn = DBConnection.getConnection();
+			psmt = conn.prepareStatement(sql);
+			psmt.setInt(1, ins_index);
+			psmt.setInt(2, mgr_index);
+			
+			count = psmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			System.out.println("[insertMgrID] fail");
+			e.printStackTrace();
+		}finally {
+			DBClose.close(psmt, conn, null);
+		}
+		
+		return count>0?true:false;
+	}
 }

@@ -1,3 +1,4 @@
+<%@page import="Dto.ManagerMemberDto"%>
 <%@page import="Dto.InstallDto"%>
 <%@page import="java.util.Calendar"%>
 
@@ -27,7 +28,7 @@
 		return str;
 	}
 	
-
+	
 	
 	//한자리 숫자를 두자리로   변환시켜주는 함수 1 -> 01
 	public String two(String msg){
@@ -60,7 +61,15 @@
 	}
 	
 %>
-    
+
+
+<%
+	ManagerMemberDto loginDto = null;
+	if(request.getSession().getAttribute("login") != null){
+		loginDto = (ManagerMemberDto)request.getSession().getAttribute("login");
+	}
+	
+%>    
 <!DOCTYPE html>
 <html>
 	<head>
@@ -156,23 +165,23 @@
 			//요일 
 			int dayOfWeek = cal.get(Calendar.DAY_OF_WEEK);
 			
-			// <<	year--
-			String pp = String.format("<a href='%s?year=%d&month=%d'>"
-										+"<img src='./image/left.gif'></a>",
-										"InstallList.jsp", year-1, month);
-			// <	month--
-			String p = String.format("<a href='%s?year=%d&month=%d'>"
-										+"<img src='./image/prec.gif'></a>",
-										"InstallList.jsp", year, month-1);
-			// >	month++ 
-			String n = String.format("<a href='%s?year=%d&month=%d'>"
-										+"<img src='./image/next.gif'></a>",
-										"InstallList.jsp", year, month+1);
+			// <<	year-- left
+			String pp = String.format("<a href='%s?year=%d&month=%d&command=%s'>"
+										+ "<img src='"+ request.getContextPath()+"/admin_view/InstallList/image/left.gif'></a>",
+										request.getContextPath() + "/getInstallList_Null", year-1, month , "carlender");
+			// <	month-- prec
+			String p = String.format("<a href='%s?year=%d&month=%d&command=%s'>"
+									+ "<img src='"+ request.getContextPath()+"/admin_view/InstallList/image/prec.gif'></a>",
+										request.getContextPath() + "/getInstallList_Null", year, month-1, "carlender");
+			// >	month++ next
+			String n = String.format("<a href='%s?year=%d&month=%d&command=%s'>"
+										+ "<img src='"+ request.getContextPath()+"/admin_view/InstallList/image/next.gif'></a>",
+										request.getContextPath() + "/getInstallList_Null", year, month+1, "carlender");
 			
-			// >>	year++
-			String nn = String.format("<a href='%s?year=%d&month=%d'>"
-										+"<img src='./image/last.gif'></a>",
-										"InstallList.jsp", year+1, month);
+			// >>	year++ last
+			String nn = String.format("<a href='%s?year=%d&month=%d&command=%s'>"
+										+ "<img src='"+ request.getContextPath()+"/admin_view/InstallList/image/last.gif'></a>",
+										request.getContextPath() + "/getInstallList_Null", year+1, month, "carlender");
 			
 		%>
 		<div class="content">
@@ -278,8 +287,8 @@
 				<table style="width: 100%" id="basketList">
 					<col width="15"><col width="15"><col width="20"><col width="15"><col width="17">
 					<col width="10"><col width="8">
-				
 				</table>
+				<button type="button" id="save" style="margin-left: 400px;">저장하기</button>
 			</div>
 		</div>
 		
@@ -293,6 +302,8 @@
 				var basketList = new Array(6);
 				//장바구니 주소값을 설정하려고 사용하는 변수 
 				var listCount = 0;
+				//servlet에 보내기 위해  seq를 저장하기 위한 배열 생성 
+				var insArr = new Array();
 				
 				$("#cal span").click(function () {
 					alert("클릭");
@@ -369,15 +380,69 @@
 					str += "<td class='getList' align='center'>" + list[parseInt(addr)].pur_date.substr(0,10) + "</td>";
 					str += "<td class='getList' align='center'>" + list[parseInt(addr)].ins_date.substr(0,10) + "</td>";
 					str += "<td class='getList' align='center'>" + list[parseInt(addr)].mem_addr1 + "</td>";
-					str += "<td class='getList' align='center'>" + "<button class='minus' type='button' value='" + (listCount - 1) + "'>-</button>" + "</td></tr>";
+					str += "<td class='getList' align='center'>" + "<button class='minus' type='button' value='" + (listCount - 1) + "'  intr='"+ addr + "'>-</button>" + "</td></tr>";
 					$("#basketList").append(str);
 					
+					$("#intr"+addr).hide();
 					
 				});
 				
+				//장바구니 버튼 동작 시키는 함수
 				$(document).on("click","td .minus",function (){
-					alert("마이너스 클릭");
-				});	
+					//alert("마이너스 클릭");
+					
+					//alert($(this).attr("intr"));
+					var iaddr = $(this).attr("intr")
+					$("#intr" + iaddr).show();
+					$("#bastr"+ $(this).val()).remove();
+					
+				});
+				
+				//저장하기 버튼 클릭시 이벤트 
+				$("#save").click(function () {
+					
+					//alert("저장하기 클릭");
+					//담아져 있는 list안의 seq를 모두 가진 배열형태로 servlet에 보내기 
+					
+					//배열에 seq 담기
+					//장바구니 List table 안의 모든 tr을 가져온다
+					var tr = $("#basketList").children();
+					
+					
+					for(i = 1; i < tr.length; i++){
+						// 0번지는  <col>태그 이기 때문에 값이 없어서 1번지부터 시작
+						//가져온 첫번째 tr의 모든 td를 담는다
+						var td = tr.eq(i).children();
+						
+						//그 중 seq를 담은 td의 값만 빼온다
+						var seq = td.eq(0).text();
+						//alert(seq);
+						
+						//0번지부터 값을 넣기  위함
+						insArr[i-1] = seq;
+					}
+					
+					$.ajax({
+						url:'<%=request.getContextPath() %>/getInstallList_Null',
+						type:"post",
+						data:{	command: "save",
+								seqArr: seq,
+								/* 로그인 회원 index 추가 */
+						},
+						datatype:"json",
+						
+						success: function ( isS ) {
+							//alert("통신성공");
+							//배열 초기화 
+							insArr = [];
+							
+						},
+						error: function () {
+							alert("통신 실패");
+						}
+					});
+				});
+				
 			});//ready
 			
 		</script>
