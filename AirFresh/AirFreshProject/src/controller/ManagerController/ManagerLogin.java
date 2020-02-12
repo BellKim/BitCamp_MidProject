@@ -28,7 +28,7 @@ public class ManagerLogin extends HttpServlet {
 		
 	}//end class
 	
-	protected void loginCheck(HttpServletRequest req, HttpServletResponse resp) {
+	protected void loginCheck(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String mgr_id = req.getParameter("manager_id");
 		String mgr_pw = req.getParameter("manager_pw");
 		
@@ -40,10 +40,15 @@ public class ManagerLogin extends HttpServlet {
 		
 		boolean check = si.managerMember.loginManagerMembercheck(managermemdto);
 		
+		
+		if(check == true ) {
+			req.getSession().setAttribute("managerLogin", managermemdto);
+		}
 		System.out.println("아이디 확인 성공하였습니다. " + check + "]]]]");
 		
 		
-//		ProjectUtil.forward("/admin_view/", req, resp);
+//		ProjectUtil.forward("/admin_view/manageMgr/showManagerAll.jsp", req, resp);
+		ProjectUtil.forward("/admin_view/manageMgr/login/loginStatus.jsp", req, resp);
 	}
 
 }//end of manager class
