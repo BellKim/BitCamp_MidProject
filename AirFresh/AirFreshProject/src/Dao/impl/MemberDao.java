@@ -68,21 +68,23 @@ public class MemberDao implements MemberDaoInterface{
 		
 		try {
 			conn = DBConnection.getConnection();
-			
+			System.out.println("1/6 addMem success");
 			psmt = conn.prepareStatement(sql);
+			System.out.println("2/6 addMem success");
 			psmt.setString(1, dto.getMem_id());
 			psmt.setString(2, dto.getMem_pw());
 			psmt.setString(3, dto.getMem_name());
-			psmt.setInt(4, dto.getMem_cell());
+			psmt.setString(4, dto.getMem_cell());
 			psmt.setString(5, dto.getMem_birth());
 			psmt.setInt(6, dto.getMem_addr1());
 			psmt.setString(7, dto.getMem_addr2());
 			psmt.setString(8, dto.getMem_addr3());
 			
 			count = psmt.executeUpdate();
-			
+			System.out.println("3/6 addMem success");
 		} catch (SQLException e) {			
 			e.printStackTrace();
+			System.out.println("addMem fail");
 		} finally {		
 			DBClose.close(psmt, conn, null);			
 		}		
@@ -120,7 +122,7 @@ public class MemberDao implements MemberDaoInterface{
 				String _id = rs.getString(1);
 				String _pw = rs.getString(2);
 				String _name = rs.getString(3);
-				int _cell = rs.getInt(4);
+				String _cell = rs.getString(4);
 				String _birth = rs.getString(5);
 				int _addr1 = rs.getInt(6);
 				String _addr2 = rs.getString(7);
@@ -142,7 +144,7 @@ public class MemberDao implements MemberDaoInterface{
 		return mem;
 	}
 							
-	public String findID(String mem_name, int mem_cell) {
+	public String findID(String mem_name, String mem_cell) {
 		String sql = " SELECT MEM_ID FROM MEMBERS "
 				+ " WHERE MEM_NAME=? AND MEM_CELL=? ";
 			
@@ -157,7 +159,7 @@ public class MemberDao implements MemberDaoInterface{
 		
 			psmt = conn.prepareStatement(sql);
 			psmt.setString(1, mem_name.trim());			
-			psmt.setInt(2, mem_cell);			
+			psmt.setString(2, mem_cell);			
 			
 			rs = psmt.executeQuery();
 			
@@ -220,7 +222,7 @@ public class MemberDao implements MemberDaoInterface{
 		try {
 			psmt = conn.prepareStatement(sql);			
 			psmt.setString(1, dto.getMem_pw());
-			psmt.setInt(2, dto.getMem_cell());
+			psmt.setString(2, dto.getMem_cell());
 			psmt.setInt(3, dto.getMem_addr1());
 			psmt.setString(4, dto.getMem_addr2());
 			psmt.setString(5, dto.getMem_addr3());
@@ -311,14 +313,14 @@ public class MemberDao implements MemberDaoInterface{
 			psmt = conn.prepareStatement(sql);
 			rs = psmt.executeQuery();
 			/*
-			 * String mem_id, String mem_name, int mem_cell, String
+			 * String mem_id, String mem_name, String mem_cell, String
 			 * mem_birth, int mem_addr1, String mem_addr2, String mem_addr3
 			 */
 			while(rs.next()) {
 				
 				MemberDto dto = new MemberDto(rs.getString(1),
 											  rs.getString(2),
-											  rs.getInt(3),
+											  rs.getString(3),
 											  rs.getString(4),
 											  rs.getInt(5),
 											  rs.getString(6),

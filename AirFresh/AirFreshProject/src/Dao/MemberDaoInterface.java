@@ -14,7 +14,7 @@ public interface MemberDaoInterface {
 	
 	public boolean delMem(String mem_id, String mem_pw);
 	
-	public String findID(String mem_name, int mem_cell);
+	public String findID(String mem_name, String mem_cell);
 	
 	public String findPW(String mem_id, String mem_name);
 }

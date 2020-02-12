@@ -27,25 +27,27 @@ public class UpdateMem extends HttpServlet{
 
 	public void processFunc(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		req.setCharacterEncoding("utf-8");
+		System.out.println("UpdateMem 도착");
 		
-		String mem_id = req.getParameter("mem_id");
-		String mem_pw = req.getParameter("mem_pw");				
-		int mem_cell = Integer.parseInt(req.getParameter("mem_cell")); 		
-		int mem_addr1 = Integer.parseInt(req.getParameter("mem_addr1"));
-		String mem_addr2 = req.getParameter("mem_addr2");
-		String mem_addr3 = req.getParameter("addr3");		
+		String _id = req.getParameter("mem_id");
+		String _pw = req.getParameter("mem_pw");				
+		String _cell = req.getParameter("mem_cell"); 		
+		int _addr1 = Integer.parseInt(req.getParameter("mem_addr1"));
+		String _addr2 = req.getParameter("mem_addr2");
+		String _addr3 = req.getParameter("mem_addr3");		
 		
-		System.out.println(mem_id + " " + mem_pw + " " + mem_cell + " " +  
-				mem_addr1 + " " + mem_addr2 + " " + mem_addr3 + " ");
+		System.out.println(_id + " " + _pw + " " + _cell + " " +  
+				_addr1 + " " + _addr2 + " " + _addr3 + " ");
 		
 		singleton s = singleton.getInstance();
 		
-		MemberDto dto = new MemberDto(mem_id, mem_pw, mem_cell, mem_addr1, mem_addr2, mem_addr3);
+		MemberDto dto = new MemberDto(_id, _pw, _cell, _addr1, _addr2, _addr3);
 		
 		boolean isS3 = s.ms.updateMem(dto);
-		req.setAttribute("isS3", isS3);	
+		req.setAttribute("isS3", isS3);
+		System.out.println("UpdateMem 도착2");
 		//resp.sendRedirect(req.getContextPath() + "/WebContent/client_view/member/finding.jsp?isS3=" + isS3);
-		forward("./client_view/member/finding.jsp", req, resp);		
+		forward("./client_view/member/updateAf.jsp", req, resp);		
 	}
 	
 	public void forward(String url, HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

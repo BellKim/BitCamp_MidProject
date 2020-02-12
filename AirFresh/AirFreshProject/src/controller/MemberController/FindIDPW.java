@@ -35,7 +35,7 @@ public class FindIDPW extends HttpServlet {
 				
 		if(gubun.equals("ID")) {	
 			String _name = req.getParameter("mem_name");
-			int _cell = Integer.parseInt(req.getParameter("mem_cell"));
+			String _cell = req.getParameter("mem_cell");
 			System.out.println(_name + " " + _cell);
 			String id = s.ms.findID(_name, _cell);
 			req.setAttribute("id", id);	

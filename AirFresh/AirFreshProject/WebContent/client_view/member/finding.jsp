@@ -4,7 +4,7 @@
 <%
 String str = request.getParameter("isS");	// addMem
 MemberDto mem = (MemberDto)request.getAttribute("login");	//memLogin
-String str1 = request.getParameter("isS1");		// idCheck	null;//
+String str1 = request.getParameter("isS1");		// idCheck
 String str2 = request.getParameter("isS2");		// delMem	null;//
 String str3 = request.getParameter("isS3");		// updateMem	null;//
 String str4 = request.getParameter("id");	// FindID(PW)

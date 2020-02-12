@@ -8,7 +8,7 @@ MemberDto mem = (MemberDto)session.getAttribute("login");
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>myPage</title>
 </head>
 <body>
 
@@ -25,37 +25,24 @@ MemberDto mem = (MemberDto)session.getAttribute("login");
 					<dt>SHOPPING</dt>
 					<dd>
 						<ul>
-							<li>주문/배송 <a href=""><span><strong class="em">0</strong> 건</span></a></li>
-							<li>교환/환불 <a href=""><span><strong>0</strong> 건</span></a></li>
-							<li>작성예정 제품후기 <a href=""><span><strong>0</strong> 건</span></a></li>
-							<li>찜한 제품 <a href=""><span><strong>0</strong> 개</span></a></li>
+							<%-- <li> <jsp:include page="./../rental/rentalDetail.jsp" flush="false"></jsp:include></li> --%>
+							<li> <a href=""><span><strong>렌탈내역</strong></span></a></li>
+							<li> <a href=""><span><strong>리뷰내역</strong></span></a></li>
+							<li> <a href=""><span><strong>AS내역</strong></span></a></li>
+							<li> <a href=""><span><strong>문의내역</strong></span></a></li>
 						</ul>
 					</dd>
 				</dl>				
-				<dl>
-					<dt>INFO</dt>
-					<dd>
-						<ul>
-							
-								<li>나의 렌탈 제품 <a href=""><span><strong class="em">0</strong> 개</span></a></li>
-								<li>나의 구매 제품 <a href=""><span><strong>0</strong> 개</span></a></li>
-							
-							
-							<li>1:1문의 <a href=""><span><strong>0</strong> 건</span></a></li>
-						</ul>
-					</dd>
-				</dl>
 			</div>
 
-			<h3>최근 주문 내역 <span>최근 3개월간 주문내역만 표시됩니다.</span></h3>
+			<h3>최근 주문 내역</h3>
 			<div class="recentList">
 				
 				
 				
 				<!-- 주문내역이 없는 경우 -->
 				<div class="icoMsg box nothing">
-					<p>최근에 주문하신 제품이 없네요!</p>
-					<p>저희가 준비한 기획전에서 다양한 쇼핑혜택을 누려보세요!</p>					
+					<p>최근에 주문하신 제품이 없네요!</p>										
 				</div>
 				<!-- //주문내역이 없는 경우 -->
 				
@@ -67,11 +54,7 @@ MemberDto mem = (MemberDto)session.getAttribute("login");
 				<!-- 작성 예정 제품 후기 없는 경우 -->
 				
 				<div class="icoMsg box nothing">
-					<p>후기 쓸 주문내역이 없어요.</p>
-					<p>다른 분들의 후기로 SK매직을 체험해 보세요!</p>
-					<div class="btnArea">
-						<a href="" class="btn bk">제품 후기 보러 가기</a>
-					</div>
+					<p>후기 쓸 주문내역이 없어요.</p>					
 				</div>			
 			</div>
 

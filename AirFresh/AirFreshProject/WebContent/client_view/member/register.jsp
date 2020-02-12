@@ -11,7 +11,7 @@
 <meta charset="UTF-8">
 <title>register</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<!-- <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script> -->
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 </head>
 <body>
 
@@ -33,16 +33,16 @@
 					<td>아이디(이메일)</td>
 					<td>
 						<input type="text" id="mem_id" name="mem_id" size="20" placeholder="ID@email_account.com" maxlength="50">												
-						<button type="button" id="_btnid" class="btn btn-primary btn-danger">id check</button>
 						<p id="idcheck" style="margin-left:10px; padding-top: 10px;">id 확인</p>
+						<button type="button" id="_btnid">id check</button>
 					</td>
 				</tr>
 				<tr>
 					<td>패스워드</td>
 					<td>
 						<input type="password" id="mem_pw" name="mem_pw" size="20" placeholder="6자리 이상 입력해주세요." maxlength="20"><br>
-						<!-- <input type="password" id="mem_pw1" size="20" placeholder="비밀번호 재확인" maxlength="20">
-						<font id="chkNotice" size="2"></font> -->
+						<input type="password" id="mem_pw1" size="20" placeholder="비밀번호 재확인" maxlength="20">
+						<font id="chkNotice" size="2"></font>
 						<p style="font-size: 8px; color: gray;">영문,숫자,특수문자 3가지를 조합한 6자리 이상으로 입력해주세요.</p>												
 					</td>
 				</tr>				
@@ -84,7 +84,8 @@
 <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script type="text/javascript">
 $(document).ready(function () {
-	/* //  비번 재확인
+	
+	//  비번 재확인
 	$(function(){
 		$('#mem_pw').keyup(function(){
 		      $('#chkNotice').html('');
@@ -101,7 +102,7 @@ $(document).ready(function () {
 		        }
 
 		    });
-	}); */
+	}); 
 	 
 	
 	$("#_btnid").click(function () {		
@@ -157,7 +158,7 @@ $(document).ready(function () {
 		}	
 	});
 	
-
+});
 
 function sample6_execDaumPostcode() {
     new daum.Postcode({
@@ -234,7 +235,9 @@ function validate() {
 		return false;
 	}
 	return true;	
-};
+}
+
+
 
 
 </script>

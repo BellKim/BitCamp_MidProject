@@ -9,6 +9,7 @@
 <head>
 <meta charset="UTF-8">
 <title>login</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script src="http://lab.alexcican.com/set_cookies/cookie.js" type="text/javascript" ></script>
 </head>

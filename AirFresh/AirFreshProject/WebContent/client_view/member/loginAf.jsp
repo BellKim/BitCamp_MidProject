@@ -23,7 +23,7 @@ if(mem != null && !mem.getMem_id().equals("")){
 	location.href = "./client_view/member/mypage.jsp";
 	</script>
 <%
-}else{	// 왜 밑에 창이 안뜰까?
+}else{// 왜 밑에 창이 안뜰까?
 %>
 	<script type="text/javascript">
 	alert("id나 password를 확인하십시오");

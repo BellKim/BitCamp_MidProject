@@ -8,7 +8,9 @@ MemberDto mem = (MemberDto)session.getAttribute("login");
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>update</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 </head>
 <body>
 
@@ -22,13 +24,13 @@ MemberDto mem = (MemberDto)session.getAttribute("login");
 				<tr>
 					<td>이름</td>
 					<td>
-						<input type="text" value="<%=mem.getMem_name() %>" size="20" readonly="readonly">
+						<input type="text" id="mem_name" name="mem_name" size="20" value="<%=mem.getMem_name() %>" readonly="readonly">						
 					</td>
 				</tr>
 				<tr>
 					<td>아이디(이메일)</td>
 					<td>
-						<input type="text" value="<%=mem.getMem_id() %>" size="20" readonly="readonly">										
+						<input type="text" id="mem_id" name="mem_id" size="20" value="<%=mem.getMem_id() %>" readonly="readonly">
 					</td>
 				</tr>
 				<tr>
@@ -47,7 +49,8 @@ MemberDto mem = (MemberDto)session.getAttribute("login");
 				<tr>
 					<td>생년월일</td>
 					<td>
-						<input type="text" value="<%=mem.getMem_birth() %>" size="20" readonly="readonly">
+						<input type="text" id="mem_birth" name="mem_birth" size="20" value="<%=mem.getMem_birth() %>" readonly="readonly">
+						
 					</td>
 				</tr>
 				<tr>
@@ -62,7 +65,7 @@ MemberDto mem = (MemberDto)session.getAttribute("login");
 				</tr>
 				<tr>
 					<td colspan="2" align="center">
-						<input type="button" value="로그아웃" onclick="location.href='login.jsp'">
+						<input type="button" value="이전으로" onclick="location.href='mypage.jsp'">
 						<input type="button" value="수정" id="_btnUpdate">
 						<input type="button" value="회원탈퇴" id="_btnSignout" onclick="return confirm('정말로 탈퇴하시겠습니까?')">
 					</td>
@@ -98,7 +101,7 @@ $(document).ready(function () {
 	
 	$("#_btnSignout").click(function () {		
 		//id, pw 입력받아 확인후 삭제됨, 새창 또는 팝업창으로 입력칸을 띄우던가 수정 요!		
-		location.href = "delmem";
+		location.href = 'signout.jsp';	<%-- "<%=request.getContextPath() %>/delmem" --%>
 	});
 	
 });
