@@ -28,12 +28,12 @@ public class idCheck extends HttpServlet{
 		req.setCharacterEncoding("utf-8");
 		System.out.println("idCheck 도착");
 		
-		String mem_id = req.getParameter("mem_id");
-		System.out.println("id:" + mem_id);
+		String _id = req.getParameter("mem_id");
+		System.out.println("id:" + _id);
 		
 		singleton s = singleton.getInstance();
 		
-		boolean isS1 = s.ms.idCheck(mem_id);
+		boolean isS1 = s.ms.idCheck(_id);
 		System.out.println(isS1);
 		if(isS1 = true) {	//중복되는 id가 있음
 			System.out.println("NO");

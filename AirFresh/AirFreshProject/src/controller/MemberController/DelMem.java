@@ -27,16 +27,23 @@ public class DelMem extends HttpServlet{
 	protected void processFunc(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		req.setCharacterEncoding("utf-8");
 		
-		String _id = req.getParameter("mem_id");
-		String _pw = req.getParameter("mem_pw");
+		String command = req.getParameter("command");
+		System.out.println(command);	
 		
-		System.out.println(_id + "" + _pw);
-		
-		singleton s = singleton.getInstance();
-		boolean isS2 = s.ms.delMem(_id, _pw);
-		req.setAttribute("isS2", isS2);	
-		//resp.sendRedirect(req.getContextPath() + "/WebContent/client_view/member/finding.jsp?isS2" + isS2);
-		forward("./client_view/member/deleteAf.jsp", req, resp);
+		if(command.equals("signout")) {
+			resp.sendRedirect("./client_view/member/signout.jsp");
+		}else if(command.equals("deleteAf")) {
+			String _id = req.getParameter("mem_id");
+			String _pw = req.getParameter("mem_pw");
+			
+			System.out.println(_id + "" + _pw);
+			
+			singleton s = singleton.getInstance();
+			boolean isS2 = s.ms.delMem(_id, _pw);
+			req.setAttribute("isS2", isS2);	
+			//resp.sendRedirect(req.getContextPath() + "/WebContent/client_view/member/finding.jsp?isS2" + isS2);
+			forward("./client_view/member/deleteAf.jsp", req, resp);			
+		}
 	}
 	
 	public void forward(String url, HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

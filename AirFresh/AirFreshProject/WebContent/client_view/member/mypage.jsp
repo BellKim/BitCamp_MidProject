@@ -18,7 +18,7 @@ MemberDto mem = (MemberDto)session.getAttribute("login");
 			<div class="topBox">
 				<p><em><%=mem.getMem_name() %></em> 고객님, 안녕하세요!</p>
 				<div class="contact"><%=mem.getMem_cell() %> / <%=mem.getMem_id() %></div>
-				<div class="btn"><a href="update.jsp" class="btnm"><span>회원정보수정</span></a></div>
+				<div class="btn"><a href="<%=request.getContextPath() %>/updatemem?command=update" class="btnm"><span>회원정보수정</span></a></div>
 			</div>
 			<div class="topInfo">
 				<dl>

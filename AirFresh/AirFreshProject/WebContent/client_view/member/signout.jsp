@@ -1,5 +1,13 @@
+<%@page import="db.DBConnection"%>
+<%@page import="Dto.MemberDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+DBConnection.initConnection();
+%>
+<%
+MemberDto mem = (MemberDto)session.getAttribute("login");
+%> 
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,6 +23,7 @@
 	</div>	
 	<div class="login">
 		<form id="loginInfo" action="<%=request.getContextPath() %>/delmem" method="post">			
+			<input type="hidden" name="command" value="deleteAf">	
 			<div>
 			<div>
 				아이디:<input type="text" placeholder="아이디(이메일)을 입력해주세요." id="mem_id" name="mem_id">
@@ -22,8 +31,8 @@
 			<div>
 				비밀번호:<input type="password" placeholder="비밀번호를 입력해주세요." id="mem_pw" name="mem_pw">	
 			</div>			
-			</div>
-			<button type="button" id="Backbtn" onclick="location.href='update.jsp'">이전으로</button>
+			</div>								
+			<button type="button" id="Backbtn" onclick="location.href='<%=request.getContextPath() %>/updatemem?command=update'">이전으로</button>
 			<button type="button" id="btnSignout">회원탈퇴</button>							
 		</form>
 	</div>

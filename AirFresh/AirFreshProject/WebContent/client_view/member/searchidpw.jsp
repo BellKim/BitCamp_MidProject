@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>SearchIDPW</title>
-<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<!-- <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script> -->
 </head>
 <body>
 
@@ -18,7 +18,7 @@
 				<div class="fl">
 					<h4 class="hTit">아이디 찾기</h4>
 					<div class="findId">					
-						<form role="form" name="frmInfo1" id="frmInfo1" method="post" action="<%=request.getContextPath() %>/findidpw">	
+						<form role="form" name="frmInfo1" id="frmInfo1" method="post" action="<%=request.getContextPath() %>/findidpw?s_gubun=ID">	
 							<fieldset>
 								<input type="hidden" id="s_gubun" name="s_gubun" value="ID">
 								<p class="desc">회원가입 시 등록하신 <strong>이름</strong>과 <strong>휴대전화</strong>를 입력해주세요.</p>
@@ -37,7 +37,7 @@
 				</div>
 				<div class="fl">
 					<h4 class="hTit">패스워드 찾기</h4>
-					<div class="findId">					
+					<div class="findPw">					
 							<form role="form" name="frmInfo2" id="frmInfo2" method="post" action="<%=request.getContextPath() %>/findidpw">	
 							<fieldset>
 							<input type="hidden" id="s_gubun" name="s_gubun" value="PW">

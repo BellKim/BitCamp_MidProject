@@ -19,6 +19,7 @@ MemberDto mem = (MemberDto)session.getAttribute("login");
 		<h2>Air FRESH 회원정보수정</h2>
 		</div>
 		<form id="frm" onsubmit="return validate();" action="<%=request.getContextPath() %>/updatemem" method="post">			
+			<input type="hidden" name="command" value="updateAf">
 			<table>
 				<tr>
 					<td>이름</td>
@@ -63,10 +64,10 @@ MemberDto mem = (MemberDto)session.getAttribute("login");
 					</td>
 				</tr>
 				<tr>
-					<td colspan="2" align="center">
-<!--  -->				<input type="button" value="이전으로" onclick="location.href='mypage.jsp'">
+					<td colspan="2" align="center">			
+						<input type="button" value="이전으로" onclick="location.href='<%=request.getContextPath() %>/memlogin?command=mypage'">
 						<input type="button" value="수정" id="_btnUpdate">
-<!--  -->				<input type="button" value="회원탈퇴" id="_btnSignout" onclick="return confirm('정말로 탈퇴하시겠습니까?')">
+						<input type="button" value="회원탈퇴" id="_btnSignout" onclick="return confirm('정말로 탈퇴하시겠습니까?')">
 					</td>
 				</tr>
 
@@ -98,8 +99,8 @@ $(document).ready(function () {
 		}	
 	});
 	
-/*  */	$("#_btnSignout").click(function () {					
-		location.href = 'signout.jsp';
+	$("#_btnSignout").click(function () {					
+		location.href = '<%=request.getContextPath() %>/delmem?command=signout';
 	});
 	
 });
