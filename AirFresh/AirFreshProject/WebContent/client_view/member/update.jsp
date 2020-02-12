@@ -9,7 +9,6 @@ MemberDto mem = (MemberDto)session.getAttribute("login");
 <head>
 <meta charset="UTF-8">
 <title>update</title>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 </head>
 <body>
@@ -65,9 +64,9 @@ MemberDto mem = (MemberDto)session.getAttribute("login");
 				</tr>
 				<tr>
 					<td colspan="2" align="center">
-						<input type="button" value="이전으로" onclick="location.href='mypage.jsp'">
+<!--  -->				<input type="button" value="이전으로" onclick="location.href='mypage.jsp'">
 						<input type="button" value="수정" id="_btnUpdate">
-						<input type="button" value="회원탈퇴" id="_btnSignout" onclick="return confirm('정말로 탈퇴하시겠습니까?')">
+<!--  -->				<input type="button" value="회원탈퇴" id="_btnSignout" onclick="return confirm('정말로 탈퇴하시겠습니까?')">
 					</td>
 				</tr>
 
@@ -99,9 +98,8 @@ $(document).ready(function () {
 		}	
 	});
 	
-	$("#_btnSignout").click(function () {		
-		//id, pw 입력받아 확인후 삭제됨, 새창 또는 팝업창으로 입력칸을 띄우던가 수정 요!		
-		location.href = 'signout.jsp';	<%-- "<%=request.getContextPath() %>/delmem" --%>
+/*  */	$("#_btnSignout").click(function () {					
+		location.href = 'signout.jsp';
 	});
 	
 });

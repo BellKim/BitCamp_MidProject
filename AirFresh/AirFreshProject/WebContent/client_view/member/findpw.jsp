@@ -19,7 +19,7 @@ if(str5 != null && !str5.equals("")){
 	location.href = "./client_view/member/login.jsp";
 	</script>
 <%
-}else if(str5 == null || str5.equals("")){
+}else {		// if(str5 == null || str5.equals(""))
 %>
 	<script type="text/javascript">
 	alert("가입하신 내역이 없거나 잘못 입력하셨습니다");

@@ -21,7 +21,8 @@
 		<p>Air FRESH 홈페이지에 오신 것을 환영합니다.</p>
 	</div>	
 	<div class="login">
-		<form id="loginInfo" action="<%=request.getContextPath() %>/memlogin" method="post">			
+		<form id="loginInfo" action="<%=request.getContextPath() %>/memlogin" method="post">	
+			<input type="hidden" name="command" value="loginAf">		
 			<div>
 			<div>
 				<input type="text" placeholder="아이디(이메일)을 입력해주세요." id="mem_id" name="mem_id">
@@ -34,10 +35,10 @@
 				<label for="saveid">아이디 저장</label>
 			</div>
 			</div>
-			<button type="button" id="btnlogin">로그인</button>
+				<button type="button" id="btnlogin">로그인</button>
 			<div>
-				<a href="searchidpw.jsp">아이디·패스워드 찾기</a>
-				<a href="terms.jsp">회원가입</a>
+				<input type="button" value="아이디·패스워드 찾기" id="_btnidpw" onclick="location.href='<%=request.getContextPath() %>/memlogin?command=idpw'">
+				<input type="button" value="회원가입" id="_btnJoin" onclick="location.href='<%=request.getContextPath() %>/memlogin?command=terms'">
 			</div>		
 		</form>
 	</div>

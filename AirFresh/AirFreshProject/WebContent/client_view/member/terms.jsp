@@ -4,7 +4,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Terms</title>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 </head>
 <body>
 
@@ -59,18 +60,12 @@
 					{
 					alert("14세 미만은 가입할 수 없습니다.");
 					return;
-					}
-			
-			
-			
-				
+					}				
 				
 				/* ga 개인 약관동의 start */
 				try{gfn_gaJoinAgreeEvent();}catch(e){console.log(e)}
 				/* ga 개인 약관동의 end */
-				
-			
-			
+							
 			
 			if (!isRequiredAgree) {
 				$("#txtErrAgreeMsg").show();
@@ -81,16 +76,13 @@
 			
 			// 개인정보 수집/이용 동의 여부 설정
 			if ($("#agreePrivacyUse").is(":checked")) {
-				$("input:hidden[name=piUseYn]", $("#frmJoinAgreeInfo")).val("Y");
-				$("input:hidden[name=emailSmsRcvYn]", $("#frmJoinAgreeInfo")).val("Y");
+				$("input:hidden[name=piUseYn]", $("#frmJoinAgreeInfo")).val("Y");				
 			} else {
-				$("input:hidden[name=piUseYn]", $("#frmJoinAgreeInfo")).val("N");
-				$("input:hidden[name=emailSmsRcvYn]", $("#frmJoinAgreeInfo")).val("N");
+				$("input:hidden[name=piUseYn]", $("#frmJoinAgreeInfo")).val("N");				
 			}
 						
-			/* // 정보 입력 페이지로 이동
-			$("#frmJoinAgreeInfo").attr("action", "register.jsp");
-			$("#frmJoinAgreeInfo").submit(); */
+			// 정보 입력 페이지로 이동			
+			$("#frmJoinAgreeInfo").submit();
 		});
 		
 	}); 
@@ -129,7 +121,8 @@
 							</div>
 						</div>
 					
-					<form id="frmJoinAgreeInfo" method="post">
+					<form id="frmJoinAgreeInfo" action="<%=request.getContextPath() %>/addmem" method="post">
+						<input type="hidden" name="command" value="regi">
 						<div class="agreeBox chk">
 							<div class="agree">
 								<div class="checkbox">
@@ -153,19 +146,14 @@
 					  			<a href="privacyuseterms.jsp" class="link2" target="_blank">전문보기</a>
 							</div>												
 						</div>
-						<input type="hidden" name="piUseYn" value="">
-						<input type="hidden" name="miUseYn" value="">
-						<input type="hidden" name="emailSmsRcvYn" value="">
-						<input type="hidden" name="mbrTpCd" value="10">
-						<input type="hidden" name="findMbrNm" value="">
-						<input type="hidden" name="findMobile" value="">						
+						<input type="hidden" name="piUseYn" value="">														
 					</form>
 
 					<p class="txtBtm validate" style="display:none;" id="txtErrAgreeMsg">AirFresh몰 이용약관, 스마트센터 이용약관, 개인정보 수집 및 이용안내는 필수로 동의하셔야 합니다.</p>
 
 					<div class="btnArea half">
-						<a href="login.jsp" class="btnb"><span>이전</span></a>
-						<a href="register.jsp" class="btnb bk" id="btnJoinNextStep"><span>다음</span></a>
+						<a href='<%=request.getContextPath() %>/addmem?command=login'><span>이전</span></a>
+						<a href="<%=request.getContextPath() %>/addmem" class="btnb bk" id="btnJoinNextStep"><span>다음</span></a>						
 					</div>
 				</div>
 			</div>

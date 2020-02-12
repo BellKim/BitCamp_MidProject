@@ -51,7 +51,7 @@
 								</div>
 							</div>
 							<button type="button" onclick="_pwdfind()">확인</button>
-							<button type="button" onclick="location.href='login.jsp'">이전으로</button>
+							<button type="button" onclick="location.href='<%=request.getContextPath() %>/addmem?command=login'">이전으로</button>
 						</fieldset>
 						</form>
 					</div>

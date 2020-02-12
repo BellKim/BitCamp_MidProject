@@ -16,7 +16,8 @@ if(str3.equals("true")){
 %>
 	<script type="text/javascript">
 	System.out.println('수정쓰!');
-	alert("성공적으로 수정 되었습니다");	
+	alert("성공적으로 수정 되었습니다");
+	location.href = "./client_view/member/mypage.jsp";
 	</script>	
 <%
 }else if(str3.equals("false")){
@@ -24,6 +25,7 @@ if(str3.equals("true")){
 	<script type="text/javascript">
 	System.out.println('수정실패쓰!');
 	alert("수정 되지 않았습니다");	
+	location.href = "./client_view/member/mypage.jsp";
 	</script>
 <% 
 }

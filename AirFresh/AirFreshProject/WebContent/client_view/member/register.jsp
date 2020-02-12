@@ -2,8 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%
-    DBConnection.initConnection();
-    
+    DBConnection.initConnection();    
     %>
 <!DOCTYPE html>
 <html>
@@ -21,7 +20,7 @@
 		</div>
 
 		<form id="frm" onsubmit="return validate();" action="<%=request.getContextPath() %>/addmem" method="post">			
-
+			<input type="hidden" name="command" value="addAf">
 			<table>
 				<tr>
 					<td>이름</td>
@@ -71,7 +70,7 @@
 				<tr>
 					<td colspan="2" align="center">
 						<input type="button" value="회원가입" id="_btnJoin" >
-						<input type="button" value="이전으로" onclick="location.href='login.jsp'">
+						<input type="button" value="이전으로" id="_btnlogin" onclick="location.href='<%=request.getContextPath() %>/addmem?command=login'">
 					</td>
 				</tr>
 
@@ -109,7 +108,7 @@ $(document).ready(function () {
 		
 		$.ajax({
 			type:"post",
-			url:"./idcheck.jsp",
+/*  */		url:"./idcheck.jsp",
 			data:{ "_id":$("#mem_id").val() },
 			success:function( data ){		
 				if(data.trim() == "YES"){
@@ -156,9 +155,8 @@ $(document).ready(function () {
 		else{
 			$("#frm").submit();		
 		}	
-	});
+	});	
 	
-});
 
 function sample6_execDaumPostcode() {
     new daum.Postcode({
@@ -215,7 +213,7 @@ function validate() {
 	var pw = $("#mem_pw").val();	// 특수문자 / 문자 / 숫자 포함 형태의 6~20자리 이내의 암호 정규식
 	var pwReg = /^.*(?=^.{6,20}$)(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$/;
 		
-	var cell= $("#mem_cell").val();	// 핸드폰번호 정규식, members table에 010~으로 안들어가고 10~으로 들어가서 수정 요!(id 찾기)
+	var cell= $("#mem_cell").val();	// 핸드폰번호 정규식
 	var cellReg = /^01([0|1|6|7|8|9]?)?([0-9]{3,4})?([0-9]{4})$/;
 	
 	if(idReg.test(id)==false){
@@ -236,6 +234,10 @@ function validate() {
 	}
 	return true;	
 }
+
+}
+
+
 
 
 
