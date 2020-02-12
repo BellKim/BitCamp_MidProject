@@ -30,13 +30,15 @@ public class PrintAsApplication extends HttpServlet {
 		System.out.println("printAsApplication 도착");
 		
 		String mem_id = req.getParameter("id");
-		//System.out.println("printAsApp mem_id: "+mem_id);
+		System.out.println("printAsApp mem_id: "+mem_id);
 		
 		singleton s = singleton.getInstance();
 		List<AsAppDto> list = s.asi.memAsAppList(mem_id);
+		System.out.println("list size: "+list.size());
 		
 		req.setAttribute("list", list);
-		resp.sendRedirect("./client_view/as/asapplist.jsp");
+		//resp.sendRedirect("./client_view/as/asapplist.jsp");
+		req.getRequestDispatcher("./client_view/as/asapplist.jsp").forward(req, resp);
 	}
 
 }

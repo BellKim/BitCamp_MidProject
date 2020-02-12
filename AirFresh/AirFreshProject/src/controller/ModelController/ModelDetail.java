@@ -37,14 +37,15 @@ public class ModelDetail extends HttpServlet {
 		//System.out.println(model.toString());
 		req.setAttribute("model", model);
 		
-		if(command.equals("detail")) {	
+		if(command.equals("detail")) {
 			//전체목록-> 상세페이지로 넘어갈때
-			//resp.sendRedirect("./client_view/rental/rentalDetail.jsp");
 			req.getRequestDispatcher("./client_view/rental/rentalDetail.jsp").forward(req, resp);
+			
 		} else if(command.equals("purcha")) {
-			req.getRequestDispatcher("./client_view/rental/purchase.jsp").forward(req, resp);
+			//req.getRequestDispatcher("./client_view/rental/purchase.jsp").forward(req, resp);
+			req.getRequestDispatcher("./client_view/rental/purchasetest.jsp").forward(req, resp);
 		}
 		
 		
-	}
+	}//end process
 }

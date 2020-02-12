@@ -59,8 +59,8 @@ public class NoticeFileDown extends HttpServlet {
 				
 				//폴더 (Client)
 				//filePath = "d:\\tmp";
-				
-				filePath = filePath + "\\" +tempfile+".temp";
+				String str = filename.substring(filename.lastIndexOf("."));
+				filePath = filePath + "\\" +tempfile + str;
 			
 				System.out.println("다운로드" + filePath);
 				

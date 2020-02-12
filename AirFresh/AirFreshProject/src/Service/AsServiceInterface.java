@@ -19,7 +19,7 @@ public interface AsServiceInterface {
 	AsAppDto getDetailAs(int as_index);
 	
 	//as신청수정
-	boolean updateAsApp(AsAppDto dto);
+	boolean updateAsApp(int as_index,AsAppDto dto);
 	
 	//as신청취소
 	boolean deleteAsApp(int as_index);

@@ -28,16 +28,26 @@ public class DetailNotice extends HttpServlet {
 	public void processFunc(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		req.setCharacterEncoding("utf-8");
 		int noti_index = Integer.parseInt(req.getParameter("noti_index"));
+		String command = req.getParameter("command");
+		
 		singleton s = singleton.getInstance();
 		s.nbsi.readcount(noti_index);
 		
-		NoticeBbsDto notice = s.nbsi.getNoticeBbs(noti_index);
+		if(command.contentEquals("admin")) {
+			NoticeBbsDto notice = s.nbsi.getNoticeBbs(noti_index);
+			req.setAttribute("noticeBbs", notice);
 		
-		req.setAttribute("noticeBbs", notice);
+			ProjectUtil.forward("./admin_view/board/noticedetail.jsp", req, resp);
+			
+		} else if(command.contentEquals("user")) {
+			NoticeBbsDto notice = s.nbsi.getNoticeBbs(noti_index);
+			req.setAttribute("noticeBbs", notice);
 		
-		ProjectUtil.forward("./admin_view/board/noticedetail.jsp", req, resp);
-		
+			ProjectUtil.forward("./client_view/board/noticedetail.jsp", req, resp);
+		}
 		
 	}
+	
+	
 	
 }

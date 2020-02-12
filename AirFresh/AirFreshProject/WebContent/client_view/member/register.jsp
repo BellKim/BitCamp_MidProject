@@ -104,7 +104,7 @@ $(document).ready(function () {
 	}); 
 	 
 	
-	$("#_btnid").click(function () {		
+	$("#_btnid").click(function () {	
 		
 		$.ajax({
 			type:"post",

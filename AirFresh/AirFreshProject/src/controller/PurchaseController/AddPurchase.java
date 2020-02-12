@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.swing.JSeparator;
 
+import Dto.InstallDto;
 import Dto.MemberDto;
 import Dto.ModelDto;
 import Dto.PurchaseDto;
@@ -47,6 +48,21 @@ public class AddPurchase  extends HttpServlet {
 		singleton s = singleton.getInstance();
 		
 		boolean command = s.ps.purchaseInsert(mem.getMem_id(), model.getPrd_index(), ins_date);
+		//Install 생성 부분
+		if(command) {
+			//pur 생성 성공시 
+			PurchaseDto purDto = s.ps.getNewCreate_Pur();
+			//System.out.println(purDto.getPur_index() + "   || " + purDto.getIns_date());
+			
+			InstallDto insDto = new InstallDto(purDto.getPur_index(), purDto.getIns_date());
+			
+			boolean isS = s.is.addInstall(insDto);
+			if(isS) {
+				System.out.println("install 생성 성공");
+			}else {
+				System.out.println("install 생성 실패");
+			}
+		}
 		req.getRequestDispatcher("./client_view/rental/purcomplete.jsp?command="+command).forward(req, resp);
 	}
 	

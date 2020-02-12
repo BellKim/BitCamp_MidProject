@@ -37,6 +37,15 @@ public class PurchaseDto implements Serializable {
 		this.ins_date = ins_date;
 		this.order_num = order_num;
 	}
+	
+	
+	
+	
+	public PurchaseDto(int pur_index, String ins_date) {
+		super();
+		this.pur_index = pur_index;
+		this.ins_date = ins_date;
+	}
 
 	@Override
 	public String toString() {

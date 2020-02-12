@@ -13,7 +13,12 @@ import db.DBClose;
 import db.DBConnection;
 
 public class ModelDao implements ModelDaoInterface {
-
+	
+	public ModelDao() {
+		DBConnection.initConnection();
+	}
+	
+	
 	@Override
 	public List<ModelDto> getModelList() {
 		String sql = " SELECT * FROM MODELLIST ";

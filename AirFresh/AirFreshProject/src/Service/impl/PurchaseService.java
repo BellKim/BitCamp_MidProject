@@ -36,7 +36,9 @@ public class PurchaseService implements PurchaseServiceInterface {
 		return dao.getModelName(mem_id);
 	}
 	
-	
+	public PurchaseDto getNewCreate_Pur() {
+		return dao.getNewCreate_Pur();
+	}
 
 	
 }
