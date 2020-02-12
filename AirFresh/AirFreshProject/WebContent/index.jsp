@@ -1,3 +1,4 @@
+<%@page import="db.DBConnection"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -7,10 +8,9 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<!-- <a href="login.jsp"> 이 동 </a> -->
-	
 <%
-response.sendRedirect("login.jsp");
+DBConnection.initConnection(); 
+response.sendRedirect(request.getContextPath()+"/client_view/main.jsp");
 %>
 
 </body>

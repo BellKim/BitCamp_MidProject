@@ -42,6 +42,14 @@ public class NoticeBbsDto implements Serializable {
 	public NoticeBbsDto() {
 	}
 
+	@Override
+	public String toString() {
+		return "NoticeBbsDto [noti_index=" + noti_index + ", noti_title=" + noti_title + ", noti_content="
+				+ noti_content + ", noti_catagory=" + noti_catagory + ", noti_writer=" + noti_writer + ", wdate="
+				+ wdate + ", filename=" + filename + ", tempfile=" + tempfile + ", readcount=" + readcount
+				+ ", noti_del=" + noti_del + "]";
+	}
+
 	public NoticeBbsDto(int noti_index, String noti_title, String noti_content, int noti_catagory, String noti_writer,
 			String wdate, String filename, String tempfile, int readcount, int noti_del) {
 		super();

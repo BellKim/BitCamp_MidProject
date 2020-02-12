@@ -21,7 +21,7 @@
 	%>
 	<script type="text/javascript">
 		alert("성공적으로 추가되었습니다.");
-		location.href = "<%=request.getContextPath()%>/noticelist"; //컨트롤러 거쳐야함
+		location.href = "<%=request.getContextPath()%>/noticelist?command=admin"; //컨트롤러 거쳐야함
 	</script>
 
 	<%
@@ -29,13 +29,57 @@
 	%>
 	<script type="text/javascript">
 		alert("추가되지 않았습니다.");
-		location.href = "<%=request.getContextPath()%>/noticelist"; 
+		location.href = "<%=request.getContextPath()%>/noticelist?command=admin"; 
 	</script>
 	<%
 		}
 	%>
 	<%
+		} else if(command.equals("delete")){
+	%>
+	<%
+		if (str.equals("true")) {
+	%>
+	<script type="text/javascript">
+		alert("성공적으로 삭제되었습니다.");
+		location.href = "<%=request.getContextPath()%>/noticelist?command=admin"; //컨트롤러 거쳐야함
+	</script>
+
+	<%
+		} else {
+	%>
+	<script type="text/javascript">
+		alert("삭제되지 않았습니다.");
+		location.href = "<%=request.getContextPath()%>/noticelist?command=admin"; 
+	</script>
+	<%
 		}
+	%>
+	<%
+		} else if(command.equals("update")){
+	%>
+	<%
+		if (str.equals("true")) {
+	%>
+	<script type="text/javascript">
+		alert("성공적으로 수정되었습니다.");
+		location.href = "<%=request.getContextPath()%>/noticelist?command=admin"; //컨트롤러 거쳐야함
+	</script>
+
+	<%
+		} else {
+	%>
+	<script type="text/javascript">
+		alert("수정되지 않았습니다.");
+		location.href = "<%=request.getContextPath()%>/noticelist?command=admin"; 
+	</script>
+	<%
+		}
+	%>
+	
+	<%
+	
+	}
 	%>
 </body>
 </html>

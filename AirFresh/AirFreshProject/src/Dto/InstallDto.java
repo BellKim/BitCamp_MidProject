@@ -1,6 +1,8 @@
 package Dto;
 
-public class InstallDto {
+import java.io.Serializable;
+
+public class InstallDto implements Serializable{
 	
 	private int ins_index;	//제품 설치 인덱스
 	private int pur_index;	//렌탈 인덱스
@@ -26,9 +28,12 @@ public class InstallDto {
 	}
 
 	
-	
-	
-	
+	public InstallDto(int pur_index, String ins_date) {
+		super();
+		this.pur_index = pur_index;
+		this.ins_date = ins_date;
+	}
+
 	public InstallDto(int ins_index, int pur_index, String ins_date, String comp_date, int mgr_index, int ins_state,
 			String prd_model_name, String mem_id, String mem_name, String pur_date, String mgr_name, int mgr_loc,
 			int mgr_cell, int mem_addr1, String mem_addr2, String mem_addr3) {

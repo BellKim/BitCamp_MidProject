@@ -14,6 +14,10 @@ import db.DBConnection;
 
 public class MemberDao implements MemberDaoInterface{	
 	
+	public MemberDao() {
+		DBConnection.initConnection();
+	}
+	
 	@Override
 	public boolean idCheck(String mem_id) {
 		String sql = " SELECT MEM_ID "

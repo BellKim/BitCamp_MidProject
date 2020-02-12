@@ -1,4 +1,4 @@
-package controller.NoticeBbsController;
+ package controller.NoticeBbsController;
 
 import java.io.File;
 import java.io.IOException;

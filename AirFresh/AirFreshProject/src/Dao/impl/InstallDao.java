@@ -1,5 +1,6 @@
 package Dao.impl;
 
+import java.io.Serializable;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -12,7 +13,7 @@ import Dto.InstallDto;
 import db.DBClose;
 import db.DBConnection;
 
-public class InstallDao implements InstallDaoInterface {
+public class InstallDao implements InstallDaoInterface, Serializable {
 	
 	
 	public InstallDao() {
@@ -39,17 +40,17 @@ public class InstallDao implements InstallDaoInterface {
 		ResultSet rs = null;
 		
 		List<InstallDto> list = new ArrayList<InstallDto>();
-		System.out.println("[getInstallListAll] sql = " + sql);
+		System.out.println("[getNullInstallList] sql = " + sql);
 		
 		try {
 			
 			conn = DBConnection.getConnection();
-			System.out.println("[getInstallListAll]  1/6");
+			System.out.println("[getNullInstallList]  1/6");
 			psmt = conn.prepareStatement(sql);
-			System.out.println("[getInstallListAll]  2/6");
+			System.out.println("[getNullInstallList]  2/6");
 			
 			rs = psmt.executeQuery();
-			System.out.println("[getInstallListAll]  3/6");
+			System.out.println("[getNullInstallList]  3/6");
 			
 			while(rs.next()) {
 				
@@ -69,9 +70,9 @@ public class InstallDao implements InstallDaoInterface {
 				list.add(dto);
 				
 			}
-			System.out.println("[getInstallListAll]  4/6");
+			System.out.println("[getNullInstallList]  4/6");
 		} catch (SQLException e) {
-			System.out.println("[getInstallListAll] fail");
+			System.out.println("[getNullInstallList] fail");
 			e.printStackTrace();
 		}finally {
 			DBClose.close(psmt, conn, rs);
@@ -91,24 +92,24 @@ public class InstallDao implements InstallDaoInterface {
 		+ " p.prd_index = m1.prd_index  AND "
 		+ " p.mem_id = m2.mem_id AND "
 		+ " i.mgr_index IS NULL AND "
-		+ " TO_CHAR(i.ins_date) LIKE '%" + date + "%'";
+		+ " i.ins_date = '" + date + "'";
 
 		Connection conn = null;
 		PreparedStatement psmt = null;
 		ResultSet rs = null;
 		
 		List<InstallDto> list = new ArrayList<InstallDto>();
-		System.out.println("[getInstallListAll] sql = " + sql);
+		System.out.println("[getNullInstallList(Date)] sql = " + sql);
 		
 		try {
 			
 			conn = DBConnection.getConnection();
-			System.out.println("[getInstallListAll]  1/6");
+			System.out.println("[getNullInstallList(Date)]  1/6");
 			psmt = conn.prepareStatement(sql);
-			System.out.println("[getInstallListAll]  2/6");
+			System.out.println("[getNullInstallList(Date)]  2/6");
 			
 			rs = psmt.executeQuery();
-			System.out.println("[getInstallListAll]  3/6");
+			System.out.println("[getNullInstallList(Date)]  3/6");
 			
 			while(rs.next()) {
 				
@@ -128,9 +129,9 @@ public class InstallDao implements InstallDaoInterface {
 				list.add(dto);
 				
 			}
-			System.out.println("[getInstallListAll]  4/6");
+			System.out.println("[getNullInstallList(Date)]  4/6");
 		} catch (SQLException e) {
-			System.out.println("[getInstallListAll] fail");
+			System.out.println("[getNullInstallList(Date)] fail");
 			e.printStackTrace();
 		}finally {
 			DBClose.close(psmt, conn, rs);
@@ -144,7 +145,7 @@ public class InstallDao implements InstallDaoInterface {
 	public boolean addInstall(InstallDto dto) {
 		
 		String sql= " INSERT INTO INSTALL(ins_index, pur_index, ins_date, ins_state) "
-				+ " VALUES( ?, ?, ?, 0) ";
+				+ " VALUES( INSTALL_SEQ.NEXTVAL , ?, TO_DATE(?), 0) ";
 		
 		Connection conn = null;
 		PreparedStatement psmt = null;
@@ -152,15 +153,22 @@ public class InstallDao implements InstallDaoInterface {
 		
 		System.out.println("[addInstall] sql = " + sql);
 	
+		//날짜 Date 형식에 맞춰서 작성 
+		String date = dto.getIns_date();
+		System.out.println(date);
+		
+		date = date.replace("-", "/");
+		System.out.println(date);
+		date = date.substring(0, 10);
+		System.out.println(date);
+		
 		try {
 			conn = DBConnection.getConnection();
 			psmt = conn.prepareStatement(sql);
-			psmt.setInt(1, dto.getIns_index());
-			psmt.setInt(2, dto.getPur_index());
-			psmt.setString(3, dto.getIns_date());
+			psmt.setInt(1, dto.getPur_index());
+			psmt.setString(2, date);
 		
 			count = psmt.executeUpdate();
-			
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -170,5 +178,70 @@ public class InstallDao implements InstallDaoInterface {
 		}
 		
 		return count > 0? true:false;
+	}
+	
+	public boolean insertMgrID(int ins_index, int mgr_index) {
+		
+		String sql =" UPDATE INSTALL "
+				+ " SET mgr_index =? "
+				+ " WHERE ins_index =? ";
+		
+		
+		Connection conn = null;
+		PreparedStatement psmt = null;
+		int count = 0;
+		
+		System.out.println("[insertMgrID] sql = " + sql);
+		
+		
+		try {
+			conn = DBConnection.getConnection();
+			psmt = conn.prepareStatement(sql);
+			psmt.setInt(1, ins_index);
+			psmt.setInt(2, mgr_index);
+			
+			count = psmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			System.out.println("[insertMgrID] fail");
+			e.printStackTrace();
+		}finally {
+			DBClose.close(psmt, conn, null);
+		}
+		
+		return count>0?true:false;
+	}
+	
+	
+	
+	public boolean insertNull(int ins_index, int mgr_index) {
+		String sql =" UPDATE INSTALL "
+				+ " SET mgr_index =? "
+				+ " WHERE ins_index =? ";
+		
+		
+		Connection conn = null;
+		PreparedStatement psmt = null;
+		int count = 0;
+		
+		System.out.println("[insertMgrID] sql = " + sql);
+		
+		
+		try {
+			conn = DBConnection.getConnection();
+			psmt = conn.prepareStatement(sql);
+			psmt.setInt(1, ins_index);
+			psmt.setInt(2, mgr_index);
+			
+			count = psmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			System.out.println("[insertMgrID] fail");
+			e.printStackTrace();
+		}finally {
+			DBClose.close(psmt, conn, null);
+		}
+		
+		return count>0?true:false;
 	}
 }
