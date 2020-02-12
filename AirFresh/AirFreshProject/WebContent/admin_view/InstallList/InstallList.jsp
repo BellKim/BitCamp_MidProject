@@ -302,7 +302,7 @@
 					$.ajax({
 						url:'<%=request.getContextPath() %>/getInstallList_Null',
 						type:"post",
-						data:{date: sdate,
+						data:{	date: sdate,
 								command: "getDayList"},
 						datatype:"json",
 						
