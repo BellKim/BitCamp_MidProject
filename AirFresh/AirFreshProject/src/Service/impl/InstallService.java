@@ -10,19 +10,21 @@ import Service.InstallServiceInterface;
 
 public class InstallService implements InstallServiceInterface,Serializable {
 	
-	private static InstallServiceInterface installService = null;
+	
+	//서비스의 싱글톤화   private static InstallServiceInterface installService = null;
+	 
 	private InstallDaoInterface dao = new InstallDao();
 	
-	private InstallService() {
+	public InstallService() {
 	}
-	
+	/*
 	public static InstallServiceInterface getInstance() {
 		if(installService == null) {
 			installService = new InstallService();
 		}
 		return installService;
 	}
-	
+	*/
 	public List<InstallDto> getNullInstallList(){
 		
 		return dao.getNullInstallList();

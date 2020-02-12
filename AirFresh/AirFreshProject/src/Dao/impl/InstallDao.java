@@ -145,7 +145,7 @@ public class InstallDao implements InstallDaoInterface, Serializable {
 	public boolean addInstall(InstallDto dto) {
 		
 		String sql= " INSERT INTO INSTALL(ins_index, pur_index, ins_date, ins_state) "
-				+ " VALUES( ?, ?, ?, 0) ";
+				+ " VALUES( INSTALL_SEQ.NEXTVAL , ?, TO_DATE(?), 0) ";
 		
 		Connection conn = null;
 		PreparedStatement psmt = null;
@@ -153,15 +153,22 @@ public class InstallDao implements InstallDaoInterface, Serializable {
 		
 		System.out.println("[addInstall] sql = " + sql);
 	
+		//날짜 Date 형식에 맞춰서 작성 
+		String date = dto.getIns_date();
+		System.out.println(date);
+		
+		date = date.replace("-", "/");
+		System.out.println(date);
+		date = date.substring(0, 10);
+		System.out.println(date);
+		
 		try {
 			conn = DBConnection.getConnection();
 			psmt = conn.prepareStatement(sql);
-			psmt.setInt(1, dto.getIns_index());
-			psmt.setInt(2, dto.getPur_index());
-			psmt.setString(3, dto.getIns_date());
+			psmt.setInt(1, dto.getPur_index());
+			psmt.setString(2, date);
 		
 			count = psmt.executeUpdate();
-			
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

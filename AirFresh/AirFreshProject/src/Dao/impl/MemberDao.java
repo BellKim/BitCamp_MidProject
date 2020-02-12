@@ -12,6 +12,10 @@ import db.DBConnection;
 
 public class MemberDao implements MemberDaoInterface{	
 	
+	public MemberDao() {
+		DBConnection.initConnection();
+	}
+	
 	@Override
 	public boolean getId(String mem_id) {
 		String sql = " SELECT ID "

@@ -16,7 +16,7 @@ import db.DBConnection;
 public class ManageMemberDao implements ManageMemberDaoInterface {
 	
 	public ManageMemberDao() {
-	
+		DBConnection.initConnection();
 	}
 
 	@Override

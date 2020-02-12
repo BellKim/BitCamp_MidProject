@@ -16,6 +16,7 @@ import com.google.gson.Gson;
 import Dto.InstallDto;
 import Service.InstallServiceInterface;
 import Service.impl.InstallService;
+import singleton.singleton;
 
 /**
  * Servlet implementation class getInstallList_Null
@@ -35,7 +36,9 @@ public class getInstallList_Null extends HttpServlet implements Serializable{
 
 	protected void processing(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		System.out.println("getInstallList_Null 도착");
-		InstallServiceInterface isif = InstallService.getInstance();
+		singleton s = singleton.getInstance();
+		
+		
 		//명령어 판단 
 		String command = null;
 		if(req.getParameter("command") != null) {
@@ -44,7 +47,7 @@ public class getInstallList_Null extends HttpServlet implements Serializable{
 				String date = req.getParameter("date");
 				
 				System.out.println(date);
-				List<InstallDto> list = isif.getNullInstallList(date);
+				List<InstallDto> list = s.is.getNullInstallList(date);
 				//리턴값 타입 json 으로 지정 
 				resp.setContentType("application/json");
 				resp.setCharacterEncoding("UTF-8");
@@ -65,7 +68,7 @@ public class getInstallList_Null extends HttpServlet implements Serializable{
 				if(insArr != null && insArr.length > 0) {
 					for(int i = 0; i < insArr.length; i++) {
 						//System.out.println(insArr[i]);
-						isS = isif.insertMgrID(Integer.parseInt(insArr[i]), Integer.parseInt(mgr_index));
+						isS = s.is.insertMgrID(Integer.parseInt(insArr[i]), Integer.parseInt(mgr_index));
 						
 						if(!isS) { break;} //업데이트 실패시 
 					}
