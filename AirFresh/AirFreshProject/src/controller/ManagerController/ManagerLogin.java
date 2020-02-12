@@ -48,7 +48,7 @@ public class ManagerLogin extends HttpServlet {
 		
 		if(check.getMgr_id().equals(managermemdto.getMgr_id())) {
 			
-			req.getSession().setAttribute("managerLogin", managermemdto);
+			req.getSession().setAttribute("managerLogin", check);
 			
 			System.out.println("아이디 확인 성공하였습니다. " + check + "]]]]");
 		}else {
