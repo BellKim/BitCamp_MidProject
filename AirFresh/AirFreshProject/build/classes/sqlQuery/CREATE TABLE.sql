@@ -93,7 +93,7 @@ CREATE TABLE members
     mem_id       VARCHAR2(50)     NOT NULL, 
     mem_pw       VARCHAR2(20)     NULL, 
     mem_name     VARCHAR2(20)     NULL, 
-    mem_cell     NUMBER(12)       NULL, 
+    mem_cell     VARCHAR2(12)       NULL, 
     mem_birth    VARCHAR2(20)     NULL, 
     mem_addr1    NUMBER(5)      NULL, 
     mem_addr2    VARCHAR2(100)    NULL, 

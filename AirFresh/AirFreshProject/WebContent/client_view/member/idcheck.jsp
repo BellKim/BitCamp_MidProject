@@ -10,19 +10,10 @@ singleton s = singleton.getInstance();
 
 boolean b = s.ms.idCheck(id);
 
-if(b == true){
-%>	
-	<script type="text/javascript">
-	alert("중복된 아이디가 있습니다.");
-	location.href = "./client_view/member/register.jsp";
-	</script>
-<%
-}else{
-%>
-	<script type="text/javascript">
-	alert("사용 가능한 아이디입니다");	
-	</script>
-<% 
+if(b == true){	// id가 없음
+	out.println("NO");	
+}else{			// id가 없음
+	out.println("YES");
 }
 %>	
 

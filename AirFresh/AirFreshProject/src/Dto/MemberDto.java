@@ -7,7 +7,7 @@ public class MemberDto implements Serializable {
 	private String mem_id;
 	private String mem_pw;
 	private String mem_name;
-	private int mem_cell;
+	private String mem_cell;
 	private String mem_birth;
 	private int mem_addr1;
 	private String mem_addr2;
@@ -17,7 +17,7 @@ public class MemberDto implements Serializable {
 	public MemberDto() {		
 	}	
 
-	public MemberDto(String mem_id, String mem_pw, int mem_cell, int mem_addr1, String mem_addr2, String mem_addr3) {
+	public MemberDto(String mem_id, String mem_pw, String mem_cell, int mem_addr1, String mem_addr2, String mem_addr3) {
 		super();
 		this.mem_id = mem_id;
 		this.mem_name = mem_pw;
@@ -27,7 +27,7 @@ public class MemberDto implements Serializable {
 		this.mem_addr3 = mem_addr3;
 	}
 
-	public MemberDto(String mem_id, String mem_pw, String mem_name, int mem_cell, String mem_birth, int mem_addr1,
+	public MemberDto(String mem_id, String mem_pw, String mem_name, String mem_cell, String mem_birth, int mem_addr1,
 			String mem_addr2, String mem_addr3, int mem_auth) {
 		super();
 		this.mem_id = mem_id;
@@ -42,7 +42,7 @@ public class MemberDto implements Serializable {
 	}
 
 	
-	public MemberDto(String mem_id, String mem_name, int mem_cell, String mem_birth, int mem_addr1, String mem_addr2,
+	public MemberDto(String mem_id, String mem_name, String mem_cell, String mem_birth, int mem_addr1, String mem_addr2,
 			String mem_addr3) {
 		super();
 		this.mem_id = mem_id;		
@@ -78,11 +78,11 @@ public class MemberDto implements Serializable {
 		this.mem_name = mem_name;
 	}
 
-	public int getMem_cell() {
+	public String getMem_cell() {
 		return mem_cell;
 	}
 
-	public void setMem_cell(int mem_cell) {
+	public void setMem_cell(String mem_cell) {
 		this.mem_cell = mem_cell;
 	}
 

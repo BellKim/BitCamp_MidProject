@@ -36,7 +36,7 @@ public class MemberService implements MemberServiceInterface{
 		}
 
 		@Override
-		public String findID(String mem_name, int mem_cell) {			
+		public String findID(String mem_name, String mem_cell) {			
 			return dao.findID(mem_name, mem_cell);
 		}
 

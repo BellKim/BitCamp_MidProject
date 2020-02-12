@@ -68,21 +68,23 @@ public class MemberDao implements MemberDaoInterface{
 		
 		try {
 			conn = DBConnection.getConnection();
-			
+			System.out.println("1/6 addMem success");
 			psmt = conn.prepareStatement(sql);
+			System.out.println("2/6 addMem success");
 			psmt.setString(1, dto.getMem_id());
 			psmt.setString(2, dto.getMem_pw());
 			psmt.setString(3, dto.getMem_name());
-			psmt.setInt(4, dto.getMem_cell());
+			psmt.setString(4, dto.getMem_cell());
 			psmt.setString(5, dto.getMem_birth());
 			psmt.setInt(6, dto.getMem_addr1());
 			psmt.setString(7, dto.getMem_addr2());
 			psmt.setString(8, dto.getMem_addr3());
 			
 			count = psmt.executeUpdate();
-			
+			System.out.println("3/6 addMem success");
 		} catch (SQLException e) {			
 			e.printStackTrace();
+			System.out.println("addMem fail");
 		} finally {		
 			DBClose.close(psmt, conn, null);			
 		}		
@@ -105,29 +107,36 @@ public class MemberDao implements MemberDaoInterface{
 		System.out.println(sql);
 		try {
 			conn = DBConnection.getConnection();
-		
+			System.out.println("1/6 login success");
+			
 			psmt = conn.prepareStatement(sql);
+			System.out.println("2/6 login success");
+			
 			psmt.setString(1, mem_id.trim());
 			psmt.setString(2, mem_pw.trim());
 			
 			rs = psmt.executeQuery();
+			System.out.println("3/6 login success");
 			
 			if(rs.next()) {
 				String _id = rs.getString(1);
 				String _pw = rs.getString(2);
 				String _name = rs.getString(3);
-				int _cell = rs.getInt(4);
+				String _cell = rs.getString(4);
 				String _birth = rs.getString(5);
 				int _addr1 = rs.getInt(6);
 				String _addr2 = rs.getString(7);
 				String _addr3 = rs.getString(8);
 				int _auth = rs.getInt(9);
-				System.out.println(_id + " " );
+				
+				System.out.println(_id + " " + _pw);
 				mem = new MemberDto(_id, _pw, _name, _cell, _birth, _addr1,
 						_addr2, _addr3, _auth);
 			}		
+			System.out.println("4/6 login success");	// 로그인 실패시 여기까지 성공!
 			
-		} catch (SQLException e) {			
+		} catch (SQLException e) {		
+			System.out.println("login fail");		// 아이디, 비번 틀리면 여기까지 못옴!
 			e.printStackTrace();
 		} finally {
 			DBClose.close(psmt, conn, rs);			
@@ -135,7 +144,7 @@ public class MemberDao implements MemberDaoInterface{
 		return mem;
 	}
 							
-	public String findID(String mem_name, int mem_cell) {
+	public String findID(String mem_name, String mem_cell) {
 		String sql = " SELECT MEM_ID FROM MEMBERS "
 				+ " WHERE MEM_NAME=? AND MEM_CELL=? ";
 			
@@ -150,7 +159,7 @@ public class MemberDao implements MemberDaoInterface{
 		
 			psmt = conn.prepareStatement(sql);
 			psmt.setString(1, mem_name.trim());			
-			psmt.setInt(2, mem_cell);			
+			psmt.setString(2, mem_cell);			
 			
 			rs = psmt.executeQuery();
 			
@@ -213,7 +222,7 @@ public class MemberDao implements MemberDaoInterface{
 		try {
 			psmt = conn.prepareStatement(sql);			
 			psmt.setString(1, dto.getMem_pw());
-			psmt.setInt(2, dto.getMem_cell());
+			psmt.setString(2, dto.getMem_cell());
 			psmt.setInt(3, dto.getMem_addr1());
 			psmt.setString(4, dto.getMem_addr2());
 			psmt.setString(5, dto.getMem_addr3());
@@ -304,14 +313,14 @@ public class MemberDao implements MemberDaoInterface{
 			psmt = conn.prepareStatement(sql);
 			rs = psmt.executeQuery();
 			/*
-			 * String mem_id, String mem_name, int mem_cell, String
+			 * String mem_id, String mem_name, String mem_cell, String
 			 * mem_birth, int mem_addr1, String mem_addr2, String mem_addr3
 			 */
 			while(rs.next()) {
 				
 				MemberDto dto = new MemberDto(rs.getString(1),
 											  rs.getString(2),
-											  rs.getInt(3),
+											  rs.getString(3),
 											  rs.getString(4),
 											  rs.getInt(5),
 											  rs.getString(6),

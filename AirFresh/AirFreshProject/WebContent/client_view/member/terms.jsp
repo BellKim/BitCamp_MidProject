@@ -88,9 +88,9 @@
 				$("input:hidden[name=emailSmsRcvYn]", $("#frmJoinAgreeInfo")).val("N");
 			}
 						
-			// 정보 입력 페이지로 이동
+			/* // 정보 입력 페이지로 이동
 			$("#frmJoinAgreeInfo").attr("action", "register.jsp");
-			$("#frmJoinAgreeInfo").submit();
+			$("#frmJoinAgreeInfo").submit(); */
 		});
 		
 	}); 
