@@ -1,4 +1,4 @@
-package controller.MrgController;
+package controller.ManagerController;
 
 
 import java.io.IOException;
@@ -38,11 +38,6 @@ public class AddMrgMember extends HttpServlet {
 			System.out.println("AddMrgMember 오류. 로직 확인해주세요 ");
 		}
 			
-		
-
-		
-		
-		
 	}//end of receiveManagerMember
 	
 	public void receiveManagerAll(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{

@@ -1,4 +1,4 @@
-package controller.MrgController;
+package controller.ManagerController;
 
 import java.io.IOException;
 import java.util.Iterator;
