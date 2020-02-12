@@ -19,7 +19,7 @@ import db.DBConnection;
 public class PurchaseDao implements PurchaseDaoInterface {
 
 	public PurchaseDao() {
-		
+		DBConnection.initConnection();
 	}
 	
 	public boolean purchaseInsert(String mem_id, int prd_index, String ins_date) {
@@ -269,5 +269,47 @@ public class PurchaseDao implements PurchaseDaoInterface {
 		
 		
 	}
+	
+	
+	public PurchaseDto getNewCreate_Pur() {
+		
+		String sql = " SELECT pur_index, ins_date "
+				+ " FROM ( SELECT *  FROM PURCHASE  ORDER BY pur_index  DESC ) "
+				+ "	WHERE ROWNUM = 1";
+		
+		
+		Connection conn = null;
+		PreparedStatement psmt = null;
+		ResultSet rs = null;
+		
+		//sql 쿼리문 확인용 
+		System.out.println("[getNewCreate_Pur] sql = " + sql);
+		
+		//반환용 dto 준비
+		PurchaseDto dto = null;
+		
+		try {
+			conn = DBConnection.getConnection();
+			psmt = conn.prepareStatement(sql);
+			rs = psmt.executeQuery();
+			
+			if(rs.next()) {
+				
+				dto = new PurchaseDto(rs.getInt("pur_index"),// 마지막 생성 index
+										rs.getString("ins_date"));//설치 희망일
+			}
+			
+			
+		} catch (SQLException e) {
+			System.out.println("[getNewCreate_Pur] fail");
+			e.printStackTrace();
+		}finally {
+			DBClose.close(psmt, conn, rs);
+		}
+		
+		return dto;
+	}
+	
+	
 }
 
