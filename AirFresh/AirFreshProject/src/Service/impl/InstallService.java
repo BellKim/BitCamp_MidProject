@@ -1,5 +1,6 @@
 package Service.impl;
 
+import java.io.Serializable;
 import java.util.List;
 
 import Dao.InstallDaoInterface;
@@ -7,21 +8,23 @@ import Dao.impl.InstallDao;
 import Dto.InstallDto;
 import Service.InstallServiceInterface;
 
-public class InstallService implements InstallServiceInterface {
+public class InstallService implements InstallServiceInterface,Serializable {
 	
-	private static InstallServiceInterface installService = null;
+	
+	//서비스의 싱글톤화   private static InstallServiceInterface installService = null;
+	 
 	private InstallDaoInterface dao = new InstallDao();
 	
-	private InstallService() {
+	public InstallService() {
 	}
-	
+	/*
 	public static InstallServiceInterface getInstance() {
 		if(installService == null) {
 			installService = new InstallService();
 		}
 		return installService;
 	}
-	
+	*/
 	public List<InstallDto> getNullInstallList(){
 		
 		return dao.getNullInstallList();
@@ -38,4 +41,11 @@ public class InstallService implements InstallServiceInterface {
 		return dao.addInstall(dto);
 	}
 	
+	public boolean insertMgrID(int ins_index, int mgr_index) {
+		return dao.insertMgrID(ins_index, mgr_index);
+	}
+	
+	public boolean insertNull(int ins_index, int mgr_index) {
+		return dao.insertNull(ins_index, mgr_index);
+	}
 }

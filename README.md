@@ -1,1 +1,1 @@
-# BitCamp_SamiProject
+# BitCamp_MidProject

@@ -15,6 +15,7 @@ import db.DBConnection;
 public class NoticeBbsDao implements NoticeBbsDaoInterface {
 
 	public NoticeBbsDao() {
+		DBConnection.initConnection();
 	}
 
 	@Override

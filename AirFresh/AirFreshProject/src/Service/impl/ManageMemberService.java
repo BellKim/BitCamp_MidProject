@@ -20,9 +20,16 @@ public class ManageMemberService implements ManageMemberInterface{
 	@Override
 	public List<ManagerMemberDto> receiveManagerMemberAll() {
 		return mmdao.receiveManagerMemberAll();
+	}//receiveManagerMemberAll
+
+
+	@Override
+	public boolean loginManagerMembercheck(ManagerMemberDto managermemberdto) {		
+		return mmdao.loginManagerMemberCehck(managermemberdto);
 	}
 	
-	//receiveManagerMemberAll
+	
+	
 	
 	
 
