@@ -172,7 +172,66 @@ public class ManageMemberDao implements ManageMemberDaoInterface {
 		
 		
 		return dto;
+		
 	}//end of loginManagerMemberCehck
+
+	@Override
+	public ManagerMemberDto receiveManagerMemberSelect(String index) {
+		String sql = " SELECT mgr_index, mgr_auth, mgr_id, mgr_pw, mgr_name, mgr_loc, mgr_cell, mgr_del "
+				+ " FROM managerMember "
+				+ " WHERE mgr_index=?";
+	
+	Connection conn = null;
+	PreparedStatement psmt = null;
+	ResultSet rs = null;
+	ManagerMemberDto dto=  null;
+	
+	System.out.println( "sql = " + sql );
+	System.out.println(" 2/6 receiveManagerMemberSelect success ");
+	int count = 0;
+
+	
+	try {
+		System.out.println(" 3/6 receiveManagerMemberSelect success ");
+		conn = DBConnection.getConnection();
+		psmt = conn.prepareStatement(sql);
+		
+		System.out.println(" 4/6 receiveManagerMemberSelect success ");
+		psmt.setString(1,index);
+		
+
+		System.out.println(" 5/6 receiveManagerMemberSelect success ");
+		rs = psmt.executeQuery();
+
+		System.out.println(" 5.5/6 receiveManagerMemberSelect success ");
+		while(rs.next()) {
+			  int mgr_index = rs.getInt("mgr_index");
+			  int mgr_auth = rs.getInt("mgr_auth");
+			  String mgr_id = rs.getString("mgr_id");
+//			  String mgr_pw = rs.getString("mgr_pw");
+			  String mgr_pw = null;
+			  String mgr_name = rs.getString("mgr_name"); 
+			  int mgr_loc = rs.getInt("mgr_loc");
+			  int mgr_cell = rs.getInt("mgr_cell");
+			  int mgr_del = rs.getInt("mgr_del");
+			  
+			  System.out.println("!!!receiveManagerMemberSelect!!!"+mgr_index+" "+mgr_auth+" "+mgr_id+" "+mgr_pw+" "+mgr_name+" "+mgr_loc+" "+mgr_cell+" "+mgr_del);
+			  
+			  dto = new ManagerMemberDto(mgr_index, mgr_auth, mgr_id, mgr_pw, mgr_name, mgr_loc, mgr_cell, mgr_del);
+			  
+		}
+			
+		} catch (SQLException e) {
+			System.out.println(" receiveManagerMemberSelect  DB FAIL ");
+			e.printStackTrace();
+		}finally {
+			System.out.println(" 6/6 receiveManagerMemberSelect DBCLOSE ");
+			DBClose.close(psmt, conn, rs);
+		}
+	
+	
+	return dto;
+	}//end of receiveManagerMemberSelect
 	
 	
 	

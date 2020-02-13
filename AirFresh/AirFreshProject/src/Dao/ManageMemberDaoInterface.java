@@ -12,6 +12,7 @@ public interface ManageMemberDaoInterface {
 	
 	public ManagerMemberDto loginManagerMemberCehck(ManagerMemberDto managermemberdto);
 	
+	public ManagerMemberDto receiveManagerMemberSelect(String index);
 	
 
 }//end ManageMemberDaoInterface class;
