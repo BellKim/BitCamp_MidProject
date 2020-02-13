@@ -96,6 +96,53 @@ public class MemberDao implements MemberDaoInterface{
 		return count>0?true:false;
 	}
 
+		public MemberDto getMem(String id) {
+		
+		String sql = " SELECT * "
+				+ " FROM MEMBERS "
+				+ " WHERE MEM_ID=? ";
+		
+		Connection conn = null;
+		PreparedStatement psmt = null;
+		ResultSet rs = null;
+		
+		MemberDto dto = null;
+		
+		try {
+			conn = DBConnection.getConnection();
+			System.out.println("1/6 getMem success");
+			
+			psmt = conn.prepareStatement(sql);	
+			System.out.println("2/6 getMem success");
+			
+			psmt.setString(1, id.trim()); 
+			
+			rs = psmt.executeQuery();
+			System.out.println("3/6 getMem success");
+			//String mem_id, String mem_pw, String mem_name, String mem_cell, String mem_birth, int mem_addr1,
+			//String mem_addr2, String mem_addr3, int mem_auth
+			if(rs.next()) {
+				int i = 1;
+				dto = new MemberDto(rs.getString(i++),
+									rs.getString(i++),
+									rs.getString(i++),
+									rs.getString(i++),		
+									rs.getString(i++),	
+									rs.getInt(i++),
+									rs.getString(i++),
+									rs.getString(i++),
+									rs.getInt(i++));
+			}
+			System.out.println("4/6 getMem success");
+		} catch (SQLException e) {
+			System.out.println("getMem fail");
+			e.printStackTrace();
+		} finally {
+			DBClose.close(psmt, conn, null);		
+		}
+		return dto;		
+	}	
+	
 	@Override
 	public MemberDto memLogin(String mem_id, String mem_pw) {
 		String sql = " SELECT MEM_ID, MEM_PW, MEM_NAME, MEM_CELL, MEM_BIRTH, "
@@ -231,8 +278,9 @@ public class MemberDao implements MemberDaoInterface{
 			psmt.setString(4, dto.getMem_addr2());
 			psmt.setString(5, dto.getMem_addr3());
 			
-			count = psmt.executeUpdate(sql);
-			
+			psmt.setString(6, dto.getMem_id());
+			count = psmt.executeUpdate();
+			System.out.println("count:" + count);
 		} catch (SQLException e) {			
 			e.printStackTrace();
 		} finally {

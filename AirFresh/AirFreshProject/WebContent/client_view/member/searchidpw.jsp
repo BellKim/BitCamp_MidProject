@@ -20,7 +20,7 @@
 					<div class="findId">					
 						<form role="form" name="frmInfo1" id="frmInfo1" method="post" action="<%=request.getContextPath() %>/findidpw?s_gubun=ID">	
 							<fieldset>
-								<input type="hidden" id="s_gubun" name="s_gubun" value="ID">
+								<input type="hidden" id="s_gubun" name="s_gubun" value="FID">
 								<p class="desc">회원가입 시 등록하신 <strong>이름</strong>과 <strong>휴대전화</strong>를 입력해주세요.</p>
 								<div class="bxForm">
 									<div class="inputItem">
@@ -40,7 +40,7 @@
 					<div class="findPw">					
 							<form role="form" name="frmInfo2" id="frmInfo2" method="post" action="<%=request.getContextPath() %>/findidpw">	
 							<fieldset>
-							<input type="hidden" id="s_gubun" name="s_gubun" value="PW">
+							<input type="hidden" id="s_gubun" name="s_gubun" value="FPW">
 							<p class="desc">회원가입 시 등록하신 <strong>아이디(이메일)</strong>와 <strong>이름</strong>을 정확하게 입력해주세요.</p>
 							<div class="bxForm">
 								<div class="inputItem">

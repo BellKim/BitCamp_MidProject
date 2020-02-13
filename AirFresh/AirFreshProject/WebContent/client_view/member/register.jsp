@@ -1,89 +1,72 @@
-<%@page import="db.DBConnection"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-    <%
-    DBConnection.initConnection();    
-    %>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>register</title>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-</head>
-<body>
+	pageEncoding="UTF-8"%>
+<%@ include file="./../include/header.jsp"%>
+<div class="container">
+	<h1 class="mt-4 mb-3">회원가입</h1>
 
-	<div id="member" align="center">
-		<div>
-		<h2>Air FRESH 회원가입</h2>
-		</div>
 
-		<form id="frm" onsubmit="return validate();" action="<%=request.getContextPath() %>/addmem" method="post">			
-			<input type="hidden" name="command" value="addAf">
-			<table>
-				<tr>
-					<td>이름</td>
-					<td>
-						<input type="text" id="mem_name" name="mem_name" size="20" placeholder="이름">
-					</td>
-				</tr>
-				<tr>
-					<td>아이디(이메일)</td>
-					<td>
-						<input type="text" id="mem_id" name="mem_id" size="20" placeholder="ID@email_account.com" maxlength="50">												
-						<p id="idcheck" style="margin-left:10px; padding-top: 10px;">id 확인</p>
-						<button type="button" id="_btnid">id check</button>
-					</td>
-				</tr>
-				<tr>
-					<td>패스워드</td>
-					<td>
-						<input type="password" id="mem_pw" name="mem_pw" size="20" placeholder="6자리 이상 입력해주세요." maxlength="20"><br>
-						<input type="password" id="mem_pw1" size="20" placeholder="비밀번호 재확인" maxlength="20">
-						<font id="chkNotice" size="2"></font>
-						<p style="font-size: 8px; color: gray;">영문,숫자,특수문자 3가지를 조합한 6자리 이상으로 입력해주세요.</p>												
-					</td>
-				</tr>				
-				<tr>
-					<td>휴대폰번호</td>
-					<td>
-						<input type="text" id="mem_cell" name="mem_cell" size="20" placeholder="- 없이 숫자만 입력해주세요." maxlength="12">
-					</td>
-				</tr>
-				<tr>
-					<td>생년월일</td>
-					<td>
-						<input type="text" id="mem_birth" name="mem_birth" size="20" placeholder="ex) 19801012">
-					</td>
-				</tr>
-				<tr>
-					<td>주소</td>
-					<td>
-						<input type="text" id="mem_addr1" name="mem_addr1" placeholder="우편번호">
-						<input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"><br>
-						<input type="text" id="mem_addr2" name="mem_addr2" placeholder="주소"><br>
-						<input type="text" id="mem_addr3" name="mem_addr3" placeholder="상세주소">
-						<input type="text" id="sample6_extraAddress" placeholder="참고항목">
-					</td>
-				</tr>
-				<tr>
-					<td colspan="2" align="center">
-						<input type="button" value="회원가입" id="_btnJoin" >
-						<input type="button" value="이전으로" id="_btnlogin" onclick="location.href='<%=request.getContextPath() %>/addmem?command=login'">
-					</td>
-				</tr>
+	<form id="frm" onsubmit="return validate();"
+		action="<%=request.getContextPath()%>/addmem" method="post">
+		<input type="hidden" name="command" value="addAf">
+		<table>
+			<tr>
+				<td>이름</td>
+				<td><input type="text" id="mem_name" name="mem_name" size="20"
+					placeholder="이름"></td>
+			</tr>
+			<tr>
+				<td>아이디(이메일)</td>
+				<td><input type="text" id="mem_id" name="mem_id" size="20"
+					placeholder="ID@email_account.com" maxlength="50">
+					<p id="idcheck" style="margin-left: 10px; padding-top: 10px;">id
+						확인</p>
+					<button type="button" id="_btnid">id check</button></td>
+			</tr>
+			<tr>
+				<td>패스워드</td>
+				<td><input type="password" id="mem_pw" name="mem_pw" size="20"
+					placeholder="6자리 이상 입력해주세요." maxlength="20"><br> <input
+					type="password" id="mem_pw1" size="20" placeholder="비밀번호 재확인"
+					maxlength="20"> <font id="chkNotice" size="2"></font>
+					<p style="font-size: 8px; color: gray;">영문,숫자,특수문자 3가지를 조합한 6자리
+						이상으로 입력해주세요.</p></td>
+			</tr>
+			<tr>
+				<td>휴대폰번호</td>
+				<td><input type="text" id="mem_cell" name="mem_cell" size="20"
+					placeholder="- 없이 숫자만 입력해주세요." maxlength="12"></td>
+			</tr>
+			<tr>
+				<td>생년월일</td>
+				<td><input type="text" id="mem_birth" name="mem_birth"
+					size="20" placeholder="ex) 19801012"></td>
+			</tr>
+			<tr>
+				<td>주소</td>
+				<td><input type="text" id="mem_addr1" name="mem_addr1"
+					placeholder="우편번호"> <input type="button"
+					onclick="sample6_execDaumPostcode()" value="우편번호 찾기"><br>
+					<input type="text" id="mem_addr2" name="mem_addr2" placeholder="주소"><br>
+					<input type="text" id="mem_addr3" name="mem_addr3"
+					placeholder="상세주소"> <input type="text"
+					id="sample6_extraAddress" placeholder="참고항목"></td>
+			</tr>
+			<tr>
+				<td colspan="2" align="center"><input type="button"
+					value="회원가입" id="_btnJoin"> 
+				</td>
+			</tr>
 
-	</table>
-	
+		</table>
+
 	</form>
-	
-	</div>
 
-<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+</div>
+
+<script
+	src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script type="text/javascript">
 $(document).ready(function () {
-	
 	//  비번 재확인
 	$(function(){
 		$('#mem_pw').keyup(function(){
@@ -157,6 +140,9 @@ $(document).ready(function () {
 		}	
 	});	
 	
+});
+
+// sample6_execDaumPostcode()함수  시작
 
 function sample6_execDaumPostcode() {
     new daum.Postcode({
@@ -206,6 +192,9 @@ function sample6_execDaumPostcode() {
     }).open();
 }
 
+//sample6_execDaumPostcode() 끝
+
+
 function validate() {
 	var id = $("#mem_id").val();	// 이메일 정규식
 	var idReg = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
@@ -235,15 +224,6 @@ function validate() {
 	return true;	
 }
 
-}
-
-
-
-
-
 
 </script>
-
-
-</body>
-</html>
+<%@ include file="./../include/footer.jsp"%>

@@ -11,6 +11,7 @@
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/bootstrap.css" />
 <!-- Custom styles for this template -->
   <link href="<%=request.getContextPath()%>/css/modern-business.css" rel="stylesheet">
+    <script src="<%=request.getContextPath()%>/js/jquery.min.js"></script>
 </head>
 <body>
 	<!-- Header -->
@@ -27,8 +28,8 @@
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <div class="topSec clearfix">
           <ul class="clearfix">
-             <li><a href="login?type=moveLogin" id="loginBtn">로그인</a></li>
-             <li><a href="register?type=moveRegister">회원가입</a></li>
+             <li><a href="<%=request.getContextPath()%>/memlogin?command=login">로그인</a></li>
+             <li><a href="<%=request.getContextPath()%>/addmem?command=regi">회원가입</a></li>
           </ul>
         </div>
         <ul class="navbar-nav ml-auto">

@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%
 String str3 = request.getParameter("isS3");		// updateMem
+System.out.println(str3);
 %>
 <!DOCTYPE html>
 <html>

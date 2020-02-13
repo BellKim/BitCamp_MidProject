@@ -31,8 +31,15 @@ public class UpdateMem extends HttpServlet{
 		
 		String command = req.getParameter("command");
 		System.out.println(command);
+		singleton s = singleton.getInstance();
 		
-		if(command.equals("update")) {	
+		if(command.equals("update")) {
+			String id = req.getParameter("id");
+			MemberDto dto = s.ms.getMem(id);
+			System.out.println(dto.toString());
+			req.setAttribute("custuserdto", dto);			
+			forward("./client_view/member/update.jsp", req, resp);			
+		}else if(command.equals("updateview")) {	// 이전페이지 이동용
 			resp.sendRedirect("./client_view/member/update.jsp");
 		}
 		else if(command.equals("updateAf")) {
@@ -46,7 +53,6 @@ public class UpdateMem extends HttpServlet{
 			System.out.println(_id + " " + _pw + " " + _cell + " " +  
 					_addr1 + " " + _addr2 + " " + _addr3 + " ");
 			
-			singleton s = singleton.getInstance();
 			
 			MemberDto dto = new MemberDto(_id, _pw, _cell, _addr1, _addr2, _addr3);
 			

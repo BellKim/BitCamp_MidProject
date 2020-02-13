@@ -14,7 +14,6 @@ import singleton.singleton;
 
 @WebServlet("/addmem")
 public class AddMem extends HttpServlet {
- 
 
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -30,10 +29,11 @@ public class AddMem extends HttpServlet {
 		String command = req.getParameter("command");
 		System.out.println(command);	
 		
-		if(command.equals("login")) {
-			resp.sendRedirect("./client_view/member/login.jsp");
+
+		if(command.equals("regi")) {	// 회원가입 전 약관동의
+			resp.sendRedirect("./client_view/member/terms.jsp");
 		}
-		else if(command.equals("regi")) {	// 회원가입 전 약관동의
+		else if(command.equals("register")) {	// 약관 동의 후 회원가입 뷰(약관동의 y/n 거르기만 하고 값으로 넘겨받지 않음)
 			resp.sendRedirect("./client_view/member/register.jsp");
 		}
 		else if(command.equals("addAf")) {
@@ -61,7 +61,6 @@ public class AddMem extends HttpServlet {
 			forward("./client_view/member/regiAf.jsp", req, resp);
 			
 		}
-		
 	}	
 	
 	public void forward(String url, HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

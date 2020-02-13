@@ -19,7 +19,7 @@ MemberDto mem = (MemberDto)session.getAttribute("login");
 		<h2>Air FRESH 회원정보수정</h2>
 		</div>
 		<form id="frm" onsubmit="return validate();" action="<%=request.getContextPath() %>/updatemem" method="post">			
-			<input type="hidden" name="command" value="updateAf">
+			<input type="hidden" name="command" value="updateAf">			
 			<table>
 				<tr>
 					<td>이름</td>

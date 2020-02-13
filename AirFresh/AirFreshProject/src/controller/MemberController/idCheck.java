@@ -26,8 +26,7 @@ public class idCheck extends HttpServlet{
 
 	public void processFunc(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		req.setCharacterEncoding("utf-8");
-		System.out.println("idCheck 도착");
-		
+		System.out.println("idCheck 도착");		
 		String _id = req.getParameter("mem_id");
 		System.out.println("id:" + _id);
 		

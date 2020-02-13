@@ -44,6 +44,12 @@ public class MemberService implements MemberServiceInterface{
 		public String findPW(String mem_id, String mem_name) {			
 			return dao.findPW(mem_id, mem_name);
 		}
+
+		@Override
+		public MemberDto getMem(String id) {			
+			return dao.getMem(id);
+		}
+		
 	
 	/*
 	@Override

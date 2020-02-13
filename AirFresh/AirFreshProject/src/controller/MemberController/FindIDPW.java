@@ -33,7 +33,7 @@ public class FindIDPW extends HttpServlet {
 		
 		singleton s = singleton.getInstance();
 				
-		if(gubun.equals("ID")) {	
+		if(gubun.equals("FID")) {	
 			String _name = req.getParameter("mem_name");
 			String _cell = req.getParameter("mem_cell");
 			System.out.println(_name + " " + _cell);
@@ -42,7 +42,7 @@ public class FindIDPW extends HttpServlet {
 			System.out.println("FindIDPW 도착2");
 			forward("./client_view/member/findid.jsp", req, resp);
 		}
-		else if(gubun.equals("PW")) {	
+		else if(gubun.equals("FPW")) {	
 			String _id = req.getParameter("mem_id");
 			String _name = req.getParameter("mem_name");
 			System.out.println(_id + " " + _name);

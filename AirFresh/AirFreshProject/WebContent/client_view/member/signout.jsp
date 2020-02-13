@@ -32,7 +32,7 @@ MemberDto mem = (MemberDto)session.getAttribute("login");
 				비밀번호:<input type="password" placeholder="비밀번호를 입력해주세요." id="mem_pw" name="mem_pw">	
 			</div>			
 			</div>								
-			<button type="button" id="Backbtn" onclick="location.href='<%=request.getContextPath() %>/updatemem?command=update'">이전으로</button>
+			<button type="button" id="Backbtn" onclick="location.href='<%=request.getContextPath() %>/updatemem?command=updateview'">이전으로</button>
 			<button type="button" id="btnSignout">회원탈퇴</button>							
 		</form>
 	</div>

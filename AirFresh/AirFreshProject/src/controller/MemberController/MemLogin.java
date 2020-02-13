@@ -41,6 +41,9 @@ public class MemLogin extends HttpServlet{
 		else if(command.equals("mypage")) {	// mypage
 			resp.sendRedirect("./client_view/member/mypage.jsp");
 		}
+		else if(command.equals("login")) {
+			resp.sendRedirect("./client_view/member/login.jsp");
+		}	
 		else if(command.equals("loginAf")) {
 			
 			String _id = req.getParameter("mem_id");

@@ -122,7 +122,7 @@
 						</div>
 					
 					<form id="frmJoinAgreeInfo" action="<%=request.getContextPath() %>/addmem" method="post">
-						<input type="hidden" name="command" value="regi">
+						<input type="hidden" name="command" value="register">
 						<div class="agreeBox chk">
 							<div class="agree">
 								<div class="checkbox">
@@ -149,10 +149,9 @@
 						<input type="hidden" name="piUseYn" value="">														
 					</form>
 
-					<p class="txtBtm validate" style="display:none;" id="txtErrAgreeMsg">AirFresh몰 이용약관, 스마트센터 이용약관, 개인정보 수집 및 이용안내는 필수로 동의하셔야 합니다.</p>
+					<p class="txtBtm validate" style="display:none;" id="txtErrAgreeMsg">AirFresh몰 이용약관, 개인정보 수집 및 이용안내는 필수로 동의하셔야 합니다.</p>
 
-					<div class="btnArea half">
-						<a href='<%=request.getContextPath() %>/addmem?command=login'><span>이전</span></a>
+					<div class="btnArea half">						
 						<a href="<%=request.getContextPath() %>/addmem" class="btnb bk" id="btnJoinNextStep"><span>다음</span></a>						
 					</div>
 				</div>
