@@ -244,7 +244,7 @@ CREATE TABLE managerMember
     mgr_pw       VARCHAR2(20)    NULL, 
     mgr_name     VARCHAR2(20)    NULL, 
     mgr_loc      NUMBER(3)       NULL, 
-    mgr_cell     NUMBER(12)      NULL, 
+    mgr_cell     VARCHAR2(12)      NULL, 
     mgr_del      NUMBER(1)       NULL, 
     CONSTRAINT MANAGERMEMBER_PK PRIMARY KEY (mgr_index)
 );
