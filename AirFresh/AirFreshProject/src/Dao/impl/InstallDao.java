@@ -59,14 +59,14 @@ public class InstallDao implements InstallDaoInterface, Serializable {
 												rs.getString("ins_date"), //설치 희망일
 												rs.getString("comp_date"), // 설치 완료일
 												rs.getInt("mgr_index"), // 매니저(직원) 인덱스
-												rs.getInt("ins_state"), // 
-												rs.getString("prd_model_name"),
-												rs.getString("mem_id"),
-												rs.getString("mem_name"),
-												rs.getString("pur_date"),
-												rs.getInt("mem_addr1"),
-												rs.getString("mem_addr2"),
-												rs.getString("mem_addr3"));
+												rs.getInt("ins_state"), // 설치 상태  
+												rs.getString("prd_model_name"), //제품명
+												rs.getString("mem_id"), //회원아이디
+												rs.getString("mem_name"), //회원이름
+												rs.getString("pur_date"), //구매일
+												rs.getInt("mem_addr1"), // 회원 주소1 (우편번호)
+												rs.getString("mem_addr2"), //회원 주소2 (xx도 xx시)
+												rs.getString("mem_addr3")); //회원 주소3(xx구  xx동)
 				list.add(dto);
 				
 			}
@@ -92,7 +92,7 @@ public class InstallDao implements InstallDaoInterface, Serializable {
 		+ " p.prd_index = m1.prd_index  AND "
 		+ " p.mem_id = m2.mem_id AND "
 		+ " i.mgr_index IS NULL AND "
-		+ " i.ins_date = '" + date + "'";
+		+ " TO_CHAR(i.ins_date,'YYYY/MM/DD') = '" + date + "'";
 
 		Connection conn = null;
 		PreparedStatement psmt = null;
@@ -118,14 +118,14 @@ public class InstallDao implements InstallDaoInterface, Serializable {
 												rs.getString("ins_date"), //설치 희망일
 												rs.getString("comp_date"), // 설치 완료일
 												rs.getInt("mgr_index"), // 매니저(직원) 인덱스
-												rs.getInt("ins_state"), // 
-												rs.getString("prd_model_name"),
-												rs.getString("mem_id"),
-												rs.getString("mem_name"),
-												rs.getString("pur_date"),
-												rs.getInt("mem_addr1"),
-												rs.getString("mem_addr2"),
-												rs.getString("mem_addr3"));
+												rs.getInt("ins_state"), // 설치 상태  
+												rs.getString("prd_model_name"), //제품명
+												rs.getString("mem_id"), //회원아이디
+												rs.getString("mem_name"), //회원이름
+												rs.getString("pur_date"), //구매일
+												rs.getInt("mem_addr1"), // 회원 주소1 (우편번호)
+												rs.getString("mem_addr2"), //회원 주소2 (xx도 xx시)
+												rs.getString("mem_addr3")); //회원 주소3(xx구  xx동)
 				list.add(dto);
 				
 			}
@@ -215,6 +215,7 @@ public class InstallDao implements InstallDaoInterface, Serializable {
 	
 	
 	public boolean insertNull(int ins_index, int mgr_index) {
+		
 		String sql =" UPDATE INSTALL "
 				+ " SET mgr_index =? "
 				+ " WHERE ins_index =? ";
@@ -244,4 +245,62 @@ public class InstallDao implements InstallDaoInterface, Serializable {
 		
 		return count>0?true:false;
 	}
+	
+	public List<InstallDto> getMgrPicDayList(String date, String loc){
+		
+		String sql = " SELECT  i.ins_index, i.pur_index, i.ins_date, "
+				+ "	i.comp_date, i.mgr_index, i.ins_state, "
+				+ " m1.prd_model_name, m2.mem_id, m2.mem_name, m2.mem_addr1, m2.mem_addr2, m2.mem_addr3, "
+				+ " p.pur_date "
+		+ " FROM INSTALL i, PURCHASE p, MODELLIST m1, MEMBERS m2"
+		+ " WHERE i.pur_index = p.pur_index  AND "
+		+ " p.prd_index = m1.prd_index  AND "
+		+ " p.mem_id = m2.mem_id AND "
+		+ " i.mgr_index IS NULL AND "
+		+ " TO_CHAR(i.ins_date,'YYYY/MM/DD') = '" + date + "'"
+		+ " m2.mem_addr3 LIKE '%" + loc + "%'" ;
+		
+		
+		Connection conn = null;
+		PreparedStatement psmt = null;
+		ResultSet rs = null;
+		
+		//쿼리문 확인용 
+		System.out.println("[getMgrPicDayList] sql = " + sql);
+		//리턴용 list 생성
+		List<InstallDto> list = new ArrayList<InstallDto>();
+		
+		try {
+			conn = DBConnection.getConnection();
+			psmt = conn.prepareStatement(sql);
+			rs = psmt.executeQuery();
+			
+			while(rs.next()) {
+				
+				InstallDto dto = new InstallDto(rs.getInt("ins_index"),	//제품설치(install) 인덱스	
+												rs.getInt("pur_index"), //렌탈(purchase) 인덱스
+												rs.getString("ins_date"), //설치 희망일
+												rs.getString("comp_date"), // 설치 완료일
+												rs.getInt("mgr_index"), // 매니저(직원) 인덱스
+												rs.getInt("ins_state"), // 설치 상태  
+												rs.getString("prd_model_name"), //제품명
+												rs.getString("mem_id"), //회원아이디
+												rs.getString("mem_name"), //회원이름
+												rs.getString("pur_date"), //구매일
+												rs.getInt("mem_addr1"), // 회원 주소1 (우편번호)
+												rs.getString("mem_addr2"), //회원 주소2 (xx도 xx시)
+												rs.getString("mem_addr3")); //회원 주소3(xx구  xx동)
+					list.add(dto);	
+			}
+			
+			
+		} catch (SQLException e) {
+			System.out.println("[getMgrPicDayList] fail");
+			e.printStackTrace();
+		}finally {
+			DBClose.close(psmt, conn, rs);
+		}
+		return list;
+	}
+	
 }
