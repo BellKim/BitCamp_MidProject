@@ -9,7 +9,6 @@
     	MemberDto mem = (MemberDto)session.getAttribute("memLogin");
     	
 		int len = (int) request.getAttribute("len");
-		System.out.println("총 글의 갯수 " + len);
 
 		int bbsPage = len / 10;
 		if (len % 10 > 0) {
@@ -66,14 +65,11 @@
 					<tr align="center">
 						<th><%=i + 1%></th>
 						<td align="left">
-						<%	
-						System.out.println(qna.getQna_secret());
-						if(qna.getQna_secret()==1){ //비밀글일경우 id 체크 하기 위해
-							
-							%>
-						 <img src="<%=request.getContextPath()%>/client_view/img/lock.png"><a href="usercheck(<%=qna.getMem_id()%>)"> <%=qna.getQna_title()%></a>
+						<%if(qna.getQna_secret()==1){ //비밀글일경우 id 체크 하기 위해%>
+						 <img src="<%=request.getContextPath()%>/client_view/img/lock.png">
+						 <a href="#" onclick="usercheck('<%=qna.getMem_id()%>', <%=qna.getQna_index()%>)"> <%=qna.getQna_title()%></a>
 						<% } else if(qna.getQna_secret() ==0) { %>
-						<a href="<%=request.getContextPath()%>/anadetail?command=user&qna_index=<%=qna.getQna_index()%>"><%=qna.getQna_title()%></a>
+						<a href="<%=request.getContextPath()%>/qnadetail?command=user&qna_index=<%=qna.getQna_index()%>"><%=qna.getQna_title()%></a>
 						<%} %>
 						</td>
 						<td><%=qna.getMem_id()%></td>
@@ -151,7 +147,7 @@
 		if(keyword == ""){
 			document.getElementById("opt").value = "sel";
 		}
-		location.href="<%=request.getContextPath()%>/noticelist?opt=" + opt + "&keyword=" + keyword;
+		location.href="<%=request.getContextPath()%>/qnalist?opt=" + opt + "&keyword=" + keyword;
 		}
 	
 	function goPage( pageNum ) {
@@ -161,12 +157,21 @@
 		if(keyword == ""){
 			document.getElementById("opt").value = "sel";
 		}
-		var linkStr = "<%=request.getContextPath()%>/noticelist?command=user&pageNumber=" + pageNum;
+		var linkStr = "<%=request.getContextPath()%>/qnalist?command=user&pageNumber=" + pageNum;
 		if(opt != 'sel' && keyword != ""){
 			linkStr = linkStr + "&opt=" + opt + "&keyword=" + keyword;
 		}
 		location.href = linkStr;
 //		location.href = "bbslist.jsp?pageNumber=" + pageNum;
+	}
+	
+	function usercheck(id, qna_index) {
+		if(id=="<%=mem.getMem_id()%>"){
+			location.href="<%=request.getContextPath()%>/qnadetail?command=user&qna_index="+qna_index;
+		} else {
+			alert("작성자 외에 열람하실 수 없습니다.");
+			return;
+		}
 	}
 
 	</script>

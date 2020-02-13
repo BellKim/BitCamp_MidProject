@@ -226,4 +226,57 @@ public class QnaBbsDao implements QnaBbsDaoInterface {
 		return count > 0 ? true : false;
 	}
 
+	@Override
+	public QnaBbsDto getQnaBbs(int qna_index) {
+		String sql = " SELECT * FROM QNABBS "
+				+ " WHERE QNA_INDEX = ? ";
+		
+		
+		Connection conn = null;
+		PreparedStatement psmt = null;
+		ResultSet rs = null;
+		
+		QnaBbsDto dto = null;
+		try {
+
+			conn = DBConnection.getConnection();
+			System.out.println("1/4 getQnaBbs s");
+
+			psmt = conn.prepareStatement(sql);
+			psmt.setInt(1, qna_index);
+			System.out.println("2/4 getQnaBbs s");
+
+			rs = psmt.executeQuery();
+			System.out.println("3/4 getQnaBbs s");
+
+			if (rs.next()) {
+				int i = 1;
+
+				dto= new QnaBbsDto(rs.getInt(i++), 
+		 						rs.getString(i++), 
+		 						rs.getString(i++),
+		 						rs.getString(i++), 
+		 						rs.getString(i++), 
+		 						rs.getInt(i++), 
+		 						rs.getInt(i++), 
+		 						rs.getString(i++), 
+		 						rs.getString(i++),
+		 						rs.getInt(i++), 
+		 						rs.getInt(i++));
+			}
+
+			System.out.println("4/4 getQnaBbs s");
+		} catch (SQLException e) {
+
+			System.out.println("getQnaBbs f");
+			e.printStackTrace();
+
+		} finally {
+			DBClose.close(psmt, conn, rs);
+
+		}
+		
+		return dto;
+	}
+
 }

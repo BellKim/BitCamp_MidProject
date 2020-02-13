@@ -26,5 +26,9 @@ public class QnaBbsService implements QnaBbsServiceInterface {
 	public boolean addQna(QnaBbsDto qna) {
 		return qbd.addQna(qna);
 	}
+	@Override
+	public QnaBbsDto getQnaBbs(int qna_index) {
+		return qbd.getQnaBbs(qna_index);
+	}
 
 }
