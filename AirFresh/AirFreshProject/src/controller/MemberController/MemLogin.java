@@ -37,10 +37,7 @@ public class MemLogin extends HttpServlet{
 		}
 		else if(command.equals("terms")) {	// 회원가입 전 약관동의
 			resp.sendRedirect("./client_view/member/terms.jsp");
-		}
-		else if(command.equals("mypage")) {	// mypage
-			resp.sendRedirect("./client_view/member/mypage.jsp");
-		}
+		}		
 		else if(command.equals("login")) {
 			resp.sendRedirect("./client_view/member/login.jsp");
 		}	
@@ -54,7 +51,7 @@ public class MemLogin extends HttpServlet{
 			singleton s = singleton.getInstance();
 			
 			MemberDto mem = s.ms.memLogin(_id, _pw);
-			System.out.println(mem.getMem_id());
+			
 			req.setAttribute("login", mem);
 			System.out.println("memlogin 도착2");		// ok!
 			

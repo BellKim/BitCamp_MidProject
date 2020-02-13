@@ -3,9 +3,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
-DBConnection.initConnection();
-%>
-<%
 MemberDto mem = (MemberDto)session.getAttribute("login");
 %> 
 <!DOCTYPE html>
@@ -13,6 +10,7 @@ MemberDto mem = (MemberDto)session.getAttribute("login");
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 </head>
 <body>
 
@@ -31,8 +29,7 @@ MemberDto mem = (MemberDto)session.getAttribute("login");
 			<div>
 				비밀번호:<input type="password" placeholder="비밀번호를 입력해주세요." id="mem_pw" name="mem_pw">	
 			</div>			
-			</div>								
-			<button type="button" id="Backbtn" onclick="location.href='<%=request.getContextPath() %>/updatemem?command=updateview'">이전으로</button>
+			</div>			
 			<button type="button" id="btnSignout">회원탈퇴</button>							
 		</form>
 	</div>

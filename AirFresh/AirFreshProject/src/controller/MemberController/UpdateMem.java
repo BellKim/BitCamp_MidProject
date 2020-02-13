@@ -35,13 +35,11 @@ public class UpdateMem extends HttpServlet{
 		
 		if(command.equals("update")) {
 			String id = req.getParameter("id");
-			MemberDto dto = s.ms.getMem(id);
-			System.out.println(dto.toString());
-			req.setAttribute("custuserdto", dto);			
+			MemberDto mem = s.ms.getMem(id);
+			//System.out.println(dto.toString());
+			req.setAttribute("login", mem);			
 			forward("./client_view/member/update.jsp", req, resp);			
-		}else if(command.equals("updateview")) {	// 이전페이지 이동용
-			resp.sendRedirect("./client_view/member/update.jsp");
-		}
+		}		
 		else if(command.equals("updateAf")) {
 			String _id = req.getParameter("mem_id");
 			String _pw = req.getParameter("mem_pw");				

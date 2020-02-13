@@ -28,23 +28,22 @@ public class FindIDPW extends HttpServlet {
 		req.setCharacterEncoding("utf-8");
 		System.out.println("FindIDPW 도착");	// ok!
 		String gubun = req.getParameter("s_gubun");		
+		String _name = req.getParameter("mem_name");
+		String _cell = req.getParameter("mem_cell");
+		String _id = req.getParameter("mem_id");
 				
 		System.out.println(gubun);
 		
 		singleton s = singleton.getInstance();
 				
 		if(gubun.equals("FID")) {	
-			String _name = req.getParameter("mem_name");
-			String _cell = req.getParameter("mem_cell");
 			System.out.println(_name + " " + _cell);
 			String id = s.ms.findID(_name, _cell);
 			req.setAttribute("id", id);	
 			System.out.println("FindIDPW 도착2");
 			forward("./client_view/member/findid.jsp", req, resp);
 		}
-		else if(gubun.equals("FPW")) {	
-			String _id = req.getParameter("mem_id");
-			String _name = req.getParameter("mem_name");
+		else if(gubun.equals("FPW")) {				
 			System.out.println(_id + " " + _name);
 			String pw = s.ms.findPW(_id, _name);
 			req.setAttribute("pw", pw);

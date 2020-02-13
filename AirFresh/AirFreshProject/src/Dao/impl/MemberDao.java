@@ -115,7 +115,7 @@ public class MemberDao implements MemberDaoInterface{
 			psmt = conn.prepareStatement(sql);	
 			System.out.println("2/6 getMem success");
 			
-			psmt.setString(1, id.trim()); 
+			psmt.setString(1, id); //TODO trouble
 			
 			rs = psmt.executeQuery();
 			System.out.println("3/6 getMem success");
@@ -203,7 +203,7 @@ public class MemberDao implements MemberDaoInterface{
 		PreparedStatement psmt = null;
 		ResultSet rs = null;
 		
-		String _id = null;
+		String _id = "";
 		
 		try {
 			conn = DBConnection.getConnection();
@@ -263,7 +263,7 @@ public class MemberDao implements MemberDaoInterface{
 				+ " SET MEM_PW=?, MEM_CELL=?, MEM_ADDR1=?, MEM_ADDR2=?, MEM_ADDR3=? "
 				+ " WHERE MEM_ID=? ";
 	
-		Connection conn = DBConnection.getConnection();
+		Connection conn = null;
 		PreparedStatement psmt = null;
 		
 		int count = 0;
@@ -271,6 +271,7 @@ public class MemberDao implements MemberDaoInterface{
 		System.out.println("sql:" + sql);
 		
 		try {
+			conn = DBConnection.getConnection();
 			psmt = conn.prepareStatement(sql);			
 			psmt.setString(1, dto.getMem_pw());
 			psmt.setString(2, dto.getMem_cell());

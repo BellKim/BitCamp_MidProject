@@ -31,7 +31,7 @@ public class DelMem extends HttpServlet{
 		System.out.println(command);	
 		
 		if(command.equals("signout")) {
-			resp.sendRedirect("./client_view/member/signout.jsp");
+			resp.sendRedirect("./client_view/member/delete.jsp");
 		}else if(command.equals("deleteAf")) {
 			String _id = req.getParameter("mem_id");
 			String _pw = req.getParameter("mem_pw");
@@ -39,8 +39,8 @@ public class DelMem extends HttpServlet{
 			System.out.println(_id + "" + _pw);
 			
 			singleton s = singleton.getInstance();
-			boolean isS2 = s.ms.delMem(_id, _pw);
-			req.setAttribute("isS2", isS2);	
+			boolean S2 = s.ms.delMem(_id, _pw);
+			req.setAttribute("isS2", S2);	
 			//resp.sendRedirect(req.getContextPath() + "/WebContent/client_view/member/finding.jsp?isS2" + isS2);
 			forward("./client_view/member/deleteAf.jsp", req, resp);			
 		}

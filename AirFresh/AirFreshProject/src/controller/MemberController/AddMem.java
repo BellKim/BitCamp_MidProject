@@ -58,7 +58,7 @@ public class AddMem extends HttpServlet {
 			
 			boolean isS = s.ms.addMem(dto);
 			req.setAttribute("isS", isS);		
-			forward("./client_view/member/regiAf.jsp", req, resp);
+			forward("./client_view/member/regiAf.jsp?isS=" + isS, req, resp);
 			
 		}
 	}	

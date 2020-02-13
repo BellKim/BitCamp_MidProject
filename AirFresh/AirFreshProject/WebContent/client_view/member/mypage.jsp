@@ -3,6 +3,8 @@
     pageEncoding="UTF-8"%>
 <%
 MemberDto mem = (MemberDto)session.getAttribute("login");
+/* session.getMaxInactiveInterval();
+session.invalidate(); */
 %>     
 <!DOCTYPE html>
 <html>

@@ -50,8 +50,7 @@
 									<input type="text" placeholder="이름" class="iHalf" id="mem_name" name="mem_name">
 								</div>
 							</div>
-							<button type="button" onclick="_pwdfind()">확인</button>
-							<button type="button" onclick="location.href='<%=request.getContextPath() %>/addmem?command=login'">이전으로</button>
+							<button type="button" onclick="_pwdfind()">확인</button>							
 						</fieldset>
 						</form>
 					</div>
@@ -66,43 +65,40 @@
 	//회원가입하기
 	function _idfind(){
 		
-		var mem_name=frminfo1.mem_name.value;
-		var findID=frminfo1.findID.value;
+		var _name=frminfo1.mem_name.value;
+		var _cell = frminfo1.mem_cell.value;	
 
-		if(mem_name==""){
+		if(_name==""){
 			alert("이름을 입력하세요");
 		   frminfo1.mem_name.focus();
 			return;
-		}
-		
-		var mobile = frminfo1.mem_cell.value;			
-			
-		if(mobile.trim()==""){
+		}			
+		if(_cell.trim()==""){
 			alert("휴대전화 번호를  입력하세요");
-			mobile.focus();
+			frminfo1.mem_cell.focus();
 			return;
 		}				
 
 		frminfo1.submit();
-	}
+	};
 		function _pwdfind(){
 		
-		var mem_id=frminfo2.mem_id.value;
-		var mem_name=frminfo2.mem_name.value;		
+		var _id=frminfo2.mem_id.value;
+		var _name=frminfo2.mem_name.value;		
 
-		if(mem_id==""){
+		if(_id==""){
 			alert("아이디를 입력하세요");
 		   frminfo2.mem_id.focus();
 			return;
 		}
-		if(mem_name==""){
+		if(_name==""){
 			alert("이름을  입력하세요");
 			 frminfo2.mem_name.focus();
 			return;
 		}		
 
 		frminfo2.submit();
-	}
+	};
 </script>	
 
 </body>
