@@ -21,9 +21,8 @@ public class InstallDao implements InstallDaoInterface, Serializable {
 	}
 	
 	
-	
+	//관리자용 메소드 ( 담당자가 없는 모든 install 리스트를 가져온다)
 	public List<InstallDto> getNullInstallList(){
-		//시간 정보 가져와서 그 날에 관한것만 가져와야됨 
 		
 		String sql = " SELECT  i.ins_index, i.pur_index, i.ins_date, "
 						+ "	i.comp_date, i.mgr_index, i.ins_state, "
@@ -81,6 +80,7 @@ public class InstallDao implements InstallDaoInterface, Serializable {
 		return list;
 	}
 	
+	//이것도 관리자용 특정날짜의 담당자가 Null인 리스트를 가져오는 메소드 
 	public List<InstallDto> getNullInstallList(String date){
 		
 		String sql = " SELECT  i.ins_index, i.pur_index, i.ins_date, "
@@ -141,7 +141,7 @@ public class InstallDao implements InstallDaoInterface, Serializable {
 	}
 	
 	
-	
+	//설치신청 데이터를 추가해주는 메소드 
 	public boolean addInstall(InstallDto dto) {
 		
 		String sql= " INSERT INTO INSTALL(ins_index, pur_index, ins_date, ins_state) "
@@ -180,6 +180,8 @@ public class InstallDao implements InstallDaoInterface, Serializable {
 		return count > 0? true:false;
 	}
 	
+	
+	//설치신청 데이터에 담당자 정보를 넣어주는 메소드 
 	public boolean insertMgrID(int ins_index, int mgr_index) {
 		
 		String sql =" UPDATE INSTALL "
@@ -213,7 +215,7 @@ public class InstallDao implements InstallDaoInterface, Serializable {
 	}
 	
 	
-	
+	//장바구니의 데이터에 담당자를 넣다가 에러발생시 처리를 롤백하기 위한 메소드 
 	public boolean insertNull(int ins_index, int mgr_index) {
 		
 		String sql =" UPDATE INSTALL "
@@ -246,19 +248,27 @@ public class InstallDao implements InstallDaoInterface, Serializable {
 		return count>0?true:false;
 	}
 	
+	
+	//근무지별로 특정날짜의 데이터를 가져오는 메소드 
 	public List<InstallDto> getMgrPicDayList(String date, String loc){
 		
 		String sql = " SELECT  i.ins_index, i.pur_index, i.ins_date, "
 				+ "	i.comp_date, i.mgr_index, i.ins_state, "
 				+ " m1.prd_model_name, m2.mem_id, m2.mem_name, m2.mem_addr1, m2.mem_addr2, m2.mem_addr3, "
 				+ " p.pur_date "
-		+ " FROM INSTALL i, PURCHASE p, MODELLIST m1, MEMBERS m2"
-		+ " WHERE i.pur_index = p.pur_index  AND "
-		+ " p.prd_index = m1.prd_index  AND "
-		+ " p.mem_id = m2.mem_id AND "
-		+ " i.mgr_index IS NULL AND "
-		+ " TO_CHAR(i.ins_date,'YYYY/MM/DD') = '" + date + "'"
-		+ " m2.mem_addr3 LIKE '%" + loc + "%'" ;
+				+ " FROM INSTALL i, PURCHASE p, MODELLIST m1, MEMBERS m2"
+				+ " WHERE i.pur_index = p.pur_index  AND "
+				+ " p.prd_index = m1.prd_index  AND "
+				+ " p.mem_id = m2.mem_id AND "
+				+ " i.mgr_index IS NULL AND "
+				+ " TO_CHAR(i.ins_date,'YYYY/MM/DD') = '" + date + "' AND"
+				+ " m2.mem_addr2 LIKE '%" + loc + "%'" ;
+		
+		if(loc.equals("기타")) {
+			sql += " AND  m2.mem_addr2 NOT LIKE '%강남구%' AND "
+					+ "  m2.mem_addr2 NOT LIKE '%성동구%' AND "
+					+ "  m2.mem_addr2 NOT LIKE '%중랑구%' ";
+		}
 		
 		
 		Connection conn = null;
@@ -302,5 +312,66 @@ public class InstallDao implements InstallDaoInterface, Serializable {
 		}
 		return list;
 	}
+	
+	//특정날짜의  근무지외의 기타인 Null 리스트를 가져오는 메소드 
+	public List<InstallDto> getGitaNullList(String date){
+		
+		String sql = " SELECT  i.ins_index, i.pur_index, i.ins_date, "
+				+ "	i.comp_date, i.mgr_index, i.ins_state, "
+				+ " m1.prd_model_name, m2.mem_id, m2.mem_name, m2.mem_addr1, m2.mem_addr2, m2.mem_addr3, "
+				+ " p.pur_date "
+				+ " FROM INSTALL i, PURCHASE p, MODELLIST m1, MEMBERS m2"
+				+ " WHERE i.pur_index = p.pur_index  AND "
+				+ " p.prd_index = m1.prd_index  AND "
+				+ " p.mem_id = m2.mem_id AND "
+				+ " i.mgr_index IS NULL AND "
+				+ " TO_CHAR(i.ins_date,'YYYY/MM/DD') = '" + date + "'  AND"
+				+ "  m2.mem_addr2 NOT LIKE '%강남구%' AND "
+				+ "  m2.mem_addr2 NOT LIKE '%성동구%' AND "
+				+ "  m2.mem_addr2 NOT LIKE '%중랑구%' ";
+		
+		Connection conn = null;
+		PreparedStatement psmt = null;
+		ResultSet rs = null;
+		
+		System.out.println("[getGitaNullList] sql = " + sql);
+		
+		List<InstallDto> list = new ArrayList<InstallDto>();
+		
+		try {
+			conn = DBConnection.getConnection();
+			psmt = conn.prepareStatement(sql);
+			rs = psmt.executeQuery();
+			
+			while(rs.next()) {
+				
+				InstallDto dto = new InstallDto(rs.getInt("ins_index"),	//제품설치(install) 인덱스	
+												rs.getInt("pur_index"), //렌탈(purchase) 인덱스
+												rs.getString("ins_date"), //설치 희망일
+												rs.getString("comp_date"), // 설치 완료일
+												rs.getInt("mgr_index"), // 매니저(직원) 인덱스
+												rs.getInt("ins_state"), // 설치 상태  
+												rs.getString("prd_model_name"), //제품명
+												rs.getString("mem_id"), //회원아이디
+												rs.getString("mem_name"), //회원이름
+												rs.getString("pur_date"), //구매일
+												rs.getInt("mem_addr1"), // 회원 주소1 (우편번호)
+												rs.getString("mem_addr2"), //회원 주소2 (xx도 xx시)
+												rs.getString("mem_addr3")); //회원 주소3(xx구  xx동)
+				list.add(dto);	
+				
+				
+			}
+			
+		} catch (SQLException e) {
+			System.out.println("[getGitaNullList]fail ");
+			e.printStackTrace();
+		}finally {
+			DBClose.close(psmt, conn, rs);
+		}
+		
+		return list;
+	}
+	
 	
 }
