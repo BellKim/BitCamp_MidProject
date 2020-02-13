@@ -122,7 +122,15 @@ public class ManagerMemberDto implements Serializable {
 		return mgr_del;
 	}
 
+	public String getMgr_del(int mrg_del) {
+		if(mrg_del ==0) {
+			return "재직중";
+		}else {
+			return "퇴사상태";
+		}
+	}
 	public void setMgr_del(int mgr_del) {
+		
 		this.mgr_del = mgr_del;
 	}
 
