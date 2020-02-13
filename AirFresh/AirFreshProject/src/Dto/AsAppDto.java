@@ -24,7 +24,7 @@ public class AsAppDto implements Serializable {
 	private String asContent;			//as신청 내용
 	private String asImgPath;			//as신청 이미지첨부
 	private int pur_index;				//렌탈 index
-	private String model_name;			//제품명
+	private String prd_name;			//제품명
 	private String memName;				//회원 이름
 	private String pur_date;			//구매일자
 	private int memAddr1;				//회원주소1
@@ -152,13 +152,6 @@ public class AsAppDto implements Serializable {
 		this.pur_index = pur_index;
 	}
 
-	public String getModel_name() {
-		return model_name;
-	}
-
-	public void setModel_name(String model_name) {
-		this.model_name = model_name;
-	}
 
 	public String getMemName() {
 		return memName;
@@ -238,7 +231,7 @@ public class AsAppDto implements Serializable {
 	public String toString() {
 		return "AsAppDto [asSeq=" + asSeq + ", memId=" + memId + ", wdate=" + wdate + ", req_date=" + req_date
 				+ ", mgr_index=" + mgr_index + ", asTitle=" + asTitle + ", asContent=" + asContent + ", asImgPath="
-				+ asImgPath + ", pur_index=" + pur_index + ", model_name=" + model_name + ", prd_name=" + prd_name
+				+ asImgPath + ", pur_index=" + pur_index + ", prd_name=" + prd_name
 				+ "]";
 	}
 
