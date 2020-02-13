@@ -30,7 +30,7 @@ ManagerMemberDto managerSelectOneDTO = (ManagerMemberDto)request.getAttribute("m
 
 	  <h2>직원리스트</h2>
 	  
-	  <div>
+	  <div class="addClass">
 		  <ul class="list-group">
 		    <li class="list-group-item">
 		    <!-- 
@@ -49,7 +49,7 @@ ManagerMemberDto managerSelectOneDTO = (ManagerMemberDto)request.getAttribute("m
 		
 			<li class="list-group-item">
 		     	<label for="Mgr_id">메니저 인덱스 : </label>
-		    	<input type="text" id="Mgr_index" name="Mgr_index" value="<%=managerSelectOneDTO.getMgr_index() %>" readonly>
+		    	<input type="text" id="Mgr_index" name="Mgr_index" value="<%=managerSelectOneDTO.getMgr_index() %>">
 		    </li>
 	
 		    <li class="list-group-item">
@@ -58,11 +58,11 @@ ManagerMemberDto managerSelectOneDTO = (ManagerMemberDto)request.getAttribute("m
 		    </li>
 		    <li class="list-group-item">
 		    	<label for="Mgr_pw">메니저 비밀번호 : </label>
-		    	<input type="text" id="Mgr_pw" name="Mgr_pw" value="<%=managerSelectOneDTO.getMgr_pw() %>" readonly> 
+		    	<input type="text" id="Mgr_pw" name="Mgr_pw" value="<%=managerSelectOneDTO.getMgr_pw() %>"> 
 		    </li>	
 		    <li class="list-group-item">
 		    <label for="Mgr_name">메니저 이름 : </label>	
-		    	<input type="text" id="Mgr_name" name="Mgr_name" value="<%=managerSelectOneDTO.getMgr_name() %>" readonly>
+		    	<input type="text" id="Mgr_name" name="Mgr_name" value="<%=managerSelectOneDTO.getMgr_name() %>">
 		    </li>	
 		    <li class="list-group-item">
 		    	<label for="Mgr_loc">메니저 지역구:</label>
@@ -88,10 +88,8 @@ ManagerMemberDto managerSelectOneDTO = (ManagerMemberDto)request.getAttribute("m
 		    			res = "퇴직상태";
 		    		}--%>
 		    	<%--<input type="text" id="Mgr_del" name="Mgr_del" value="<%=managerSelectOneDTO.getMgr_del(managerSelectOneDTO.getMgr_del())%>" readonly> --%>
-		    	<input type="text" id="Mgr_del" name="Mgr_del" value="<%=ProjectUtil.managerStatus(managerSelectOneDTO.getMgr_del())%>" readonly>
-	
-	  			<input type="hidden" name="index" value="<%=managerSelectOneDTO.getMgr_index() %>" > 
-	
+		    	<input type="text" id="Mgr_del" name="Mgr_del" value="<%=ProjectUtil.managerStatus(managerSelectOneDTO.getMgr_del())%>">
+	  			<input type="hidden" name="index" value="<%=managerSelectOneDTO.getMgr_index() %>">
 		    </li>	
 		    
 		    <li class="list-group-item">
@@ -140,6 +138,15 @@ ManagerMemberDto managerSelectOneDTO = (ManagerMemberDto)request.getAttribute("m
 				
 				//$("#SelectForm").submit();
 			});	
+			
+			
+			
+			$(".Mgr_pw").click(function(){
+			    alert("hello");
+			});
+			
+			
+			
 
 		});
 
