@@ -9,6 +9,7 @@ import java.util.List;
 
 import Dao.AsDaoInterface;
 import Dto.AsAppDto;
+import Dto.InstallDto;
 import db.DBClose;
 import db.DBConnection;
 
@@ -261,5 +262,73 @@ public class AsDao implements AsDaoInterface {
 		return count>0?true:false;
 		
 	}
+	
+	
+	//근무지별로 특정날짜의 데이터를 가져오는 메소드 
+	public List<InstallDto> getMgrPicDayList(String date, String loc){
+			
+		String sql = " SELECT  i.ins_index, i.pur_index, i.ins_date, "
+				+ "	i.comp_date, i.mgr_index, i.ins_state, "
+				+ " m1.prd_model_name, m2.mem_id, m2.mem_name, m2.mem_addr1, m2.mem_addr2, m2.mem_addr3, "
+				+ " p.pur_date "
+				+ " FROM asApplication aa, PURCHASE p, MODELLIST m1, MEMBERS m2"
+				+ " WHERE i.pur_index = p.pur_index  AND "
+				+ " p.prd_index = m1.prd_index  AND "
+				+ " p.mem_id = m2.mem_id AND "
+				+ " i.mgr_index IS NULL AND "
+				+ " TO_CHAR(i.ins_date,'YYYY/MM/DD') = '" + date + "' AND"
+				+ " m2.mem_addr2 LIKE '%" + loc + "%'" ;
+			
+		if(loc.equals("기타")) {
+			sql += " AND  m2.mem_addr2 NOT LIKE '%강남구%' AND "
+					+ "  m2.mem_addr2 NOT LIKE '%성동구%' AND "
+					+ "  m2.mem_addr2 NOT LIKE '%중랑구%' ";
+		}
+			
+			
+		Connection conn = null;
+		PreparedStatement psmt = null;
+		ResultSet rs = null;
+			
+		//쿼리문 확인용 
+		System.out.println("[getMgrPicDayList] sql = " + sql);
+		//리턴용 list 생성
+		List<InstallDto> list = new ArrayList<InstallDto>();
+			
+		try {
+			conn = DBConnection.getConnection();
+			psmt = conn.prepareStatement(sql);
+			rs = psmt.executeQuery();
+			
+			while(rs.next()) {
+				
+				InstallDto dto = new InstallDto(rs.getInt("ins_index"),	//제품설치(install) 인덱스	
+												rs.getInt("pur_index"), //렌탈(purchase) 인덱스
+												rs.getString("ins_date"), //설치 희망일
+												rs.getString("comp_date"), // 설치 완료일
+												rs.getInt("mgr_index"), // 매니저(직원) 인덱스
+												rs.getInt("ins_state"), // 설치 상태  
+												rs.getString("prd_model_name"), //제품명
+												rs.getString("mem_id"), //회원아이디
+												rs.getString("mem_name"), //회원이름
+												rs.getString("pur_date"), //구매일
+												rs.getInt("mem_addr1"), // 회원 주소1 (우편번호)
+												rs.getString("mem_addr2"), //회원 주소2 (xx도 xx시)
+												rs.getString("mem_addr3")); //회원 주소3(xx구  xx동)
+					list.add(dto);	
+			}
+			
+				
+		} catch (SQLException e) {
+			System.out.println("[getMgrPicDayList] fail");
+			e.printStackTrace();
+		}finally {
+			DBClose.close(psmt, conn, rs);
+		}
+		return list;
+	}
+	
+	
+	
 	
 }

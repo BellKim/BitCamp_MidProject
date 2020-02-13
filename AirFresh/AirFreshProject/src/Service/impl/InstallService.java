@@ -48,4 +48,14 @@ public class InstallService implements InstallServiceInterface,Serializable {
 	public boolean insertNull(int ins_index, int mgr_index) {
 		return dao.insertNull(ins_index, mgr_index);
 	}
+	
+	//로그인한 직원의 근무지에 해당되고 & 선택한 특정날짜의 Null 설치 리스트를 가져오는 메소드  
+	public List<InstallDto> getMgrPicDayList(String date, String loc){
+		return dao.getMgrPicDayList(date, loc);
+	}
+	
+	//강남구, 성동구, 중랑구를 제외한 나머지 지역들의 Null 설치 리스트를 가져오는 메소드 
+	public List<InstallDto> getGitaNullList(String date){
+		return dao.getGitaNullList(date);
+	}
 }
