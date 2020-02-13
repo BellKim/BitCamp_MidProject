@@ -135,7 +135,10 @@ ManagerMemberDto managerSelectOneDTO = (ManagerMemberDto)request.getAttribute("m
 				//console.log($("#Status_Selector").attr("value"));
 				//console.log($("#mgr_indxe_dto").attr("value"));
 				
-				$("#SelectForm").submit();
+				
+				$("#Mgr_index").removeAttr("readonly");
+				
+				//$("#SelectForm").submit();
 			});	
 
 		});

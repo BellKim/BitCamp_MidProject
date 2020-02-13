@@ -232,6 +232,52 @@ public class ManageMemberDao implements ManageMemberDaoInterface {
 	
 	return dto;
 	}//end of receiveManagerMemberSelect
+
+	@Override
+	public boolean setSelectedIndexChange(int number) {
+
+//		String sql = " SELECT * FROM MANAGERMEMBER " + 
+//					" WHERE mgr_index=? ";
+		
+		String sql = "update managerMember "
+				+ " set mgr_del=1 where mgr_index=? ";
+		
+		
+		
+		
+		
+		System.out.println(" 1/6 ManageMemberDao success ");
+		Connection conn = null;
+		PreparedStatement psmt = null;
+		System.out.println( "sql = " + sql );
+		System.out.println(" 2/6 ManageMemberDao success ");
+		int count = 0;
+
+		
+		try {
+			System.out.println(" 3/6 ManageMemberDao success ");
+			conn = DBConnection.getConnection();
+			psmt = conn.prepareStatement(sql);
+			System.out.println(" 4/6 ManageMemberDao success ");
+			
+			psmt.setInt(1, number);
+
+			
+			System.out.println(" 5/6 ManageMemberDao success ");
+			
+			count = psmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			System.out.println(" ManageMemberDao  DB FAIL ");
+			e.printStackTrace();
+		}finally {
+			System.out.println(" 6/6 ManageMemberDao DBCLOSE ");
+			DBClose.close(psmt, conn, null);
+		}
+		
+		
+		return count>0?true:false;
+	}
 	
 	
 	

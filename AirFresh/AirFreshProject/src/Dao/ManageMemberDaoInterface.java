@@ -13,6 +13,8 @@ public interface ManageMemberDaoInterface {
 	public ManagerMemberDto loginManagerMemberCehck(ManagerMemberDto managermemberdto);
 	
 	public ManagerMemberDto receiveManagerMemberSelect(String index);
+
+	public boolean setSelectedIndexChange(int number);
 	
 
 }//end ManageMemberDaoInterface class;
