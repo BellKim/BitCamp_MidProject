@@ -9,6 +9,8 @@
   <meta name="author" content="">
 <title>Air Fresh</title>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/bootstrap.css" />
+<script src="<%=request.getContextPath()%>/js/jquery.min.js"></script>
+
 <!-- Custom styles for this template -->
   <link href="<%=request.getContextPath()%>/css/modern-business.css" rel="stylesheet">
 </head>
