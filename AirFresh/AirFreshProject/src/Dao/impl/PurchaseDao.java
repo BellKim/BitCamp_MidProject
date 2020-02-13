@@ -19,7 +19,7 @@ import db.DBConnection;
 public class PurchaseDao implements PurchaseDaoInterface {
 
 	public PurchaseDao() {
-		DBConnection.initConnection();
+		
 	}
 	
 	public boolean purchaseInsert(String mem_id, int prd_index, String ins_date) {
