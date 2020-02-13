@@ -6,4 +6,7 @@ import Dto.QnaBbsDto;
 
 public interface QnaBbsDaoInterface {
 	List<QnaBbsDto> getQnalist();
+	List<QnaBbsDto> getQnaPaging(String opt, String keyword, int page);
+	public int getAllQnaLength(String opt, String keyword);
+	public boolean addQna(QnaBbsDto qna);
 }

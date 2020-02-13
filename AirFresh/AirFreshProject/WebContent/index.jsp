@@ -9,7 +9,6 @@
 </head>
 <body>
 <%
-DBConnection.initConnection(); 
 response.sendRedirect(request.getContextPath()+"/client_view/main.jsp");
 %>
 

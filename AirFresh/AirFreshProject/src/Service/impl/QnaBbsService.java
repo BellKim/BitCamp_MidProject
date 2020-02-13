@@ -9,10 +9,22 @@ import Service.QnaBbsServiceInterface;
 
 public class QnaBbsService implements QnaBbsServiceInterface {
 	
-	QnaBbsDaoInterface qna = new QnaBbsDao();
+	QnaBbsDaoInterface qbd = new QnaBbsDao();
 	@Override
 	public List<QnaBbsDto> getQnalist() {
-		return qna.getQnalist();
+		return qbd.getQnalist();
+	}
+	@Override
+	public List<QnaBbsDto> getQnaPaging(String opt, String keyword, int page) {
+		return qbd.getQnaPaging(opt, keyword, page);
+	}
+	@Override
+	public int getAllQnaLength(String opt, String keyword) {
+		return qbd.getAllQnaLength(opt, keyword);
+	}
+	@Override
+	public boolean addQna(QnaBbsDto qna) {
+		return qbd.addQna(qna);
 	}
 
 }
