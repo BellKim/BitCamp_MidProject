@@ -7,7 +7,5 @@ SELECT * FROM managerMember;
 SELECT * FROM MEMBERS;
 
 
-
-
 SELECT * FROM managerMember;
 

@@ -3,13 +3,16 @@
 ----------------------------------------------------------------------------------------------------------------------
 
 insert into managerMember (mgr_index, mgr_auth, mgr_id, mgr_pw, mgr_name, mgr_loc, mgr_cell, mgr_del)
-values (managerMember_SEQ.NEXTVAL, 1, 'J_admin', '4321', '부메니저', 0, 01012341234, 0);
+values (managerMember_SEQ.NEXTVAL, 2, 'J_admin', '4321', '부메니저', 1, 01012341234, 0);
 
 insert into managerMember (mgr_index, mgr_auth, mgr_id, mgr_pw, mgr_name, mgr_loc, mgr_cell, mgr_del)
-values (managerMember_SEQ.NEXTVAL, 0, 'k_admin', '1234', '왕관리자', 0, 01012341234, 0);
+values (managerMember_SEQ.NEXTVAL, 1, 'k_admin', '1234', '왕관리자', 3, 01012341234, 0);
 
 insert into managerMember (mgr_index, mgr_auth, mgr_id, mgr_pw, mgr_name, mgr_loc, mgr_cell, mgr_del)
-values (managerMember_SEQ.NEXTVAL, 0, '123', '123', '왕관리자', 0, 01012341234, 0);
+values (managerMember_SEQ.NEXTVAL, 3, '123', '123', '김철근', 2, 01012341234, 0);
+
+insert into managerMember (mgr_index, mgr_auth, mgr_id, mgr_pw, mgr_name, mgr_loc, mgr_cell, mgr_del)
+values (managerMember_SEQ.NEXTVAL, 4, '456', '456', '김공사', 1, 01012341234, 0);
 
 
 SELECT * FROM managerMember;
