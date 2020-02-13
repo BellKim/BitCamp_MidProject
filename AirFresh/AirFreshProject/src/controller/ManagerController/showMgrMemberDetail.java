@@ -69,7 +69,7 @@ public class showMgrMemberDetail extends HttpServlet{
 			
 			
 			
-//			ProjectUtil.forward("admin_view/manageMgr/ManagerCURD/modifyManager.jsp", req, resp);
+			ProjectUtil.forward("admin_view/manageMgr/ManagerCURD/modifyManager.jsp", req, resp);
 		}
 		
 		

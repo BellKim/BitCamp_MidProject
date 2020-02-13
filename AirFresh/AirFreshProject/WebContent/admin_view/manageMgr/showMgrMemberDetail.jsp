@@ -20,6 +20,8 @@ ManagerMemberDto managerSelectOneDTO = (ManagerMemberDto)request.getAttribute("m
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
   
+  <link rel="stylesheet" type="text/css" href="./assets/css/showMgrMemberDetail.css">
+  
   
 </head>
 <body>
@@ -33,77 +35,48 @@ ManagerMemberDto managerSelectOneDTO = (ManagerMemberDto)request.getAttribute("m
 	  <div class="addClass">
 		  <ul class="list-group">
 		    <li class="list-group-item">
-		    <!-- 
-		    	<div class="container-fluid">
-		    		<ul class="nav navbar-nav">0</ul>
-					<ul class="nav navbar-nav">1</ul>
-					<ul class="nav navbar-nav">2</ul>
-					<ul class="nav navbar-nav">3</ul>
-		    	</div>
-		     -->
 		    </li>
-		<%--
-			권한변경 		auth를 0, 1, 2  로 변경한다. 
-			아이디 삭제하기 => del=0 에서 1로 변경 
-		--%>
-		
 			<li class="list-group-item">
-		     	<label for="Mgr_id">메니저 인덱스 : </label>
-		    	<input type="text" id="Mgr_index" name="Mgr_index" value="<%=managerSelectOneDTO.getMgr_index() %>">
+		     	<label for="Mgr_id" class="width50">메니저 인덱스 : </label>
+		    	<input type="text" id="Mgr_index" name="Mgr_index" value="<%=managerSelectOneDTO.getMgr_index() %>" readonly>
 		    </li>
-	
 		    <li class="list-group-item">
-		     	<label for="Mgr_id">메니저 아아디 : </label>
+		     	<label for="Mgr_id" class="width50">메니저 아아디 : </label>
 		    	<input type="text" id="Mgr_id" name="Mgr_id" value="<%=managerSelectOneDTO.getMgr_id() %>" readonly>
 		    </li>
 		    <li class="list-group-item">
-		    	<label for="Mgr_pw">메니저 비밀번호 : </label>
-		    	<input type="text" id="Mgr_pw" name="Mgr_pw" value="<%=managerSelectOneDTO.getMgr_pw() %>"> 
-		    </li>	
+		    	<label for="Mgr_pw" class="width50">메니저 비밀번호 : </label>
+		    	<input type="text" id="Mgr_pw" name="Mgr_pw" value="<%--<%=managerSelectOneDTO.getMgr_pw() %>--%>" readonly> 
+		    </li>
 		    <li class="list-group-item">
-		    <label for="Mgr_name">메니저 이름 : </label>	
-		    	<input type="text" id="Mgr_name" name="Mgr_name" value="<%=managerSelectOneDTO.getMgr_name() %>">
-		    </li>	
+		    <label for="Mgr_name" class="width50">메니저 이름 : </label>	
+		    	<input type="text" id="Mgr_name" name="Mgr_name" value="<%=managerSelectOneDTO.getMgr_name() %>" readonly>
+		    </li>
 		    <li class="list-group-item">
-		    	<label for="Mgr_loc">메니저 지역구:</label>
-		    	<input type="text" id="Mgr_loc" name="Mgr_loc" value="<%=ProjectUtil.locationChange(managerSelectOneDTO.getMgr_loc()) %>" readonly>
-		    </li>	
+		    	<label for="Mgr_loc" class="width50">메니저 지역구:</label>
+		    	<input type="text" id="Mgr_loc" name="Mgr_loc" value="<%=ProjectUtil.locationChange(managerSelectOneDTO.getMgr_loc()) %>" readonly >
+		    </li>
 		    <li class="list-group-item">
-		    	<label for="Mgr_cell">메니저 휴대전화번호:</label>
-		    	<input type="text" id="Mgr_cell" name="Mgr_cell" value="<%=managerSelectOneDTO.getMgr_cell()%>" readonly>
-		    </li>	
+		    	<label for="Mgr_cell" class="width50">메니저 휴대전화번호:</label>
+		    	<input type="text" id="Mgr_cell" name="Mgr_cell" value="<%=managerSelectOneDTO.getMgr_cell()%>" readonly >
+		    </li>
 		    <li class="list-group-item">
-		    	<label for="Mgr_auth">메니저 권한:</label>
+		    	<label for="Mgr_auth" class="width50">메니저 권한:</label>
 		    	<input type="text" id="Mgr_auth" name="Mgr_auth" value="<%=ProjectUtil.managerLevel(managerSelectOneDTO.getMgr_auth()) %>" readonly>
-		    </li>	
+		    </li>
 		    <li class="list-group-item">
-		    	<label for="Mgr_del">메니저 탈퇴여부:</label>
-		    	<%--
-		    	managerSelectOneDTO.getMgr_del(managerSelectOneDTO.getMgr_del());
-		    	--%>
-		    	<%--String res = null;
-		    		if(managerSelectOneDTO.getMgr_del()==0){
-		    			res = "재직중";
-		    		}else if(managerSelectOneDTO.getMgr_del()==1){
-		    			res = "퇴직상태";
-		    		}--%>
-		    	<%--<input type="text" id="Mgr_del" name="Mgr_del" value="<%=managerSelectOneDTO.getMgr_del(managerSelectOneDTO.getMgr_del())%>" readonly> --%>
-		    	<input type="text" id="Mgr_del" name="Mgr_del" value="<%=ProjectUtil.managerStatus(managerSelectOneDTO.getMgr_del())%>">
+		    	<label for="Mgr_del" class="width50">메니저 탈퇴여부:</label>
+		    	<input type="text" id="Mgr_del" name="Mgr_del" value="<%=ProjectUtil.managerStatus(managerSelectOneDTO.getMgr_del())%>" readonly>
 	  			<input type="hidden" name="index" value="<%=managerSelectOneDTO.getMgr_index() %>">
-		    </li>	
-		    
+		    </li>
 		    <li class="list-group-item">
-		    <!-- 
-					<a href="<%=request.getContextPath() %>/showMgrMemberDetail?status=delete"  style="border:1px solid black"> 삭 제 </a>
-					<br><br>
-					<a href="<%=request.getContextPath() %>/showMgrMemberDetail?status=modify" style="border:1px solid black"> 수 정 </a>
-			-->
 	  	    	<button type="button" class="delete_btn">delete 삭제 </button>
 		    	<button type="button" class="modify_btn">modify 수정 </button>
 		    </li>
 		  </ul>
 	  </div>
-	</div>
+	  
+	</div><!-- container  -->
 
 	<div>
 		<form action="<%=request.getContextPath() %>/showMgrMemberDetail" id="SelectForm" method="get">
@@ -113,6 +86,10 @@ ManagerMemberDto managerSelectOneDTO = (ManagerMemberDto)request.getAttribute("m
 		</form>
 	
 	</div>
+		<%--
+			권한변경 		auth를 0, 1, 2  로 변경한다. 
+			아이디 삭제하기 => del=0 에서 1로 변경 
+		--%>
 	
 	<script type="text/javascript">
 		$(document).ready(function(){
@@ -132,20 +109,12 @@ ManagerMemberDto managerSelectOneDTO = (ManagerMemberDto)request.getAttribute("m
 				
 				//console.log($("#Status_Selector").attr("value"));
 				//console.log($("#mgr_indxe_dto").attr("value"));
+				$("#SelectForm").attr("action", "<%=request.getContextPath() %>/mgrInfoModify");
 				
+				//("#Mgr_index").removeAttr("readonly");
 				
-				$("#Mgr_index").removeAttr("readonly");
-				
-				//$("#SelectForm").submit();
+				$("#SelectForm").submit();
 			});	
-			
-			
-			
-			$(".Mgr_pw").click(function(){
-			    alert("hello");
-			});
-			
-			
 			
 
 		});
