@@ -95,14 +95,14 @@ for(ManagerMemberDto a : managerMemberDto){
 			    	<span>메니저 삭제여부 : <%=memberdto.getMgr_del() %> </span>
 			    	</li>
 			    	<li>
-			    	<form action="<%=request.getContextPath() %>/showMgrMemberDetail?mgr_id=<%=memberdto.getMgr_id() %>" method="POST">
+			    	<form action="<%=request.getContextPath() %>/showMgrMemberDetail" method="POST">
+			    		<input type="hidden" name="mgr_index" value="<%=memberdto.getMgr_index() %>">
 			    		<input type="submit" value="자세히보기">
-				    	<span><%=memberdto.getMgr_id() %></span>
+				    	<span><%=memberdto.getMgr_index() %></span>
 			    	</form>
 			    	</li>
 		    	</ul>
 	    </li>
-
    <%
     }
     %>

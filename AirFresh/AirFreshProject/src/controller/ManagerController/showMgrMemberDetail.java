@@ -3,7 +3,6 @@ package controller.ManagerController;
 import java.io.IOException;
 import java.util.List;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -40,37 +39,37 @@ public class showMgrMemberDetail extends HttpServlet{
 		System.out.println("detail do post ");
 		String status = req.getParameter("status");
 		System.out.println("!!!!!!status = " + status );
-		
+		singleton si = singleton.getInstance();
 		
 		if(status==null) {
-			singleton si = singleton.getInstance();
-			List<ManagerMemberDto> listmanagermemberlist1 = si.managerMember.receiveManagerMemberAll();
-			System.out.println(listmanagermemberlist1);
-			String reqno = req.getParameter("mgr_id");
-			System.out.println("showMgrMemberDetail  reqno = "+reqno );
+			String receiveIndexNo = req.getParameter("mgr_index");
+			ManagerMemberDto managerdto = si.managerMember.receiveManagerMemberSelect(receiveIndexNo);
+			System.out.println(managerdto);
+			System.out.println("managerInfoSelectOne mgr_index receiveIndexNo = "+receiveIndexNo );
 			
-			for(int i=0; i<=listmanagermemberlist1.size(); i++) {
-//				if(listmanagermemberlist1.get(i).getMgr_id().equals("reqno")) {
-//				}
-			}
-			req.setAttribute("managerMemberList1", listmanagermemberlist1);
+			req.setAttribute("managerInfoSelectOne", managerdto);
 			ProjectUtil.forward("admin_view/manageMgr/showMgrMemberDetail.jsp", req, resp);
 			
 			
 		}else if(status.equals("delete")) {
 			System.out.println("삭제 에 진입.");
+			String S_index = req.getParameter("index");
+			int index=Integer.parseInt(S_index);
 			
+			System.out.println("delete index = "+index);
+			boolean check = si.managerMember.setSelectedIndexChange(index);
+			
+			System.out.println("check 상태 입력 " + check);
 			
 			ProjectUtil.forward("admin_view/manageMgr/ManagerCURD/deleteManager.jsp", req, resp);
-			
-			
 		}else if(status.equals("modify")) {
 			System.out.println("수정에 진입. ");
+			String index = req.getParameter("index");
+			System.out.println("modify index   = "+index);
+			
 			
 			
 			ProjectUtil.forward("admin_view/manageMgr/ManagerCURD/modifyManager.jsp", req, resp);
-			
-			
 		}
 		
 		

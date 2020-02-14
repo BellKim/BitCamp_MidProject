@@ -1,26 +1,25 @@
+<%@page import="singleton.singleton"%>
 <%@page import="Dto.MemberDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
 MemberDto mem = (MemberDto)session.getAttribute("login");
-%>    
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>update</title>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+%> 
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-</head>
-<body>
 
-
-	<div id="member" align="center">
-		<div>
-		<h2>Air FRESH 회원정보수정</h2>
-		</div>
+<%@ include file="./../include/header.jsp"%>
+	<div class="container" align="center">		
+		<h2 class="mt-4 mb-3">Air FRESH 회원정보수정</h2>
+		
+		<ol class="breadcrumb">
+			<li class="breadcrumb-item"><a href="index.html">Home</a></li>
+			<li class="breadcrumb-item active">마이페이지</li>
+			<li class="breadcrumb-item active">내정보</li>
+		</ol>
+		
 		<form id="frm" onsubmit="return validate();" action="<%=request.getContextPath() %>/updatemem" method="post">			
-			<table>
+			<input type="hidden" name="command" value="updateAf">			
+			<table class="table table-hover">
 				<tr>
 					<td>이름</td>
 					<td>
@@ -64,8 +63,7 @@ MemberDto mem = (MemberDto)session.getAttribute("login");
 					</td>
 				</tr>
 				<tr>
-					<td colspan="2" align="center">
-						<input type="button" value="이전으로" onclick="location.href='mypage.jsp'">
+					<td colspan="2" align="center">						
 						<input type="button" value="수정" id="_btnUpdate">
 						<input type="button" value="회원탈퇴" id="_btnSignout" onclick="return confirm('정말로 탈퇴하시겠습니까?')">
 					</td>
@@ -99,13 +97,13 @@ $(document).ready(function () {
 		}	
 	});
 	
-	$("#_btnSignout").click(function () {		
-		//id, pw 입력받아 확인후 삭제됨, 새창 또는 팝업창으로 입력칸을 띄우던가 수정 요!		
-		location.href = 'signout.jsp';	<%-- "<%=request.getContextPath() %>/delmem" --%>
+	$("#_btnSignout").click(function () {					
+/*  */		location.href = '<%=request.getContextPath() %>/delmem?command=signout';
 	});
 	
 });
 
+// daum 우편번호 확인 함수 시작
 function sample6_execDaumPostcode() {
     new daum.Postcode({
         oncomplete: function(data) {
@@ -153,7 +151,9 @@ function sample6_execDaumPostcode() {
         }
     }).open();
 }
+// daum 우편번호 확인 함수 끝
 
+// 정규식 확인 함수 시작
 function validate() {			
 	var pw = $("#mem_pw").val();	// 특수문자 / 문자 / 숫자 포함 형태의 6~20자리 이내의 암호 정규식
 	var pwReg = /^.*(?=^.{6,20}$)(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$/;
@@ -174,10 +174,7 @@ function validate() {
 	}
 	return true;	
 }
-
+// 정규식 함수 끝
 
 </script>
-
-
-</body>
-</html>
+<%@ include file="./../include/footer.jsp"%>

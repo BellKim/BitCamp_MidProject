@@ -41,11 +41,11 @@
 				<col width="70">
 				<thead>
 					<tr align="center">
-						<th scope="col">No</th>
-						<th scope="col">Title</th>
-						<th scope="col">Date</th>
-						<th scope="col">Writer</th>
-						<th scope="col">Count</th>
+						<th scope="col">번호</th>
+						<th scope="col">제목</th>
+						<th scope="col">작성일</th>
+						<th scope="col">작성자</th>
+						<th scope="col">조회수</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -100,14 +100,14 @@
 		<div style="float: right">
 				<div class="form-group"
 					style="float: left; width: 100px; margin-right: 5px;">
-					<select class="form-control" id="exampleSelect2" name="opt">
+					<select class="form-control" id="opt" name="opt">
 						<option value="sel">선택</option>
 						<option value="title">제목</option>
 						<option value="content">내용</option>
 					</select>
 				</div>
 				<div class="form-group" style="float: left; margin-right: 5px;">
-					<input type="text" class="form-control" id="inputDefault"
+					<input type="text" class="form-control" id="keyword"
 						name="keyword">
 				</div>
 				<div class="form-group" style="float: left">
@@ -122,20 +122,20 @@
 
 <script type="text/javascript">
 	function searchNotice(){
-		var opt = document.getElementById("exampleSelect2").value;
-		var keyword = $("#inputDefault").val();
+		var opt = document.getElementById("opt").value;
+		var keyword = $("#keyword").val();
 		if(keyword == ""){
-			document.getElementById("exampleSelect2").value = "sel";
+			document.getElementById("opt").value = "sel";
 		}
 		location.href="<%=request.getContextPath()%>/noticelist?opt=" + opt + "&keyword=" + keyword;
 		}
 	
 	function goPage( pageNum ) {
-		var opt = document.getElementById("exampleSelect2").value;
-		var keyword = $("#inputDefault").val();
+		var opt = document.getElementById("opt").value;
+		var keyword = $("#keyword").val();
 //		alert("pageNum:" + pageNum);
 		if(keyword == ""){
-			document.getElementById("exampleSelect2").value = "sel";
+			document.getElementById("opt").value = "sel";
 		}
 		var linkStr = "<%=request.getContextPath()%>/noticelist?command=user&pageNumber=" + pageNum;
 		if(opt != 'sel' && keyword != ""){

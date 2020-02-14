@@ -17,4 +17,6 @@ public interface MemberDaoInterface {
 	public String findID(String mem_name, String mem_cell);
 	
 	public String findPW(String mem_id, String mem_name);
+	
+	public MemberDto getMem(String id);
 }

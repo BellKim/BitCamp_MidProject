@@ -88,6 +88,10 @@ MAXVALUE 79999
 NOCYCLE;
 
 -- members Table Create SQL
+
+-- 날짜 : 2020-02-12
+-- 수정자 : 이지예 
+-- MEM_CELL 컬럼 타입 변경 : NUMBER -> VARCHAR2(12)
 CREATE TABLE members
 (
     mem_id       VARCHAR2(50)     NOT NULL, 

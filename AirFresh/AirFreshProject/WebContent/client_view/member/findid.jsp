@@ -19,7 +19,7 @@ if(str4 != null && !str4.equals("")){
 	location.href = "./client_view/member/login.jsp";
 	</script>
 <%
-}else if(str4 == null || str4.equals("")){
+}else {
 %>
 	<script type="text/javascript">
 	alert("찾으시는 아이디가 없습니다.");

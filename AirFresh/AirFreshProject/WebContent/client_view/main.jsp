@@ -1,7 +1,13 @@
+<%@page import="Dto.MemberDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="./include/header.jsp" %>
-
+<%
+MemberDto mem = new MemberDto("aaa@naver.com", null , "한유진", "01000000000", "920207", 01234,
+		"중랑구", null, 0);
+session.setAttribute("memLogin", mem);
+session.setMaxInactiveInterval(3600);
+%>
  <header>
     <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
       <ol class="carousel-indicators">

@@ -20,10 +20,13 @@ if(mem != null && !mem.getMem_id().equals("")){
 %>
 	<script type="text/javascript">
 	alert("안녕하세요 ♥<%=mem.getMem_name() %>♥님");
-	location.href = "./client_view/member/mypage.jsp";
+	//지예씨 코드   location.href = "./client_view/member/mypage.jsp";
+	
+	//로그인 성공시 메인페이지로 이동 
+	location.href = "<%=request.getContextPath() %>/index.jsp";
 	</script>
 <%
-}else{// 왜 밑에 창이 안뜰까?
+}else{
 %>
 	<script type="text/javascript">
 	alert("id나 password를 확인하십시오");
