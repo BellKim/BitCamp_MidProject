@@ -37,8 +37,7 @@ public class ManagerMemberDto implements Serializable {
 		this.mgr_pw = mgr_pw;
 	}
 
-	public ManagerMemberDto(int mgr_index, int mgr_auth, String mgr_id, String mgr_pw, String mgr_name, int mgr_loc,
-			int mgr_cell, int mgr_del) {
+	public ManagerMemberDto(int mgr_index, int mgr_auth, String mgr_id, String mgr_pw, String mgr_name, int mgr_loc, int mgr_cell, int mgr_del) {
 		super();
 		this.mgr_index = mgr_index;
 		this.mgr_auth = mgr_auth;
@@ -50,8 +49,7 @@ public class ManagerMemberDto implements Serializable {
 		this.mgr_del = mgr_del;
 	}
 	
-	public ManagerMemberDto(int mgr_index, int mgr_auth, String mgr_id, String mgr_pw, String mgr_name, int mgr_loc,
-			int mgr_cell) {
+	public ManagerMemberDto(int mgr_index, int mgr_auth, String mgr_id, String mgr_pw, String mgr_name, int mgr_loc, int mgr_cell) {
 		super();
 		this.mgr_index = mgr_index;
 		this.mgr_auth = mgr_auth;
@@ -62,17 +60,7 @@ public class ManagerMemberDto implements Serializable {
 		this.mgr_cell = mgr_cell;
 	}
 	
-	public ManagerMemberDto(int mgr_auth, String mgr_id, String mgr_pw, String mgr_name, int mgr_loc,
-			int mgr_cell, int mgr_del) {
-		super();
-		this.mgr_auth = mgr_auth;
-		this.mgr_id = mgr_id;
-		this.mgr_pw = mgr_pw;
-		this.mgr_name = mgr_name;
-		this.mgr_loc = mgr_loc;
-		this.mgr_cell = mgr_cell;
-		this.mgr_del = mgr_del;
-	}
+
 
 	public int getMgr_index() {
 		return mgr_index;
@@ -134,7 +122,15 @@ public class ManagerMemberDto implements Serializable {
 		return mgr_del;
 	}
 
+	public String getMgr_del(int mrg_del) {
+		if(mrg_del ==0) {
+			return "재직중";
+		}else {
+			return "퇴사상태";
+		}
+	}
 	public void setMgr_del(int mgr_del) {
+		
 		this.mgr_del = mgr_del;
 	}
 

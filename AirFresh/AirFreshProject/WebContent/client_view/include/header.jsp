@@ -52,7 +52,7 @@
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
               <a class="dropdown-item" href="<%=request.getContextPath()%>/noticelist?command=user">공지사항</a>
-              <a class="dropdown-item" href="#">QNA</a>
+              <a class="dropdown-item" href="<%=request.getContextPath()%>/qnalist?command=user">QNA</a>
               <a class="dropdown-item" href="#">FAQ</a>
             </div>
           </li>

@@ -29,6 +29,7 @@
 			  <option value="1">강남구</option>
 			  <option value="2">성동구</option>
 			  <option value="3" selected="selected">중랑구</option>
+			  <option value="4" >기타</option>
 			</select>
 		</div>
 		<div>
