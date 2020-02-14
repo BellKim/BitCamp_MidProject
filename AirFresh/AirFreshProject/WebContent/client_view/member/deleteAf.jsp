@@ -1,8 +1,10 @@
+<%@page import="Dto.MemberDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
 String str2 = request.getParameter("isS2");		// delMem
-%>    
+System.out.println(str2);
+%>   
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,7 +18,8 @@ if(str2.equals("true")){
 %>	
 	<script type="text/javascript">
 	alert("정상적으로 삭제되었습니다");
-	location.href = "./client_view/member/login.jsp";
+	//session.invalidate();
+	location.href = "./client_view/member/index.jsp";
 	</script>
 <%
 }else if(str2.equals("false")){

@@ -1,18 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>PersonalInfoTerms</title>
-</head>
-<body>
+<%@ include file="./../include/header.jsp"%>
 
 <!-- SK매직몰 개인정보 수집/이용안내 -->
 <div id="container">
 		<div id="content">
 			<div class="termWrap">
-				<div class="title"><h2 align="center">AirFresh몰 개인정보 수집/이용안내</h2></div>
+				<div class="title"><h2 class="mt-4 mb-3" align="center">AirFresh몰 개인정보 수집/이용안내</h2></div>
 				<div class="cont">
 					<div class="tabArea">						
 						<!-- AirFresh몰 -->
@@ -31,7 +25,7 @@
 		<br>이 경우 회사는 보관하는 개인정보를 그 보관의 목적으로만 이용하며 보존 기간은 아래와 같습니다.
 	</p>
 	<div class="tblBox">	
-		<table class="tblCont col line __se_tbl_ext">	
+		<table class="table table-hover">	
 			<colgroup>	
 				<col style="width: 70px;">
 				<col style="width: 112px;">
@@ -1099,7 +1093,6 @@
 			</div>								
 		</div>
 	</div>
-</div>							
+</div>	
 							
-</body>
-</html>
+<%@ include file="./../include/footer.jsp"%>

@@ -14,19 +14,7 @@ import singleton.singleton;
 
 @WebServlet("/memlogin")
 public class MemLogin extends HttpServlet{
-/*
-	private static MemLogin memLogin = null;
-	
-	private MemLogin() {		
-	}
-	
-	public MemLogin getInstance() {
-		if(memLogin == null) {
-			memLogin = new MemLogin();
-		}
-		return memLogin;
-	}
-*/
+
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {		
 		this.processFunc(req, resp);

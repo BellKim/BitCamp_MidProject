@@ -1,21 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>PrivacyUseTerms</title>
-</head>
-<body>
-
+<%@ include file="./../include/header.jsp"%>
 <div id="container" align="center">
 		<div id="content">
 			<div class="termWrap">
-				<div class="title"><h2>개인 정보 수집/이용 동의 (선택)</h2></div>
+				<div class="mt-4 mb-3"><h2>개인 정보 수집/이용 동의 (선택)</h2></div>
 				<div class="cont">
 			<p class="top">AirFresh㈜은 AirFresh몰 가입 회원에게 다양한 편의 및 정보를 제공하기 위하여 아래와 같은 개인 정보를 수집/이용하고 있습니다. 
 				<br>회원은 본 개인 정보 수집/이용 동의에 동의하지 않을 권리가 있습니다. <br>단, 수집/이용 동의를 거부하는 경우 하기 정보 제공에 제한을 받을 수 있습니다.</p>
-			<table class="tblCont col line">
+			<table class="table table-hover">
 				<caption></caption>
 				<colgroup>
 					<col style="width:*;">
@@ -44,6 +37,4 @@
 			</div>
 		</div>
 	</div>
-
-</body>
-</html>
+<%@ include file="./../include/footer.jsp"%>

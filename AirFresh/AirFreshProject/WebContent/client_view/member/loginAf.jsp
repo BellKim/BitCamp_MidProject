@@ -26,7 +26,7 @@ if(mem != null && !mem.getMem_id().equals("")){
 	location.href = "<%=request.getContextPath() %>/index.jsp";
 	</script>
 <%
-}else{// 왜 밑에 창이 안뜰까?
+}else{
 %>
 	<script type="text/javascript">
 	alert("id나 password를 확인하십시오");
