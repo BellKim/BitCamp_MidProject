@@ -24,7 +24,6 @@
     %>
 <div class="container">
 	<h1 class="mt-4 mb-3" >QnA</h1>
-		<hr>
 				<!-- Content Column -->
 			
 			<table class="table table-hover">
