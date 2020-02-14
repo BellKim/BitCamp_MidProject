@@ -18,10 +18,10 @@ public class MgrInfoModify extends HttpServlet{
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		System.out.println("mgrInfoModify service 진입.");
-		
-//		String status = req.getParameter("status");
-//		System.out.println("!!!!!!status = " + status );
 		singleton si = singleton.getInstance();
+		
+		String status = req.getParameter("status");
+		
 		
 		String receiveIndexNo = req.getParameter("index");
 		System.out.println("리시프 인덱스 넘버 "+receiveIndexNo);
@@ -29,7 +29,7 @@ public class MgrInfoModify extends HttpServlet{
 		System.out.println(managerdto);
 		System.out.println("managerInfoSelectOne mgr_index receiveIndexNo = "+receiveIndexNo );
 		
-		req.setAttribute("managerModify", managerdto);
+		req.setAttribute("managerModify1", managerdto);
 		
 		ProjectUtil.forward("admin_view/manageMgr/ManagerCURD/modifyManager.jsp", req, resp);
 		

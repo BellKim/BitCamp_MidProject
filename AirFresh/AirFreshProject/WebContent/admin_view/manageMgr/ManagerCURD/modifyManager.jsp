@@ -5,7 +5,7 @@
     pageEncoding="UTF-8"%>
 <%
 request.setCharacterEncoding("utf-8");
-ManagerMemberDto managerSelectOneDTO = (ManagerMemberDto)request.getAttribute("managerModify");
+ManagerMemberDto managerSelectOneDTO = (ManagerMemberDto)request.getAttribute("managerModify1");
 %>
 
 
@@ -39,31 +39,31 @@ ManagerMemberDto managerSelectOneDTO = (ManagerMemberDto)request.getAttribute("m
 		    </li>
 			<li class="list-group-item">
 		     	<label for="Mgr_id" class="width50">메니저 인덱스 : </label>
-		    	<input type="text" id="Mgr_index" name="Mgr_index" value="<%=managerSelectOneDTO.getMgr_index() %>" readonly>
+		    	<!-- <input type="text" id="Mgr_index" name="Mgr_index" value="<%--=managerSelectOneDTO.getMgr_index() --%>" readonly>  -->
 		    </li>
 		    <li class="list-group-item">
 		     	<label for="Mgr_id" class="width50">메니저 아아디 : </label>
-		    	<input type="text" id="Mgr_id" name="Mgr_id" value="<%=managerSelectOneDTO.getMgr_id() %>" readonly>
+		    	<input type="text" id="Mgr_id" name="Mgr_id" value="<%=managerSelectOneDTO.getMgr_id() %>" >
 		    </li>
 		    <li class="list-group-item">
 		    	<label for="Mgr_pw" class="width50">메니저 비밀번호 : </label>
-		    	<input type="text" id="Mgr_pw" name="Mgr_pw" value="<%--<%=managerSelectOneDTO.getMgr_pw() %>--%>" readonly> 
+		    	<input type="text" id="Mgr_pw" name="Mgr_pw" value="<%=managerSelectOneDTO.getMgr_pw() %>" > 
 		    </li>
 		    <li class="list-group-item">
 		    <label for="Mgr_name" class="width50">메니저 이름 : </label>	
-		    	<input type="text" id="Mgr_name" name="Mgr_name" value="<%=managerSelectOneDTO.getMgr_name() %>" readonly>
+		    	<input type="text" id="Mgr_name" name="Mgr_name" value="<%=managerSelectOneDTO.getMgr_name() %>" >
 		    </li>
 		    <li class="list-group-item">
 		    	<label for="Mgr_loc" class="width50">메니저 지역구:</label>
-		    	<input type="text" id="Mgr_loc" name="Mgr_loc" value="<%=ProjectUtil.locationChange(managerSelectOneDTO.getMgr_loc()) %>" readonly >
+		    	<input type="text" id="Mgr_loc" name="Mgr_loc" value="<%=ProjectUtil.locationChange(managerSelectOneDTO.getMgr_loc()) %>"  >
 		    </li>
 		    <li class="list-group-item">
 		    	<label for="Mgr_cell" class="width50">메니저 휴대전화번호:</label>
-		    	<input type="text" id="Mgr_cell" name="Mgr_cell" value="<%=managerSelectOneDTO.getMgr_cell()%>" readonly >
+		    	<input type="text" id="Mgr_cell" name="Mgr_cell" value="<%=managerSelectOneDTO.getMgr_cell()%>"  >
 		    </li>
 		    <li class="list-group-item">
 		    	<label for="Mgr_auth" class="width50">메니저 권한:</label>
-		    	<input type="text" id="Mgr_auth" name="Mgr_auth" value="<%=ProjectUtil.managerLevel(managerSelectOneDTO.getMgr_auth()) %>" readonly>
+		    	<input type="text" id="Mgr_auth" name="Mgr_auth" value="<%=ProjectUtil.managerLevel(managerSelectOneDTO.getMgr_auth()) %>" >
 		    </li>
 		    <li class="list-group-item">
 		    	<label for="Mgr_del" class="width50">메니저 탈퇴여부:</label>
@@ -72,7 +72,7 @@ ManagerMemberDto managerSelectOneDTO = (ManagerMemberDto)request.getAttribute("m
 		    </li>
 		    <li class="list-group-item">
 	  	    	
-		    	<button type="button" class="modify_btn"> 수정완료 </button>
+		    	<button type="submit" class="modify_btn"> 수정완료 </button>
 		    </li>
 		  </ul>
 		  	<input type="hidden"  id="Status_Selector" name="status" value=""><%-- 스테이터스가  jquery에 의해서 입력이 된다. --%>
