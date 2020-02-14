@@ -30,6 +30,8 @@ public class QnaBbsList extends HttpServlet {
 		String opt = req.getParameter("opt");
 		String keyword = req.getParameter("keyword");
 		String spageNumber = req.getParameter("pageNumber");
+		System.out.println(opt);
+		System.out.println(keyword);
 		int pageNumber = 0;
 		
 		if(spageNumber != null && !spageNumber.equals("")){
@@ -54,6 +56,12 @@ public class QnaBbsList extends HttpServlet {
 			req.setAttribute("len", len);
 			req.setAttribute("qnalist", list);
 			ProjectUtil.forward("./client_view/board/qnalist.jsp", req, resp);
+		} else if(command.contentEquals("admin")) {
+			List<QnaBbsDto> list = s.qbs.getQnaPaging(opt, keyword, pageNumber);
+			int len = s.qbs.getAllQnaLength(opt, keyword);
+			req.setAttribute("len", len);
+			req.setAttribute("qnalist", list);
+			ProjectUtil.forward("./admin_view/board/qnalist.jsp", req, resp);
 		}
 		
 	}

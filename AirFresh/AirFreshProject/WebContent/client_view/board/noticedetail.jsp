@@ -18,10 +18,11 @@
 		<li class="breadcrumb-item active">공지사항</li>
 	</ol>
 
-	<div class="card mb-4">
-		<div class="card-body">
-			<h2 class="card-title"><%=notice.getNoti_title()%></h2>
-			
+	<div class="card">
+		<div class="card-header">
+			<h3 class="card-title"><%=notice.getNoti_title()%></h3>
+		</div>	
+			<div class = "card-body">
 			<%
 				if (notice.getFilename() != null) {
 			%>
@@ -55,12 +56,11 @@
 	<p class="card-text">
 
 				<%=notice.getNoti_title()%></p>
-
-		</div>
-
-		<div class="card-footer text-muted" align="center">
+	</div>
+</div>
+		<div align="center" style="padding :10px;">
 			<a href="<%=request.getContextPath()%>/noticelist?command=user" class="btn btn-primary">목록</a>
-		</div>
+		
 	</div>
 	<!-- Content Column -->
 

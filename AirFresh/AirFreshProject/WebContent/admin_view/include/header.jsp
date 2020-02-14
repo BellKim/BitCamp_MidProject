@@ -6,6 +6,7 @@
 <meta charset="UTF-8">
 <title>Air Fresh Admin</title>
 <link href="<%=request.getContextPath()%>/css/styles.css" rel="stylesheet" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <link
 	href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css"
 	rel="stylesheet" crossorigin="anonymous" />
@@ -52,13 +53,13 @@
 						<a class="nav-link" href="tables.html">
 								<i class="fas fa-table"></i>
 							회원리스트</a>
-						<a class="nav-link" href="tables.html">
+						<a class="nav-link" href="<%=request.getContextPath()%>/InstallController?command=install">
 								<i class="fas fa-table"></i>
 							 렌탈리스트</a>
-						<a class="nav-link" href="tables.html">
+						<a class="nav-link" href="<%=request.getContextPath()%>/InstallController">
 								<i class="fas fa-table"></i>
 							 AS리스트</a>
-					<a class="nav-link" href="tables.html">
+					<a class="nav-link" href="<%=request.getContextPath()%>/qnalist?command=admin">
 								<i class="fas fa-table"></i>
 							 문의게시판</a>
 					</div>

@@ -13,16 +13,16 @@
 	
 	ModelDto model = (ModelDto)request.getAttribute("model");
 	//System.out.println("model :"+model.toString());
-	
+/* 	
 	String cell = "0101234567";
-	MemberDto mem = new MemberDto();
+	
 	mem.setMem_id("bbb");
 	mem.setMem_name("홍길동");
 	mem.setMem_cell(cell);
 	mem.setMem_addr1(15402);
 	mem.setMem_addr2("서울특별시어쩌구");
-	mem.setMem_addr3("모모아파트 101동101호");
-	session.setAttribute("login", mem);
+	mem.setMem_addr3("모모아파트 101동101호");*/
+	MemberDto mem = (MemberDto)session.getAttribute("login"); 
 	
 	//model session
 	session.setAttribute("model", model);

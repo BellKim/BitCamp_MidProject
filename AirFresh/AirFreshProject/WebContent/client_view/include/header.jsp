@@ -21,7 +21,7 @@ System.out.println(managerMem);
 
 <!-- Custom styles for this template -->
   <link href="<%=request.getContextPath()%>/css/modern-business.css" rel="stylesheet">
-    <script src="<%=request.getContextPath()%>/js/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </head>
 <body>
 	<!-- Header -->
@@ -40,7 +40,7 @@ System.out.println(managerMem);
           <ul class="clearfix">
              <li><a href="<%=request.getContextPath() %>/login?command=login" id="loginBtn">로그인</a></li>
              <li><a href="#" id="logoutBtn">로그아웃</a></li>
-             <li><a href="register?type=moveRegister">회원가입</a></li>
+             <li><a href="<%=request.getContextPath()%>/addmem?command=regi">회원가입</a></li>
           </ul>
         </div>
         <ul class="navbar-nav ml-auto">

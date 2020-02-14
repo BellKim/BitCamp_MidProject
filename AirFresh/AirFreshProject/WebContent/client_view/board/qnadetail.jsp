@@ -1,9 +1,11 @@
+<%@page import="Dto.MemberDto"%>
 <%@page import="Dto.QnaBbsDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="./../include/header.jsp"%>
 <%
 QnaBbsDto qna = (QnaBbsDto) request.getAttribute("qnadto");
+MemberDto mem = (MemberDto)session.getAttribute("login");
 
 String sdate = qna.getWdate().substring(0, 10);
 %>
@@ -18,7 +20,7 @@ String sdate = qna.getWdate().substring(0, 10);
 	<div class="card mb-4">
 		<div class="card-body">
 			<h2 class="card-title">
-			<% if(qna.getQna_secret()==0){ %>
+			<% if(qna.getQna_secret()==1){ %>
 			<img src="<%=request.getContextPath()%>/client_view/img/lock.png">
 			<%} %>
 			<%=qna.getQna_title() %></h2>
@@ -36,17 +38,37 @@ String sdate = qna.getWdate().substring(0, 10);
 	<% if(qna.getDepth()==1){ 
 		String rdate = qna.getRe_date().substring(0, 10);
 	%>
-	 <div class="media mb-4" style="padding-left:30px;">
-          <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
-          <div class="media-body">
-            <h5 class="mt-0">관리자</h5>
-            	<p><%=rdate %></p>
-            	<p><%=qna.getRe_content() %></p>
-            </div>
+	<div style = "padding-left : 50px;">
+		 <div class="card mb-4" >
+		 <h5 class="card-header">Air Fresh 답변</h5>
+	          <div class="card-body">
+	            	
+	            	<p><%=qna.getRe_content() %></p>
+	            	
+	            	<p align = "right"><span style ="padding-right:20px">관리자</span><%=rdate %></p>
+	            </div>
+	        </div>
         </div>
      <%} %>
 	<div align="right" style = "padding :10px;">
+				<% if(qna.getDepth()==0 && mem.getMem_id().equals(qna.getMem_id()) ){%>
+				<a href="<%=request.getContextPath()%>/updateqnabbs?command=user&qna_index=<%=qna.getQna_index() %>" class="btn btn-primary">수정</a>
+				<%} %>
+				<a href="#" onclick="deleteFunc()" class="btn btn-primary">삭제</a> 
 				<a href="<%=request.getContextPath()%>/qnalist?command=user" class="btn btn-primary">목록</a>
 	</div>
 	</div>
+	
+	
+<script type="text/javascript">
+	function deleteFunc() {
+	var answer = confirm("정말 삭제하시겠습니까?");
+	
+	if(answer){
+		location.href="<%=request.getContextPath()%>/qnadelete?command=user&qna_index=<%=qna.getQna_index() %>";
+	} else {
+		return;
+	}
+}
+</script>
 <%@ include file="./../include/footer.jsp"%>

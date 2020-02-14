@@ -14,8 +14,10 @@ import javax.servlet.http.HttpServletResponse;
 import com.google.gson.Gson;
 
 import Dto.InstallDto;
+import Dto.ManagerMemberDto;
 import Service.InstallServiceInterface;
 import Service.impl.InstallService;
+import projectutil.ProjectUtil;
 import singleton.singleton;
 
 /**
@@ -38,14 +40,26 @@ public class InstallController extends HttpServlet implements Serializable{
 		System.out.println("getInstallList_Null 도착");
 		singleton s = singleton.getInstance();
 		
+		
 		//명령어 판단 
 		String command = null;
 		if(req.getParameter("command") != null) {
 			command = req.getParameter("command");
 			
+			if(command.equals("install")) {
+				resp.sendRedirect(req.getContextPath() + "/admin_view/InstallList/InstallList.jsp");
+			}
+			
+			
 			if(command.equals("getDayList")) {
 				//왕관리자용
-				getDayList(req, resp);
+				String slevel = req.getParameter("level");
+				System.out.println(slevel);
+				
+				int level = Integer.parseInt(slevel);
+				System.out.println(level);
+				
+				getDayList(level, req, resp);
 			}			
 			
 			if(command.equals("save")) {
@@ -72,12 +86,23 @@ public class InstallController extends HttpServlet implements Serializable{
 	
 	
 	
-	protected void getDayList(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+	protected void getDayList(int level, HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		singleton s = singleton.getInstance();
 		String date = req.getParameter("date");
-		
+		List<InstallDto> list = null;
 		System.out.println(date);
-		List<InstallDto> list = s.is.getNullInstallList(date);
+		
+		ManagerMemberDto dto = req.getSession().getAttribute("mrgLogin")==null? new ManagerMemberDto("-1", "-1"): (ManagerMemberDto)req.getSession().getAttribute("mrgLogin");
+		
+		if(level > 0) {
+			//왕관리자가 아닐 때
+			String loc = ProjectUtil.locationChange(dto.getMgr_loc());
+			list = s.is.getMgrPicDayList(date, loc);
+		}else {
+			//왕관리자 일 때
+			list = s.is.getNullInstallList(date);
+		}
+		
 		//리턴값 타입 json 으로 지정 
 		resp.setContentType("application/json");
 		resp.setCharacterEncoding("UTF-8");
@@ -87,6 +112,7 @@ public class InstallController extends HttpServlet implements Serializable{
 		
 		//변환한 json형식을 리턴 
 		resp.getWriter().write(gson);
+		
 	}
 	
 	protected void installSave(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

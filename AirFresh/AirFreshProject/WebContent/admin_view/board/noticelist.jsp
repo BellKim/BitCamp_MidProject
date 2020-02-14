@@ -6,7 +6,7 @@
 
 <%
 	List<NoticeBbsDto> list = (List<NoticeBbsDto>) request.getAttribute("noticeList");
-	ManagerMemberDto mrgMem = (ManagerMemberDto) session.getAttribute("mrgLogin");
+	ManagerMemberDto mrgMem = (ManagerMemberDto) session.getAttribute("managerLogin");
 
 	int len = (int)request.getAttribute("len");
 	System.out.println("총 글의 갯수 " + len);
@@ -26,7 +26,8 @@
 
 <%@ include file="./../include/header.jsp" %>
 <div class="container">
-		<h3>공지사항</h3>
+	<h1 class="mt-4 mb-3" >공지사항</h1>
+
 		<div style="float: right">
 			<div class="form-group"
 				style="float: left; width: 100px; margin-right: 5px;">
@@ -123,7 +124,7 @@
 		<%
 			if (mrgMem.getMgr_auth() == 0) { // 왕관리자일 경우 글쓰기 버튼 활성화
 		%>
-		<div align="right">
+		<div align="right" style="padding-bottom:10px">
 			<button type="button" class="btn btn-primary"
 				onclick="location.href='<%=request.getContextPath()%>/noticeupload?command=add'">글쓰기</button>
 		</div>
@@ -139,7 +140,7 @@
 		if(keyword == ""){
 			document.getElementById("exampleSelect2").value = "sel";
 		}
-		location.href="<%=request.getContextPath()%>/noticelist?opt=" + opt + "&keyword=" + keyword;
+		location.href="<%=request.getContextPath()%>/noticelist?command=admin&opt=" + opt + "&keyword=" + keyword;
 		}
 	
 	function goPage( pageNum ) {

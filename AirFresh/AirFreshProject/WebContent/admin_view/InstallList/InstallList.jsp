@@ -5,6 +5,7 @@
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+        
 <%!
 	//nvl 함수 
 	public boolean nvl(String msg){
@@ -62,77 +63,14 @@
 	
 %>
 
+<%@ include file="./../include/header.jsp" %>
 
 <%
 	ManagerMemberDto loginDto = null;
-	if(request.getSession().getAttribute("login") != null){
-		loginDto = (ManagerMemberDto)request.getSession().getAttribute("login");
+	if(request.getSession().getAttribute("mrgLogin") != null){
+		loginDto = (ManagerMemberDto)request.getSession().getAttribute("mrgLogin");
 	}
-	
 %>    
-<!DOCTYPE html>
-<html>
-	<head>
-		<meta charset="UTF-8">
-		<title>Insert title here</title>
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-		
-		<style type="text/css">
-			.content{
-				width: 80%;
-				height: 600px;
-				
-				margin-left: 10%;
-			}
-			.back1{
-				width: 50%;
-				height: 600px;
-				float: left;
-				
-			}
-			.back2{
-				width: 50%;
-				height: 600px;
-				float: left;
-				
-			}
-			.calender{
-				width: 80%;
-				height: 240px;
-				background-color: #fff;
-			}
-			.list{
-				
-			}
-			a{
-				text-decoration:none;	/*a 태그 밑줄 제거  */
-			}
-			
-			.list{
-			    width: 100%;
-			    /* border-top: 1px solid #444444; */
-			    border-collapse: collapse;
-			}
-			th{
-			    border-bottom: 1px solid #444444;
-			    
-			}
-			.IS_list_head{
-				font-size: 15px;
-			}
-			ul,li{
-				margin-left: 10px;
-				padding: 0;
-				list-style:none;
-				font-size: 13px;
-			}
-			.getList{
-				font-size: 12px;
-			}
-		</style>
-	</head>
-	
-	<body>
 		<%
 			Calendar cal = Calendar.getInstance();
 			cal.set(Calendar.DATE, 1);		
@@ -184,6 +122,7 @@
 										request.getContextPath() + "/InstallController", year+1, month, "carlender");
 			
 		%>
+		
 		<div class="content">
 			<div class="back1" align="center">
 				<br>
@@ -266,6 +205,7 @@
 						</tr>
 					</table>
 				</div>
+				
 				<div align="left" class="listdiv">
 					<br>
 					<h3>신청가능 목록</h3>
@@ -305,16 +245,19 @@
 				//servlet에 보내기 위해  seq를 저장하기 위한 배열 생성 
 				var insArr = new Array();
 				
+				/* 달력 숫자를 누르면 그에 해당하는 리스트를 가져오는 쿼리문 */
 				$("#cal span").click(function () {
 					alert("클릭");
 					alert($(this).attr("sdate"));
 					var sdate = $(this).attr("sdate");
-					
+					alert(" " + <%=loginDto.getMgr_auth() %> + "//" + '<%=loginDto.getMgr_id() %>' +"//")
 					$.ajax({
 						url:'<%=request.getContextPath() %>/InstallController',
 						type:"post",
 						data:{	date: sdate,
-								command: "getDayList"},
+								command: "getDayList",
+								level: '<%=loginDto.getMgr_auth() %>'
+						},
 						datatype:"json",
 						
 						success: function ( data ) {
@@ -368,6 +311,8 @@
 					
 				});//cal span click
 				
+				
+				/* 예약 장바구니에 옮기는 처리를 하는 함수 */
 				$(document).on("click","td .plus",function () {
 					//alert("버튼 클릭");
 					//alert($(this).val());
@@ -389,6 +334,7 @@
 					$("#intr"+addr).hide();
 					
 				});
+				
 				
 				//장바구니 버튼 동작 시키는 함수
 				$(document).on("click","td .minus",function (){
@@ -449,5 +395,4 @@
 			});//ready
 			
 		</script>
-	</body>
-</html>
+<%@ include file="./../include/footer.jsp" %>

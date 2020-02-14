@@ -34,7 +34,7 @@ public class AddQnaBbs extends HttpServlet {
 			String qna_title = req.getParameter("qna_title");
 			String qna_content = req.getParameter("qna_content");
 			String secret = req.getParameter("secret");
-			System.out.println(secret);
+			
 			int qna_secret = 0;
 			if(secret!=null) {
 				qna_secret = 1;
