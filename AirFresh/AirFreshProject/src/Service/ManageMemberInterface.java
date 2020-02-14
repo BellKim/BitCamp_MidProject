@@ -12,6 +12,8 @@ public interface ManageMemberInterface {
 	
 	public ManagerMemberDto loginManagerMembercheck(ManagerMemberDto managermemberdto);
 	
+	public ManagerMemberDto receiveManagerMemberSelect(String index);
 	
+	public boolean setSelectedIndexChange(int number);
 
 }//end of interface

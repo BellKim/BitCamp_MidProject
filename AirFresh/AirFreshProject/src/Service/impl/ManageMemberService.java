@@ -27,6 +27,19 @@ public class ManageMemberService implements ManageMemberInterface{
 	public ManagerMemberDto loginManagerMembercheck(ManagerMemberDto managermemberdto) {		
 		return mmdao.loginManagerMemberCehck(managermemberdto);
 	}
+
+
+	@Override
+	public ManagerMemberDto receiveManagerMemberSelect(String indexno) {
+		// TODO managerList에서 특정 메니저 인덱스를 받아서 해당 메니저의 정보를 가져옴.   
+		return mmdao.receiveManagerMemberSelect(indexno);
+	}
+
+
+	@Override
+	public boolean setSelectedIndexChange(int number) {
+		return mmdao.setSelectedIndexChange(number);
+	}
 	
 	
 	

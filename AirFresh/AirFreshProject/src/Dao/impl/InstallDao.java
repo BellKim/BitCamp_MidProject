@@ -92,7 +92,8 @@ public class InstallDao implements InstallDaoInterface, Serializable {
 		+ " p.prd_index = m1.prd_index  AND "
 		+ " p.mem_id = m2.mem_id AND "
 		+ " i.mgr_index IS NULL AND "
-		+ " TO_CHAR(i.ins_date,'YYYY/MM/DD') = '" + date + "'";
+		+ " TO_CHAR(i.ins_date,'YYYY/MM/DD') = '" + date + "' "
+		+ " ORDER BY i.ins_index ASC ";
 
 		Connection conn = null;
 		PreparedStatement psmt = null;
@@ -261,13 +262,15 @@ public class InstallDao implements InstallDaoInterface, Serializable {
 				+ " p.prd_index = m1.prd_index  AND "
 				+ " p.mem_id = m2.mem_id AND "
 				+ " i.mgr_index IS NULL AND "
-				+ " TO_CHAR(i.ins_date,'YYYY/MM/DD') = '" + date + "' AND"
-				+ " m2.mem_addr2 LIKE '%" + loc + "%'" ;
+				+ " TO_CHAR(i.ins_date,'YYYY/MM/DD') = '" + date + "' ";
+				
 		
 		if(loc.equals("기타")) {
 			sql += " AND  m2.mem_addr2 NOT LIKE '%강남구%' AND "
 					+ "  m2.mem_addr2 NOT LIKE '%성동구%' AND "
 					+ "  m2.mem_addr2 NOT LIKE '%중랑구%' ";
+		}else {
+			sql += " AND m2.mem_addr2 LIKE '%" + loc + "%'" ;
 		}
 		
 		

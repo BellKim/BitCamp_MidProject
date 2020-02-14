@@ -39,6 +39,10 @@ public class PurchaseService implements PurchaseServiceInterface {
 	public PurchaseDto getNewCreate_Pur() {
 		return dao.getNewCreate_Pur();
 	}
-
+	
+	//회원이 렌탈(구매)를 했는지 안했는지 판단하는 메소드 
+    public boolean userPurConfirm(String userID) {
+    	return dao.userPurConfirm(userID);
+    }
 	
 }

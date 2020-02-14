@@ -4,11 +4,10 @@
     pageEncoding="UTF-8"%>
     
     <%
-    List<ModelDto> list = (List<ModelDto>)request.getAttribute("modelList");
-    
+    	List<ModelDto> list = (List<ModelDto>)request.getAttribute("modelList");
     %>
+	    
 <%@ include file="./../include/header.jsp" %>
-
 
 <div class = "container">
 	<h1 class="mt-4 mb-3">공기청정기</h1>
@@ -46,4 +45,20 @@
 	}
 %>
 </div>
+<!--  -->
+<%	
+	//as버튼을 눌렀는데 구매내역이 없을때 이동했을때 창을 띄우기 위한 변수
+	int jc = request.getAttribute("jc")==null?0:(int)request.getAttribute("jc");
+
+	if(jc>0){
+		%>
+		<script type="text/javascript">
+			$(document).ready(function () {
+				alert("AS신청을 위해서는 구매가 필요합니다");
+			});		
+		</script>
+		<%
+	}
+%>
 <%@ include file="./../include/footer.jsp" %>
+

@@ -29,34 +29,19 @@ public class MemLogin extends HttpServlet{
 		req.setCharacterEncoding("utf-8");
 		System.out.println("memlogin 도착");	// ok!
 		
-		String command = req.getParameter("command");
-		System.out.println(command);
+		String mem_id = req.getParameter("mem_id");
+		String mem_pw = req.getParameter("mem_pw");
+
+		System.out.println("id:" + mem_id + " pw:" + mem_pw);
 		
-		if(command.equals("idpw")) {	// 아이디, 비번 찾기
-			resp.sendRedirect("./client_view/member/searchidpw.jsp");
-		}
-		else if(command.equals("terms")) {	// 회원가입 전 약관동의
-			resp.sendRedirect("./client_view/member/terms.jsp");
-		}		
-		else if(command.equals("login")) {
-			resp.sendRedirect("./client_view/member/login.jsp");
-		}	
-		else if(command.equals("loginAf")) {
-			
-			String _id = req.getParameter("mem_id");
-			String _pw = req.getParameter("mem_pw");
-			
-			System.out.println("id:" + _id + " pw:" + _pw);
-			
-			singleton s = singleton.getInstance();
-			
-			MemberDto mem = s.ms.memLogin(_id, _pw);
-			
-			req.setAttribute("login", mem);
-			System.out.println("memlogin 도착2");		// ok!
-			
-			forward("./client_view/member/loginAf.jsp", req, resp);		
-		}
+		singleton s = singleton.getInstance();
+				
+		MemberDto mem = s.ms.memLogin(mem_id, mem_pw);
+		System.out.println(mem.getMem_id());	// 아이디, 비번 틀리면 여기까지 못옴!
+		req.setAttribute("login", mem);
+		System.out.println("memlogin 도착2");		// ok!
+
+		forward("./client_view/member/loginAf.jsp", req, resp);		
 	}
 
 	public void forward(String url, HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

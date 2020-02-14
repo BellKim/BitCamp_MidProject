@@ -23,13 +23,24 @@ public class ManagerLogin extends HttpServlet {
 		System.out.println(" managerLogin service Now. ");
 		
 		//로그인 체크 합니다. 
-		loginCheck(req, resp);
+		boolean isS = loginCheck(req, resp);
 		
+		
+		
+		
+		if(isS = true) {
+			System.out.println("로그인성공 관리자 리스트로 이동 ");
+			ProjectUtil.forward("./admin_view/manageMgr/adminIndex.jsp", req, resp);
+			
 
-		
+		}else {
+			System.out.println("실패했습니다. 재접속 해주세요");
+			ProjectUtil.forward("/main.jsp", req, resp);
+		}
+
 	}//end class
 	
-	protected void loginCheck(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+	protected boolean loginCheck(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String mgr_id = req.getParameter("manager_id");
 		String mgr_pw = req.getParameter("manager_pw");
 		
@@ -50,13 +61,14 @@ public class ManagerLogin extends HttpServlet {
 			req.getSession().setAttribute("managerLogin", check);
 			
 			System.out.println("아이디 확인 성공하였습니다. " + check + "]]]]");
+			return true;
 		}else {
 			System.out.println("아이디 확인에 실패했습니다. 다시확인해 주세요 ");
+			return false;
 		}
 		
 		
-//		ProjectUtil.forward("/admin_view/manageMgr/showManagerAll.jsp", req, resp);
-		ProjectUtil.forward("/admin_view/manageMgr/login/loginStatus.jsp", req, resp);
+
 	}
 
 }//end of manager class
