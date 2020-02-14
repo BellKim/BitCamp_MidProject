@@ -7,7 +7,7 @@
 <%
 	NoticeBbsDto notice = (NoticeBbsDto) request.getAttribute("noticeBbs");
 
-	ManagerMemberDto mrgMem = (ManagerMemberDto) session.getAttribute("mrgLogin");
+	ManagerMemberDto mrgMem = (ManagerMemberDto) session.getAttribute("managerLogin");
 
 	String sdate = notice.getWdate().substring(0, 10);
 	String savePath = request.getServletContext().getRealPath("/upload");

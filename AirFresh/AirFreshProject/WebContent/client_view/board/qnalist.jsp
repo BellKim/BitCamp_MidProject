@@ -6,7 +6,7 @@
     
     <%
     	List<QnaBbsDto> list = (List<QnaBbsDto>)request.getAttribute("qnalist");
-    	MemberDto mem = (MemberDto)session.getAttribute("memLogin");
+    	MemberDto mem = (MemberDto)session.getAttribute("login");
     	
 		int len = (int) request.getAttribute("len");
 
