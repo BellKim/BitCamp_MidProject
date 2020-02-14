@@ -52,7 +52,7 @@
 		</tr>
 		<tr>
 			<td colspan="2">
-				<input type="button" value="메인으로" onclick="location.href='#'">
+				<input type="button" value="메인으로" onclick="location.href=''">
 				<input type="button" value="A/S신청하기" id="_asBtn">
 			</td>
 		</tr>

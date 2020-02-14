@@ -311,5 +311,42 @@ public class PurchaseDao implements PurchaseDaoInterface {
 	}
 	
 	
+	public boolean userPurConfirm(String userID) {
+		
+		String sql = " SELECT * FROM purchase "
+				+ " WHERE mem_id =? ";
+				
+		Connection conn = null;
+		PreparedStatement psmt = null;
+		ResultSet rs = null;
+		int count = 0;
+		
+		System.out.println("[userPurConfirm] sql = " + sql);
+		
+		
+		try {
+			conn = DBConnection.getConnection();
+			psmt = conn.prepareStatement(sql);
+			psmt.setString(1, userID);
+			rs = psmt.executeQuery();
+			
+			while(rs.next()) {
+				count++;
+			}
+			
+			
+		} catch (SQLException e) {
+			System.out.println("[userPurConfirm] fail");
+			e.printStackTrace();
+		}finally {
+			DBClose.close(psmt, conn, rs);
+		}
+		
+		
+		return count>0?true:false;
+	}
+	
+	
+	
 }
 

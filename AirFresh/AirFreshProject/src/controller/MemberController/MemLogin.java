@@ -43,7 +43,7 @@ public class MemLogin extends HttpServlet{
 		
 		String mem_id = req.getParameter("mem_id");
 		String mem_pw = req.getParameter("mem_pw");
-		
+
 		System.out.println("id:" + mem_id + " pw:" + mem_pw);
 		
 		singleton s = singleton.getInstance();
@@ -52,7 +52,7 @@ public class MemLogin extends HttpServlet{
 		System.out.println(mem.getMem_id());	// 아이디, 비번 틀리면 여기까지 못옴!
 		req.setAttribute("login", mem);
 		System.out.println("memlogin 도착2");		// ok!
-		
+
 		forward("./client_view/member/loginAf.jsp", req, resp);		
 	}
 
