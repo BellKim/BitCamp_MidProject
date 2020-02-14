@@ -43,7 +43,7 @@ public class PrintPurchase extends HttpServlet {
 		List<PurchaseNameDto> list = s.ps.getModelName(mem_id);
 		
 		req.setAttribute("list", list);
-		req.getRequestDispatcher("./client_view/rental/paytable.jsp").forward(req, resp);
+		req.getRequestDispatcher("./client_view/rental/rentallist.jsp").forward(req, resp);
 		
 		
 	}

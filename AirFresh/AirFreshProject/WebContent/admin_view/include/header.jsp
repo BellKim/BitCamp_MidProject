@@ -47,7 +47,7 @@
 								<i class="fas fa-chart-area"></i>
 							공지사항
 						</a> 
-						<a class="nav-link" href="tables.html">
+						<a class="nav-link" href="<%=request.getContextPath()%>/showMrgMember">
 								<i class="fas fa-table"></i>
 							직원리스트</a>
 						<a class="nav-link" href="tables.html">

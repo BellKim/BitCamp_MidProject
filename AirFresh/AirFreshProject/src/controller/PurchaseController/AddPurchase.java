@@ -1,6 +1,7 @@
 package controller.PurchaseController;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -62,8 +63,15 @@ public class AddPurchase  extends HttpServlet {
 			}else {
 				System.out.println("install 생성 실패");
 			}
+			
+			//결제 후 상세내역 dto
+			PurchaseDto dto = s.ps.getPurchaseOne(purDto.getPur_index());
+			req.setAttribute("dto", dto);
+			req.getRequestDispatcher("./client_view/rental/purcomplete.jsp?command="+command).forward(req, resp);
+			
+			
 		}
-		req.getRequestDispatcher("./client_view/rental/purcomplete.jsp?command="+command).forward(req, resp);
+	
 	}
 	
 	

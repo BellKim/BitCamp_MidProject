@@ -8,5 +8,5 @@ session.setAttribute("mrgLogin", mrgMem);
 session.setMaxInactiveInterval(3600);
 
 %>
-			
+	
 <%@ include file="./include/footer.jsp" %>

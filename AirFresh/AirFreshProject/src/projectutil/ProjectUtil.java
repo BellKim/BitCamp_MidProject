@@ -13,4 +13,45 @@ public class ProjectUtil {
 		RequestDispatcher dispatch = req.getRequestDispatcher(link);
 		dispatch.forward(req, resp);		
 	}
+	
+	public static void forward11(String link, HttpServletRequest req, HttpServletResponse resp)throws ServletException, IOException {
+		RequestDispatcher dispatch = req.getRequestDispatcher(link);
+		dispatch.forward(req, resp);		
+	}
+	
+	
+	
+
+	
+	//근무지 숫자를 넣으면 그에 해당하는 주소로 변환해주는 함수
+	public static String locationChange(int loc) {
+		String[] sloc = {"error","강남구","성동구","중랑구","기타"};
+		
+		return sloc[loc];
+	}
+	
+	//DB에서 받아온 Date타입의 String을 2020/02/13 형식으로 바꾸어 변환해주는 함수 
+	public static String ChangeDate(String date) {
+		date = date.replace("-", "/");
+		date = date.substring(0, 10);	
+		return date;
+	}
+	
+	public static String managerStatus(int del) {
+		return del>0?"퇴사":"재직중";
+	}
+
+	public static String managerLevel(int level) {
+		String[] slevel= {"Error", "왕관리자", "부관리자", "코디(메니저)", "설치기사"};
+		
+		return slevel[level];
+	}
+
+
+
+	
+	
+	
 }
+
+

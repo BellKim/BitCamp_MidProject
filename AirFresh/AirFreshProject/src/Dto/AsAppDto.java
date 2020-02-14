@@ -24,13 +24,16 @@ public class AsAppDto implements Serializable {
 	private String asContent;			//as신청 내용
 	private String asImgPath;			//as신청 이미지첨부
 	private int pur_index;				//렌탈 index
-	private String model_name;			//모델명
 	private String prd_name;			//제품명
+	private String memName;				//회원 이름
+	private String pur_date;			//구매일자
+	private int memAddr1;				//회원주소1
+	private String memAddr2;			//회원주소2
+	private String memAddr3;			//회원주소3
+	
 	
 	public AsAppDto() {
-	}
-	
-	
+	}	
 
 	public AsAppDto(String memId, String req_date, String asTitle, String asContent, String asImgPath, int asSeq) {
 		super();
@@ -41,8 +44,6 @@ public class AsAppDto implements Serializable {
 		this.asImgPath = asImgPath;
 		this.asSeq = asSeq;
 	}
-
-
 
 	public AsAppDto(String memId, String req_date, String asTitle, String asContent, String asImgPath, int pur_index, String prd_name) {
 		super();
@@ -55,8 +56,6 @@ public class AsAppDto implements Serializable {
 		this.prd_name = prd_name;
 
 	}
-
-
 
 	public AsAppDto(int asSeq, String memId, String wdate, String req_date, int mgr_index, String asTitle,
 			String asContent, String asImgPath, int pur_index, String prd_name) {
@@ -73,6 +72,33 @@ public class AsAppDto implements Serializable {
 		this.prd_name = prd_name;
 	}
 
+
+	public AsAppDto(int asSeq, String memId, String wdate, String req_date, int mgr_index, String asTitle,
+			String asContent, String asImgPath, int pur_index, String prd_name, String memName, String pur_date,
+			int memAddr1, String memAddr2, String memAddr3) {
+		super();
+		this.asSeq = asSeq;
+		this.memId = memId;
+		this.wdate = wdate;
+		this.req_date = req_date;
+		this.mgr_index = mgr_index;
+		this.asTitle = asTitle;
+		this.asContent = asContent;
+		this.asImgPath = asImgPath;
+		this.pur_index = pur_index;
+		this.prd_name = prd_name;
+		this.memName = memName;
+		this.pur_date = pur_date;
+		this.memAddr1 = memAddr1;
+		this.memAddr2 = memAddr2;
+		this.memAddr3 = memAddr3;
+	}
+
+	public AsAppDto(int asSeq, String req_date) {
+		super();
+		this.asSeq = asSeq;
+		this.req_date = req_date;
+	}
 
 
 	public int getAsSeq() {
@@ -147,12 +173,63 @@ public class AsAppDto implements Serializable {
 		this.pur_index = pur_index;
 	}
 
-	public String getModel_name() {
-		return model_name;
+
+	public String getMemName() {
+		return memName;
 	}
 
-	public void setModel_name(String model_name) {
-		this.model_name = model_name;
+
+
+	public void setMemName(String memName) {
+		this.memName = memName;
+	}
+
+
+
+	public String getPur_date() {
+		return pur_date;
+	}
+
+
+
+	public void setPur_date(String pur_date) {
+		this.pur_date = pur_date;
+	}
+
+
+
+	public int getMemAddr1() {
+		return memAddr1;
+	}
+
+
+
+	public void setMemAddr1(int memAddr1) {
+		this.memAddr1 = memAddr1;
+	}
+
+
+
+	public String getMemAddr2() {
+		return memAddr2;
+	}
+
+
+
+	public void setMemAddr2(String memAddr2) {
+		this.memAddr2 = memAddr2;
+	}
+
+
+
+	public String getMemAddr3() {
+		return memAddr3;
+	}
+
+
+
+	public void setMemAddr3(String memAddr3) {
+		this.memAddr3 = memAddr3;
 	}
 
 
@@ -175,7 +252,7 @@ public class AsAppDto implements Serializable {
 	public String toString() {
 		return "AsAppDto [asSeq=" + asSeq + ", memId=" + memId + ", wdate=" + wdate + ", req_date=" + req_date
 				+ ", mgr_index=" + mgr_index + ", asTitle=" + asTitle + ", asContent=" + asContent + ", asImgPath="
-				+ asImgPath + ", pur_index=" + pur_index + ", model_name=" + model_name + ", prd_name=" + prd_name
+				+ asImgPath + ", pur_index=" + pur_index + ", prd_name=" + prd_name
 				+ "]";
 	}
 

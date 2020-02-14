@@ -10,8 +10,11 @@ public interface ManageMemberDaoInterface {
 	
 	public List<ManagerMemberDto> receiveManagerMemberAll();
 	
-	public boolean loginManagerMemberCehck(ManagerMemberDto managermemberdto);
+	public ManagerMemberDto loginManagerMemberCehck(ManagerMemberDto managermemberdto);
 	
+	public ManagerMemberDto receiveManagerMemberSelect(String index);
+
+	public boolean setSelectedIndexChange(int number);
 	
 
 }//end ManageMemberDaoInterface class;

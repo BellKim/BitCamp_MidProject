@@ -84,9 +84,12 @@
 			</aside>
 			<section><!-- 기능  -->
 				<div id="content">
+				
+				
 				</div>
 			</section>
-			<footer><!-- ? -->
+			<footer>
+				<!-- ? -->
 			</footer>
 		</div>
 		

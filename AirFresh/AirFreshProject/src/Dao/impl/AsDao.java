@@ -9,6 +9,7 @@ import java.util.List;
 
 import Dao.AsDaoInterface;
 import Dto.AsAppDto;
+import Dto.InstallDto;
 import db.DBClose;
 import db.DBConnection;
 
@@ -261,5 +262,74 @@ public class AsDao implements AsDaoInterface {
 		return count>0?true:false;
 		
 	}
+	
+	// 코디 접속시에 servlet에서  2020/02/12 형식으로 date를 넘겨주고  
+	// loc -> "강남구", "중랑구"  형식으로 넘겨주면 
+	// 조건에 맞는 리스트를 반환해주는 메소드 
+	public List<AsAppDto> getMgr_DayandLoc(String date, String loc){
+		
+		String sql = " SELECT a.as_index, a.mem_id, a.wdate, a.req_date, a.mgr_index, "
+				+ " a.as_title, a.as_content, a.as_img_path, a.pur_index,"
+				+ " me.mem_name, me.mem_addr1, me.mem_addr2, me.mem_addr3 , p.pur_date, "
+				+ " ml.prd_name"
+				+ " FROM asApplication a, members me, managerMember mg, purchase p, modellist ml "
+				+ " WHERE "
+				+ " TO_CHAR(a.req_date, 'YYYY/MM/DD') = '" + date + "' ";
+				
+		if(loc.equals("기타")) {
+			sql += " AND me.mem_addr2 NOT LIKE '%강남구%' "
+					+ " me.mem_addr2 NOT LIKE '%중랑구%' "
+					+ " me.mem_addr2 NOT LIKE '%성동구%' ";
+		}else {
+			sql += " AND me.mem_addr2 LIKE '%" + loc + "%'";
+		}
+		
+		Connection conn = null;
+		PreparedStatement psmt = null;
+		ResultSet rs = null;
+		
+		System.out.println("[getMgr_DayandLoc] sql = " + sql);
+		//리턴용 리스트
+		List<AsAppDto> list = new ArrayList<AsAppDto>();
+		
+		
+		try {
+			conn = DBConnection.getConnection();
+			psmt = conn.prepareStatement(sql);
+			rs = psmt.executeQuery();
+			
+			while(rs.next()) {
+				int ci = 1;
+				AsAppDto dto = new AsAppDto(rs.getInt(ci++), //as신청 인덱스 asSeq
+											rs.getString(ci++), //회원id memId
+											rs.getString(ci++), //작성일 wdate
+											rs.getString(ci++), //희망일 req_date
+											rs.getInt(ci++), //매니저 인덱스  mgr_index
+ 											rs.getString(ci++),  //as신청 제목  asTitle
+ 											rs.getString(ci++), //as신청 내용 asContent
+ 											rs.getString(ci++), //as신청 이미지경로  asImgPath
+ 											rs.getInt(ci++), //렌탈구매 인덱스   pur_index
+											rs.getString(ci++), //제품명    prd_name
+											rs.getString(ci++),  //회원이름    memName
+											rs.getString(ci++), //구매일자    pur_date
+											rs.getInt(ci++), //회원주소1   memAddr1
+											rs.getString(ci++), //회원주소2    memAddr2
+											rs.getString(ci++));  //회원주소3   memAddr3
+				
+				list.add(dto);
+			}
+			
+		} catch (SQLException e) {
+			System.out.println("[getMgr_DayandLoc] fail");
+			e.printStackTrace();
+		}finally {
+			DBClose.close(psmt, conn, rs);
+		}
+		
+		return list;
+		
+	}
+	
+	
 	
 }
