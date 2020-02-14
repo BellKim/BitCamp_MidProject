@@ -116,6 +116,7 @@ System.out.println(managerMem);
 						//alert("통신성공");
 						$("#loginBtn").show();
 						$("#logoutBtn").hide();
+						location.href="<%=request.getContextPath() %>/index.jsp";
 					},
 					error: function () {
 						alert("통신실패");
