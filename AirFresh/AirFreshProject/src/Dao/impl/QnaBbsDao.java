@@ -193,10 +193,10 @@ public class QnaBbsDao implements QnaBbsDaoInterface {
 
 	@Override
 	public boolean addQna(QnaBbsDto qna) {
-		String sql = " INSERT INTO QNABBS"
+		String sql = " INSERT INTO QNABBS "
 				+ " ( QNA_INDEX, MEM_ID, QNA_TITLE, QNA_CONTENT, "
 				+ " WDATE, QNA_SECRET, RE_CONTENT, RE_DATE, READCOUNT, DEPTH, QNA_DEL) "
-				+ " VALUES ( qnaBbs_SEQ.NEXTVAL, ?, ?, ?, SYSDATE, ?, NULL, NULL, 0, 0, 0 )";
+				+ " VALUES (qnaBbs_SEQ.NEXTVAL, ?, ?, ?, SYSDATE, ?, NULL, NULL, 0, 0, 0)";
 
 		Connection conn = null;
 		PreparedStatement psmt = null;

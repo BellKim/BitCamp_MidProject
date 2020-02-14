@@ -17,7 +17,11 @@ String sdate = qna.getWdate().substring(0, 10);
 	
 	<div class="card mb-4">
 		<div class="card-body">
-			<h2 class="card-title"><%=qna.getQna_title() %></h2>
+			<h2 class="card-title">
+			<% if(qna.getQna_secret()==0){ %>
+			<img src="<%=request.getContextPath()%>/client_view/img/lock.png">
+			<%} %>
+			<%=qna.getQna_title() %></h2>
 				
 			<p align="right"><span style="margin-right: 30px;"><%=qna.getMem_id()%></span> <span><%=sdate %></span></p>
 			<hr>
