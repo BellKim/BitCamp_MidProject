@@ -64,7 +64,7 @@
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
               <a class="dropdown-item" href="#">내 정보</a>
-              <a class="dropdown-item" href="#">렌탈 내역</a>
+              <a class="dropdown-item" href="<%=request.getContextPath()%>/printPurchase?id=bbb">렌탈 내역</a>
               <a class="dropdown-item" href="#">AS 내역</a>
             </div>
           </li>
