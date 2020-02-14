@@ -4,13 +4,12 @@
 <%
 MemberDto mem = (MemberDto)session.getAttribute("login");
 /* session.getMaxInactiveInterval();
-session.invalidate(); */
+session.invalidate(); <!-- <jsp:include page="./../rental/rentalDetail.jsp" flush="false"></jsp:include> -->*/
 %>   
 <%@ include file="./../include/header.jsp"%>
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-<!-- <jsp:include page="./../rental/rentalDetail.jsp" flush="false"></jsp:include> -->
-<div class="container">
 
+<div class="container">
     <!-- Page Heading/Breadcrumbs -->
     <h1 class="mt-4 mb-3">Air FRESH 마이페이지</h1>
 
@@ -38,13 +37,13 @@ session.invalidate(); */
           <a href="<%=request.getContextPath() %>/" class="list-group-item">문의내역</a>          
         </div>
       </div>      
-    </div>
     <div class="col-lg-9 mb-4">
         <h2>Section Heading</h2>
         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Soluta, et temporibus, facere perferendis veniam beatae non debitis, numquam blanditiis necessitatibus vel mollitia dolorum laudantium, voluptate dolores iure maxime ducimus fugit.</p>
     </div>
+    </div>
     <!-- /.row -->
 
-  </div>
+</div>
 		
 <%@ include file="./../include/footer.jsp"%>
