@@ -5,18 +5,12 @@
 <%
 MemberDto mem = (MemberDto)session.getAttribute("login");
 %> 
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-</head>
-<body>
 
-<div align="center">
+<%@ include file="./../include/header.jsp"%>
+<div class="container" align="center">
 	<div class="title">
-		<h2>AirFresh몰 회원탈퇴</h2>	
+		<h2 class="mt-4 mb-3">AirFresh몰 회원탈퇴</h2>	
 		<p>안전한 개인 정보 보호를 위해 비밀번호를 다시 한 번 확인하고 있습니다.</p>	
 	</div>	
 	<div class="login">
@@ -52,6 +46,4 @@ $("#btnSignout").click(function () {
 });
 
 </script>
-
-</body>
-</html>
+<%@ include file="./../include/footer.jsp"%>

@@ -36,7 +36,7 @@ public class UpdateMem extends HttpServlet{
 		if(command.equals("update")) {
 			String id = req.getParameter("id");
 			MemberDto mem = s.ms.getMem(id);
-			//System.out.println(dto.toString());
+			//System.out.println(mem.toString());
 			req.setAttribute("login", mem);			
 			forward("./client_view/member/update.jsp", req, resp);			
 		}		
@@ -55,10 +55,8 @@ public class UpdateMem extends HttpServlet{
 			MemberDto dto = new MemberDto(_id, _pw, _cell, _addr1, _addr2, _addr3);
 			
 			boolean isS3 = s.ms.updateMem(dto);
-			req.setAttribute("isS3", isS3);
 			System.out.println("UpdateMem 도착2");
-			//resp.sendRedirect(req.getContextPath() + "/WebContent/client_view/member/finding.jsp?isS3=" + isS3);
-			forward("./client_view/member/updateAf.jsp", req, resp);		
+			resp.sendRedirect(req.getContextPath() + "./client_view/member/updateAf.jsp?isS3=" + isS3);	
 		}
 	}
 	

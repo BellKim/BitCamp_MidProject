@@ -1,18 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>SiteTerms</title>
-</head>
-<body>
+<%@ include file="./../include/header.jsp"%>
 
 <!-- SK매직몰 이용약관 -->
 <div id="container">
 		<div id="content">
 			<div class="termWrap">
-				<div class="title"><h2>이용약관</h2></div>
+				<div class="mt-4 mb-3"><h2>이용약관</h2></div>
 				<div class="cont">
 					<div class="tabArea">						
 						<div class="tabCont" style="display: block;">
@@ -276,5 +270,4 @@
 		</div>
 	</div>
 
-</body>
-</html>
+<%@ include file="./../include/footer.jsp"%>

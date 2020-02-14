@@ -4,24 +4,22 @@
     pageEncoding="UTF-8"%>
 <%
 MemberDto mem = (MemberDto)session.getAttribute("login");
-%>    
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>update</title>
+%> 
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-</head>
-<body>
 
-
-	<div id="member" align="center">
-		<div>
-		<h2>Air FRESH 회원정보수정</h2>
-		</div>
+<%@ include file="./../include/header.jsp"%>
+	<div class="container" align="center">		
+		<h2 class="mt-4 mb-3">Air FRESH 회원정보수정</h2>
+		
+		<ol class="breadcrumb">
+			<li class="breadcrumb-item"><a href="index.html">Home</a></li>
+			<li class="breadcrumb-item active">마이페이지</li>
+			<li class="breadcrumb-item active">내정보</li>
+		</ol>
+		
 		<form id="frm" onsubmit="return validate();" action="<%=request.getContextPath() %>/updatemem" method="post">			
 			<input type="hidden" name="command" value="updateAf">			
-			<table>
+			<table class="table table-hover">
 				<tr>
 					<td>이름</td>
 					<td>
@@ -179,7 +177,4 @@ function validate() {
 // 정규식 함수 끝
 
 </script>
-
-
-</body>
-</html>
+<%@ include file="./../include/footer.jsp"%>

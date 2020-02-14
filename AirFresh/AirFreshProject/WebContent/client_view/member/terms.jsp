@@ -1,15 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Terms</title>
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-</head>
-<body>
-
-<div class="wrap">
 
 <script type="text/javascript">
 	$(document).ready(function() {
@@ -90,10 +81,11 @@
 </script>
 
 <!-- container : s -->
-<div id="container" align="center">
-	<div id="content">
-		<div class="member">
-			<div class="title"><h2>AirFresh 회원가입</h2></div>
+<%@ include file="./../include/header.jsp"%>
+<div class="container">
+	
+		
+			<h2 class="mt-4 mb-3">AirFresh 회원가입</h2>
 			<div class="joinWrap">
 				<div class="stepList">
 					<span class="on"><span>[현재] 1단계</span> 약관동의</span>
@@ -155,12 +147,6 @@
 						<a href="<%=request.getContextPath() %>/addmem" class="btnb bk" id="btnJoinNextStep"><span>다음</span></a>						
 					</div>
 				</div>
-			</div>
-		</div>
-	</div>
+			</div>			
 </div>
-
-</div>
-
-</body>
-</html>
+<%@ include file="./../include/footer.jsp"%>

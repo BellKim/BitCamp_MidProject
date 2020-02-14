@@ -4,21 +4,16 @@
     <%
     DBConnection.initConnection();
     %>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>login</title>
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script src="http://lab.alexcican.com/set_cookies/cookie.js" type="text/javascript" ></script>
-</head>
-<body>
 
+<%@ include file="./../include/header.jsp"%>
 <div align="center">
-	<div class="title">
-		<h2>로그인</h2>
-		<p>Air FRESH 홈페이지에 오신 것을 환영합니다.</p>
+	<div class="title">	
+		<h2 class="mt-4 mb-3">로그인</h2>	
+		<p><strong>Air FRESH</strong> 홈페이지에 오신 것을 환영합니다.</p>
 	</div>	
 	<div class="login">
 		<form id="loginInfo" action="<%=request.getContextPath() %>/memlogin" method="post">	
@@ -86,5 +81,4 @@ $("#btnlogin").click(function () {
 
 
 </script>
-</body>
-</html>
+<%@ include file="./../include/footer.jsp"%>

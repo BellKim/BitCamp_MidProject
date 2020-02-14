@@ -5,18 +5,16 @@
 MemberDto mem = (MemberDto)session.getAttribute("login");
 /* session.getMaxInactiveInterval();
 session.invalidate(); */
-%>     
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>myPage</title>
-</head>
-<body>
-
-<div id="content">
-		<div class="subWrap mypage">
-			<div class="title"><h2>Air FRESH 마이페이지</h2></div>
+%>   
+<%@ include file="./../include/header.jsp"%>
+<div class="container">		
+			<h2 class="mt-4 mb-3">Air FRESH 마이페이지</h2>
+			
+			<ol class="breadcrumb">
+				<li class="breadcrumb-item"><a href="index.html">Home</a></li>
+				<li class="breadcrumb-item active">마이페이지</li>				
+			</ol>
+					
 			<div class="topBox">
 				<p><em><%=mem.getMem_name() %></em> 고객님, 안녕하세요!</p>
 				<div class="contact"><%=mem.getMem_cell() %> / <%=mem.getMem_id() %></div>
@@ -60,9 +58,6 @@ session.invalidate(); */
 				</div>			
 			</div>
 
-</div>
-</div>			
-
-
-</body>
-</html>
+</div>	
+		
+<%@ include file="./../include/footer.jsp"%>

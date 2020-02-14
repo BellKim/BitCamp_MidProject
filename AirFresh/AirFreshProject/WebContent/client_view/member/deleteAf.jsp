@@ -3,7 +3,7 @@
     pageEncoding="UTF-8"%>
 <%
 String str2 = request.getParameter("isS2");		// delMem
-System.out.println(str2);	// 왜 null?!
+System.out.println(str2);
 %>   
 <!DOCTYPE html>
 <html>

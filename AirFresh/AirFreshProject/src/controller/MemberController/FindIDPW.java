@@ -38,24 +38,18 @@ public class FindIDPW extends HttpServlet {
 				
 		if(gubun.equals("FID")) {	
 			System.out.println(_name + " " + _cell);
-			String id = s.ms.findID(_name, _cell);
-			req.setAttribute("id", id);	
+			String id = s.ms.findID(_name, _cell);			
 			System.out.println("FindIDPW 도착2");
-			forward("./client_view/member/findid.jsp", req, resp);
+			resp.sendRedirect(req.getContextPath() + "./client_view/member/findid.jsp?id=" + id);	
+			
 		}
 		else if(gubun.equals("FPW")) {				
 			System.out.println(_id + " " + _name);
-			String pw = s.ms.findPW(_id, _name);
-			req.setAttribute("pw", pw);
+			String pw = s.ms.findPW(_id, _name);			
 			System.out.println("FindIDPW 도착2");
-			forward("./client_view/member/findpw.jsp", req, resp);
+			resp.sendRedirect(req.getContextPath() + "./client_view/member/findpw.jsp?pw=" + pw);
+			
 		}		
-	}
-	
-	public void forward(String url, HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		RequestDispatcher dispatch = req.getRequestDispatcher(url);
-		dispatch.forward(req, resp);
-		
-	}	
+	}		
 
 }

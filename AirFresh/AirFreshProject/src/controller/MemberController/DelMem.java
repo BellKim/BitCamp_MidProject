@@ -29,6 +29,7 @@ public class DelMem extends HttpServlet{
 		
 		String command = req.getParameter("command");
 		System.out.println(command);	
+		singleton s = singleton.getInstance();
 		
 		if(command.equals("signout")) {
 			resp.sendRedirect("./client_view/member/delete.jsp");
@@ -37,18 +38,11 @@ public class DelMem extends HttpServlet{
 			String _pw = req.getParameter("mem_pw");
 			
 			System.out.println(_id + "" + _pw);
+						
+			boolean isS2 = s.ms.delMem(_id, _pw);			
+			resp.sendRedirect(req.getContextPath() + "./../../../deleteAf.jsp?isS2=" + isS2);						
 			
-			singleton s = singleton.getInstance();
-			boolean S2 = s.ms.delMem(_id, _pw);
-			req.setAttribute("isS2", S2);	
-			//resp.sendRedirect(req.getContextPath() + "/WebContent/client_view/member/finding.jsp?isS2" + isS2);
-			forward("./client_view/member/deleteAf.jsp", req, resp);			
 		}
-	}
-	
-	public void forward(String url, HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		RequestDispatcher dispatch = req.getRequestDispatcher(url);
-		dispatch.forward(req, resp);		
-	}
+	}	
 	
 }

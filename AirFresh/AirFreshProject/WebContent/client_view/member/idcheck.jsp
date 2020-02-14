@@ -2,6 +2,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
+<!-- forward-setattribute-getattribute -->
+<!-- sendredirect-getparameter -->
+<!-- ajax->controller?-idcheck.jsp//-idcheck.jsp -->
 <%
 String id = request.getParameter("_id");
 System.out.println("id:" + id);
