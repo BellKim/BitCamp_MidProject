@@ -53,7 +53,7 @@
 						<a class="nav-link" href="tables.html">
 								<i class="fas fa-table"></i>
 							회원리스트</a>
-						<a class="nav-link" href="tables.html">
+						<a class="nav-link" href="<%=request.getContextPath()%>/InstallController?command=install">
 								<i class="fas fa-table"></i>
 							 렌탈리스트</a>
 						<a class="nav-link" href="tables.html">
