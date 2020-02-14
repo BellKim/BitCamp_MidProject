@@ -3,7 +3,7 @@
     pageEncoding="UTF-8"%>
 <%@ include file="./../include/header.jsp"%>
 <%
-	MemberDto mem = (MemberDto)session.getAttribute("memLogin");
+	MemberDto mem = (MemberDto)session.getAttribute("login");
 %>
 <div class="container">
 	<h1 class="mt-4 mb-3">QnA</h1>

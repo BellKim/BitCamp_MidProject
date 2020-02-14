@@ -7,7 +7,7 @@
     
     <%
     	List<QnaBbsDto> list = (List<QnaBbsDto>)request.getAttribute("qnalist");
-  	    ManagerMemberDto mrgMem = (ManagerMemberDto) session.getAttribute("mrgLogin");   	
+  	    ManagerMemberDto mrgMem = (ManagerMemberDto) session.getAttribute("managerLogin");   	
 		int len = (int) request.getAttribute("len");
 
 		int bbsPage = len / 10;
