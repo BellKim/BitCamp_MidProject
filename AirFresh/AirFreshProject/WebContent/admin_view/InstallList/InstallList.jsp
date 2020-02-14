@@ -15,7 +15,7 @@
 	public String cal_list(int year, int month, int day){
 		
 		//2020/02/10 형식으로 servlet에 넘기기위한 변수
-		String date = year + "/" + month + "/" + day;
+		String date = year + "/" + two("" + month) + "/" + day;
 		String str = "";
 		
 		//여기 servlet으로 어떻게 보내고 받을것인지 확인 
@@ -168,20 +168,20 @@
 			// <<	year-- left
 			String pp = String.format("<a href='%s?year=%d&month=%d&command=%s'>"
 										+ "<img src='"+ request.getContextPath()+"/admin_view/InstallList/image/left.gif'></a>",
-										request.getContextPath() + "/getInstallList_Null", year-1, month , "carlender");
+										request.getContextPath() + "/InstallController", year-1, month , "carlender");
 			// <	month-- prec
 			String p = String.format("<a href='%s?year=%d&month=%d&command=%s'>"
 									+ "<img src='"+ request.getContextPath()+"/admin_view/InstallList/image/prec.gif'></a>",
-										request.getContextPath() + "/getInstallList_Null", year, month-1, "carlender");
+										request.getContextPath() + "/InstallController", year, month-1, "carlender");
 			// >	month++ next
 			String n = String.format("<a href='%s?year=%d&month=%d&command=%s'>"
 										+ "<img src='"+ request.getContextPath()+"/admin_view/InstallList/image/next.gif'></a>",
-										request.getContextPath() + "/getInstallList_Null", year, month+1, "carlender");
+										request.getContextPath() + "/InstallController", year, month+1, "carlender");
 			
 			// >>	year++ last
 			String nn = String.format("<a href='%s?year=%d&month=%d&command=%s'>"
 										+ "<img src='"+ request.getContextPath()+"/admin_view/InstallList/image/last.gif'></a>",
-										request.getContextPath() + "/getInstallList_Null", year+1, month, "carlender");
+										request.getContextPath() + "/InstallController", year+1, month, "carlender");
 			
 		%>
 		<div class="content">
@@ -311,7 +311,7 @@
 					var sdate = $(this).attr("sdate");
 					
 					$.ajax({
-						url:'<%=request.getContextPath() %>/getInstallList_Null',
+						url:'<%=request.getContextPath() %>/InstallController',
 						type:"post",
 						data:{	date: sdate,
 								command: "getDayList"},
@@ -321,6 +321,7 @@
 							//alert(data[0].mem_name);
 							alert("통신성공");
 							alert(data);
+							alert("data length = " + data.length);
 							list = data;
 							if(data == "") {
 								//list가 null일때 처리
@@ -336,23 +337,25 @@
 							}else{
 								//alert(data.length);
 								if(data.length > 0){
+									
+									$("#InstallTable").empty();
+									var str = "<tr><th><span class='IS_list_head'>관리번호</span></th>" 
+										 + "<th><span class='IS_list_head'>모델명</span></th><th><span class='IS_list_head'>회원아이디</span></th>"
+										 + "<th><span class='IS_list_head'>구매일자</span></th><th><span class='IS_list_head'>설치희망일</span></th>"
+										 +"<th><span class='IS_list_head'>주소</span></th><th><span class='IS_list_head'>추가</span></th></tr>";
+										 
+										 $("#InstallTable").append(str); 
 									for(i = 0; i < data.length; i++){
-										$("#InstallTable").empty();
-										var str = "<tr><th><span class='IS_list_head'>관리번호</span></th>" 
-											 + "<th><span class='IS_list_head'>모델명</span></th><th><span class='IS_list_head'>회원아이디</span></th>"
-											 + "<th><span class='IS_list_head'>구매일자</span></th><th><span class='IS_list_head'>설치희망일</span></th>"
-											 +"<th><span class='IS_list_head'>주소</span></th><th><span class='IS_list_head'>추가</span></th></tr>";
-										
-												 
-										str += "<tr id='intr" + i + "'>" ;
-										str += "<td class='getList' align='center'>" + data[i].ins_index  + "</td>";
-										str += "<td class='getList' align='center'>" + data[i].prd_model_name + "</td>";
-										str += "<td class='getList' align='center'>" + data[i].mem_id + "</td>";
-										str += "<td class='getList' align='center'>" + data[i].pur_date.substr(0,10) + "</td>";
-										str += "<td class='getList' align='center'>" + data[i].ins_date.substr(0,10) + "</td>";
-										str += "<td class='getList' align='center'>" + data[i].mem_addr1 + "</td>";
-										str += "<td class='getList' align='center'>" + "<button class='plus' type='button' value='" + i + "'>+</button>" + "</td></tr>";
-										$("#InstallTable").append(str);
+			 
+										var str = "<tr id='intr" + i + "'>" ;
+											str += "<td class='getList' align='center'>" + data[i].ins_index  + "</td>";
+											str += "<td class='getList' align='center'>" + data[i].prd_model_name + "</td>";
+											str += "<td class='getList' align='center'>" + data[i].mem_id + "</td>";
+											str += "<td class='getList' align='center'>" + data[i].pur_date.substr(0,10) + "</td>";
+											str += "<td class='getList' align='center'>" + data[i].ins_date.substr(0,10) + "</td>";
+											str += "<td class='getList' align='center'>" + data[i].mem_addr1 + "</td>";
+											str += "<td class='getList' align='center'>" + "<button class='plus' type='button' value='" + i + "'>+</button>" + "</td></tr>";
+											$("#InstallTable").append(str);
 									}
 								}
 								
@@ -423,16 +426,16 @@
 					}
 					
 					$.ajax({
-						url:'<%=request.getContextPath() %>/getInstallList_Null',
+						url:'<%=request.getContextPath() %>/InstallController',
 						type:"post",
 						data:{	command: "save",
-								seqArr: seq,
+								seqArr: insArr,
 								/* 로그인 회원 index 추가 */
 						},
 						datatype:"json",
 						
 						success: function ( isS ) {
-							//alert("통신성공");
+							alert("통신성공");
 							//배열 초기화 
 							insArr = [];
 							

@@ -27,4 +27,7 @@ public interface PurchaseDaoInterface {
     
     //INSTALL 생성을 위한 직전에 생성된 제품구매 데이터의  FK 값 가져오는 함수 
     public PurchaseDto getNewCreate_Pur();
+    
+    //회원이 렌탈(구매)를 했는지 안했는지 판단하는 메소드 
+    public boolean userPurConfirm(String userID);
 }

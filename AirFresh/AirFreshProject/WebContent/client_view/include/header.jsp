@@ -1,3 +1,4 @@
+<%@page import="Dto.MemberDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -29,7 +30,8 @@
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <div class="topSec clearfix">
           <ul class="clearfix">
-             <li><a href="login?type=moveLogin" id="loginBtn">로그인</a></li>
+             <li><a href="<%=request.getContextPath() %>/login?command=login" id="loginBtn">로그인</a></li>
+             <li><a href="#" id="logoutBtn">로그아웃</a></li>
              <li><a href="register?type=moveRegister">회원가입</a></li>
           </ul>
         </div>
@@ -37,9 +39,13 @@
           <li class="nav-item">
             <a class="nav-link" href="<%=request.getContextPath()%>/modelist">렌탈하기</a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" href="<%=request.getContextPath()%>/asApply" id="asdiv">AS신청</a>
+            <%-- <%=request.getContextPath()%>/asApply --%>
+          </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownPortfolio" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              후기게시판
+              	후기게시판
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownPortfolio">
               <a class="dropdown-item" href="#">설치후기</a>
@@ -72,3 +78,65 @@
       </div>
     </div>
   </nav>
+  
+  <!-- 로그인시 '로그인버튼' 조작  -->
+  <script type="text/javascript">
+  	$(document).ready(function () {
+  		
+  		//첫화면 띄웠을 때 다른 페이지 이동시 로그인 버튼 처리 
+  		if('<%=request.getSession().getAttribute("login") %>' != 'null'){
+			$("#loginBtn").hide();
+			$("#logoutBtn").show();
+		}else if('<%=request.getSession().getAttribute("login") %>' == 'null'){
+			$("#loginBtn").show();
+			$("#logoutBtn").hide();
+		}
+  		
+  		
+  		//로그아웃 시도시 처리 
+  		$(document).on("click","#logoutBtn", function () {
+			
+  			if(confirm("정말 로그아웃하시겠습니까?")){
+  				//확인버튼 클릭시 동작
+  				$.ajax({
+  					
+  					url:"<%=request.getContextPath() %>/login",
+  					type:"post",
+  					data:{ command: 'logout'},
+  					
+  					success: function () {
+						//alert("통신성공");
+						$("#loginBtn").show();
+						$("#logoutBtn").hide();
+					},
+					error: function () {
+						alert("통신실패");
+					}
+  				});
+  			}else{
+  				//취소버튼 클릭시 동작 
+  			}
+		});
+<%--   		
+  		//AS신청 처리 
+  		$(document).on("click", "#asdiv", function () {
+			
+  			//alert("as신청");
+  			$.ajax({
+  				
+  				url: "<%=request.getContextPath()%>/asApply",
+  				type: 'post',
+  				data:{
+  					command: 'loginCheck'
+  				},
+  				success: function () {
+					alert("통신 성공");
+				},
+				error: function () {
+					alert("통신 실패 ");
+				}
+  			});
+		}); --%>
+	});	
+  </script>
+		 
