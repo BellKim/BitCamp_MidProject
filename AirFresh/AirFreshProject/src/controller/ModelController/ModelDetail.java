@@ -42,8 +42,7 @@ public class ModelDetail extends HttpServlet {
 			req.getRequestDispatcher("./client_view/rental/rentalDetail.jsp").forward(req, resp);
 			
 		} else if(command.equals("purcha")) {
-			//req.getRequestDispatcher("./client_view/rental/purchase.jsp").forward(req, resp);
-			req.getRequestDispatcher("./client_view/rental/purchasetest.jsp").forward(req, resp);
+			req.getRequestDispatcher("./client_view/rental/purchase.jsp").forward(req, resp);
 		}
 		
 		
