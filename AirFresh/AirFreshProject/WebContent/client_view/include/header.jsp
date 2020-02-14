@@ -21,11 +21,7 @@ System.out.println(managerMem);
 
 <!-- Custom styles for this template -->
   <link href="<%=request.getContextPath()%>/css/modern-business.css" rel="stylesheet">
-<<<<<<< HEAD
     <script src="<%=request.getContextPath()%>/js/jquery.min.js"></script>
-=======
-  <script src="<%=request.getContextPath()%>/js/jquery.min.js"></script>
->>>>>>> origin/subMaster
 </head>
 <body>
 	<!-- Header -->
@@ -42,14 +38,9 @@ System.out.println(managerMem);
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <div class="topSec clearfix">
           <ul class="clearfix">
-<<<<<<< HEAD
-             <li><a href="<%=request.getContextPath()%>/memlogin?command=login">로그인</a></li>
-             <li><a href="<%=request.getContextPath()%>/addmem?command=regi">회원가입</a></li>
-=======
              <li><a href="<%=request.getContextPath() %>/login?command=login" id="loginBtn">로그인</a></li>
              <li><a href="#" id="logoutBtn">로그아웃</a></li>
              <li><a href="register?type=moveRegister">회원가입</a></li>
->>>>>>> origin/subMaster
           </ul>
         </div>
         <ul class="navbar-nav ml-auto">
