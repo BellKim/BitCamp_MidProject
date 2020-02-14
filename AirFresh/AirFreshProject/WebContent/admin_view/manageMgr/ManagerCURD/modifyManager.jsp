@@ -4,9 +4,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>modifyManager</title>
 </head>
 <body>
+	<h3> modify Manager </h3>
 
 </body>
 </html>

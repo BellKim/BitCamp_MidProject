@@ -10,7 +10,7 @@ public interface ManageMemberInterface {
 	
 	public List<ManagerMemberDto> receiveManagerMemberAll();
 	
-	public boolean loginManagerMembercheck(ManagerMemberDto managermemberdto);
+	public ManagerMemberDto loginManagerMembercheck(ManagerMemberDto managermemberdto);
 	
 	
 

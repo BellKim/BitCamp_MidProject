@@ -3,14 +3,18 @@
 <%@ include file="./../include/header.jsp"%>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-<div class="container">
+<div class="container" align="center">
 	<h1 class="mt-4 mb-3">회원가입</h1>
-
+	<div>
+		<span><span> 1단계</span> 약관동의</span>
+		<span><span>[현재] 2단계</span> 정보입력</span>
+		<span><span>3단계</span> 가입완료</span>
+	</div>
 
 	<form id="frm" onsubmit="return validate();"
 		action="<%=request.getContextPath()%>/addmem" method="post">
 		<input type="hidden" name="command" value="addAf">
-		<table>
+		<table class="table table-hover">
 			<tr>
 				<td>이름</td>
 				<td><input type="text" id="mem_name" name="mem_name" size="20"
@@ -88,12 +92,12 @@ $(document).ready(function () {
 		    });
 	}); 
 	 
-	
+	 
 	$("#_btnid").click(function () {	
 		
 		$.ajax({
 			type:"post",
-/*  */		url:"./idcheck.jsp",
+			url:"./idcheck.jsp",
 			data:{ "_id":$("#mem_id").val() },
 			success:function( data ){		
 				if(data.trim() == "YES"){

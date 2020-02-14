@@ -40,7 +40,7 @@ public class DelMem extends HttpServlet{
 			System.out.println(_id + "" + _pw);
 						
 			boolean isS2 = s.ms.delMem(_id, _pw);			
-			resp.sendRedirect(req.getContextPath() + "./../../../deleteAf.jsp?isS2=" + isS2);						
+			resp.sendRedirect(req.getContextPath() + "./client_view/member/deleteAf.jsp?isS2=" + isS2);						
 			
 		}
 	}	

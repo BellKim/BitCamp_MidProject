@@ -9,6 +9,8 @@
   <meta name="author" content="">
 <title>Air Fresh</title>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/bootstrap.css" />
+<script src="<%=request.getContextPath()%>/js/jquery.min.js"></script>
+
 <!-- Custom styles for this template -->
   <link href="<%=request.getContextPath()%>/css/modern-business.css" rel="stylesheet">
     <script src="<%=request.getContextPath()%>/js/jquery.min.js"></script>
@@ -63,7 +65,7 @@
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
               <a class="dropdown-item" href="#">내 정보</a>
-              <a class="dropdown-item" href="#">렌탈 내역</a>
+              <a class="dropdown-item" href="<%=request.getContextPath()%>/printPurchase?id=bbb">렌탈 내역</a>
               <a class="dropdown-item" href="#">AS 내역</a>
             </div>
           </li>

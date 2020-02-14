@@ -24,8 +24,13 @@ public class AsAppDto implements Serializable {
 	private String asContent;			//as신청 내용
 	private String asImgPath;			//as신청 이미지첨부
 	private int pur_index;				//렌탈 index
-	private String model_name;			//모델명
 	private String prd_name;			//제품명
+	private String memName;				//회원 이름
+	private String pur_date;			//구매일자
+	private int memAddr1;				//회원주소1
+	private String memAddr2;			//회원주소2
+	private String memAddr3;			//회원주소3
+	
 	
 	public AsAppDto() {
 	}
@@ -147,12 +152,63 @@ public class AsAppDto implements Serializable {
 		this.pur_index = pur_index;
 	}
 
-	public String getModel_name() {
-		return model_name;
+
+	public String getMemName() {
+		return memName;
 	}
 
-	public void setModel_name(String model_name) {
-		this.model_name = model_name;
+
+
+	public void setMemName(String memName) {
+		this.memName = memName;
+	}
+
+
+
+	public String getPur_date() {
+		return pur_date;
+	}
+
+
+
+	public void setPur_date(String pur_date) {
+		this.pur_date = pur_date;
+	}
+
+
+
+	public int getMemAddr1() {
+		return memAddr1;
+	}
+
+
+
+	public void setMemAddr1(int memAddr1) {
+		this.memAddr1 = memAddr1;
+	}
+
+
+
+	public String getMemAddr2() {
+		return memAddr2;
+	}
+
+
+
+	public void setMemAddr2(String memAddr2) {
+		this.memAddr2 = memAddr2;
+	}
+
+
+
+	public String getMemAddr3() {
+		return memAddr3;
+	}
+
+
+
+	public void setMemAddr3(String memAddr3) {
+		this.memAddr3 = memAddr3;
 	}
 
 
@@ -175,7 +231,7 @@ public class AsAppDto implements Serializable {
 	public String toString() {
 		return "AsAppDto [asSeq=" + asSeq + ", memId=" + memId + ", wdate=" + wdate + ", req_date=" + req_date
 				+ ", mgr_index=" + mgr_index + ", asTitle=" + asTitle + ", asContent=" + asContent + ", asImgPath="
-				+ asImgPath + ", pur_index=" + pur_index + ", model_name=" + model_name + ", prd_name=" + prd_name
+				+ asImgPath + ", pur_index=" + pur_index + ", prd_name=" + prd_name
 				+ "]";
 	}
 

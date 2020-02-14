@@ -41,7 +41,7 @@
 			var isRequiredAgree = true;
 			$("input:checkbox[name=agree]", $("#frmJoinAgreeInfo")).each(function() {
 				var agreeId = $(this).attr("id");
-				if (agreeId != "agreePrivacyUse" && agreeId != "agreePartnerMarketing" && agreeId != "agree14" && !$(this).is(":checked")) {
+				if (agreeId != "agreePrivacyUse" && agreeId != "agree14" && !$(this).is(":checked")) {
 					isRequiredAgree = false;
 					return;
 				}
@@ -87,7 +87,7 @@
 		
 			<h2 class="mt-4 mb-3">AirFresh 회원가입</h2>
 			<div class="joinWrap">
-				<div class="stepList">
+				<div>
 					<span class="on"><span>[현재] 1단계</span> 약관동의</span>
 					<span><span>2단계</span> 정보입력</span>
 					<span><span>3단계</span> 가입완료</span>
@@ -111,7 +111,7 @@
 									<label for="agree14">14세 이상입니다. <span>(14세 미만은 회원가입 제한)</span></label>
 								</div>
 							</div>
-						</div>
+					</div>
 					
 					<form id="frmJoinAgreeInfo" action="<%=request.getContextPath() %>/addmem" method="post">
 						<input type="hidden" name="command" value="register">

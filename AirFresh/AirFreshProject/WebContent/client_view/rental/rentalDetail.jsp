@@ -1,7 +1,11 @@
+<%@page import="java.text.DecimalFormat"%>
+<%@ include file="./../include/header.jsp" %>
+
 <%@page import="Dto.MemberDto"%>
 <%@page import="Dto.ModelDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
 <%
 	//제품 index get
 	/* String seq = request.getParameter("seq");
@@ -17,93 +21,17 @@
 	mem.setMem_cell(cell);
 	mem.setMem_addr1(15402);
 	mem.setMem_addr2("서울특별시어쩌구");
-	//mem.setMem_addr3("모모아파트 101동101호");
+	mem.setMem_addr3("모모아파트 101동101호");
 	session.setAttribute("login", mem);
 	
 	//model session
 	session.setAttribute("model", model);
+	int price = model.getPrd_price();
+	
+	DecimalFormat formatter = new DecimalFormat("###,###");
+	String sprice = formatter.format(price);
 
 %>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
- <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>AirFresh</title>
-
-  <!-- 합치면 복구하기 
-  Bootstrap core CSS --
-  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
-  <!-- Custom styles for this template --
-  <link href="css/modern-business.css" rel="stylesheet"> -->
-  
-  
-    <!-- Bootstrap core CSS -->
-  <link href="<%=request.getContextPath() %>/modelcss/bootstrap.min.css" rel="stylesheet">
-
-  <!-- Custom styles for this template -->
-  <link href="<%=request.getContextPath() %>/modelcss/modern-business.css" rel="stylesheet">
-
-</head>
-<body>
-
-  <!-- Navigation -->
-  <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
-    <div class="container">
-      <a class="navbar-brand" href="index.html">Start Bootstrap</a>
-      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarResponsive">
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item">
-            <a class="nav-link" href="about.html">About</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="services.html">Services</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="contact.html">Contact</a>
-          </li>
-          <li class="nav-item active dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownPortfolio" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Portfolio
-            </a>
-            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownPortfolio">
-              <a class="dropdown-item" href="portfolio-1-col.html">1 Column Portfolio</a>
-              <a class="dropdown-item" href="portfolio-2-col.html">2 Column Portfolio</a>
-              <a class="dropdown-item" href="portfolio-3-col.html">3 Column Portfolio</a>
-              <a class="dropdown-item" href="portfolio-4-col.html">4 Column Portfolio</a>
-              <a class="dropdown-item active" href="portfolio-item.html">Single Portfolio Item</a>
-            </div>
-          </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownBlog" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Blog
-            </a>
-            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
-              <a class="dropdown-item" href="blog-home-1.html">Blog Home 1</a>
-              <a class="dropdown-item" href="blog-home-2.html">Blog Home 2</a>
-              <a class="dropdown-item" href="blog-post.html">Blog Post</a>
-            </div>
-          </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownBlog" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Other Pages
-            </a>
-            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
-              <a class="dropdown-item" href="full-width.html">Full Width Page</a>
-              <a class="dropdown-item" href="sidebar.html">Sidebar Page</a>
-              <a class="dropdown-item" href="faq.html">FAQ</a>
-              <a class="dropdown-item" href="404.html">404</a>
-              <a class="dropdown-item" href="pricing.html">Pricing Table</a>
-            </div>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </nav>
 
   <!-- Page Content -->
   <div class="container">
@@ -139,7 +67,7 @@
        
 <!--         <h3 class="my-3">Project Details</h3> -->
         <ul >
-          <li style="display: block;">렌탈가격 : <%= model.getPrd_price() %> 원</li>
+          <li style="display: block;">렌탈가격 : <%= sprice %> 원</li>
           <li style="display: block;">렌탈시스템 : 24개월이후 소유권이전</li>
           <li style="display: block;">제품규격 : 상세정보 참고</li>
          <!--  <li>Adipiscing Elit</li> -->
@@ -257,20 +185,9 @@
   </div>
   <!-- /.container -->
 
-  <!-- Footer -->
-  <footer class="py-5 bg-dark">
-    <div class="container">
-      <p class="m-0 text-center text-white">Copyright &copy; Your Website 2019</p>
-    </div>
-    <!-- /.container -->
-  </footer>
-
   <!-- Bootstrap core JavaScript -->
   <!-- 합치면 복구하기
   <script src="vendor/jquery/jquery.min.js"></script>
   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script> -->
-   <script src="<%=request.getContextPath() %>/modeljs/jquery.min.js"></script>
-  <script src="<%=request.getContextPath() %>/modeljs/bootstrap.bundle.min.js"></script>
 
-</body>
-</html>
+<%@ include file="./../include/footer.jsp" %>

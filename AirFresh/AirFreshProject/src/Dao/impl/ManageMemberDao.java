@@ -116,13 +116,16 @@ public class ManageMemberDao implements ManageMemberDaoInterface {
 	}
 
 	@Override
-	public boolean loginManagerMemberCehck(ManagerMemberDto managermemberdto) {
-		String sql = " SELECT mgr_id, mgr_pw "
-				+ " FROM MANAGERMEMBER "
-				+ " WHERE mgr_id=? AND mgr_pw=? ";
+	public ManagerMemberDto loginManagerMemberCehck(ManagerMemberDto managermemberdto) {
+		String sql = " SELECT mgr_index, mgr_auth, mgr_id, mgr_pw, mgr_name, mgr_loc, mgr_cell, mgr_del "
+					+ " FROM managerMember "
+					+ " WHERE mgr_id=? AND mgr_pw=? ";
 		
 		Connection conn = null;
 		PreparedStatement psmt = null;
+		ResultSet rs = null;
+		ManagerMemberDto dto=  null;
+		
 		System.out.println( "sql = " + sql );
 		System.out.println(" 2/6 loginManagerMemberCehck success ");
 		int count = 0;
@@ -132,25 +135,43 @@ public class ManageMemberDao implements ManageMemberDaoInterface {
 			System.out.println(" 3/6 loginManagerMemberCehck success ");
 			conn = DBConnection.getConnection();
 			psmt = conn.prepareStatement(sql);
-			System.out.println(" 4/6 loginManagerMemberCehck success ");
 			
+			System.out.println(" 4/6 loginManagerMemberCehck success ");
 			psmt.setString(1, managermemberdto.getMgr_id());
 			psmt.setString(2, managermemberdto.getMgr_pw());
 			
+
 			System.out.println(" 5/6 loginManagerMemberCehck success ");
-			
-			count = psmt.executeUpdate();
+			rs = psmt.executeQuery();
+
+			System.out.println(" 5.5/6 receiveManagerMemberAll success ");
+			while(rs.next()) {
+				  int mgr_index = rs.getInt("mgr_index");
+				  int mgr_auth = rs.getInt("mgr_auth");
+				  String mgr_id = rs.getString("mgr_id");
+//				  String mgr_pw = rs.getString("mgr_pw");
+				  String mgr_pw = null;
+				  String mgr_name = rs.getString("mgr_name"); 
+				  int mgr_loc = rs.getInt("mgr_loc");
+				  int mgr_cell = rs.getInt("mgr_cell");
+				  int mgr_del = rs.getInt("mgr_del");
+				  
+				  System.out.println("!!!!!!!!!!!!!!!!!"+mgr_index+" "+mgr_auth+" "+mgr_id+" "+mgr_pw+" "+mgr_name+" "+mgr_loc+" "+mgr_cell+" "+mgr_del);
+				  
+				  dto = new ManagerMemberDto(mgr_index, mgr_auth, mgr_id, mgr_pw, mgr_name, mgr_loc, mgr_cell, mgr_del);
+				  
+			}
 			
 		} catch (SQLException e) {
 			System.out.println(" loginManagerMemberCehck  DB FAIL ");
 			e.printStackTrace();
 		}finally {
 			System.out.println(" 6/6 loginManagerMemberCehck DBCLOSE ");
-			DBClose.close(psmt, conn, null);
+			DBClose.close(psmt, conn, rs);
 		}
 		
 		
-		return count>0?true:false;
+		return dto;
 	}//end of loginManagerMemberCehck
 	
 	

@@ -10,7 +10,7 @@
 <script src="http://lab.alexcican.com/set_cookies/cookie.js" type="text/javascript" ></script>
 
 <%@ include file="./../include/header.jsp"%>
-<div align="center">
+<div class="container" align="center">
 	<div class="title">	
 		<h2 class="mt-4 mb-3">로그인</h2>	
 		<p><strong>Air FRESH</strong> 홈페이지에 오신 것을 환영합니다.</p>

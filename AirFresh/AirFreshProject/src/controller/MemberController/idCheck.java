@@ -39,10 +39,10 @@ public class idCheck extends HttpServlet{
 		}else {				// id가 없음
 			System.out.println("YES");
 		}
-		req.setAttribute("isS1", isS1);
+		//req.setAttribute("isS1", isS1);
 		System.out.println("idCheck 도착2");	
-		//resp.sendRedirect(req.getContextPath() + "/WebContent/client_view/member/finding.jsp?isS1=" + isS1);
-		forward("./client_view/member/idcheck.jsp", req, resp);
+		resp.sendRedirect(req.getContextPath() + "/WebContent/client_view/member/idcheck.jsp?isS1=" + isS1);
+		//forward("./client_view/member/idcheck.jsp", req, resp);
 	}
 	
 	public void forward(String url, HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
