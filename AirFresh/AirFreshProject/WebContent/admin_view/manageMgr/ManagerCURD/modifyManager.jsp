@@ -38,8 +38,8 @@ ManagerMemberDto managerSelectOneDTO = (ManagerMemberDto)request.getAttribute("m
 		    <li class="list-group-item">
 		    </li>
 			<li class="list-group-item">
-		     	<label for="Mgr_id" class="width50">메니저 인덱스 : </label>
-		    	<!-- <input type="text" id="Mgr_index" name="Mgr_index" value="<%--=managerSelectOneDTO.getMgr_index() --%>" readonly>  -->
+		     	<label for="Mgr_id" class="width50" style="border: none;">메니저 인덱스 : </label>
+		    	<input type="text" id="Mgr_index" name="Mgr_index" value="<%=managerSelectOneDTO.getMgr_index()%>" readonly>
 		    </li>
 		    <li class="list-group-item">
 		     	<label for="Mgr_id" class="width50">메니저 아아디 : </label>
@@ -54,8 +54,16 @@ ManagerMemberDto managerSelectOneDTO = (ManagerMemberDto)request.getAttribute("m
 		    	<input type="text" id="Mgr_name" name="Mgr_name" value="<%=managerSelectOneDTO.getMgr_name() %>" >
 		    </li>
 		    <li class="list-group-item">
-		    	<label for="Mgr_loc" class="width50">메니저 지역구:</label>
-		    	<input type="text" id="Mgr_loc" name="Mgr_loc" value="<%=ProjectUtil.locationChange(managerSelectOneDTO.getMgr_loc()) %>"  >
+		    	<label for="loc" class="width50">메니저 지역구:</label>
+		    	<input type="text" id="loc" value="<%=ProjectUtil.locationChange(managerSelectOneDTO.getMgr_loc()) %>"  >
+				<label for="Mgr_loc" class="width50"> 에서 </label>
+				<select name="Mgr_loc">
+					<option value="1">강남구</option>
+					<option value="2">성동구</option>
+					<option value="3" selected="selected">중랑구</option>
+					<option value="4" >기타</option>
+				</select>
+				<label for="Mgr_loc" class="width50"> 로 변경</label>
 		    </li>
 		    <li class="list-group-item">
 		    	<label for="Mgr_cell" class="width50">메니저 휴대전화번호:</label>
@@ -64,20 +72,25 @@ ManagerMemberDto managerSelectOneDTO = (ManagerMemberDto)request.getAttribute("m
 		    <li class="list-group-item">
 		    	<label for="Mgr_auth" class="width50">메니저 권한:</label>
 		    	<input type="text" id="Mgr_auth" name="Mgr_auth" value="<%=ProjectUtil.managerLevel(managerSelectOneDTO.getMgr_auth()) %>" >
+		    	<label for="Mgr_auth" class="width50">에서</label>
+		    	<label>
+					<select name="authLevel">
+						<option value="0"> 최고관리자</option>
+						<option value="1" selected="selected"> 매니저</option>
+						<option value="2"> 설치기사</option>
+					</select>
+				</label>
+				<label for="Mgr_auth" class="width50">로 변경</label>
 		    </li>
+		    
 		    <li class="list-group-item">
 		    	<label for="Mgr_del" class="width50">메니저 탈퇴여부:</label>
 		    	<input type="text" id="Mgr_del" name="Mgr_del" value="<%=ProjectUtil.managerStatus(managerSelectOneDTO.getMgr_del())%>" readonly>
-	  			<input type="hidden" name="index" value="<%=managerSelectOneDTO.getMgr_index() %>">
 		    </li>
 		    <li class="list-group-item">
-	  	    	
 		    	<button type="submit" class="modify_btn"> 수정완료 </button>
 		    </li>
 		  </ul>
-		  	<input type="hidden"  id="Status_Selector" name="status" value=""><%-- 스테이터스가  jquery에 의해서 입력이 된다. --%>
-			<input type="hidden"  id="mgr_indxe_dto" name="index" value="">
-			<%--<input type="hidden"  id="st3" name="mrg_id" value=""> --%>
 		</form>
 	  </div>
 	  
