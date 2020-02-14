@@ -95,7 +95,7 @@ ManagerMemberDto managerSelectOneDTO = (ManagerMemberDto)request.getAttribute("m
 		$(document).ready(function(){
 			$(".delete_btn").click(function(){
 				$("#Status_Selector").attr("value","delete");
-				$("#mgr_indxe_dto").attr("value", "<%=managerSelectOneDTO.getMgr_index() %>");
+				$("#mgr_indxe_dto").attr("value", "<%=managerSelectOneDTO.getMgr_index() %>");//member indexno 를 넘겨준다.
 				
 				//console.log($("#Status_Selector").attr("value"));
 				//console.log($("#mgr_indxe_dto").attr("value"));
