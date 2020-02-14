@@ -1,6 +1,19 @@
+<%@page import="Dto.ManagerMemberDto"%>
 <%@page import="db.DBConnection"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+//ManagerMemberDto mem = request.getSession().setAttribute("managerLogin", key);
+HttpSession adminlogincheck = request.getSession();
+ManagerMemberDto mem = (ManagerMemberDto)session.getAttribute("managerLogin");
+System.out.println(mem);
+
+	
+
+
+%>    
+    
+    
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,6 +28,7 @@
 	 <body class="bg-primary">
         <div id="layoutAuthentication">
             <div id="layoutAuthentication_content">
+            
                 <main>
                     <div class="container">
                         <div class="row justify-content-center">
@@ -29,11 +43,11 @@
                                             <input class="form-control py-4" type="password" placeholder="Enter password" id="manager_pw" name="manager_pw"/></div>
                                             <div class="form-group">
                                                 <div class="custom-control custom-checkbox"><input class="custom-control-input" id="chk_save_id" type="checkbox" />
-                                                <label class="custom-control-label" for="rememberIDCheck">ID 저장</label></div>
+                                                	<label class="custom-control-label" for="rememberIDCheck">ID 저장</label>
+                                                </div>
                                             </div>
                                             <div class="form-group d-flex align-items-center justify-content-between mt-4 mb-0"><a class="small" href="password.html">비밀번호 찾기</a>
-                                            
-                                            <button type="button" class="btn btn-primary" id="btnlogin">로그인</button>
+                                            	<button type="button" class="btn btn-primary" id="btnlogin">로그인</button>
                                             </div>
                                         </form>
                                     </div>
@@ -45,6 +59,7 @@
                         </div>
                     </div>
                 </main>
+                
             </div>
             <div id="layoutAuthentication_footer">
                 <footer class="py-4 bg-light mt-auto">

@@ -1,4 +1,3 @@
-<%@page import="db.DBConnection"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -9,7 +8,6 @@
 </head>
 <body>
 <%
-DBConnection.initConnection(); 
 response.sendRedirect(request.getContextPath()+"/client_view/main.jsp");
 %>
 

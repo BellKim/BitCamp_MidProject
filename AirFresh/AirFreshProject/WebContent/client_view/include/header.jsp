@@ -1,6 +1,13 @@
-<%@page import="Dto.MemberDto"%>
+<%@page import="Dto.ManagerMemberDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	
+	
+<%
+HttpSession adminlogincheck = request.getSession();
+ManagerMemberDto managerMem = (ManagerMemberDto)session.getAttribute("managerLogin");
+System.out.println(managerMem);
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,6 +21,7 @@
 
 <!-- Custom styles for this template -->
   <link href="<%=request.getContextPath()%>/css/modern-business.css" rel="stylesheet">
+  <script src="<%=request.getContextPath()%>/js/jquery.min.js"></script>
 </head>
 <body>
 	<!-- Header -->
