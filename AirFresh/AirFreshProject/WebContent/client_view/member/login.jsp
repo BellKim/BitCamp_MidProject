@@ -41,6 +41,20 @@
 
 <script type="text/javascript">
 
+/* $("#btnlogin").click(function () ) {
+	$.ajax({
+		type:"post",
+		url:"memlogin",
+		data:{ "id":$("#mem_id").val(), "pw":$("#mem_pw").val() },
+		success:function( data ){
+			alert("안녕하세요 ♥" + $("#mem_name").val() + "♥님");
+		},
+		error:function(){
+			alert("로그인 실패!");
+		}
+	});
+} */
+
 $("#btnlogin").click(function () {
 	if( $("#mem_id").val().trim() == "" ){
 		alert("id를 입력해 주십시오");

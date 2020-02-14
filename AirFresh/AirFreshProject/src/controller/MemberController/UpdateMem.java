@@ -56,7 +56,7 @@ public class UpdateMem extends HttpServlet{
 			
 			boolean isS3 = s.ms.updateMem(dto);
 			System.out.println("UpdateMem 도착2");
-			resp.sendRedirect(req.getContextPath() + "./client_view/member/updateAf.jsp?isS3=" + isS3);	
+			resp.sendRedirect(req.getContextPath() + "/client_view/member/updateAf.jsp?isS3=" + isS3);	
 		}
 	}
 	

@@ -21,7 +21,7 @@ session.invalidate(); <!-- <jsp:include page="./../rental/rentalDetail.jsp" flus
     </ol>
 
 	<div>
-		<p><em><%=mem.getMem_name() %></em> 고객님, 안녕하세요!</p>
+		<p><em><%=mem.getMem_name() %></em> 고객님, 안녕하세요! </p>
 		<div class=""><%=mem.getMem_cell() %> / <%=mem.getMem_id() %></div>				
 	</div>
 			
