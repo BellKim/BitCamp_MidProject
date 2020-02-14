@@ -34,5 +34,17 @@ public class QnaBbsService implements QnaBbsServiceInterface {
 	public boolean reComentQna(int qna_index, String re_content) {
 		return qbd.reComentQna(qna_index, re_content);
 	}
+	@Override
+	public boolean userUpdate(QnaBbsDto qna) {
+		return qbd.userUpdate(qna);
+	}
+	@Override
+	public boolean adminUpdate(int qna_index, int qna_secret) {
+		return qbd.adminUpdate(qna_index, qna_secret);
+	}
+	@Override
+	public boolean qnaDelete(int qna_index) {
+		return qbd.qnaDelete(qna_index);
+	}
 
 }

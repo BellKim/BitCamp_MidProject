@@ -10,8 +10,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import Dto.QnaBbsDto;
 import singleton.singleton;
-@WebServlet("/addQna")
-public class AddQnaBbs extends HttpServlet {
+@WebServlet("/qnadelete")
+public class QnaDelete extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		this.processFunc(req, resp);
@@ -25,25 +25,20 @@ public class AddQnaBbs extends HttpServlet {
 	public void processFunc(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException  {
 		req.setCharacterEncoding("utf-8");
 		String command = req.getParameter("command");
-		
-		if(command.contentEquals("add")) {
-			resp.sendRedirect(req.getContextPath()+"/client_view/board/qna_write.jsp");
+		singleton s = singleton.getInstance();
+		int qna_index = 0;
+		if(command.contentEquals("user")) {
+			qna_index = Integer.parseInt(req.getParameter("qna_index"));
 			
-		} else if(command.contentEquals("addAf")) {
-			String mem_id = req.getParameter("mem_id");
-			String qna_title = req.getParameter("qna_title");
-			String qna_content = req.getParameter("qna_content");
-			String secret = req.getParameter("secret");
+			boolean isS = s.qbs.qnaDelete(qna_index);
+			resp.sendRedirect(req.getContextPath() + "/client_view/board/qnaAf.jsp?command=qnaDeleteAf&isS="+isS+"&qna_index="+qna_index);
+
+		} else if(command.contentEquals("admin")) {
+			qna_index = Integer.parseInt(req.getParameter("qna_index"));
 			
-			int qna_secret = 0;
-			if(secret!=null) {
-				qna_secret = 1;
-			}
-			
-			singleton s = singleton.getInstance();
-			boolean isS = s.qbs.addQna(new QnaBbsDto(mem_id, qna_title, qna_content, qna_secret));
-			resp.sendRedirect(req.getContextPath() + "/client_view/board/qnaAf.jsp?command=add&isS="+isS);
+			boolean isS = s.qbs.qnaDelete(qna_index);
+			resp.sendRedirect(req.getContextPath() + "/admin_view/board/finding.jsp?command=qnaDeleteAf&isS="+isS+"&qna_index="+qna_index);
+
 		}
-		
 	}
 }

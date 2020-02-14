@@ -58,6 +58,8 @@ String sdate = qna.getWdate().substring(0, 10);
      <%} %>
 	<div align="right" style = "padding :10px;">
 				<a href="<%=request.getContextPath()%>/qnalist?command=admin" class="btn btn-primary">목록</a>
+				<a href="<%=request.getContextPath()%>/updateqnabbs?command=adminUpdate&qna_index=<%=qna.getQna_index() %>" class="btn btn-primary">수정</a>
+				<a href="#" onclick="deleteFunc()" class="btn btn-primary">삭제</a>
 	</div>
 </div>
 
@@ -70,5 +72,15 @@ $("#btn_add").click(function(){
 		$("#refrm").attr({"action":"<%=request.getContextPath()%>/updateqnabbs?command=admin&qna_index=<%=qna.getQna_index()%>", "target":"_self"}).submit();
 	}
 });
+
+function deleteFunc() {
+	var answer = confirm("정말 삭제하시겠습니까?");
+	
+	if(answer){
+		location.href="<%=request.getContextPath()%>/qnadelete?command=admin&qna_index=<%=qna.getQna_index() %>";
+	} else {
+		return;
+	}
+}
 </script>
 <%@ include file="./../include/footer.jsp"%>

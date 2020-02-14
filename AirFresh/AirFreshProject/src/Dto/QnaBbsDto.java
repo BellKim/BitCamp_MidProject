@@ -12,8 +12,8 @@ CREATE TABLE qnaBbs
 (
     qna_index      NUMBER(6)         NOT NULL, 
     mem_id        VARCHAR2(50)            NULL, 
-    qna_title      VARCHAR2(20)      NULL, 
-    qna_content    VARCHAR2(20)      NULL, 
+    qna_title      VARCHAR2(200)      NULL, 
+    qna_content    VARCHAR2(4000)      NULL, 
     wdate          DATE              NULL, 
     qna_secret 	   NUMBER(1)		 NULL,
     re_content     VARCHAR2(4000)    NULL, 
@@ -160,6 +160,14 @@ public class QnaBbsDto implements Serializable {
 	public QnaBbsDto(String mem_id, String qna_title, String qna_content, int qna_secret) {
 		super();
 		this.mem_id = mem_id;
+		this.qna_title = qna_title;
+		this.qna_content = qna_content;
+		this.qna_secret = qna_secret;
+	}
+	
+	public QnaBbsDto(int qna_index, String qna_title, String qna_content, int qna_secret) {
+		super();
+		this.qna_index = qna_index;
 		this.qna_title = qna_title;
 		this.qna_content = qna_content;
 		this.qna_secret = qna_secret;

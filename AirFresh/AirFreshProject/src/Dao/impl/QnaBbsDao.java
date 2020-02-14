@@ -314,4 +314,101 @@ public class QnaBbsDao implements QnaBbsDaoInterface {
 		return count>0?true:false;
 	}
 
+	@Override
+	public boolean userUpdate(QnaBbsDto qna) {
+		String sql = " UPDATE QNABBS "
+				+ " SET QNA_TITLE =?, QNA_CONTENT =?, QNA_SECRET =? "
+				+ " WHERE QNA_INDEX =? ";
+		
+
+		Connection conn = null;
+		PreparedStatement psmt = null;
+		
+		int count = 0;
+		try {
+			conn = DBConnection.getConnection();
+			System.out.println("1/6 userUpdate success");
+	
+			psmt = conn.prepareStatement(sql);
+			System.out.println("2/6 userUpdate success");
+			psmt.setString(1, qna.getQna_title());
+			psmt.setString(2, qna.getQna_content());
+			psmt.setInt(3, qna.getQna_secret());
+			psmt.setInt(4, qna.getQna_index());
+			
+			count = psmt.executeUpdate();
+			System.out.println("3/6 userUpdate success");
+			
+		} catch (SQLException e) {
+			System.out.println("userUpdate fail");
+			e.printStackTrace();
+		} finally {
+			DBClose.close(psmt, conn, null);
+		}
+		return count>0?true:false;
+	}
+
+	@Override
+	public boolean adminUpdate(int qna_index, int qna_secret) {
+		String sql = " UPDATE QNABBS "
+				+ " SET QNA_SECRET =? "
+				+ " WHERE QNA_INDEX =? ";
+		
+
+		Connection conn = null;
+		PreparedStatement psmt = null;
+		
+		int count = 0;
+		try {
+			conn = DBConnection.getConnection();
+			System.out.println("1/6 adminUpdate success");
+	
+			psmt = conn.prepareStatement(sql);
+			System.out.println("2/6 adminUpdate success");
+			psmt.setInt(1, qna_secret);
+			psmt.setInt(2, qna_index);
+			
+			count = psmt.executeUpdate();
+			System.out.println("3/6 adminUpdate success");
+			
+		} catch (SQLException e) {
+			System.out.println("adminUpdate fail");
+			e.printStackTrace();
+		} finally {
+			DBClose.close(psmt, conn, null);
+		}
+		return count>0?true:false;
+	}
+
+	@Override
+	public boolean qnaDelete(int qna_index) {
+		String sql = " UPDATE QNABBS "
+				+ " SET QNA_DEL = 1 "
+				+ " WHERE QNA_INDEX =? ";
+		
+
+		Connection conn = null;
+		PreparedStatement psmt = null;
+		
+		int count = 0;
+		try {
+			conn = DBConnection.getConnection();
+			System.out.println("1/6 userDelete success");
+	
+			psmt = conn.prepareStatement(sql);
+			System.out.println("2/6 userDelete success");
+			psmt.setInt(1, qna_index);
+			
+			count = psmt.executeUpdate();
+			System.out.println("3/6 userDelete success");
+			
+		} catch (SQLException e) {
+			System.out.println("userDelete fail");
+			e.printStackTrace();
+		} finally {
+			DBClose.close(psmt, conn, null);
+		}
+		return count>0?true:false;
+	}
+
 }

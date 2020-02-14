@@ -198,7 +198,7 @@ CREATE TABLE qnaBbs
     qna_index      NUMBER(6)         NOT NULL, 
     mem_id        VARCHAR2(50)            NULL, 
     qna_title      VARCHAR2(20)      NULL, 
-    qna_content    VARCHAR2(20)      NULL, 
+    qna_content    VARCHAR2(4000)      NULL, 
     wdate          DATE              NULL, 
     qna_secret	   NUMBER(1)		 NULL,
     re_content     VARCHAR2(4000)    NULL, 
