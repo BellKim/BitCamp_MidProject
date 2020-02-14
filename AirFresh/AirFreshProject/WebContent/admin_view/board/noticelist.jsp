@@ -6,7 +6,7 @@
 
 <%
 	List<NoticeBbsDto> list = (List<NoticeBbsDto>) request.getAttribute("noticeList");
-	ManagerMemberDto mrgMem = (ManagerMemberDto) session.getAttribute("mrgLogin");
+	ManagerMemberDto mrgMem = (ManagerMemberDto) session.getAttribute("managerLogin");
 
 	int len = (int)request.getAttribute("len");
 	System.out.println("총 글의 갯수 " + len);

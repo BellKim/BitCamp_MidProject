@@ -4,7 +4,7 @@
 
 <%
 
-	ManagerMemberDto mrgMem = (ManagerMemberDto) session.getAttribute("mrgLogin");
+	ManagerMemberDto mrgMem = (ManagerMemberDto) session.getAttribute("managerLogin");
 %>
 <%@ include file="./../include/header.jsp"%>
 <div class="container">

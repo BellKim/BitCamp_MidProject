@@ -56,7 +56,7 @@
 						<a class="nav-link" href="<%=request.getContextPath()%>/InstallController?command=install">
 								<i class="fas fa-table"></i>
 							 렌탈리스트</a>
-						<a class="nav-link" href="tables.html">
+						<a class="nav-link" href="<%=request.getContextPath()%>/InstallController">
 								<i class="fas fa-table"></i>
 							 AS리스트</a>
 					<a class="nav-link" href="<%=request.getContextPath()%>/qnalist?command=admin">

@@ -5,7 +5,7 @@
 <%@ include file="./../include/header.jsp"%>
 <%
 QnaBbsDto qna = (QnaBbsDto) request.getAttribute("qnadto");
-MemberDto mem = (MemberDto)session.getAttribute("memLogin");
+MemberDto mem = (MemberDto)session.getAttribute("login");
 
 String sdate = qna.getWdate().substring(0, 10);
 %>

@@ -6,7 +6,7 @@
     <%
 	NoticeBbsDto notice = (NoticeBbsDto) request.getAttribute("noticeBbs");
 
-	ManagerMemberDto mrgMem = (ManagerMemberDto) session.getAttribute("mrgLogin");
+	ManagerMemberDto mrgMem = (ManagerMemberDto) session.getAttribute("managerLogin");
     
     
     %>
