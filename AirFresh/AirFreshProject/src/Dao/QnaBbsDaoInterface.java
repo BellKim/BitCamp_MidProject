@@ -10,4 +10,5 @@ public interface QnaBbsDaoInterface {
 	public int getAllQnaLength(String opt, String keyword);
 	public boolean addQna(QnaBbsDto qna);
 	public QnaBbsDto getQnaBbs(int qna_index);
+	public boolean reComentQna(int qna_index, String re_content);
 }

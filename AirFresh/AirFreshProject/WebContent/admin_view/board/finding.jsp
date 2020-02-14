@@ -78,6 +78,30 @@
 	%>
 	
 	<%
+		} else if(command.equals("qnare")){
+			String qna_index = request.getParameter("qna_index");
+	%>
+	<%
+		if (str.equals("true")) {
+	%>
+	<script type="text/javascript">
+		alert("성공적으로 답변이 등록 되었습니다.");
+		location.href = "<%=request.getContextPath()%>/qnadetail?command=admin&qna_index=<%=qna_index%>"; //컨트롤러 거쳐야함
+	</script>
+
+	<%
+		} else {
+			
+	%>
+	<script type="text/javascript">
+		alert("답변이 등록 되지 않았습니다.");
+		location.href = "<%=request.getContextPath()%>/qnadetail?command=admin&qna_index=<%=qna_index%>"; 
+	</script>
+	<%
+		}
+	%>
+	
+	<%
 	
 	}
 	%>

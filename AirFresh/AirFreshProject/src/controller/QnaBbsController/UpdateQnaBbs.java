@@ -11,8 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 import Dto.QnaBbsDto;
 import projectutil.ProjectUtil;
 import singleton.singleton;
-@WebServlet("/qnadetail")
-public class QnaDetail extends HttpServlet {
+@WebServlet("/updateqnabbs")
+public class UpdateQnaBbs extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		this.processFunc(req, resp);
@@ -25,21 +25,20 @@ public class QnaDetail extends HttpServlet {
 	
 	public void processFunc(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException  {
 		req.setCharacterEncoding("utf-8");
-		int qna_index = Integer.parseInt(req.getParameter("qna_index"));
 		String command = req.getParameter("command");
 		singleton s = singleton.getInstance();
-		
-		if(command.contentEquals("user")) {
-			QnaBbsDto qna = s.qbs.getQnaBbs(qna_index);
-			req.setAttribute("qnadto", qna);
-			ProjectUtil.forward("./client_view/board/qnadetail.jsp", req, resp);
-		
-		} else if(command.contentEquals("admin")) {
+		int qna_index = 0;
+		if(command.contentEquals("admin")) {
+			qna_index = Integer.parseInt(req.getParameter("qna_index"));
+			String re_content = req.getParameter("re_content");
+			boolean isS = s.qbs.reComentQna(qna_index, re_content);
+			resp.sendRedirect(req.getContextPath() + "/admin_view/board/finding.jsp?command=qnare&isS="+isS+"&qna_index="+qna_index);
 			
+		} else if(command.contentEquals("user")) {
+			qna_index = Integer.parseInt(req.getParameter("qna_index"));
 			QnaBbsDto qna = s.qbs.getQnaBbs(qna_index);
-			System.out.println(qna.toString());
 			req.setAttribute("qnadto", qna);
-			ProjectUtil.forward("./admin_view/board/qnadetail.jsp", req, resp);
+			ProjectUtil.forward("./client_view/board/qnaupdate.jsp", req, resp);
 		}
 		
 	}

@@ -6,19 +6,9 @@
 
 	ManagerMemberDto mrgMem = (ManagerMemberDto) session.getAttribute("mrgLogin");
 %>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-<link rel="stylesheet"
-	href="<%=request.getContextPath()%>/css/bootstrap.css">
-<link rel="stylesheet"
-	href="<%=request.getContextPath()%>/css/bootstrap.min.css">
-</head>
-<body>
-	<div class="container">
-		<h3>공지사항</h3>
+<%@ include file="./../include/header.jsp"%>
+<div class="container">
+	<h1 class="mt-4 mb-3" >공지사항</h1>
 		<hr>
 		<form
 			action="<%=request.getContextPath()%>/noticeupload?command=upload"
@@ -57,5 +47,5 @@
 			</fieldset>
 		</form>
 	</div>
-</body>
-</html>
+
+<%@ include file="./../include/footer.jsp"%>

@@ -12,21 +12,11 @@
 	String sdate = notice.getWdate().substring(0, 10);
 	String savePath = request.getServletContext().getRealPath("/upload");
 %>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-<link rel="stylesheet"
-	href="<%=request.getContextPath()%>/css/bootstrap.css">
-<link rel="stylesheet"
-	href="<%=request.getContextPath()%>/css/bootstrap.min.css">
-</head>
-<body>
-	<div class="container">
-		<h3>공지사항</h3>
+<%@ include file="./../include/header.jsp"%>
+<div class="container">
+	<h1 class="mt-4 mb-3" >공지사항</h1>
 		<hr>
-		<div class="card bg-secondary mb-3">
+		<div class="card ">
 			<div class="card-header">
 				<h3 class="card-title"><%=notice.getNoti_title()%></h3>
 				<span><%=sdate%></span>
@@ -67,7 +57,7 @@
 				<p class="card-text"><%=notice.getNoti_content()%></p>
 			</div>
 		</div>
-		<div align="center">
+		<div align="center" style="padding-top:10px">
 		<button type="button" class="btn btn-primary btn-lg"
 				onclick="location.href='<%=request.getContextPath()%>/noticelist?command=admin'">목록</button>
 			<%
@@ -96,5 +86,4 @@
 			}
 		}
 	</script>
-</body>
-</html>
+<%@ include file="./../include/footer.jsp"%>
