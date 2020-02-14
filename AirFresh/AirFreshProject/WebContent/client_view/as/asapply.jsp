@@ -26,6 +26,7 @@
     	<hr>
 		<form action="<%=request.getContextPath() %>/addAsApp" method="post" enctype="multipart/form-data">
 			<input type="hidden" name="pur_index" value="<%=seq %>">
+			<input type="hidden" name="mem_id" value="<%=mem.getMem_id()%>">
 			<fieldset>
 				<div class="form-group">
 					<label for="exampleTextarea">AS요청제품</label>
@@ -58,7 +59,7 @@
 						</div>
 						<div style="width: 500px; float: left;">
 							<input type="text" class="form-control" id="inputDefault"
-								name="title">
+								name="astitle">
 						</div>
 						<div style="clear: left"></div>
 					</div>
@@ -66,7 +67,7 @@
 				<div class="form-group">
 					<label for="exampleTextarea">증상설명</label>
 					<textarea class="form-control" id="exampleTextarea" rows="10"
-						cols="50" name="content"></textarea>
+						cols="50" name="ascontent"></textarea>
 				</div>
 				<div class="form-group">
 					<input type="file" class="form-control-file" id="exampleInputFile"
@@ -124,7 +125,7 @@
 	    			  dateFormat: "yy/mm/dd"
 	    });
 		 
-		 $("#_asBtn").click(function() {
+		 $("button").click(function() {
 /* 			if($("#datepicker").val()==""){
 				alert("as방문 희망날짜를 선택해주세요.");
 				$("#datepicker").focus();
@@ -139,7 +140,7 @@
 				$("#frm").submit();
 			} */
 			
-			 $("#frm").submit();
+			// $("#frm").submit();
 		});
 	});
 </script>
