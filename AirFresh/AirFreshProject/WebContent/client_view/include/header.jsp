@@ -13,6 +13,7 @@
 
 <!-- Custom styles for this template -->
   <link href="<%=request.getContextPath()%>/css/modern-business.css" rel="stylesheet">
+  <script src="<%=request.getContextPath()%>/js/jquery.min.js"></script>
 </head>
 <body>
 	<!-- Header -->

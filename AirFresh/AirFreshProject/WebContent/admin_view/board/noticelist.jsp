@@ -24,19 +24,8 @@
 	}
 %>
 
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-<link rel="stylesheet"
-	href="<%=request.getContextPath()%>/css/bootstrap.css">
-<link rel="stylesheet"
-	href="<%=request.getContextPath()%>/css/bootstrap.min.css">
-</head>
-<body>
-	<div class="container">
+<%@ include file="./../include/header.jsp" %>
+<div class="container">
 		<h3>공지사항</h3>
 		<div style="float: right">
 			<div class="form-group"
@@ -126,7 +115,7 @@
 					title="<%=i + 1%>페이지" onclick="goPage(<%=i%>)"><%=i + 1%></a></li>
 				<%
 					}
-					}
+				}
 				%>
 			</ul>
 		</div>
@@ -169,5 +158,6 @@
 	}
 
 	</script>
-</body>
-</html>
+
+			
+<%@ include file="./../include/footer.jsp" %>
