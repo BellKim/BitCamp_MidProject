@@ -35,7 +35,7 @@ public class DeleteNotice extends HttpServlet {
 			
 			resp.sendRedirect(req.getContextPath() + "/admin_view/board/finding.jsp?command=delete&isS="+isS);
 		} else if(command.contentEquals("multiDelete")) {
-			String qnaIndex[] = req.getParameterValues("");
+			String qnaIndex[] = req.getParameterValues("delck");
 		}
 	}
 	
