@@ -520,14 +520,14 @@ public class NoticeBbsDao implements NoticeBbsDaoInterface {
 	}
 
 	@Override
-	public boolean multiDelNotice(String[] qnaIndex) {
+	public boolean multiDelNotice(String[] noticeIndex) {
 		String sql = " UPDATE NOTICEBBS "
 				+ " SET NOTI_DEL = 1 "
 				+ " WHERE NOTI_INDEX = ? ";
 		
 		Connection conn = null;
 		PreparedStatement psmt = null;
-		int count[] = new int[qnaIndex.length];
+		int count[] = new int[noticeIndex.length];
 		
 		
 		try {
@@ -536,22 +536,50 @@ public class NoticeBbsDao implements NoticeBbsDaoInterface {
 			System.out.println("1/6 S multiDelNotice");
 			
 			psmt = conn.prepareStatement(sql);
+			System.out.println(noticeIndex.length);
 			
-			for(int i = 0; i<qnaIndex)
-			psmt.setInt(1, noti_index);
-			System.out.println("2/6 S multiDelNotice");
-			
-			count = psmt.executeUpdate();
+			for(int i = 0; i < noticeIndex.length; i++) {
+				System.out.println(Integer.parseInt(noticeIndex[i]));
+				psmt.setInt(1, Integer.parseInt(noticeIndex[i]));
+				psmt.addBatch();
+				System.out.println("2/6 S multiDelNotice");
+				}
+			count = psmt.executeBatch();
 			System.out.println("3/6 S multiDelNotice");
+			conn.commit();
 			
-		} catch (Exception e) {		
-			System.out.println("fail multiDelNotice");
+		} catch (SQLException e) {
 			e.printStackTrace();
+			
+			try {
+				conn.rollback();
+				System.out.println(" rollback multiDelNotice");
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 		} finally {
-			DBClose.close(psmt, conn, null);			
+			try {
+				conn.setAutoCommit(true);
+				System.out.println(" 성공 multiDelNotice");
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			DBClose.close(psmt, conn, null);
+		}
+		boolean isS = true;
+		System.out.println("count : " + count.length);
+		for (int i = 0; i < count.length; i++) {
+			System.out.println("count : " + count);
+			if(count[i]!=-2) { // -2 정상 종료
+				isS = false;
+				break;
+			}
 		}
 		
-		return count>0?true:false;
+		return isS;
 	}
 
 }

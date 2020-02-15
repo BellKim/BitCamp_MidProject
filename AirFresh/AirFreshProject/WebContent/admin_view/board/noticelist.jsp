@@ -194,7 +194,7 @@
 				alert("삭제할 공지사항을 선택해주세요");
 				return
 			}
-			$("#noticelistForm").attr("action","custuserdelete").submit();
+			$("#noticelistForm").attr("action","noticedelete?command=multiDelete").submit();
 			
 		});
 	});
