@@ -72,7 +72,15 @@ ManagerMemberDto managerSelectOneDTO = (ManagerMemberDto)request.getAttribute("m
 		    
 		    <li class="list-group-item">
 		    	<label for="mgr_del" class="width50">메니저 탈퇴여부:</label>
-		    	<input type="text" id="mgr_del" name="mgr_del" value="<%=ProjectUtil.managerStatus(managerSelectOneDTO.getMgr_del())%>" readonly>
+		    	<input type="text" id="mgr_del" value="<%=ProjectUtil.managerStatus(managerSelectOneDTO.getMgr_del())%>" readonly>
+		    	
+		    	<label>
+					<select name="mgr_del">
+						<option value="0" selected="selected"> 재직중</option>
+						<option value="1"> 퇴사</option>
+					</select>
+				</label>
+		    	
 		    </li>
 		    <li class="list-group-item">
 		    	<button type="submit" class="modify_btn"> 수정완료 </button>
