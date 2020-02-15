@@ -11,7 +11,7 @@ request.setCharacterEncoding("utf-8");
 ManagerMemberDto managerSelectOneDTO = (ManagerMemberDto)request.getAttribute("managerModify1");
 %>
 
-
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 	<h1>showmgrMemberDetail</h1>
 	
 	
@@ -43,6 +43,15 @@ ManagerMemberDto managerSelectOneDTO = (ManagerMemberDto)request.getAttribute("m
 		    		<span id='message'></span>
 		    	</label>
 		    </li>
+		    
+		    <li class="list-group-item">
+		        <input type="password" id="userPw" placeholder="비밀번호"/>
+			    <input type="password" id="userPwChk" placeholder="비밀번호 확인"/>
+			    <font id="chkNotice" size="2"></font>
+
+		    </li>
+		    
+		    
 		    <li class="list-group-item">
 		    	<label for="mgr_name" class="width50">매니저 이름 : </label>	
 		    	<input type="text" id="mgr_name" name="mgr_name" value="<%=managerSelectOneDTO.getMgr_name() %>" >

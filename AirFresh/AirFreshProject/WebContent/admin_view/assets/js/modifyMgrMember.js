@@ -43,8 +43,7 @@
 		}
 		
 		
-		
-		
+
 
 		
 
@@ -76,25 +75,45 @@
 		
 	});
 
+	
 	//비밀번호 확인 로직.
 	/*
 		1. 비밀번호 입력칸 두곳에 같은 비밀번호가 입력되어야 한다.
 		2. 두곳 모두 입력되지 않았을 경우에는 파라미터생성이 되면 안된다.    */
 
 
-	$("#mgr_pw", "#mgr_pw_confirm").on('keyup', function () {
+	$('#mgr_pw, #mgr_pw_confirm').on("keyup", function () {
 		if($("#mgr_pw").val()  == $("#mgr_pw_confirm").val()){
 			
 				$('#message').html('Matching').css('color', 'green');
-				$("mgr_pw").attr("name","mgr_id")
+				$("#mgr_pw").attr("name","mgr_pw");
 				
 			} else{
 				
 				$('#message').html('Not Matching').css('color', 'red');
-				$("mgr_pw").removeAttr("name");
-				
+				$("#mgr_pw").removeAttr("name");
 			}
 	});
+  
+	
+	
 
+	
+    $(function(){
+        $('#userPw').keyup(function(){
+        $('#chkNotice').html('');
+        });
+
+        $('#userPwChk').keyup(function(){
+
+            if($('#userPw').val() != $('#userPwChk').val()){
+            $('#chkNotice').html('비밀번호 일치하지 않음<br><br>');
+            $('#chkNotice').attr('color', '#f82a2aa3');
+            } else{
+            $('#chkNotice').html('비밀번호 일치함<br><br>');
+            $('#chkNotice').attr('color', '#199894b3');
+            }
+        });
+    });
 
 	
