@@ -1,7 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
-String str4 = request.getParameter("id");	// FindID(PW)
+String str4 = (String)session.getAttribute("foundid");
+//String str4 = request.getParameter("id");	// FindID(PW)
+//System.out.println(str4);
 %>    
 <!DOCTYPE html>
 <html>
@@ -16,7 +18,7 @@ if(str4 != null && !str4.equals("")){
 %>
 	<script type="text/javascript">
 	alert("가입하신 아이디는 " + str4 + "입니다.");
-	location.href = "./client_view/member/login.jsp";
+	location.href = "<%=request.getContextPath() %>/login.jsp";
 	</script>
 <%
 }else {

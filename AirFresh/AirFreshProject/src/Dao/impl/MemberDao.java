@@ -195,7 +195,7 @@ public class MemberDao implements MemberDaoInterface{
 		return mem;
 	}
 							
-	public String findID(String mem_name, String mem_cell) {
+	public String findID(String mem_name, String mem_cell) {	// , String mem_id
 		String sql = " SELECT MEM_ID FROM MEMBERS "
 				+ " WHERE MEM_NAME=? AND MEM_CELL=? ";
 			
@@ -226,7 +226,7 @@ public class MemberDao implements MemberDaoInterface{
 		return _id;
 	}
 	
-	public String findPW(String mem_id, String mem_name) {
+	public String findPW(String mem_id, String mem_name) {	// , String mem_pw
 		String sql = "SELECT MEM_PW FROM MEMBERS "
 				+ " WHERE MEM_ID=? AND MEM_NAME=? ";
 		

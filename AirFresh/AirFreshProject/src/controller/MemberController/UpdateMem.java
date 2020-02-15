@@ -35,9 +35,8 @@ public class UpdateMem extends HttpServlet{
 		
 		if(command.equals("update")) {
 			String id = req.getParameter("id");
-			MemberDto mem = s.ms.getMem(id);
-			//System.out.println(mem.toString());
-			req.setAttribute("login", mem);			
+			MemberDto mem = s.ms.getMem(id);			
+			req.getSession().setAttribute("login", mem);			
 			forward("./client_view/member/update.jsp", req, resp);			
 		}		
 		else if(command.equals("updateAf")) {

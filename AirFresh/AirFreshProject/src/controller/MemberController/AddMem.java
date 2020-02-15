@@ -27,14 +27,22 @@ public class AddMem extends HttpServlet {
 		System.out.println("AddMem 도착");
 		
 		String command = req.getParameter("command");
-		System.out.println(command);	
-		
+		System.out.println(command);		
 
 		if(command.equals("regi")) {	// 회원가입 전 약관동의
-			resp.sendRedirect("./client_view/member/terms.jsp");
+			resp.sendRedirect(req.getContextPath() + "/client_view/member/terms.jsp");
 		}
-		else if(command.equals("register")) {	// 약관 동의 후 회원가입 뷰(약관동의 y/n 거르기만 하고 값으로 넘겨받지 않음)
-			resp.sendRedirect("./client_view/member/register.jsp");
+		if(command.equals("siteterms")) {	// AirFresh몰 이용약관			
+			resp.sendRedirect(req.getContextPath() + "/client_view/member/siteterms.jsp");
+		}
+		else if(command.equals("infoterms")) {	// 개인정보 수집/이용안내
+			resp.sendRedirect(req.getContextPath() + "/client_view/member/personalinfoterms.jsp");
+		}
+		else if(command.equals("puseterms")) {	// 개인 정보 수집/이용 동의
+			resp.sendRedirect(req.getContextPath() + "/client_view/member/privacyuseterms.jsp");
+		}
+		else if(command.equals("register")) {	// 넘겨받는 값 없이 회원가입
+			resp.sendRedirect(req.getContextPath() + "/client_view/member/register.jsp");
 		}
 		else if(command.equals("addAf")) {
 			String _id = req.getParameter("mem_id");		
@@ -57,16 +65,9 @@ public class AddMem extends HttpServlet {
 			System.out.println("AddMem 도착2");				
 			
 			boolean isS = s.ms.addMem(dto);
-			req.setAttribute("isS", isS);		
-			forward("./client_view/member/regiAf.jsp?isS=" + isS, req, resp);
 			
+			resp.sendRedirect(req.getContextPath() + "/client_view/member/finding.jsp?isS=" + isS);			
 		}
-	}	
-	
-	public void forward(String url, HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		RequestDispatcher dispatch = req.getRequestDispatcher(url);
-		dispatch.forward(req, resp);	
-	}
-			
+	}				
 	
 }

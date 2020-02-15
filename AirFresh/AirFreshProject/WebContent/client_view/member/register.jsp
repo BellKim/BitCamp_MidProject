@@ -96,8 +96,8 @@ $(document).ready(function () {
 	$("#_btnid").click(function () {	
 		
 		$.ajax({
-			type:"post",
-			url:"./idcheck.jsp",
+			type:"post",	
+			url:"${pageContext.request.contextPath}/idcheck",	// idcheck / ./idcheck.jsp
 			data:{ "_id":$("#mem_id").val() },
 			success:function( data ){		
 				if(data.trim() == "YES"){
