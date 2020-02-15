@@ -24,15 +24,11 @@ public class ManagerLogin extends HttpServlet {
 		
 		//로그인 체크 합니다. 
 		ManagerMemberDto isS = loginCheck(req, resp);
-		
-		
-		
-		
+
 		if(isS != null && !isS.getMgr_id().equals("")) {
 			req.getSession().setAttribute("managerLogin", isS);
 			System.out.println("로그인성공 관리자 리스트로 이동 ");
 			ProjectUtil.forward("./admin_view/manageMgr/adminIndex.jsp", req, resp);
-			
 
 		}else {
 			System.out.println("실패했습니다. 재접속 해주세요");
