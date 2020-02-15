@@ -39,27 +39,32 @@ public class InstallController extends HttpServlet implements Serializable{
 	protected void processing(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		System.out.println("getInstallList_Null 도착");
 		singleton s = singleton.getInstance();
-		
-		
+
 		//명령어 판단 
 		String command = null;
 		if(req.getParameter("command") != null) {
 			command = req.getParameter("command");
 			
 			if(command.equals("install")) {
-				resp.sendRedirect(req.getContextPath() + "/admin_view/InstallList/InstallList.jsp");
+				resp.sendRedirect("./admin_view/InstallList/InstallList.jsp");
 			}
 			
 			
 			if(command.equals("getDayList")) {
 				//왕관리자용
-				String slevel = req.getParameter("level");
-				System.out.println(slevel);
+				System.out.println("getDayList 도착");
 				
-				int level = Integer.parseInt(slevel);
+				ManagerMemberDto mdto = (ManagerMemberDto)req.getSession().getAttribute("mrgLogin");
+				int level = mdto==null?-1:mdto.getMgr_auth();
 				System.out.println(level);
 				
-				getDayList(level, req, resp);
+				if(level>=0) {
+					getDayList(level, req, resp);
+				}else {
+					resp.sendRedirect("./admin_view/InstallList/InstallList.jsp");
+				}
+				
+				
 			}			
 			
 			if(command.equals("save")) {
@@ -153,6 +158,8 @@ public class InstallController extends HttpServlet implements Serializable{
 	protected void installCarlender(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String year = req.getParameter("year");
 		String month = req.getParameter("month");
+		System.out.println(year);
+		System.out.println(month);
 		
 		req.setAttribute("year", year);
 		req.setAttribute("month", month);
