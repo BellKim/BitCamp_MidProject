@@ -16,19 +16,20 @@ import singleton.singleton;
 @WebServlet("/managerLogin")
 public class ManagerLogin extends HttpServlet {
 	
-	private ManagerMemberDto managermemdto= null;
+
 
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		System.out.println(" managerLogin service Now. ");
 		
 		//로그인 체크 합니다. 
-		boolean isS = loginCheck(req, resp);
+		ManagerMemberDto isS = loginCheck(req, resp);
 		
 		
 		
 		
-		if(isS = true) {
+		if(isS != null && !isS.getMgr_id().equals("")) {
+			req.getSession().setAttribute("managerLogin", isS);
 			System.out.println("로그인성공 관리자 리스트로 이동 ");
 			ProjectUtil.forward("./admin_view/manageMgr/adminIndex.jsp", req, resp);
 			
@@ -40,13 +41,13 @@ public class ManagerLogin extends HttpServlet {
 
 	}//end class
 	
-	protected boolean loginCheck(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+	protected ManagerMemberDto loginCheck(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String mgr_id = req.getParameter("manager_id");
 		String mgr_pw = req.getParameter("manager_pw");
 		
 		System.out.println("mgrid = " + mgr_id + " \nmgr_pw = "+mgr_pw);
 		
-		managermemdto = new ManagerMemberDto(mgr_id, mgr_pw);
+		ManagerMemberDto managermemdto = new ManagerMemberDto(mgr_id, mgr_pw);
 		
 		singleton si = singleton.getInstance();
 		
@@ -57,14 +58,14 @@ public class ManagerLogin extends HttpServlet {
 		System.out.println(check);
 		
 		if(check.getMgr_id().equals(managermemdto.getMgr_id())) {
-			
-			req.getSession().setAttribute("managerLogin", check);
+			//로그인 
+			//req.getSession().setAttribute("managerLogin", check);
 			
 			System.out.println("아이디 확인 성공하였습니다. " + check + "]]]]");
-			return true;
+			return check;
 		}else {
 			System.out.println("아이디 확인에 실패했습니다. 다시확인해 주세요 ");
-			return false;
+			return null;
 		}
 		
 		

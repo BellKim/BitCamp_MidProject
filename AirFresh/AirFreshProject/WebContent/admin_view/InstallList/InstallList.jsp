@@ -16,7 +16,7 @@
 	public String cal_list(int year, int month, int day){
 		
 		//2020/02/10 형식으로 servlet에 넘기기위한 변수
-		String date = year + "/" + two("" + month) + "/" + day;
+		String date = year + "/" + two("" + month) + "/" + two("" + day);
 		String str = "";
 		
 		//여기 servlet으로 어떻게 보내고 받을것인지 확인 
@@ -69,14 +69,16 @@
 	ManagerMemberDto loginDto = null;
 	if(request.getSession().getAttribute("mrgLogin") != null){
 		loginDto = (ManagerMemberDto)request.getSession().getAttribute("mrgLogin");
+		System.out.println(loginDto.getMgr_auth());
 	}
+	
 %>    
 		<%
 			Calendar cal = Calendar.getInstance();
 			cal.set(Calendar.DATE, 1);		
 			
-			String syear = request.getParameter("year");
-			String smonth = request.getParameter("month");
+			String syear = request.getParameter("year")==null?"":request.getParameter("year");
+			String smonth = request.getParameter("month")==null?"":request.getParameter("month");
 			
 			int year = cal.get(Calendar.YEAR);
 			if(nvl(syear) == false){
@@ -245,18 +247,41 @@
 				//servlet에 보내기 위해  seq를 저장하기 위한 배열 생성 
 				var insArr = new Array();
 				
-				/* 달력 숫자를 누르면 그에 해당하는 리스트를 가져오는 쿼리문 */
+				$("#cal span").click(function name() {
+					//alert("날짜 클릭");
+					alert($(this).attr("sdate"));
+					var sdate = $(this).attr("sdate");
+					
+					$.ajax({
+						
+						url: "<%=request.getContextPath() %>/InstallController",
+						type: "post",
+						data: { command: "getDayList",
+								date: sdate,
+							},
+						datatype: "json",
+						success: function (data) {
+							alert("통신성공");
+						},
+						error: function () {
+							alert("통신실패");
+						}
+						
+					});
+				});
+				 <%-- 달력 숫자를 누르면 그에 해당하는 리스트를 가져오는 쿼리문 
 				$("#cal span").click(function () {
+					
 					alert("클릭");
 					alert($(this).attr("sdate"));
 					var sdate = $(this).attr("sdate");
-					alert(" " + <%=loginDto.getMgr_auth() %> + "//" + '<%=loginDto.getMgr_id() %>' +"//")
+					
 					$.ajax({
-						url:'<%=request.getContextPath() %>/InstallController',
+						url:"<%=request.getContextPath() %>/InstallController",
 						type:"post",
 						data:{	date: sdate,
 								command: "getDayList",
-								level: '<%=loginDto.getMgr_auth() %>'
+								level: <%=loginDto.getMgr_auth() %>
 						},
 						datatype:"json",
 						
@@ -311,7 +336,7 @@
 					
 				});//cal span click
 				
-				
+				--%>
 				/* 예약 장바구니에 옮기는 처리를 하는 함수 */
 				$(document).on("click","td .plus",function () {
 					//alert("버튼 클릭");
@@ -395,4 +420,5 @@
 			});//ready
 			
 		</script>
+		
 <%@ include file="./../include/footer.jsp" %>
