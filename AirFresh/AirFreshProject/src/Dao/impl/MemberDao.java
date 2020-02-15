@@ -257,7 +257,7 @@ public class MemberDao implements MemberDaoInterface{
 		return _pw;
 	}
 	
-	public boolean updateMem(MemberDto dto) {
+	public boolean updateMem(String mem_id, MemberDto dto) {
 		
 		String sql = " UPDATE MEMBERS "
 				+ " SET MEM_PW=?, MEM_CELL=?, MEM_ADDR1=?, MEM_ADDR2=?, MEM_ADDR3=? "
@@ -290,40 +290,7 @@ public class MemberDao implements MemberDaoInterface{
 		return count>0?true:false;
 	}
 	
-	/*							// TODO 인자 바꿀? class.png에 MemberDto dto로 되어있음
-	public boolean updateMem(String mem_id, String mem_pw, int mem_cell, int mem_addr1, String mem_addr2, String mem_addr3) {
 		
-		String sql = " UPDATE MEMBERS "
-				+ " SET MEM_PW=?, MEM_CELL=?, MEM_ADDR1=?, MEM_ADDR2=?, MEM_ADDR3=? "
-				+ " WHERE MEM_ID=? ";
-		
-		Connection conn = DBConnection.getConnection();
-		PreparedStatement psmt = null;
-		
-		int count = 0;
-		
-		System.out.println("sql:" + sql);
-		
-		try {
-			psmt = conn.prepareStatement(sql);
-			/* SET MEM_PW=?, MEM_CELL=?, MEM_ADDR1=?, MEM_ADDR2=?, MEM_ADDR3=? *//*
-			psmt.setString(1, mem_pw);
-			psmt.setInt(2, mem_cell);
-			psmt.setInt(3, mem_addr1);
-			psmt.setString(4, mem_addr2);
-			psmt.setString(5, mem_addr3);
-			
-			count = psmt.executeUpdate(sql);
-			
-		} catch (SQLException e) {			
-			e.printStackTrace();
-		} finally {
-			DBClose.close(psmt, conn, null);
-		}
-		return count>0?true:false;
-	}
-	*/
-	
 	public boolean delMem(String mem_id, String mem_pw) {
 		String sql = "DELETE FROM MEMBERS "
 				+ " WHERE MEM_ID=? AND MEM_PW=? ";
