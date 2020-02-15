@@ -1,18 +1,19 @@
 ----------------------------------------------------------------------------------------------------------------------
 --		manager insert
+--		0 : 왕어드민 1부어드민 2: 매니저 	3 : 설치기사ㅏ
 ----------------------------------------------------------------------------------------------------------------------
 
 insert into managerMember (mgr_index, mgr_auth, mgr_id, mgr_pw, mgr_name, mgr_loc, mgr_cell, mgr_del)
-values (managerMember_SEQ.NEXTVAL, 2, 'J_admin', '4321', '부메니저', 1, 01012341234, 0);
+values (managerMember_SEQ.NEXTVAL, 0, 'k_admin', '1234', '최고관리자', 3, 01012341234, 0);
 
 insert into managerMember (mgr_index, mgr_auth, mgr_id, mgr_pw, mgr_name, mgr_loc, mgr_cell, mgr_del)
-values (managerMember_SEQ.NEXTVAL, 1, 'k_admin', '1234', '최고관리자', 3, 01012341234, 0);
+values (managerMember_SEQ.NEXTVAL, 1, 'J_admin', '4321', '부메니저', 1, 01012341234, 0);
 
 insert into managerMember (mgr_index, mgr_auth, mgr_id, mgr_pw, mgr_name, mgr_loc, mgr_cell, mgr_del)
-values (managerMember_SEQ.NEXTVAL, 3, '123', '123', '김철근', 2, 01012341234, 0);
+values (managerMember_SEQ.NEXTVAL, 2, '123', '123', '김철근', 2, 01012341234, 0);
 
 insert into managerMember (mgr_index, mgr_auth, mgr_id, mgr_pw, mgr_name, mgr_loc, mgr_cell, mgr_del)
-values (managerMember_SEQ.NEXTVAL, 4, '456', '456', '김공사', 1, 01012341234, 0);
+values (managerMember_SEQ.NEXTVAL, 3, '456', '456', '김공사', 1, 01012341234, 0);
 
 
 SELECT * FROM managerMember;

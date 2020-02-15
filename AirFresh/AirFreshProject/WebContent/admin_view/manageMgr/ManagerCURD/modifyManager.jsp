@@ -34,15 +34,22 @@ ManagerMemberDto managerSelectOneDTO = (ManagerMemberDto)request.getAttribute("m
 		    </li>
 		    <li class="list-group-item">
 		    	<label for="mgr_pw" class="width50">매니저 비밀번호 : </label>
-		    	<input type="text" id="mgr_pw" name="mgr_pw" value="<%=managerSelectOneDTO.getMgr_pw() %>" > 
+		    	
+		    	<!-- <input type="text" id="mgr_pw" name="mgr_pw">   -->
+		    	<input type="password" id="mgr_pw">
+		    	<label for="mgr_pw_confirm" class="width50">비밀번호 확인 : </label>
+		    	<input type="password" id="mgr_pw_confirm"> 
+		    	<label for="mgr_pw_confirm" class="width50">
+		    		<span id='message'></span>
+		    	</label>
 		    </li>
 		    <li class="list-group-item">
-		    <label for="mgr_name" class="width50">매니저 이름 : </label>	
+		    	<label for="mgr_name" class="width50">매니저 이름 : </label>	
 		    	<input type="text" id="mgr_name" name="mgr_name" value="<%=managerSelectOneDTO.getMgr_name() %>" >
 		    </li>
 		    <li class="list-group-item">
 		    	<label for="loc" class="width50">매니저 지역구:</label>
-		    	<input type="text" id="loc_locRead" value="<%=ProjectUtil.locationChange(managerSelectOneDTO.getMgr_loc()) %>"  >
+		    	<input type="text" id="loc_locRead" value="<%=ProjectUtil.locationChange(managerSelectOneDTO.getMgr_loc()) %>" readonly >
 				<label for="mgr_loc" class="width50"> 에서 </label>
 				<select id="loc_loc" name="mgr_loc">
 					<option value="1">강남구</option>
@@ -58,13 +65,14 @@ ManagerMemberDto managerSelectOneDTO = (ManagerMemberDto)request.getAttribute("m
 		    </li>
 		    <li class="list-group-item">
 		    	<label for="mgr_auth" class="width50">매니저 권한:</label>
-		    	<input type="text" id="mgr_authRead" name="mgr_auth" value="<%=ProjectUtil.managerLevel(managerSelectOneDTO.getMgr_auth()) %>" >
+		    	<input type="text" id="mgr_authRead" value="<%=ProjectUtil.managerLevel(managerSelectOneDTO.getMgr_auth()) %>"  readonly>
 		    	<label for="mgr_auth" class="width50">에서</label>
 		    	<label>
-					<select id="mgr_auth" name="authLevel">
+					<select id="mgr_auth" name="mgr_auth">
 						<option value="0"> 최고관리자</option>
-						<option value="1"> 매니저</option>
-						<option value="2"> 설치기사</option>
+						<option value="1"> 부관리자</option>
+						<option value="2"> 매니저</option>
+						<option value="3"> 설치기사</option>
 					</select>
 				</label>
 				<label for="mgr_auth" class="width50">로 변경</label>
@@ -101,72 +109,10 @@ ManagerMemberDto managerSelectOneDTO = (ManagerMemberDto)request.getAttribute("m
 			아이디 삭제하기 => del=0 에서 1로 변경 
 		--%>
 	
-	<script type="text/javascript">
-		$(document).ready(function(){
-			//$('input[id="loc"]')[0].value	//벨류 셀렉트
-			//$('input[id="loc"]').attr("value");	//요소값 (강남구)
-			//var inputdata = $('input[id="mgr_del"]').attr("value");	//요소값 받아오기.
-			//$('input[id="mgr_del"]').attr("value", inputdata);	//요소값 적용하기
-			//var selected = $("#mgr_del").children();
-			
-			
-
-			
-			//매니저 지역구 selectBox 자동선택 로직
-			var option_size1 = $("#loc_loc").children().length;
-			var default_value1 = $("#loc_locRead").attr("value");
-			
-			for(i=0; i<option_size1; i++){
-				if(default_value1 == $("#loc_loc").children()[i].text){
-					$("#loc_loc").val(i).prop("selected", true);
-				}
-			}
-			
-			//매니저 권한 selectBox 자동선택 로직
-			var option_size2 = $("#mgr_auth").children().length;
-			var default_value2 = $("#mgr_authRead").attr("value");
-			
-			for(j=0; j<option_size2; j++){
-				if(default_value2 == $("#mgr_auth").children()[j].text){
-					$("#mgr_auth").val(j).prop("selected", true);
-				}
-			}
-			
-			//탈퇴여부 체크 selectBox 자동선택 로직
-			var option_size3 = $("#mgr_del").children().length;
-			var default_value3 = $("#mgr_delRead").attr("value");
-			
-			for(k=0; k<option_size3; k++){
-				if(default_value3 == $("#mgr_del").children()[k].text){
-					$("#mgr_del").val(k).prop("selected", true);
-				}
-			}
+	<script src="./admin_view/assets/js/modifyMgrMember.js"></script>
 	
-			
-
-			
-			
-			$(".delete_btn").click(function(){
-				$("#Status_Selector").attr("value","delete");
-				$("#mgr_indxe_dto").attr("value", "<%=managerSelectOneDTO.getMgr_index() %>");
-				//console.log($("#Status_Selector").attr("value"));
-				//console.log($("#mgr_indxe_dto").attr("value"));
-				$("#SelectForm").submit();
-			});	
-			$(".modify_btn").click(function(){
-				$("#Status_Selector").attr("value","modify");
-				$("#mgr_indxe_dto").attr("value", "<%=managerSelectOneDTO.getMgr_index() %>");
-				//console.log($("#Status_Selector").attr("value"));
-				//console.log($("#mgr_indxe_dto").attr("value"));
-				$("#mgr_index").removeAttr("readonly");
-				//$("#SelectForm").submit();
-			});	
-			$(".mgr_pw").click(function(){
-			    alert("hello");
-			});
-		});
-
-	</script>
+	
+	
 	
 	
 <%@ include file="./../../include/footer.jsp" %>
