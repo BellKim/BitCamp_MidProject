@@ -29,7 +29,7 @@ String sdate = qna.getWdate().substring(0, 10);
 			<hr>
 			<p class="card-text">
 
-				<%=qna.getQna_content() %></p>
+				<pre><%=qna.getQna_content() %></pre></p>
 			
 		</div>
 
@@ -43,7 +43,7 @@ String sdate = qna.getWdate().substring(0, 10);
 		 <h5 class="card-header">Air Fresh 답변</h5>
 	          <div class="card-body">
 	            	
-	            	<p><%=qna.getRe_content() %></p>
+	            	<p class="card-text"><pre><%=qna.getRe_content() %></pre></p>
 	            	
 	            	<p align = "right"><span style ="padding-right:20px">관리자</span><%=rdate %></p>
 	            </div>

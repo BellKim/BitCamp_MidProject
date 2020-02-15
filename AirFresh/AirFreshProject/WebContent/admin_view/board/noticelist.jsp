@@ -27,7 +27,8 @@
 <%@ include file="./../include/header.jsp" %>
 <div class="container">
 	<h1 class="mt-4 mb-3" >공지사항</h1>
-
+	<form id = "noticelistForm" method="post">
+		<input type = "hidden" name = "command" value ="multiDelete">
 		<div style="float: right">
 			<div class="form-group"
 				style="float: left; width: 100px; margin-right: 5px;">
@@ -48,6 +49,13 @@
 		</div>
 		<div style="clear: left"></div>
 		<table class="table table-hover">
+		<%
+			if (mrgMem.getMgr_auth() == 0) { // 왕관리자일 경우 글쓰기 버튼 활성화
+		%>
+			<col width="70">
+		<%
+			}
+		%>
 			<col width="70">
 			<col width="400">
 			<col width="120">
@@ -55,11 +63,16 @@
 			<col width="70">
 			<thead>
 				<tr align="center">
-					<th scope="col">No</th>
-					<th scope="col">Title</th>
-					<th scope="col">Date</th>
-					<th scope="col">Writer</th>
-					<th scope="col">Count</th>
+		<%
+			if (mrgMem.getMgr_auth() == 0) { // 왕관리자일 경우
+		%>
+					<th scope="col"><input type ="checkbox" name ="alldel" onclick="deleteChecks(this.checked)"></th>
+		<%} %>
+					<th scope="col">번호</th>
+					<th scope="col">제목</th>
+					<th scope="col">작성일</th>
+					<th scope="col">작성자</th>
+					<th scope="col">조회수</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -68,7 +81,14 @@
 					if (list.size() == 0 || list == null) {
 				%>
 				<tr align="center">
-					<th colspan="5">공지사항이 없습니다.</th>
+		<%
+			if (mrgMem.getMgr_auth() == 0) { // 왕관리자일 경우 
+		%>
+					<th colspan="6">공지사항이 없습니다.</th>					
+		<%} else {%>
+		
+					<th colspan="5">공지사항이 없습니다</th>
+ 		<%} %>
 				</tr>
 
 				<%
@@ -77,17 +97,17 @@
 							NoticeBbsDto notice = list.get(i);
 				%>
 				<tr align="center">
+					<td><input type = "checkbox" name = "delck" value = "<%=notice.getNoti_index()%>"></td>
 					<th><%=i + 1%></th>
 					<td align="left">
 						<%
-							if (mrgMem.getMgr_auth() == 0) {
-										if (notice.getNoti_catagory() == 1) {
-						%> <span class="badge badge-success">고객</span> <%
- 	} else {
- %> <span class="badge badge-warning">매니저</span> <%
- 	}
- 			}
- %> <a
+							if (notice.getNoti_catagory() == 1) {
+						%> 
+						<span class="badge badge-success">고객</span> 
+						<% 	} else { %> 
+						<span class="badge badge-warning">매니저</span> 
+						<% 	} %> 
+						<a
 						href="<%=request.getContextPath()%>/noticedetail?command=admin&noti_index=<%=notice.getNoti_index()%>"><%=notice.getNoti_title()%></a>
 					</td>
 					<td><%=notice.getWdate().substring(0, 10)%></td>
@@ -96,7 +116,7 @@
 				</tr>
 				<%
 					}
-					}
+				}
 				%>
 			</tbody>
 
@@ -127,13 +147,22 @@
 		<div align="right" style="padding-bottom:10px">
 			<button type="button" class="btn btn-primary"
 				onclick="location.href='<%=request.getContextPath()%>/noticeupload?command=add'">글쓰기</button>
+			<button type="button" class="btn btn-primary" id= "delBtn">선택 삭제</button>
 		</div>
 		<%
 			}
 		%>
+		</form>
 	</div>
 
 	<script type="text/javascript">
+	function deleteChecks(ch) {
+		//alert(ch);
+		var arrCheck = document.getElementsByName("delck");
+		for (var i = 0; i < arrCheck.length; i++) {
+			arrCheck[i].checked = ch;
+		}
+	}
 	function searchNotice(){
 		var opt = document.getElementById("exampleSelect2").value;
 		var keyword = $("#inputDefault").val();
@@ -157,7 +186,18 @@
 		location.href = linkStr;
 //		location.href = "bbslist.jsp?pageNumber=" + pageNum;
 	}
+	$(function(){
+		$("#delBtn").click(function(){
+			var arrCheck = $("input[name='delck']:checked").length;
 
+			if(arrCheck==0){
+				alert("삭제할 공지사항을 선택해주세요");
+				return
+			}
+			$("#noticelistForm").attr("action","custuserdelete").submit();
+			
+		});
+	});
 	</script>
 
 			

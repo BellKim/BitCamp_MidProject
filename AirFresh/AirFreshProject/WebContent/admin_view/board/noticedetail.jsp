@@ -54,7 +54,7 @@
 
 					}
 				%>
-				<p class="card-text"><%=notice.getNoti_content()%></p>
+				<p class="card-text"><pre><%=notice.getNoti_content()%></pre></p>
 			</div>
 		</div>
 		<div align="center" style="padding-top:10px">
@@ -80,7 +80,7 @@
 			var answer = confirm("정말 삭제하시겠습니까?");
 			
 			if(answer){
-				location.href="<%=request.getContextPath()%>/noticedelete?noti_index="+noti_index;
+				location.href="<%=request.getContextPath()%>/noticedelete?command=oneDelete&noti_index="+noti_index;
 			} else {
 				return;
 			}

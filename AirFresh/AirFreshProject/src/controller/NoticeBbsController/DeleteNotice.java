@@ -27,14 +27,16 @@ public class DeleteNotice extends HttpServlet {
 	public void processFunc(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException  {
 		
 		req.setCharacterEncoding("utf-8");
-		int noti_index = Integer.parseInt(req.getParameter("noti_index"));
-		
-		System.out.println("noti_index" + noti_index);
-		singleton s = singleton.getInstance();
-		boolean isS = s.nbsi.deleteNotice(noti_index);
-		
-		resp.sendRedirect(req.getContextPath() + "/admin_view/board/finding.jsp?command=delete&isS="+isS);
-		
+		String command = req.getParameter("command");
+		if(command.contentEquals("oneDelete")) {
+			int noti_index = Integer.parseInt(req.getParameter("noti_index"));
+			singleton s = singleton.getInstance();
+			boolean isS = s.nbsi.deleteNotice(noti_index);
+			
+			resp.sendRedirect(req.getContextPath() + "/admin_view/board/finding.jsp?command=delete&isS="+isS);
+		} else if(command.contentEquals("multiDelete")) {
+			String qnaIndex[] = req.getParameterValues("");
+		}
 	}
 	
 	

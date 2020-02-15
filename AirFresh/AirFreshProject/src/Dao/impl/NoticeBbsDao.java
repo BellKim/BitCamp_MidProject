@@ -519,4 +519,39 @@ public class NoticeBbsDao implements NoticeBbsDaoInterface {
 		return len;	
 	}
 
+	@Override
+	public boolean multiDelNotice(String[] qnaIndex) {
+		String sql = " UPDATE NOTICEBBS "
+				+ " SET NOTI_DEL = 1 "
+				+ " WHERE NOTI_INDEX = ? ";
+		
+		Connection conn = null;
+		PreparedStatement psmt = null;
+		int count[] = new int[qnaIndex.length];
+		
+		
+		try {
+			conn = DBConnection.getConnection();
+			conn.setAutoCommit(false);
+			System.out.println("1/6 S multiDelNotice");
+			
+			psmt = conn.prepareStatement(sql);
+			
+			for(int i = 0; i<qnaIndex)
+			psmt.setInt(1, noti_index);
+			System.out.println("2/6 S multiDelNotice");
+			
+			count = psmt.executeUpdate();
+			System.out.println("3/6 S multiDelNotice");
+			
+		} catch (Exception e) {		
+			System.out.println("fail multiDelNotice");
+			e.printStackTrace();
+		} finally {
+			DBClose.close(psmt, conn, null);			
+		}
+		
+		return count>0?true:false;
+	}
+
 }
