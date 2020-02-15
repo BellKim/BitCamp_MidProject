@@ -145,7 +145,7 @@ public class MemberDao implements MemberDaoInterface{
 	
 	@Override
 	public MemberDto memLogin(String mem_id, String mem_pw) {
-		String sql = " SELECT MEM_ID, MEM_PW, MEM_NAME, MEM_CELL, MEM_BIRTH, "
+		String sql = " SELECT MEM_ID, MEM_NAME, MEM_CELL, MEM_BIRTH, "
 				+ " MEM_ADDR1, MEM_ADDR2, MEM_ADDR3, MEM_AUTH "
 				+ " FROM MEMBERS "
 				+ " WHERE MEM_ID=? AND MEM_PW=? ";
@@ -171,17 +171,17 @@ public class MemberDao implements MemberDaoInterface{
 			
 			if(rs.next()) {
 				String _id = rs.getString(1);
-				String _pw = rs.getString(2);
-				String _name = rs.getString(3);
-				String _cell = rs.getString(4);
-				String _birth = rs.getString(5);
-				int _addr1 = rs.getInt(6);
-				String _addr2 = rs.getString(7);
-				String _addr3 = rs.getString(8);
-				int _auth = rs.getInt(9);
+				String _name = rs.getString(2);
+				String _cell = rs.getString(3);
+				String _birth = rs.getString(4);
+				int _addr1 = rs.getInt(5);
+				String _addr2 = rs.getString(6);
+				String _addr3 = rs.getString(7);
+				int _auth = rs.getInt(8);
 				
-				System.out.println(_id + " " + _pw);
-				mem = new MemberDto(_id, _pw, _name, _cell, _birth, _addr1,
+				
+				
+				mem = new MemberDto(_id, _name, _cell, _birth, _addr1,
 						_addr2, _addr3, _auth);
 			}		
 			System.out.println("4/6 login success");	// 로그인 실패시 여기까지 성공!

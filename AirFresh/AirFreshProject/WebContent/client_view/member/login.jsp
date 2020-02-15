@@ -1,10 +1,6 @@
-<%@page import="db.DBConnection"%>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%
-    DBConnection.initConnection();
-    %>
-
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script src="http://lab.alexcican.com/set_cookies/cookie.js" type="text/javascript" ></script>
@@ -32,8 +28,8 @@
 			</div>
 				<button type="button" id="btnlogin">로그인</button>
 			<div>
-				<input type="button" value="아이디·패스워드 찾기" id="_btnidpw" onclick="location.href='<%=request.getContextPath() %>/searchidpw.jsp'">
-				<input type="button" value="회원가입" id="_btnJoin" onclick="location.href='<%=request.getContextPath() %>/terms.jsp'">
+				<%-- input type="button" value="아이디·패스워드 찾기" id="_btnidpw" onclick="location.href='<%=request.getContextPath() %>/searchidpw.jsp'">
+				<input type="button" value="회원가입" id="_btnJoin" onclick="location.href='<%=request.getContextPath() %>/terms.jsp'"--%>
 			</div>		
 		</form>
 	</div>

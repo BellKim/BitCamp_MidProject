@@ -2,7 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
-MemberDto mem = (MemberDto)request.getAttribute("login");	//memLogin
+MemberDto mem = (MemberDto)session.getAttribute("login");	//memLogin
 %>    
     
 <!DOCTYPE html>
@@ -15,8 +15,6 @@ MemberDto mem = (MemberDto)request.getAttribute("login");	//memLogin
 
 <%
 if(mem != null && !mem.getMem_id().equals("")){
-	session.setAttribute("login", mem);
-	session.setMaxInactiveInterval(30*60*60);
 %>
 	<script type="text/javascript">
 	alert("안녕하세요 ♥<%=mem.getMem_name() %>♥님");
@@ -30,7 +28,7 @@ if(mem != null && !mem.getMem_id().equals("")){
 %>
 	<script type="text/javascript">
 	alert("id나 password를 확인하십시오");
-	location.href = "<%=request.getContextPath() %>/login.jsp";
+	location.href = "<%=request.getContextPath() %>/login?command=login";
 	</script>		<!-- "./client_view/member/login.jsp"; -->	
 <% 
 }
