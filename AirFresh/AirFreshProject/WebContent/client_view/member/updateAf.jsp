@@ -19,7 +19,9 @@ if(str3.equals("true")){
 %>
 	<script type="text/javascript">	
 	alert("성공적으로 수정 되었습니다");
-	location.href = "./client_view/member/mypage.jsp";
+	location.href = "<%=request.getContextPath() %>/index.jsp";	/* mypage.jsp / updatemem?command=update*/
+	/* response.sendRedirect(request.getContextPath()+"/client_view/main.jsp"); */
+	<%-- location.href = "<%=request.getContextPath()%>/noticelist?command=admin"; --%>
 	</script>	
 <%
 }else if(str3.equals("false")){

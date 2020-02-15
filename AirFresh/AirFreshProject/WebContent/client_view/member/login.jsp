@@ -32,8 +32,8 @@
 			</div>
 				<button type="button" id="btnlogin">로그인</button>
 			<div>
-				<input type="button" value="아이디·패스워드 찾기" id="_btnidpw" onclick="location.href='<%=request.getContextPath() %>/memlogin?command=idpw'">
-				<input type="button" value="회원가입" id="_btnJoin" onclick="location.href='<%=request.getContextPath() %>/memlogin?command=terms'">
+				<input type="button" value="아이디·패스워드 찾기" id="_btnidpw" onclick="location.href='<%=request.getContextPath() %>/searchidpw.jsp'">
+				<input type="button" value="회원가입" id="_btnJoin" onclick="location.href='<%=request.getContextPath() %>/terms.jsp'">
 			</div>		
 		</form>
 	</div>

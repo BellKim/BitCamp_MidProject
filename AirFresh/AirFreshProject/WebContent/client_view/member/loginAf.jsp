@@ -30,8 +30,8 @@ if(mem != null && !mem.getMem_id().equals("")){
 %>
 	<script type="text/javascript">
 	alert("id나 password를 확인하십시오");
-	location.href = "./client_view/member/login.jsp";
-	</script>	
+	location.href = "<%=request.getContextPath() %>/login.jsp";
+	</script>		<!-- "./client_view/member/login.jsp"; -->	
 <% 
 }
 %>

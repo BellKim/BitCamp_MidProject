@@ -19,7 +19,8 @@ if(str2.equals("true")){
 	<script type="text/javascript">
 	alert("정상적으로 삭제되었습니다");
 	//session.invalidate();
-	location.href = "./client_view/member/index.jsp";
+	/* location.href = "./client_view/member/index.jsp"; */
+	location.href = "<%=request.getContextPath() %>/index.jsp";
 	</script>
 <%
 }else if(str2.equals("false")){

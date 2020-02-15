@@ -6,10 +6,10 @@
 <!-- sendredirect-getparameter -->
 <!-- ajax->controller?-idcheck.jsp//-idcheck.jsp -->
 <%
-String _id = request.getParameter("_id");
-System.out.println("id:" + _id);
+String id = request.getParameter("_id");
+System.out.println("id:" + id);
 singleton s = singleton.getInstance();
-boolean b = s.ms.idCheck(_id);
+boolean b = s.ms.idCheck(id);
 
 if(b == true){	// id가 없음
 	out.println("NO");	
