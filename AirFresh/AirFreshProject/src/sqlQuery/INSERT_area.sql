@@ -6,7 +6,7 @@ insert into managerMember (mgr_index, mgr_auth, mgr_id, mgr_pw, mgr_name, mgr_lo
 values (managerMember_SEQ.NEXTVAL, 2, 'J_admin', '4321', '부메니저', 1, 01012341234, 0);
 
 insert into managerMember (mgr_index, mgr_auth, mgr_id, mgr_pw, mgr_name, mgr_loc, mgr_cell, mgr_del)
-values (managerMember_SEQ.NEXTVAL, 1, 'k_admin', '1234', '왕관리자', 3, 01012341234, 0);
+values (managerMember_SEQ.NEXTVAL, 1, 'k_admin', '1234', '최고관리자', 3, 01012341234, 0);
 
 insert into managerMember (mgr_index, mgr_auth, mgr_id, mgr_pw, mgr_name, mgr_loc, mgr_cell, mgr_del)
 values (managerMember_SEQ.NEXTVAL, 3, '123', '123', '김철근', 2, 01012341234, 0);
