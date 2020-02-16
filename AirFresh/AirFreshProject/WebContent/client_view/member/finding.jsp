@@ -28,7 +28,7 @@ if(command.equals("register")){
 	%>
 		<script type="text/javascript">
 		alert("가입 실패!");
-		location.href = "<%=request.getContextPath() %>/client_view/member/register.jsp";
+		location.href = "<%=request.getContextPath() %>/addmem?command=regi";
 		</script>
 <%
 	}
@@ -43,9 +43,7 @@ if(str.equals("true")){
 %>
 	<script type="text/javascript">	
 	alert("성공적으로 수정 되었습니다");
-	location.href = "<%=request.getContextPath() %>/updatemem?command=update&id=<%=mem.getMem_id() %>";
-	/* response.sendRedirect(request.getContextPath()+"/client_view/main.jsp"); */
-	<%-- location.href = "<%=request.getContextPath()%>/noticelist?command=admin"; --%>
+	location.href = "<%=request.getContextPath() %>/updatemem?command=update&id=<%=mem.getMem_id() %>";	
 	</script>	
 <%
 }else if(str.equals("false")){
@@ -58,6 +56,28 @@ if(str.equals("true")){
 	}
 }
 %>
+
+<%
+if(command.equals("delete")){
+%>
+<%
+if(str.equals("true")){
+%>	
+	<script type="text/javascript">
+	alert("정상적으로 삭제되었습니다");		
+	location.href = "<%=request.getContextPath() %>/login?command=logout";
+	</script>
+<%
+}else if(str.equals("false")){
+%>
+	<script type="text/javascript">
+	alert("아이디 또는 비밀번호가 일치하지 않습니다");
+	location.href = "<%=request.getContextPath() %>/login?command=login";
+	</script>
+<%
+	}
+}
+%>	
 
 </body>
 </html>

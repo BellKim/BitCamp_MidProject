@@ -66,7 +66,7 @@ public class AddMem extends HttpServlet {
 			
 			boolean isS = s.ms.addMem(dto);
 			
-			resp.sendRedirect(req.getContextPath() + "/client_view/member/finding.jsp?isS=" + isS);			
+			resp.sendRedirect(req.getContextPath() + "/client_view/member/finding.jsp?command=register&isS=" + isS);			
 		}
 	}				
 	

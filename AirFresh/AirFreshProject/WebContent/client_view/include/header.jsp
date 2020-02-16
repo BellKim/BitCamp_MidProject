@@ -39,7 +39,7 @@ System.out.println(managerMem);
         <div class="topSec clearfix">
           <ul class="clearfix">
              <li><a href="<%=request.getContextPath() %>/login?command=login" id="loginBtn">로그인</a></li>
-             <li><a href="#" id="logoutBtn">로그아웃</a></li>
+             <li><a href="<%=request.getContextPath() %>/login?command=logout" id="logoutBtn">로그아웃</a></li>
              <li><a href="<%=request.getContextPath()%>/addmem?command=regi">회원가입</a></li>
           </ul>
         </div>

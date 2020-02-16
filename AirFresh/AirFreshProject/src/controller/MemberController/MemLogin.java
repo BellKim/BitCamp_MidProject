@@ -38,8 +38,7 @@ public class MemLogin extends HttpServlet{
 		
 		singleton s = singleton.getInstance();
 				
-		MemberDto mem = s.ms.memLogin(mem_id, mem_pw);
-		System.out.println(mem.getMem_id());	// 아이디, 비번 틀리면 여기까지 못옴
+		MemberDto mem = s.ms.memLogin(mem_id, mem_pw);		
 		req.getSession().setAttribute("login", mem);
 		System.out.println("memlogin 도착2");		// ok!
 		ProjectUtil.forward("./client_view/member/loginAf.jsp", req, resp);
