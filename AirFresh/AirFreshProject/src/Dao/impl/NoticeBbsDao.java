@@ -20,9 +20,18 @@ public class NoticeBbsDao implements NoticeBbsDaoInterface {
 
 	@Override
 	public List<NoticeBbsDto> getNoticeList() {
-		String sql = " SELECT NOTI_INDEX, NOTI_TITLE, NOTI_CONTENT, NOTI_CATAGORY, "
-				+ " NOTI_WRITER, NOTI_WDATE, FILENAME, TEMPFILE, READCOUNT, NOTI_DEL " + " FROM NOTICEBBS "
-				+ " ORDER BY NOTI_WDATE DESC ";
+		String sql =" SELECT NOTI_INDEX, NOTI_TITLE, NOTI_CONTENT, NOTI_CATAGORY, " + 
+				" NOTI_WRITER, NOTI_WDATE, FILENAME, TEMPFILE, READCOUNT, NOTI_DEL " + 
+				" FROM ";
+		
+		sql += " (select ROWNUM AS RNUM, NOTI_INDEX, NOTI_TITLE, NOTI_CONTENT, NOTI_CATAGORY, " + 
+				"			NOTI_WRITER, NOTI_WDATE, FILENAME, TEMPFILE, READCOUNT, NOTI_DEL " + 
+				"			FROM (SELECT * FROM NOTICEBBS " + 
+				"			WHERE NOTI_DEL = 0 AND NOTI_CATAGORY = 2 ";
+		
+		sql	+= "ORDER BY NOTI_WDATE DESC)) ";
+		sql += " WHERE RNUM >= 1 AND RNUM <= 5 ";
+		
 
 		Connection conn = null;
 		PreparedStatement psmt = null;

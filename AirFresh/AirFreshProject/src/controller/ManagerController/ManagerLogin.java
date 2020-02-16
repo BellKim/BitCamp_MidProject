@@ -30,7 +30,7 @@ public class ManagerLogin extends HttpServlet {
 		
 		if(isS = true) {
 			System.out.println("로그인성공 관리자 리스트로 이동 ");
-			ProjectUtil.forward("./admin_view/manageMgr/adminIndex.jsp", req, resp);
+			ProjectUtil.forward("/adminmain", req, resp);
 			
 
 		}else {

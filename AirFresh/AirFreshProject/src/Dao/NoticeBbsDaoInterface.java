@@ -5,7 +5,7 @@ import java.util.List;
 import Dto.NoticeBbsDto;
 
 public interface NoticeBbsDaoInterface {
-	public List<NoticeBbsDto> getNoticeList();	// 전체 리스트 불러오기
+	public List<NoticeBbsDto> getNoticeList();	// 메인 상위 5개 리스트 불러오기
 	public List<NoticeBbsDto> getNoticeList(String opt, String keyword); // 검색해서 리스트 불러오기
 	public List<NoticeBbsDto> getNoticePaging(String opt, String keyword, int page); // 검색+페이징
 	public List<NoticeBbsDto> getNoticeUser(String opt, String keyword, int page); // user검색+페이징
