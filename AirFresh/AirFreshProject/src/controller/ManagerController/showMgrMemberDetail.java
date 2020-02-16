@@ -67,8 +67,7 @@ public class showMgrMemberDetail extends HttpServlet{
 			String index = req.getParameter("index");
 			System.out.println("modify index   = "+index);
 			
-			
-			
+
 			ProjectUtil.forward("admin_view/manageMgr/ManagerCURD/modifyManager.jsp", req, resp);
 		}
 		

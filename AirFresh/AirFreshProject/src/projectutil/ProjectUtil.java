@@ -42,12 +42,21 @@ public class ProjectUtil {
 	}
 
 	public static String managerLevel(int level) {
-		String[] slevel= {"Error", "왕관리자", "부관리자", "코디(메니저)", "설치기사"};
+		String[] slevel= {"왕관리자", "부관리자", "매니저", "설치기사"};
 		
 		return slevel[level];
 	}
 
-
+	public static int managerLevel(String level) {
+		String[] slevel= {"왕관리자", "부관리자", "매니저", "설치기사"};
+		
+		for(int i = 0 ; i < slevel.length; i++) {
+			if(level.equals(slevel[i])) {
+				return i;
+			}
+		}
+		return -1;
+	}
 
 	
 	
