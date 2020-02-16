@@ -43,10 +43,10 @@ public class FindIDPW extends HttpServlet {
 		else if(command.equals("FID")) {	
 			System.out.println(_name + " " + _cell);
 			String id = s.ms.findID(_name, _cell);			
-			req.getSession().setAttribute("foundid", id);
+			//req.getSession().setAttribute("foundid", id);
 			System.out.println("FindIDPW 도착2");
-			ProjectUtil.forward("./client_view/member/findid.jsp", req, resp);
-			//resp.sendRedirect("./client_view/member/findid.jsp?id=" + id);	
+			//ProjectUtil.forward("./client_view/member/findid.jsp", req, resp);
+			resp.sendRedirect("./client_view/member/findid.jsp?id=" + id);	
 			//req.getContextPath() + 
 		}
 		else if(command.equals("FPW")) {				
@@ -55,7 +55,8 @@ public class FindIDPW extends HttpServlet {
 			//req.getSession().setAttribute("foundpw", pw);
 			System.out.println("FindIDPW 도착2");
 			//ProjectUtil.forward("./client_view/member/findpw.jsp", req, resp);			
-			resp.sendRedirect(req.getContextPath() + "./client_view/member/findpw.jsp?pw=" + pw);			
+			resp.sendRedirect("./client_view/member/findpw.jsp?pw=" + pw);			
+			//req.getContextPath() +
 		}		
 	}		
 

@@ -116,7 +116,7 @@ public class MemberDao implements MemberDaoInterface{
 			System.out.println("2/6 getMem success");
 			
 			psmt.setString(1, id); //TODO trouble
-			
+						
 			rs = psmt.executeQuery();
 			System.out.println("3/6 getMem success");
 			//String mem_id, String mem_pw, String mem_name, String mem_cell, String mem_birth, int mem_addr1,
@@ -279,7 +279,7 @@ public class MemberDao implements MemberDaoInterface{
 			psmt.setString(4, dto.getMem_addr2());
 			psmt.setString(5, dto.getMem_addr3());
 			
-			psmt.setString(6, dto.getMem_id());
+			psmt.setString(6, dto.getMem_id());			
 			count = psmt.executeUpdate();
 			System.out.println("count:" + count);
 		} catch (SQLException e) {			

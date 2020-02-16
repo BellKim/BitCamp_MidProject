@@ -37,7 +37,7 @@ public class UpdateMem extends HttpServlet{
 		if(command.equals("update")) {
 			String id = req.getParameter("id");
 			//String pw = req.getParameter("pw");								
-			MemberDto mem = s.ms.getMem(id);	//s.ms.memLogin(id, pw);		
+			MemberDto mem = s.ms.getMem(id);	// s.ms.memLogin(id, pw);	
 			req.getSession().setAttribute("login", mem);			
 			ProjectUtil.forward("./client_view/member/update.jsp", req, resp);			
 		}		

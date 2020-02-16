@@ -16,14 +16,14 @@ if(str5 != null && !str5.equals("")){
 %>
 	<script type="text/javascript">
 	alert("귀하의 비밀번호는 " + str5 + "입니다.");
-	location.href = "./client_view/member/login.jsp";
+	location.href = "<%=request.getContextPath() %>/login?command=login";
 	</script>
 <%
 }else {		// if(str5 == null || str5.equals(""))
 %>
 	<script type="text/javascript">
 	alert("가입하신 내역이 없거나 잘못 입력하셨습니다");
-	location.href = "./client_view/member/searchidpw.jsp";
+	location.href = "<%=request.getContextPath() %>/findidpw?command=searchidpw";
 	</script>	
 <%
 }
