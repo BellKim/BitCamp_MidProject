@@ -30,7 +30,7 @@ session.invalidate(); <!-- <jsp:include page="./../rental/rentalDetail.jsp" flus
       <!-- Sidebar Column -->
       <div class="col-lg-3 mb-4">
         <div class="list-group">
-          <a href="<%=request.getContextPath() %>/updatemem?command=update" class="list-group-item">회원정보수정</a>
+          <a href="<%=request.getContextPath() %>/updatemem?command=update&id=<%=mem.getMem_id() %>" class="list-group-item">회원정보수정</a>
           <a href="<%=request.getContextPath() %>/" class="list-group-item">리뷰내역</a>
           <a href="<%=request.getContextPath() %>/" class="list-group-item">렌탈내역</a>
           <a href="<%=request.getContextPath() %>/" class="list-group-item">A/S내역</a>

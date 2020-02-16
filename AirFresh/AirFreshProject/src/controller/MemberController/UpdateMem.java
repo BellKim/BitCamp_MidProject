@@ -53,9 +53,9 @@ public class UpdateMem extends HttpServlet{
 			
 			MemberDto dto = new MemberDto(_id, _pw, _cell, _addr1, _addr2, _addr3);
 			
-			boolean isS3 = s.ms.updateMem(_id, dto);
-			System.out.println("UpdateMem 도착2");
-			resp.sendRedirect(req.getContextPath() + "/client_view/member/updateAf.jsp?isS3=" + isS3);	
+			boolean isS = s.ms.updateMem(_id, dto);
+			System.out.println("UpdateMem 도착2");							// updateAf.jsp
+			resp.sendRedirect(req.getContextPath() + "/client_view/member/finding.jsp?command=update&isS=" + isS);	
 		}
 	}
 	
