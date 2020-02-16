@@ -25,7 +25,7 @@ public class ManagerLogin extends HttpServlet {
 		//로그인 체크 합니다. 
 		boolean isS = loginCheck(req, resp);
 		
-		
+		System.out.println(isS);
 		
 		
 		if(isS = true) {
@@ -35,7 +35,7 @@ public class ManagerLogin extends HttpServlet {
 
 		}else {
 			System.out.println("실패했습니다. 재접속 해주세요");
-			ProjectUtil.forward("/main.jsp", req, resp);
+			ProjectUtil.forward("./admin_view/manageMgr/login/adminlogin.jsp", req, resp);
 		}
 
 	}//end class
@@ -56,7 +56,7 @@ public class ManagerLogin extends HttpServlet {
 		System.out.print("check 내용 출력  ");
 		System.out.println(check);
 		
-		if(check.getMgr_id().equals(managermemdto.getMgr_id())) {
+		if(check.getMgr_id().equals(managermemdto.getMgr_id()) ) {
 			
 			req.getSession().setAttribute("managerLogin", check);
 			
