@@ -60,8 +60,8 @@ public class MemberDao implements MemberDaoInterface{
 	public boolean addMem(MemberDto dto) {
 		String sql = " INSERT INTO MEMBERS(MEM_ID, MEM_PW, "
 				+ " MEM_NAME, MEM_CELL, MEM_BIRTH, "
-				+ " MEM_ADDR1, MEM_ADDR2, MEM_ADDR3, MEM_IN_DATE, MEM_OUT_DATE, MEM_AUTH) "
-				+ " VALUES(?, ?, ?, ?, ?, ?, ?, ?, SYSDATE, NULL, 3) ";
+				+ " MEM_ADDR1, MEM_ADDR2, MEM_ADDR3, MEM_IN_DATE, MEM_OUT_DATE, MEM_AUTH, MEM_DELETE) "
+				+ " VALUES(?, ?, ?, ?, ?, ?, ?, ?, SYSDATE, NULL, 3, 0) ";
 	
 		Connection conn = null;
 		PreparedStatement psmt = null;
@@ -133,6 +133,7 @@ public class MemberDao implements MemberDaoInterface{
 									rs.getString(i++),
 									rs.getString(i++),
 									rs.getString(i++),
+									rs.getInt(i++),
 									rs.getInt(i++));
 			}
 			System.out.println("4/6 getMem success");
@@ -150,7 +151,7 @@ public class MemberDao implements MemberDaoInterface{
 		String sql = " SELECT MEM_ID, MEM_NAME, MEM_CELL, MEM_BIRTH, "
 				+ " MEM_ADDR1, MEM_ADDR2, MEM_ADDR3, MEM_AUTH "	// MEM_IN_DATE, MEM_OUT_DATE,
 				+ " FROM MEMBERS "
-				+ " WHERE MEM_ID=? AND MEM_PW=? ";
+				+ " WHERE MEM_ID=? AND MEM_PW=? AND MEM_DELETE=0 ";	// AND MEM_DELETE=0 : 가입
 	
 		Connection conn = null;
 		PreparedStatement psmt = null;
@@ -295,8 +296,12 @@ public class MemberDao implements MemberDaoInterface{
 	
 		
 	public boolean delMem(String mem_id, String mem_pw) {
-		String sql = "DELETE FROM MEMBERS "
-				+ " WHERE MEM_ID=? AND MEM_PW=? ";
+		/* String sql = "DELETE FROM MEMBERS "
+					+ " WHERE MEM_ID=? AND MEM_PW=? ";*/
+		
+		String sql = " UPDATE MEMBERS "
+				   + " SET MEM_OUT_DATE=SYSDATE, MEM_DELETE=1 "
+				   + " WHERE MEM_ID=? AND MEM_PW=? ";
 		
 		Connection conn = null;
 		PreparedStatement psmt = null;
