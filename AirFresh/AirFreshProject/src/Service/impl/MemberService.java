@@ -31,8 +31,8 @@ public class MemberService implements MemberServiceInterface{
 		}
 
 		@Override
-		public boolean updateMem(MemberDto dto) {			
-			return dao.updateMem(dto);
+		public boolean updateMem(String mem_id, MemberDto dto) {			
+			return dao.updateMem(mem_id, dto);
 		}
 
 		@Override

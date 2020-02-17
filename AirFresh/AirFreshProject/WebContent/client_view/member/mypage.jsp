@@ -3,8 +3,8 @@
     pageEncoding="UTF-8"%>
 <%
 MemberDto mem = (MemberDto)session.getAttribute("login");
-/* session.getMaxInactiveInterval();
-session.invalidate(); <!-- <jsp:include page="./../rental/rentalDetail.jsp" flush="false"></jsp:include> -->*/
+
+/*<jsp:include page="./../rental/rentalDetail.jsp" flush="false"></jsp:include> -->*/
 %>   
 <%@ include file="./../include/header.jsp"%>
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
@@ -21,7 +21,7 @@ session.invalidate(); <!-- <jsp:include page="./../rental/rentalDetail.jsp" flus
     </ol>
 
 	<div>
-		<p><em><%=mem.getMem_name() %></em> 고객님, 안녕하세요!</p>
+		<p><em><%=mem.getMem_name() %></em> 고객님, 안녕하세요! </p>
 		<div class=""><%=mem.getMem_cell() %> / <%=mem.getMem_id() %></div>				
 	</div>
 			
@@ -29,8 +29,8 @@ session.invalidate(); <!-- <jsp:include page="./../rental/rentalDetail.jsp" flus
     <div class="row">
       <!-- Sidebar Column -->
       <div class="col-lg-3 mb-4">
-        <div class="list-group">
-          <a href="<%=request.getContextPath() %>/updatemem?command=update" class="list-group-item">회원정보수정</a>
+        <div class="list-group">				
+          <a href="<%=request.getContextPath() %>/updatemem?command=update&id=<%=mem.getMem_id() %>" class="list-group-item">회원정보수정</a>
           <a href="<%=request.getContextPath() %>/" class="list-group-item">리뷰내역</a>
           <a href="<%=request.getContextPath() %>/" class="list-group-item">렌탈내역</a>
           <a href="<%=request.getContextPath() %>/" class="list-group-item">A/S내역</a>

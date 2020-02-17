@@ -14,8 +14,10 @@ import javax.servlet.http.HttpServletResponse;
 import com.google.gson.Gson;
 
 import Dto.InstallDto;
+import Dto.ManagerMemberDto;
 import Service.InstallServiceInterface;
 import Service.impl.InstallService;
+import projectutil.ProjectUtil;
 import singleton.singleton;
 
 /**
@@ -37,21 +39,34 @@ public class InstallController extends HttpServlet implements Serializable{
 	protected void processing(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		System.out.println("getInstallList_Null 도착");
 		singleton s = singleton.getInstance();
-		
+
 		//명령어 판단 
 		String command = null;
 		if(req.getParameter("command") != null) {
 			command = req.getParameter("command");
 			
+			if(command.equals("install")) {
+				resp.sendRedirect("./admin_view/InstallList/InstallList.jsp");
+			}
+			
+			
 			if(command.equals("getDayList")) {
-				//왕관리자용
-				getDayList(req, resp);
+				//선택한 날짜의 리스트를 가져오는 명령
+				System.out.println("getDayList 도착");
+				
+				ManagerMemberDto mdto = (ManagerMemberDto)req.getSession().getAttribute("managerLogin");
+				int level = mdto==null?-1:mdto.getMgr_auth();
+				System.out.println(level);
+
+				getDayList(level, req, resp);
+
 			}			
 			
 			if(command.equals("save")) {
 				//직원용 
-				installSave(req, resp);
-				
+				System.out.println("save 도착");
+				ManagerMemberDto mdto = (ManagerMemberDto)req.getSession().getAttribute("managerLogin");
+				installSave(mdto.getMgr_index(),req, resp);
 			}
 			
 			if(command.equals("carlender")) {
@@ -72,12 +87,23 @@ public class InstallController extends HttpServlet implements Serializable{
 	
 	
 	
-	protected void getDayList(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+	protected void getDayList(int level, HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		singleton s = singleton.getInstance();
 		String date = req.getParameter("date");
-		
+		List<InstallDto> list = null;
 		System.out.println(date);
-		List<InstallDto> list = s.is.getNullInstallList(date);
+		
+		ManagerMemberDto dto = req.getSession().getAttribute("managerLogin")==null? new ManagerMemberDto("-1", "-1"): (ManagerMemberDto)req.getSession().getAttribute("managerLogin");
+		
+		if(level > 0) {
+			//왕관리자가 아닐 때
+			String loc = ProjectUtil.locationChange(dto.getMgr_loc());
+			list = s.is.getMgrPicDayList(date, loc);
+		}else {
+			//왕관리자 일 때
+			list = s.is.getNullInstallList(date);
+		}
+		
 		//리턴값 타입 json 으로 지정 
 		resp.setContentType("application/json");
 		resp.setCharacterEncoding("UTF-8");
@@ -85,22 +111,34 @@ public class InstallController extends HttpServlet implements Serializable{
 		//list를 json형식의 string으로 변환
 		String gson = new Gson().toJson(list);
 		
+		//System.out.println(gson);
+		
 		//변환한 json형식을 리턴 
 		resp.getWriter().write(gson);
+		
 	}
 	
-	protected void installSave(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		//System.out.println("save 서블릿 도착");
+	protected void installSave(int mgr_index,HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		System.out.println("installSave 메소드 도착");
 		//DB에 업데이트
 		singleton s = singleton.getInstance();
 		
 		String[] insArr = req.getParameterValues("seqArr");
-		String mgr_index = req.getParameter("mgrID");
+		int size = insArr.length;
+		System.out.println("insArr 사이즈 = " + size);
+		
+		/*
+		for(int i = 0; i < size; i++) {
+			System.out.println("insArr[" + i + "] = " + insArr[i]);
+		}
+		*/
+		
 		boolean isS = true;
-		if(insArr != null && insArr.length > 0) {
-			for(int i = 0; i < insArr.length; i++) {
+		if(insArr != null && size > 0) {
+			for(int i = 0; i < size; i++) {
 				//System.out.println(insArr[i]);
-				isS = s.is.insertMgrID(Integer.parseInt(insArr[i]), Integer.parseInt(mgr_index));
+				System.out.println("installDao 출발" + (i + 1));
+				isS = s.is.insertMgrID(Integer.parseInt(insArr[i]), mgr_index);
 				
 				if(!isS) { break;} //업데이트 실패시 
 			}
@@ -108,20 +146,23 @@ public class InstallController extends HttpServlet implements Serializable{
 			if(isS) {
 				//모든 update가 성공하면 true반환
 				//리턴값 타입 json 으로 지정 
-				resp.setContentType("application/json");
+				resp.setContentType("application/text");
 				resp.setCharacterEncoding("UTF-8");
 				
-				String res = "{ isS: 'true'}";
-			
-				
+				String res = "true";
 				//변환한 json형식을 리턴 
 				resp.getWriter().write(res);
-				
 			}else {
 				//하나라도 실패시 false 반환
+				resp.setContentType("application/text");
+				resp.setCharacterEncoding("UTF-8");
 				
+				String res = "false";
+				//변환한 json형식을 리턴 
+				resp.getWriter().write(res);
 			}
 		}
+		
 	}
 	
 	
@@ -129,6 +170,8 @@ public class InstallController extends HttpServlet implements Serializable{
 	protected void installCarlender(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String year = req.getParameter("year");
 		String month = req.getParameter("month");
+		System.out.println(year);
+		System.out.println(month);
 		
 		req.setAttribute("year", year);
 		req.setAttribute("month", month);

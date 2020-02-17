@@ -41,7 +41,7 @@ System.out.println(managerMem);
         <div class="topSec clearfix">
           <ul class="clearfix">
              <li><a href="<%=request.getContextPath() %>/login?command=login" id="loginBtn">로그인</a></li>
-             <li><a href="#" id="logoutBtn">로그아웃</a></li>
+             <li><a href="<%=request.getContextPath() %>/login?command=logout" id="logoutBtn">로그아웃</a></li>
              <li><a href="<%=request.getContextPath()%>/addmem?command=regi">회원가입</a></li>
           </ul>
         </div>
@@ -79,9 +79,10 @@ System.out.println(managerMem);
               마이페이지
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
-              <a class="dropdown-item" href="#">내 정보</a>
               <a class="dropdown-item" href="<%=request.getContextPath()%>/printPurchase">렌탈 내역</a>
               <a class="dropdown-item" href="<%=request.getContextPath()%>/printAsApp">AS 내역</a>
+               <a class="dropdown-item" href="<%=request.getContextPath()%>/login?command=login">내 정보</a>
+
             </div>
           </li>
         </ul>
@@ -118,6 +119,7 @@ System.out.println(managerMem);
 						//alert("통신성공");
 						$("#loginBtn").show();
 						$("#logoutBtn").hide();
+						location.href="<%=request.getContextPath() %>/index.jsp";
 					},
 					error: function () {
 						alert("통신실패");

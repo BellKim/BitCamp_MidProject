@@ -60,8 +60,8 @@ public class MemberDao implements MemberDaoInterface{
 	public boolean addMem(MemberDto dto) {
 		String sql = " INSERT INTO MEMBERS(MEM_ID, MEM_PW, "
 				+ " MEM_NAME, MEM_CELL, MEM_BIRTH, "
-				+ " MEM_ADDR1, MEM_ADDR2, MEM_ADDR3, MEM_AUTH) "
-				+ " VALUES(?, ?, ?, ?, ?, ?, ?, ?, 3) ";
+				+ " MEM_ADDR1, MEM_ADDR2, MEM_ADDR3, MEM_IN_DATE, MEM_OUT_DATE, MEM_AUTH) "
+				+ " VALUES(?, ?, ?, ?, ?, ?, ?, ?, SYSDATE, NULL, 3) ";
 	
 		Connection conn = null;
 		PreparedStatement psmt = null;
@@ -82,7 +82,7 @@ public class MemberDao implements MemberDaoInterface{
 			psmt.setString(5, dto.getMem_birth());
 			psmt.setInt(6, dto.getMem_addr1());
 			psmt.setString(7, dto.getMem_addr2());
-			psmt.setString(8, dto.getMem_addr3());
+			psmt.setString(8, dto.getMem_addr3());			
 			
 			count = psmt.executeUpdate();
 			System.out.println("3/6 addMem success");
@@ -116,11 +116,11 @@ public class MemberDao implements MemberDaoInterface{
 			System.out.println("2/6 getMem success");
 			
 			psmt.setString(1, id); //TODO trouble
-			
+						
 			rs = psmt.executeQuery();
 			System.out.println("3/6 getMem success");
 			//String mem_id, String mem_pw, String mem_name, String mem_cell, String mem_birth, int mem_addr1,
-			//String mem_addr2, String mem_addr3, int mem_auth
+			//String mem_addr2, String mem_addr3, String mem_in_date, String mem_out_date, int mem_auth
 			if(rs.next()) {
 				int i = 1;
 				dto = new MemberDto(rs.getString(i++),
@@ -129,6 +129,8 @@ public class MemberDao implements MemberDaoInterface{
 									rs.getString(i++),		
 									rs.getString(i++),	
 									rs.getInt(i++),
+									rs.getString(i++),
+									rs.getString(i++),
 									rs.getString(i++),
 									rs.getString(i++),
 									rs.getInt(i++));
@@ -145,8 +147,8 @@ public class MemberDao implements MemberDaoInterface{
 	
 	@Override
 	public MemberDto memLogin(String mem_id, String mem_pw) {
-		String sql = " SELECT MEM_ID, MEM_PW, MEM_NAME, MEM_CELL, MEM_BIRTH, "
-				+ " MEM_ADDR1, MEM_ADDR2, MEM_ADDR3, MEM_AUTH "
+		String sql = " SELECT MEM_ID, MEM_NAME, MEM_CELL, MEM_BIRTH, "
+				+ " MEM_ADDR1, MEM_ADDR2, MEM_ADDR3, MEM_AUTH "	// MEM_IN_DATE, MEM_OUT_DATE,
 				+ " FROM MEMBERS "
 				+ " WHERE MEM_ID=? AND MEM_PW=? ";
 	
@@ -171,18 +173,19 @@ public class MemberDao implements MemberDaoInterface{
 			
 			if(rs.next()) {
 				String _id = rs.getString(1);
-				String _pw = rs.getString(2);
-				String _name = rs.getString(3);
-				String _cell = rs.getString(4);
-				String _birth = rs.getString(5);
-				int _addr1 = rs.getInt(6);
-				String _addr2 = rs.getString(7);
-				String _addr3 = rs.getString(8);
-				int _auth = rs.getInt(9);
+				String _name = rs.getString(2);
+				String _cell = rs.getString(3);
+				String _birth = rs.getString(4);
+				int _addr1 = rs.getInt(5);
+				String _addr2 = rs.getString(6);
+				String _addr3 = rs.getString(7);				
+				int _auth = rs.getInt(8);
 				
-				System.out.println(_id + " " + _pw);
-				mem = new MemberDto(_id, _pw, _name, _cell, _birth, _addr1,
-						_addr2, _addr3, _auth);
+				//String _in_date = rs.getString(8);
+				//String _out_date = rs.getString(9);
+				
+				mem = new MemberDto(_id, _name, _cell, _birth, _addr1,
+						_addr2, _addr3, _auth);	// _in_date, _out_date, 
 			}		
 			System.out.println("4/6 login success");	// 로그인 실패시 여기까지 성공!
 			
@@ -195,7 +198,7 @@ public class MemberDao implements MemberDaoInterface{
 		return mem;
 	}
 							
-	public String findID(String mem_name, String mem_cell) {
+	public String findID(String mem_name, String mem_cell) {	// , String mem_id
 		String sql = " SELECT MEM_ID FROM MEMBERS "
 				+ " WHERE MEM_NAME=? AND MEM_CELL=? ";
 			
@@ -226,7 +229,7 @@ public class MemberDao implements MemberDaoInterface{
 		return _id;
 	}
 	
-	public String findPW(String mem_id, String mem_name) {
+	public String findPW(String mem_id, String mem_name) {	// , String mem_pw
 		String sql = "SELECT MEM_PW FROM MEMBERS "
 				+ " WHERE MEM_ID=? AND MEM_NAME=? ";
 		
@@ -257,7 +260,7 @@ public class MemberDao implements MemberDaoInterface{
 		return _pw;
 	}
 	
-	public boolean updateMem(MemberDto dto) {
+	public boolean updateMem(String mem_id, MemberDto dto) {
 		
 		String sql = " UPDATE MEMBERS "
 				+ " SET MEM_PW=?, MEM_CELL=?, MEM_ADDR1=?, MEM_ADDR2=?, MEM_ADDR3=? "
@@ -279,7 +282,7 @@ public class MemberDao implements MemberDaoInterface{
 			psmt.setString(4, dto.getMem_addr2());
 			psmt.setString(5, dto.getMem_addr3());
 			
-			psmt.setString(6, dto.getMem_id());
+			psmt.setString(6, dto.getMem_id());			
 			count = psmt.executeUpdate();
 			System.out.println("count:" + count);
 		} catch (SQLException e) {			
@@ -290,40 +293,7 @@ public class MemberDao implements MemberDaoInterface{
 		return count>0?true:false;
 	}
 	
-	/*							// TODO 인자 바꿀? class.png에 MemberDto dto로 되어있음
-	public boolean updateMem(String mem_id, String mem_pw, int mem_cell, int mem_addr1, String mem_addr2, String mem_addr3) {
 		
-		String sql = " UPDATE MEMBERS "
-				+ " SET MEM_PW=?, MEM_CELL=?, MEM_ADDR1=?, MEM_ADDR2=?, MEM_ADDR3=? "
-				+ " WHERE MEM_ID=? ";
-		
-		Connection conn = DBConnection.getConnection();
-		PreparedStatement psmt = null;
-		
-		int count = 0;
-		
-		System.out.println("sql:" + sql);
-		
-		try {
-			psmt = conn.prepareStatement(sql);
-			/* SET MEM_PW=?, MEM_CELL=?, MEM_ADDR1=?, MEM_ADDR2=?, MEM_ADDR3=? *//*
-			psmt.setString(1, mem_pw);
-			psmt.setInt(2, mem_cell);
-			psmt.setInt(3, mem_addr1);
-			psmt.setString(4, mem_addr2);
-			psmt.setString(5, mem_addr3);
-			
-			count = psmt.executeUpdate(sql);
-			
-		} catch (SQLException e) {			
-			e.printStackTrace();
-		} finally {
-			DBClose.close(psmt, conn, null);
-		}
-		return count>0?true:false;
-	}
-	*/
-	
 	public boolean delMem(String mem_id, String mem_pw) {
 		String sql = "DELETE FROM MEMBERS "
 				+ " WHERE MEM_ID=? AND MEM_PW=? ";

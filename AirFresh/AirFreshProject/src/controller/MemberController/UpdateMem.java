@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import Dto.MemberDto;
+import projectutil.ProjectUtil;
 import singleton.singleton;
 
 @WebServlet("/updatemem")
@@ -35,10 +36,10 @@ public class UpdateMem extends HttpServlet{
 		
 		if(command.equals("update")) {
 			String id = req.getParameter("id");
-			MemberDto mem = s.ms.getMem(id);
-			//System.out.println(mem.toString());
-			req.setAttribute("login", mem);			
-			forward("./client_view/member/update.jsp", req, resp);			
+			//String pw = req.getParameter("pw");								
+			MemberDto mem = s.ms.getMem(id);	// s.ms.memLogin(id, pw);	
+			req.getSession().setAttribute("login", mem);			
+			ProjectUtil.forward("./client_view/member/update.jsp", req, resp);			
 		}		
 		else if(command.equals("updateAf")) {
 			String _id = req.getParameter("mem_id");
@@ -54,15 +55,10 @@ public class UpdateMem extends HttpServlet{
 			
 			MemberDto dto = new MemberDto(_id, _pw, _cell, _addr1, _addr2, _addr3);
 			
-			boolean isS3 = s.ms.updateMem(dto);
-			System.out.println("UpdateMem 도착2");
-			resp.sendRedirect(req.getContextPath() + "./client_view/member/updateAf.jsp?isS3=" + isS3);	
+			boolean isS = s.ms.updateMem(_id, dto);
+			System.out.println("UpdateMem 도착2");							
+			resp.sendRedirect(req.getContextPath() + "/client_view/member/finding.jsp?command=update&isS=" + isS);	
 		}
-	}
-	
-	public void forward(String url, HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		RequestDispatcher dispatch = req.getRequestDispatcher(url);
-		dispatch.forward(req, resp);	
-	}
+	}	
 	
 }

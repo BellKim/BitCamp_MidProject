@@ -1,19 +1,13 @@
 <%@page import="projectutil.ProjectUtil"%>
 <%@page import="Dto.ManagerMemberDto"%>
 <%@page import="java.util.List"%>
+
+
+
+<%@page import="Dto.ManagerMemberDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%
-request.setCharacterEncoding("utf-8");
-ManagerMemberDto managerSelectOneDTO = (ManagerMemberDto)request.getAttribute("managerInfoSelectOne");
-%>
-
-
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+<%@ include file="./../include/header.jsp" %>
 
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -25,12 +19,16 @@ ManagerMemberDto managerSelectOneDTO = (ManagerMemberDto)request.getAttribute("m
   
 </head>
 <body>
+<%
+request.setCharacterEncoding("utf-8");
+ManagerMemberDto managerSelectOneDTO = (ManagerMemberDto)request.getAttribute("managerInfoSelectOne");
+%>
 	<h1>showmgrMemberDetail</h1>
 	
 	
 	<div class="container">
 
-	  <h2>직원리스트</h2>
+	  <h2> <%=managerSelectOneDTO.getMgr_id() %> 님의 상세 정보</h2>
 	  
 	  <div class="addClass">
 		  <ul class="list-group">
@@ -72,6 +70,7 @@ ManagerMemberDto managerSelectOneDTO = (ManagerMemberDto)request.getAttribute("m
 		    <li class="list-group-item">
 	  	    	<button type="button" class="delete_btn">delete 삭제 </button>
 		    	<button type="button" class="modify_btn">modify 수정 </button>
+		    	<button type="button" class="manageMemberList_btn">직원관리 리스트로 이동  </button>
 		    </li>
 		  </ul>
 	  </div>
@@ -114,13 +113,27 @@ ManagerMemberDto managerSelectOneDTO = (ManagerMemberDto)request.getAttribute("m
 				//("#Mgr_index").removeAttr("readonly");
 				
 				$("#SelectForm").submit();
-			});	
+			});
 			
-
+			$(".manageMemberList_btn").click(function(){
+				$("#Status_Selector").attr("value","");//status NULL 을 만들고자함.
+				$("#Status_Selector").attr("name","");//status NULL 을 만들고자함.
+				$("#mgr_indxe_dto").attr("value","");	//기존에 입력된 인덱스번호 초기화.
+				$("#mgr_indxe_dto").attr("name","");	//기존에 입력된 인덱스번호 초기화.
+				
+				$("#mgr_indxe_dto").attr("value", "<%=managerSelectOneDTO.getMgr_index() %>");
+				
+				//console.log($("#Status_Selector").attr("value"));
+				//console.log($("#mgr_indxe_dto").attr("value"));
+				$("#SelectForm").attr("action", "<%=request.getContextPath() %>/showMrgMember");
+				
+				//("#Mgr_index").removeAttr("readonly");
+				
+				$("#SelectForm").submit();
+			});
 		});
 
 	</script>
 	
-	
-</body>
-</html>
+				
+<%@ include file="./../include/footer.jsp" %>
