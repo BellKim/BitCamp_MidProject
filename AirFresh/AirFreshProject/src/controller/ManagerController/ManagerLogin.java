@@ -23,9 +23,9 @@ public class ManagerLogin extends HttpServlet {
 		System.out.println(" managerLogin service Now. ");
 		
 		//로그인 체크 합니다. 
-		boolean isS = loginCheck(req, resp);
+		//boolean isS = loginCheck(req, resp);
 		
-		System.out.println(isS);
+		//System.out.println(isS);
 		
 		ManagerMemberDto isS = loginCheck(req, resp);
 
