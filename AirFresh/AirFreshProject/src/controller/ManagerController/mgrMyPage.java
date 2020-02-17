@@ -32,9 +32,7 @@ public class mgrMyPage extends HttpServlet {
 				//나의 as리스트 메인으로 연결 
 				forward("./admin_view/member/MyPage.jsp", request, response);
 			}
-			if(command.equals("getList")) {
-				//
-			}
+			
 			
 		}
 	}

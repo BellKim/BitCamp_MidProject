@@ -1,12 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
-<p>마이페이지 뷰</p>
-</body>
-</html>
+
+<%@ include file="./../include/header.jsp" %>
+
+	<div class="container-fluid">
+		<h1 class="mt-4 mb-3" >MyPage</h1>
+		<hr>
+		<form action="">
+			<!-- 작성할 폼  -->
+		</form>
+	</div>
+
+<%@ include file="./../include/footer.jsp" %>

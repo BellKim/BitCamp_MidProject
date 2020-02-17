@@ -125,9 +125,10 @@
 			
 		%>
 		
-		<div class="content">
-			<div class="back1" align="center">
-				<br>
+		<div class="container-fluid">
+			<div class="back1">
+				<h1 class="mt-4 mb-3" >설치 리스트 선택하기</h1>
+				<hr>
 				<div class="calender">
 					<table border="1" id="cal" style="width: 100%">
 						<col width="7"><col width="7"><col width="7"><col width="7"><col width="7">

@@ -3,8 +3,8 @@
     pageEncoding="UTF-8"%>
     
     <% 
-	    ManagerMemberDto mrgMem = (ManagerMemberDto) session.getAttribute("managerLogin");   
-    
+	    ManagerMemberDto mrgMem = session.getAttribute("managerLogin")==null?null:(ManagerMemberDto) session.getAttribute("managerLogin");   
+    	
     %>
     
     <!-- 직원들 마이페이지 안되어있음!!  2020/02/17 -->
@@ -127,4 +127,14 @@
             <div id="layoutSidenav_content">
                 <main>
                 
-         
+         <%
+			/* 세션 만료시에 로그인 단으로 날려주는 처리  */         
+         	if(mrgMem == null){
+         		%>
+    			<script type="text/javascript">
+    				alert("로그인을 해주세요");
+    				location.href="로그인단으로 이동!!!!!!!!!!";
+    			</script>     		
+         		<%
+         	}
+         %>
