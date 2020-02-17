@@ -16,8 +16,6 @@ public class ProjectUtil {
 	
 
 	
-
-	
 	//근무지 숫자를 넣으면 그에 해당하는 주소로 변환해주는 함수
 	public static String locationChange(int loc) {
 		String[] sloc = {"error","강남구","성동구","중랑구","기타"};
