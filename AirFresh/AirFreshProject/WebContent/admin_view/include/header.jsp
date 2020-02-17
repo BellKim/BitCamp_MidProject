@@ -57,6 +57,9 @@
 						<a class="nav-link" href="<%=request.getContextPath()%>/InstallController?command=install">
 								<i class="fas fa-table"></i>
 							 렌탈리스트</a>
+						<a class="nav-link" href="<%=request.getContextPath()%>/InstallController?command=installConfirm">
+								<i class="fas fa-table"></i>
+						 	내가 신청한 렌탈리스트</a>
 						<a class="nav-link" href="<%=request.getContextPath()%>/InstallController">
 								<i class="fas fa-table"></i>
 							 AS리스트</a>
