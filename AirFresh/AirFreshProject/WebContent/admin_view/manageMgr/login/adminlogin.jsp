@@ -41,8 +41,8 @@ System.out.println(mem);
                                             <div class="form-group"><label class="small mb-1" for="inputPw">Password</label>
                                             <input class="form-control py-4" type="password" placeholder="Enter password" id="manager_pw" name="manager_pw"/></div>
                                             <div class="form-group">
-                                                <div class="custom-control custom-checkbox"><input class="custom-control-input" id="chk_save_id" type="checkbox" />
-                                                	<label class="custom-control-label" for="rememberIDCheck">ID 저장</label>
+                                                <div><input type="checkbox" id="chk_save_id">
+                                                	<label>ID 저장</label>
                                                 </div>
                                             </div>
                                             <div class="form-group d-flex align-items-center justify-content-between mt-4 mb-0"><a class="small" href="password.html">비밀번호 찾기</a>

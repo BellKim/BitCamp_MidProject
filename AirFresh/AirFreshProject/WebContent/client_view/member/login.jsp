@@ -23,10 +23,9 @@
 								placeholder="비밀번호를 입력해주세요." id="mem_pw" name="mem_pw" />
 						</div>
 						<div class="form-group">
-							<div class="custom-control custom-checkbox">
-								<input class="custom-control-input" id="chk_save_id"
-									type="checkbox" /> <label class="custom-control-label"
-									for="rememberIDCheck">ID 저장</label>
+							<div>
+								<input type="checkbox" id="chk_save_id"> 
+								<label >ID 저장</label>
 							</div>
 						</div>
 						<div
