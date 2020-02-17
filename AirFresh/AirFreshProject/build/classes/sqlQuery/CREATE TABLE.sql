@@ -92,6 +92,11 @@ NOCYCLE;
 -- 날짜 : 2020-02-12
 -- 수정자 : 이지예 
 -- MEM_CELL 컬럼 타입 변경 : NUMBER -> VARCHAR2(12)
+
+-- 날짜 : 2020-02-17
+-- 수정자 : 이지예 
+-- MEM_IN_DATE, MEM_OUT_DATE 컬럼 추가 : DATE
+
 CREATE TABLE members
 (
     mem_id       VARCHAR2(50)     NOT NULL, 
@@ -102,6 +107,8 @@ CREATE TABLE members
     mem_addr1    NUMBER(5)      NULL, 
     mem_addr2    VARCHAR2(100)    NULL, 
     mem_addr3    VARCHAR2(50)     NULL, 
+    mem_in_date	 DATE			  NULL,
+    mem_out_date DATE			  NULL,
     mem_auth     NUMBER(1)        NULL, 
     CONSTRAINT MEMBERS_PK PRIMARY KEY (mem_id)
 );

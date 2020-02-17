@@ -12,6 +12,8 @@ public class MemberDto implements Serializable {
 	private int mem_addr1;
 	private String mem_addr2;
 	private String mem_addr3;
+	private String mem_in_date;
+	private String mem_out_date;
 	private int mem_auth;
 	
 	public MemberDto() {		
@@ -26,9 +28,10 @@ public class MemberDto implements Serializable {
 		this.mem_addr2 = mem_addr2;
 		this.mem_addr3 = mem_addr3;
 	}
-
+	
+	
 	public MemberDto(String mem_id, String mem_pw, String mem_name, String mem_cell, String mem_birth, int mem_addr1,
-			String mem_addr2, String mem_addr3, int mem_auth) {
+			String mem_addr2, String mem_addr3, String mem_in_date, String mem_out_date, int mem_auth) {
 		super();
 		this.mem_id = mem_id;
 		this.mem_pw = mem_pw;
@@ -38,10 +41,11 @@ public class MemberDto implements Serializable {
 		this.mem_addr1 = mem_addr1;
 		this.mem_addr2 = mem_addr2;
 		this.mem_addr3 = mem_addr3;
+		this.mem_in_date = mem_in_date;
+		this.mem_out_date = mem_out_date;
 		this.mem_auth = mem_auth;
 	}
 
-	
 	public MemberDto(String mem_id, String mem_name, String mem_cell, String mem_birth, int mem_addr1, String mem_addr2,
 			String mem_addr3) {
 		super();
@@ -55,9 +59,26 @@ public class MemberDto implements Serializable {
 	}
 
 	public MemberDto(String mem_id, String mem_name, String mem_cell, String mem_birth, int mem_addr1, String mem_addr2,
-			String mem_addr3,int mem_auth) {
+			String mem_addr3, String mem_in_date, String mem_out_date, int mem_auth) {
 		super();
 		this.mem_id = mem_id;		
+		this.mem_name = mem_name;
+		this.mem_cell = mem_cell;
+		this.mem_birth = mem_birth;
+		this.mem_addr1 = mem_addr1;
+		this.mem_addr2 = mem_addr2;
+		this.mem_addr3 = mem_addr3;
+		this.mem_in_date = mem_in_date;
+		this.mem_out_date = mem_out_date;
+		this.mem_auth = mem_auth;
+	}
+	
+
+	public MemberDto(String mem_id, String mem_pw, String mem_name, String mem_cell, String mem_birth, int mem_addr1,
+			String mem_addr2, String mem_addr3, int mem_auth) {
+		super();
+		this.mem_id = mem_id;
+		this.mem_pw = mem_pw;
 		this.mem_name = mem_name;
 		this.mem_cell = mem_cell;
 		this.mem_birth = mem_birth;
@@ -131,6 +152,22 @@ public class MemberDto implements Serializable {
 		this.mem_addr3 = mem_addr3;
 	}
 
+	public String getMem_in_date() {
+		return mem_in_date;
+	}
+	
+	public void setMem_in_date(String mem_in_date) {
+		this.mem_in_date = mem_in_date;
+	}
+	
+	public String getMem_out_date() {
+		return mem_out_date;
+	}
+	
+	public void setMem_out_date(String mem_out_date) {
+		this.mem_out_date = mem_out_date;
+	}
+	
 	public int getMem_auth() {
 		return mem_auth;
 	}
@@ -143,8 +180,10 @@ public class MemberDto implements Serializable {
 	public String toString() {
 		return "MemberDto [mem_id=" + mem_id + ", mem_pw=" + mem_pw + ", mem_name=" + mem_name + ", mem_cell="
 				+ mem_cell + ", mem_birth=" + mem_birth + ", mem_addr1=" + mem_addr1 + ", mem_addr2=" + mem_addr2
-				+ ", mem_addr3=" + mem_addr3 + ", mem_auth=" + mem_auth + "]";
+				+ ", mem_addr3=" + mem_addr3 + ", mem_in_date=" + mem_in_date + ", mem_out_date=" + mem_out_date
+				+ ", mem_auth=" + mem_auth + "]";
 	}
+	
 	
 
 }//end class
