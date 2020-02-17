@@ -83,7 +83,61 @@ public class PurchaseDao implements PurchaseDaoInterface {
 		
 		return count>0?true:false;
 	}
+	
+	
+	@Override
+	public List<PurchaseNameDto> getPurchaseList() {
+		String sql = " SELECT pur_index, mem_id, p.prd_index, m.prd_name, m.prd_model_name,pur_date,ins_date, order_num, review, order_auth "
+				+ " FROM  purchase p, modellist m "
+				+ " where p.prd_index = m.prd_index "
+				+ " ORDER BY PUR_DATE DESC ";
+		
+		Connection conn = null;
+		PreparedStatement psmt = null;
+		ResultSet rs = null;
+		
+		List<PurchaseNameDto> list = new ArrayList<PurchaseNameDto>();
+		
+		try {
+			conn = DBConnection.getConnection();
+			System.out.println("1/6 memPurchaseList success");
+			psmt = conn.prepareStatement(sql);
+			System.out.println("2/6 memPurchaseList success");
 
+			
+			rs = psmt.executeQuery();
+			while(rs.next()) {
+				int i = 1;
+				PurchaseNameDto dto = new PurchaseNameDto(
+						rs.getInt(i++),//pur_index, 
+						rs.getString(i++),//mem_id, 
+						rs.getInt(i++),//prd_index, 
+						rs.getString(i++),//prd_name, 
+						rs.getString(i++),//prd_model_name, 
+						rs.getString(i++),//pur_date, 
+						rs.getString(i++),//ins_date, 
+						rs.getInt(i++),//order_num,
+						rs.getInt(i++),//review, 
+						rs.getInt(i++));//order_auth)
+				
+				
+				list.add(dto);
+			}
+			System.out.println("3/6 memPurchaseList success");
+		} catch (SQLException e) {
+			System.out.println("memPurchaseList fail");
+			e.printStackTrace();
+		} finally {
+			DBClose.close(psmt, conn, rs);
+		}
+		
+		return list;
+	}
+	
+	
+	
+
+	/*
 	@Override
 	public List<PurchaseDto> getPurchaseList() {
 		
@@ -125,15 +179,17 @@ public class PurchaseDao implements PurchaseDaoInterface {
 		
 		
 		return list;
-	}
+	}/**/
 
+	
+	/*
 	@Override
 	public List<PurchaseDto> memPurchaseList(String mem_id) {
 		String sql = " SELECT PUR_INDEX, MEM_ID, PRD_INDEX, PUR_DATE, INS_DATE, "
 				+ " ORDER_NUM, REVIEW, ORDER_AUTH "
 				+ " FROM PURCHASE "
-				+ " WHERE MEM_ID=? "
-				+ " ORDER BY PUR_DATE DESC ";
+				+ " WHERE MEM_ID = ? "
+				+ " ORDER BY PUR_INDEX ";
 		
 		Connection conn = null;
 		PreparedStatement psmt = null;
@@ -160,6 +216,56 @@ public class PurchaseDao implements PurchaseDaoInterface {
 												rs.getInt(i++),//order_num, 
 												rs.getInt(i++),//review, 
 												rs.getInt(i++));//	order_auth);
+				
+				
+				list.add(dto);
+			}
+			System.out.println("3/6 memPurchaseList success");
+		} catch (SQLException e) {
+			System.out.println("memPurchaseList fail");
+			e.printStackTrace();
+		} finally {
+			DBClose.close(psmt, conn, rs);
+		}
+		
+		return list;
+	}/**/
+	@Override
+	public List<PurchaseNameDto> memPurchaseList(String mem_id) {
+		String sql = " SELECT pur_index, mem_id, p.prd_index, m.prd_name, m.prd_model_name,pur_date,ins_date, order_num, review, order_auth "
+				+ " FROM  purchase p, modellist m "
+				+ " where p.prd_index = m.prd_index and mem_id = ? "
+				+ " ORDER BY PUR_DATE DESC ";
+		
+		Connection conn = null;
+		PreparedStatement psmt = null;
+		ResultSet rs = null;
+		
+		List<PurchaseNameDto> list = new ArrayList<PurchaseNameDto>();
+		
+		try {
+			conn = DBConnection.getConnection();
+			System.out.println("1/6 memPurchaseList success");
+			psmt = conn.prepareStatement(sql);
+			System.out.println("2/6 memPurchaseList success");
+			
+			psmt.setString(1, mem_id);
+			
+			rs = psmt.executeQuery();
+			while(rs.next()) {
+				int i = 1;
+				PurchaseNameDto dto = new PurchaseNameDto(
+						rs.getInt(i++),//pur_index, 
+						rs.getString(i++),//mem_id, 
+						rs.getInt(i++),//prd_index, 
+						rs.getString(i++),//prd_name, 
+						rs.getString(i++),//prd_model_name, 
+						rs.getString(i++),//pur_date, 
+						rs.getString(i++),//ins_date, 
+						rs.getInt(i++),//order_num,
+						rs.getInt(i++),//review, 
+						rs.getInt(i++));//order_auth)
+				
 				
 				list.add(dto);
 			}
@@ -346,8 +452,7 @@ public class PurchaseDao implements PurchaseDaoInterface {
 		
 		return count>0?true:false;
 	}
-	
-	
-	
+
+
 }
 

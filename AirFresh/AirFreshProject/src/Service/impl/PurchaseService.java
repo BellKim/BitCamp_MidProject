@@ -19,14 +19,30 @@ public class PurchaseService implements PurchaseServiceInterface {
 	public boolean purchaseDelete(int pur_index) {
 		return dao.purchaseDelete(pur_index);
 	}
+	
+	
+	/*
+	 * @Override public List<PurchaseDto> getPurchaseList() { return
+	 * dao.getPurchaseList(); }
+	 */
+
+	/*
+	 * @Override public List<PurchaseDto> memPurchaseList(String mem_id) { return
+	 * dao.memPurchaseList(mem_id); }
+	 */
 	@Override
-	public List<PurchaseDto> getPurchaseList() {
+	public List<PurchaseNameDto> getPurchaseList() {
 		return dao.getPurchaseList();
 	}
+    
+	
+	
 	@Override
-	public List<PurchaseDto> memPurchaseList(String mem_id) {
+	public List<PurchaseNameDto> memPurchaseList(String mem_id) {
 		return dao.memPurchaseList(mem_id);
 	}
+	
+	
 	@Override
 	public PurchaseDto getPurchaseOne(int pur_index) {
 		return dao.getPurchaseOne(pur_index);
@@ -44,5 +60,7 @@ public class PurchaseService implements PurchaseServiceInterface {
     public boolean userPurConfirm(String userID) {
     	return dao.userPurConfirm(userID);
     }
+
+	
 	
 }

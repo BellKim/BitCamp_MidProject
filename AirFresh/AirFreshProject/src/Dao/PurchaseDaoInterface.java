@@ -14,10 +14,12 @@ public interface PurchaseDaoInterface {
 	boolean purchaseDelete(int pur_index);
 	
 	//구매 전체 list보기
-	List<PurchaseDto> getPurchaseList();
+	//List<PurchaseDto> getPurchaseList();
+	List<PurchaseNameDto> getPurchaseList();
 	
 	//회원별 구매 list 보기
-    List<PurchaseDto> memPurchaseList(String mem_id);
+    //List<PurchaseDto> memPurchaseList(String mem_id);
+	List<PurchaseNameDto> memPurchaseList(String mem_id);
     
     //구매 상세 dto 보기
     PurchaseDto getPurchaseOne(int pur_index);
