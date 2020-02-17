@@ -131,7 +131,7 @@ System.out.println(mem);
 						console.log("들어온 pw값 : "+input_pw);
 
 					$.ajax({
-						url:'<%=request.getContextPath() %>/managerLogin',
+						url:'<%=request.getContextPath() %>/managerLogin?command=checkID_PW',
 						type:"post",
 						datatype:"json",
 						data:{
@@ -145,7 +145,7 @@ System.out.println(mem);
 							//location.replace("<%=request.getContextPath() %>"+data);
 							if(data == "true"){
 								alert("로그인성공");
-								location.href="<%=request.getContextPath() %>/managerLogin?manager_id=input_id&command=success"
+								location.href="<%=request.getContextPath() %>/managerLogin?command=success";
 							}else{
 								alert("로그인실패");
 							}
