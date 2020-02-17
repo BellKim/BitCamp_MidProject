@@ -185,9 +185,12 @@ public class InstallDao implements InstallDaoInterface, Serializable {
 	//설치신청 데이터에 담당자 정보를 넣어주는 메소드 
 	public boolean insertMgrID(int ins_index, int mgr_index) {
 		
-		String sql =" UPDATE INSTALL "
-				+ " SET mgr_index =? "
-				+ " WHERE ins_index =? ";
+		System.out.println("insertMgrID ins" + ins_index);
+		System.out.println("insertMgrID mgr" + mgr_index);
+		
+		String sql ="UPDATE INSTALL "
+				+ " SET mgr_index =?"
+				+ " WHERE ins_index =?";
 		
 		
 		Connection conn = null;
@@ -200,8 +203,8 @@ public class InstallDao implements InstallDaoInterface, Serializable {
 		try {
 			conn = DBConnection.getConnection();
 			psmt = conn.prepareStatement(sql);
-			psmt.setInt(1, ins_index);
-			psmt.setInt(2, mgr_index);
+			psmt.setInt(1, mgr_index);
+			psmt.setInt(2, ins_index);
 			
 			count = psmt.executeUpdate();
 			
@@ -211,7 +214,7 @@ public class InstallDao implements InstallDaoInterface, Serializable {
 		}finally {
 			DBClose.close(psmt, conn, null);
 		}
-		
+		System.out.println(count);
 		return count>0?true:false;
 	}
 	
@@ -234,8 +237,9 @@ public class InstallDao implements InstallDaoInterface, Serializable {
 		try {
 			conn = DBConnection.getConnection();
 			psmt = conn.prepareStatement(sql);
-			psmt.setInt(1, ins_index);
-			psmt.setInt(2, mgr_index);
+			psmt.setInt(1, mgr_index);
+			psmt.setInt(2, ins_index);
+			
 			
 			count = psmt.executeUpdate();
 			
@@ -245,6 +249,7 @@ public class InstallDao implements InstallDaoInterface, Serializable {
 		}finally {
 			DBClose.close(psmt, conn, null);
 		}
+		
 		
 		return count>0?true:false;
 	}

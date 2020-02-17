@@ -1,34 +1,29 @@
 <%@page import="Dto.ManagerMemberDto"%>
 <%@page import="java.util.List"%>
+
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
+<%@ include file="./../include/header.jsp" %>
+<%-- body  ======================================================== --%>
+<%
+HttpSession adminlogincheck = request.getSession();
+ManagerMemberDto managerMem = (ManagerMemberDto)session.getAttribute("managerLogin");
+System.out.println(managerMem);
+%>
+
+
+<%--
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+--%>
 <%
 request.setCharacterEncoding("utf-8");
 List<ManagerMemberDto> managerMemberDto =
 		(List<ManagerMemberDto>)request.getAttribute("managerMemberList");
 %>
-
-<%
-for(ManagerMemberDto a : managerMemberDto){
-	System.out.println(a);
-}
-%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-  
-</head>
-<%-- 메니저 전체 추가 해줌.  --%>
-<body>
-
 <div class="container">
 
   <h2>직원리스트</h2>
@@ -115,7 +110,5 @@ for(ManagerMemberDto a : managerMemberDto){
   </ul>
 </div>
 
-	
-
-</body>
-</html>
+<%-- body  ======================================================== --%>
+<%@ include file="./../include/footer.jsp" %>

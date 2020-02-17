@@ -5,6 +5,7 @@
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+        
 <%!
 	//nvl 함수 
 	public boolean nvl(String msg){
@@ -15,7 +16,7 @@
 	public String cal_list(int year, int month, int day){
 		
 		//2020/02/10 형식으로 servlet에 넘기기위한 변수
-		String date = year + "/" + two("" + month) + "/" + day;
+		String date = year + "/" + two("" + month) + "/" + two("" + day);
 		String str = "";
 		
 		//여기 servlet으로 어떻게 보내고 받을것인지 확인 
@@ -62,83 +63,22 @@
 	
 %>
 
+<%@ include file="./../include/header.jsp" %>
 
 <%
 	ManagerMemberDto loginDto = null;
-	if(request.getSession().getAttribute("login") != null){
-		loginDto = (ManagerMemberDto)request.getSession().getAttribute("login");
+	if(request.getSession().getAttribute("managerLogin") != null){
+		loginDto = (ManagerMemberDto)request.getSession().getAttribute("managerLogin");
+		System.out.println(loginDto.getMgr_auth());
 	}
 	
 %>    
-<!DOCTYPE html>
-<html>
-	<head>
-		<meta charset="UTF-8">
-		<title>Insert title here</title>
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-		
-		<style type="text/css">
-			.content{
-				width: 80%;
-				height: 600px;
-				
-				margin-left: 10%;
-			}
-			.back1{
-				width: 50%;
-				height: 600px;
-				float: left;
-				
-			}
-			.back2{
-				width: 50%;
-				height: 600px;
-				float: left;
-				
-			}
-			.calender{
-				width: 80%;
-				height: 240px;
-				background-color: #fff;
-			}
-			.list{
-				
-			}
-			a{
-				text-decoration:none;	/*a 태그 밑줄 제거  */
-			}
-			
-			.list{
-			    width: 100%;
-			    /* border-top: 1px solid #444444; */
-			    border-collapse: collapse;
-			}
-			th{
-			    border-bottom: 1px solid #444444;
-			    
-			}
-			.IS_list_head{
-				font-size: 15px;
-			}
-			ul,li{
-				margin-left: 10px;
-				padding: 0;
-				list-style:none;
-				font-size: 13px;
-			}
-			.getList{
-				font-size: 12px;
-			}
-		</style>
-	</head>
-	
-	<body>
 		<%
 			Calendar cal = Calendar.getInstance();
 			cal.set(Calendar.DATE, 1);		
 			
-			String syear = request.getParameter("year");
-			String smonth = request.getParameter("month");
+			String syear = request.getParameter("year")==null?"":request.getParameter("year");
+			String smonth = request.getParameter("month")==null?"":request.getParameter("month");
 			
 			int year = cal.get(Calendar.YEAR);
 			if(nvl(syear) == false){
@@ -184,6 +124,7 @@
 										request.getContextPath() + "/InstallController", year+1, month, "carlender");
 			
 		%>
+		
 		<div class="content">
 			<div class="back1" align="center">
 				<br>
@@ -266,6 +207,7 @@
 						</tr>
 					</table>
 				</div>
+				
 				<div align="left" class="listdiv">
 					<br>
 					<h3>신청가능 목록</h3>
@@ -303,26 +245,28 @@
 				//장바구니 주소값을 설정하려고 사용하는 변수 
 				var listCount = 0;
 				//servlet에 보내기 위해  seq를 저장하기 위한 배열 생성 
-				var insArr = new Array();
+				var insArr = [];
 				
-				$("#cal span").click(function () {
-					alert("클릭");
+				$("#cal span").click(function name() {
+					//alert("날짜 클릭");
 					alert($(this).attr("sdate"));
 					var sdate = $(this).attr("sdate");
 					
 					$.ajax({
-						url:'<%=request.getContextPath() %>/InstallController',
-						type:"post",
-						data:{	date: sdate,
-								command: "getDayList"},
-						datatype:"json",
 						
-						success: function ( data ) {
-							//alert(data[0].mem_name);
-							alert("통신성공");
+						url: "<%=request.getContextPath() %>/InstallController",
+						type: "post",
+						data: { "command": "getDayList",
+								"date": sdate,
+							},
+						datatype: "json",
+						success: function (data) {
+							//alert("통신성공");
 							alert(data);
 							alert("data length = " + data.length);
+							
 							list = data;
+							
 							if(data == "") {
 								//list가 null일때 처리
 								$("#InstallTable").empty();
@@ -362,12 +306,13 @@
 							}
 						},
 						error: function () {
-							alert("통신실패");	
+							alert("통신실패");
 						}
-					});// ajax
-					
-				});//cal span click
+						
+					});
+				});
 				
+				/* 예약 장바구니에 옮기는 처리를 하는 함수 */
 				$(document).on("click","td .plus",function () {
 					//alert("버튼 클릭");
 					//alert($(this).val());
@@ -390,6 +335,7 @@
 					
 				});
 				
+				
 				//장바구니 버튼 동작 시키는 함수
 				$(document).on("click","td .minus",function (){
 					//alert("마이너스 클릭");
@@ -409,8 +355,7 @@
 					
 					//배열에 seq 담기
 					//장바구니 List table 안의 모든 tr을 가져온다
-					var tr = $("#basketList").children();
-					
+					var tr = $("#basketList").children();			
 					
 					for(i = 1; i < tr.length; i++){
 						// 0번지는  <col>태그 이기 때문에 값이 없어서 1번지부터 시작
@@ -422,23 +367,24 @@
 						//alert(seq);
 						
 						//0번지부터 값을 넣기  위함
-						insArr[i-1] = seq;
+						insArr.push(seq);
 					}
+					
 					
 					$.ajax({
 						url:'<%=request.getContextPath() %>/InstallController',
 						type:"post",
+						traditional : true,
 						data:{	command: "save",
 								seqArr: insArr,
-								/* 로그인 회원 index 추가 */
+								/* 로그인 회원 index 추가  <-- 안해도 됨 controller 가서 session으로 뺴면 됨  */
 						},
 						datatype:"json",
-						
-						success: function ( isS ) {
+						success: function ( data ) {
 							alert("통신성공");
 							//배열 초기화 
 							insArr = [];
-							
+							alert(data);
 						},
 						error: function () {
 							alert("통신 실패");
@@ -449,5 +395,5 @@
 			});//ready
 			
 		</script>
-	</body>
-</html>
+		
+<%@ include file="./../include/footer.jsp" %>

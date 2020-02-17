@@ -8,9 +8,6 @@ HttpSession adminlogincheck = request.getSession();
 ManagerMemberDto mem = (ManagerMemberDto)session.getAttribute("managerLogin");
 System.out.println(mem);
 
-	
-
-
 %>    
     
     
