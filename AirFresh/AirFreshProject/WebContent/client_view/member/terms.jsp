@@ -121,21 +121,22 @@
 									<input type="checkbox" id="agreeAirFreshMall" name="agree">
 									<label for="agreeAirFreshMall"><em>[필수]</em> AirFresh몰 이용약관</label>
 								</div>
-								<a href="siteterms.jsp" class="link2" target="_blank">전문보기</a>
+								<a href="<%=request.getContextPath() %>/addmem?command=siteterms" class="link2" target="_blank">전문보기</a>
+							
 							</div>							
 							<div class="agree">
 								<div class="checkbox">
 									<input type="checkbox" id="agreePersonalInfo" name="agree">
 									<label for="agreePersonalInfo"><em>[필수]</em> 개인정보 수집/이용안내</label>
 								</div>
-								<a href="personalinfoterms.jsp" class="link2" target="_blank">전문보기</a>
+								<a href="<%=request.getContextPath() %>/addmem?command=infoterms" class="link2" target="_blank">전문보기</a>
 							</div>
 							<div class="agree">
 								<div class="checkbox">
 									<input type="checkbox" id="agreePrivacyUse" name="agree">
 									<label for="agreePrivacyUse"><em class="blue">[선택]</em> 개인 정보 수집/이용 동의</label>
 								</div>
-					  			<a href="privacyuseterms.jsp" class="link2" target="_blank">전문보기</a>
+					  			<a href="<%=request.getContextPath() %>/addmem?command=puseterms" class="link2" target="_blank">전문보기</a>
 							</div>												
 						</div>
 						<input type="hidden" name="piUseYn" value="">														
