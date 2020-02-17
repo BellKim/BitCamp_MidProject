@@ -7,7 +7,7 @@
     
     <%
     	List<QnaBbsDto> list = (List<QnaBbsDto>)request.getAttribute("qnalist");
-  	    ManagerMemberDto mrgMem = (ManagerMemberDto) session.getAttribute("managerLogin");   	
+  	  //  ManagerMemberDto mrgMem = (ManagerMemberDto) session.getAttribute("managerLogin");   	
 		int len = (int) request.getAttribute("len");
 
 		int bbsPage = len / 10;
@@ -22,7 +22,7 @@
 			pageNumber = Integer.parseInt(spageNumber);
 		}
     %>
-<div class="container">
+<div class="container-fluid">
 	<h1 class="mt-4 mb-3" >QnA</h1>
 				<!-- Content Column -->
 			

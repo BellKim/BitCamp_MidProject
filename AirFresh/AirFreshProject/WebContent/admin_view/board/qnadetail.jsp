@@ -1,9 +1,10 @@
+<%@page import="Dto.ManagerMemberDto"%>
 <%@page import="Dto.QnaBbsDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%
 QnaBbsDto qna = (QnaBbsDto) request.getAttribute("qnadto");
-
+ManagerMemberDto mrgMem = (ManagerMemberDto) session.getAttribute("managerLogin");
 String sdate = qna.getWdate().substring(0, 10);
 %>
 <%@ include file="./../include/header.jsp"%>
@@ -42,7 +43,7 @@ String sdate = qna.getWdate().substring(0, 10);
 	            </div>
 	        </div>
         </div>
-     <%} else if(qna.getDepth()==0) {%>
+     <%} else if(qna.getDepth()==0 && mrgMem.getMgr_auth()==0) {%>
      <div style = "padding-left : 50px;">
      	<div class="card my-4" >
           <h5 class="card-header">QnA 답변</h5>
