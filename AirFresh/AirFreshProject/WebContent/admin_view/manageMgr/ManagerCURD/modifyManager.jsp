@@ -43,15 +43,6 @@ ManagerMemberDto managerSelectOneDTO = (ManagerMemberDto)request.getAttribute("m
 		    		<span id='message'></span>
 		    	</label>
 		    </li>
-		    
-		    <li class="list-group-item">
-		        <input type="password" id="userPw" placeholder="비밀번호"/>
-			    <input type="password" id="userPwChk" placeholder="비밀번호 확인"/>
-			    <font id="chkNotice" size="2"></font>
-
-		    </li>
-		    
-		    
 		    <li class="list-group-item">
 		    	<label for="mgr_name" class="width50">매니저 이름 : </label>	
 		    	<input type="text" id="mgr_name" name="mgr_name" value="<%=managerSelectOneDTO.getMgr_name() %>" >
@@ -86,7 +77,6 @@ ManagerMemberDto managerSelectOneDTO = (ManagerMemberDto)request.getAttribute("m
 				</label>
 				<label for="mgr_auth" class="width50">로 변경</label>
 		    </li>
-		    
 		    <li class="list-group-item">
 		    	<label for="mgr_del" class="width50">메니저 탈퇴여부:</label>
 		    	<input type="text" id="mgr_delRead"  value="<%=ProjectUtil.managerStatus(managerSelectOneDTO.getMgr_del())%>" readonly>
