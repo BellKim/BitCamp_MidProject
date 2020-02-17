@@ -94,8 +94,8 @@ $(document).ready(function () {
 	 
 	 
 	$("#_btnid").click(function () {	
-		
-		$.ajax({
+		location.href='<%=request.getContextPath() %>/idcheck?_id=';
+		/* $.ajax({
 			type:"post",	
 			url:"${pageContext.request.contextPath}/idcheck",	// idcheck / ./idcheck.jsp
 			data:{ "_id":$("#mem_id").val() },
@@ -113,7 +113,7 @@ $(document).ready(function () {
 			error:function(){
 				alert("error");
 			}		
-		});
+		}); */
 	});
 	
 	
