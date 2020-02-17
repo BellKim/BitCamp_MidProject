@@ -1,5 +1,11 @@
+<%@page import="Dto.ManagerMemberDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+    <% 
+	    ManagerMemberDto mrgMem = (ManagerMemberDto) session.getAttribute("managerLogin");   
+    
+    %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -34,7 +40,7 @@
 					<a class="dropdown-item" href="#">Settings</a><a
 						class="dropdown-item" href="#">Activity Log</a>
 					<div class="dropdown-divider"></div>
-					<a class="dropdown-item" href="login.html">Logout</a>
+					<a class="dropdown-item" id ="logoutBtn">Logout</a>
 				</div></li>
 		</ul>
 	</nav>
@@ -43,6 +49,8 @@
 			<nav class="sb-sidenav accordion sb-sidenav-dark"
 				id="sidenavAccordion">
 				<div class="sb-sidenav-menu">
+				
+				<% if(mrgMem.getMgr_auth() == 0){ %>
 					<div class="nav">
 						<a class="nav-link" href="<%=request.getContextPath()%>/noticelist?command=admin">
 								<i class="fas fa-chart-area"></i>
@@ -57,6 +65,9 @@
 						<a class="nav-link" href="<%=request.getContextPath()%>/InstallController?command=install">
 								<i class="fas fa-table"></i>
 							 렌탈리스트</a>
+						<a class="nav-link" href="<%=request.getContextPath()%>/InstallController?command=install">
+								<i class="fas fa-table"></i>
+							 설치리스트</a>
 						<a class="nav-link" href="<%=request.getContextPath()%>/InstallController">
 								<i class="fas fa-table"></i>
 							 AS리스트</a>
@@ -64,6 +75,36 @@
 								<i class="fas fa-table"></i>
 							 문의게시판</a>
 					</div>
+					<%}  else if( mrgMem.getMgr_auth() == 1){%>
+					<div class="nav">
+						<a class="nav-link" href="<%=request.getContextPath()%>/noticelist?command=admin">
+								<i class="fas fa-chart-area"></i>
+							공지사항
+						</a> 
+						<a class="nav-link" href="<%=request.getContextPath()%>/InstallController?command=install">
+								<i class="fas fa-table"></i>
+							 렌탈리스트</a>
+						<a class="nav-link" href="<%=request.getContextPath()%>/InstallController">
+								<i class="fas fa-table"></i>
+							 AS리스트</a>
+					</div>
+					
+					<%} else if (mrgMem.getMgr_auth() == 2){ %>
+					
+					<div class="nav">
+						<a class="nav-link" href="<%=request.getContextPath()%>/noticelist?command=admin">
+								<i class="fas fa-chart-area"></i>
+							공지사항
+						</a> 
+						<a class="nav-link" href="<%=request.getContextPath()%>/InstallController?command=install">
+								<i class="fas fa-table"></i>
+							 렌탈리스트</a>
+						<a class="nav-link" href="<%=request.getContextPath()%>/InstallController">
+								<i class="fas fa-table"></i>
+							 AS리스트</a>
+
+					</div>
+					<%} %>
 				</div>
 				<div class="sb-sidenav-footer">
 					<div class="small">Air Fresh</div>
@@ -72,3 +113,5 @@
 		</div>
             <div id="layoutSidenav_content">
                 <main>
+                
+         

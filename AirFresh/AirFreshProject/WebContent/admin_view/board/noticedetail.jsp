@@ -7,7 +7,7 @@
 <%
 	NoticeBbsDto notice = (NoticeBbsDto) request.getAttribute("noticeBbs");
 
-	ManagerMemberDto mrgMem = (ManagerMemberDto) session.getAttribute("managerLogin");
+	//ManagerMemberDto mrgMem = (ManagerMemberDto) session.getAttribute("managerLogin");
 
 	String sdate = notice.getWdate().substring(0, 10);
 	String savePath = request.getServletContext().getRealPath("/upload");
@@ -46,8 +46,8 @@
 								|| str.equals("gif") || str.equals("GIF")) {
 				%>
 				<p class="card-text">
-					<img
-						src="http://localhost:8090/AirFreshProject/upload/<%=notice.getTempfile()%>.<%=str%>">
+					<img 
+						src="http://localhost:8090/AirFreshProject/upload/<%=notice.getTempfile()%>.<%=str%>" width = "100%">
 				</p>
 				<%
 					}

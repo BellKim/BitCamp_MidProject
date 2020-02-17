@@ -6,7 +6,7 @@
 
 <%
 	List<NoticeBbsDto> list = (List<NoticeBbsDto>) request.getAttribute("noticeList");
-	ManagerMemberDto mrgMem = (ManagerMemberDto) session.getAttribute("managerLogin");
+	//ManagerMemberDto mrgMem = (ManagerMemberDto) session.getAttribute("managerLogin");
 
 	int len = (int)request.getAttribute("len");
 	System.out.println("총 글의 갯수 " + len);
@@ -97,7 +97,11 @@
 							NoticeBbsDto notice = list.get(i);
 				%>
 				<tr align="center">
+				<%
+			if (mrgMem.getMgr_auth() == 0) { // 왕관리자일 경우 
+				%>
 					<td><input type = "checkbox" name = "delck" value = "<%=notice.getNoti_index()%>"></td>
+					<%} %>
 					<th><%=i + 1%></th>
 					<td align="left">
 						<%
