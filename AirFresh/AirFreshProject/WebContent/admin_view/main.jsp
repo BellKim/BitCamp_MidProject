@@ -32,7 +32,7 @@
 						<li><a
 							href="<%=request.getContextPath()%>/noticedetail?command=admin&noti_index=<%=list.get(i).getNoti_index()%>">
 								<%=list.get(i).getNoti_title()%></a></li>
-						<%
+						<%		
 								}
 							}else{
 								%>

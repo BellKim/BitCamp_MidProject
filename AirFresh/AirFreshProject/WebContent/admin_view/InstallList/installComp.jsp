@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-<p>나의 설치 리스트 보기 </p>
+<p>나의 완료된 설치 리스트 보기 </p>
 </body>
 </html>

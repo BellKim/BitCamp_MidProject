@@ -1,4 +1,4 @@
-package controller.InstallController;
+package controller.ManagerController;
 
 import java.io.IOException;
 
@@ -10,22 +10,17 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class installConfirm
+ * Servlet implementation class mgrMyPage
  */
-@WebServlet("/installConfirm")
-public class installConfirm extends HttpServlet {
-
+@WebServlet("/mgrMyPage")
+public class mgrMyPage extends HttpServlet {
+	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
 		proc(request, response);
-		
 	}
 
-	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
 		proc(request, response);
-		
 	}
 
 	
@@ -35,7 +30,7 @@ public class installConfirm extends HttpServlet {
 			String command = request.getParameter("command");
 			if(command.equals("home")) {
 				//나의 as리스트 메인으로 연결 
-				forward("./admin_view/InstallList/installConfirm.jsp", request, response);
+				forward("./admin_view/member/MyPage.jsp", request, response);
 			}
 			if(command.equals("getList")) {
 				//
@@ -50,7 +45,4 @@ public class installConfirm extends HttpServlet {
 		RequestDispatcher dispatch = req.getRequestDispatcher(url);
 		dispatch.forward(req, resp);	
 	}
-	
-	
-	
 }

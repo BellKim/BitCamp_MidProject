@@ -6,6 +6,8 @@
 	    ManagerMemberDto mrgMem = (ManagerMemberDto) session.getAttribute("managerLogin");   
     
     %>
+    
+    <!-- 직원들 마이페이지 안되어있음!!  2020/02/17 -->
 <!DOCTYPE html>
 <html>
 <head>
@@ -81,15 +83,18 @@
 								<i class="fas fa-chart-area"></i>
 							공지사항
 						</a> 
+						<a class="nav-link" href="<%=request.getContextPath()%>/mgrMyPage?command=home">
+								<i class="fas fa-table"></i>
+							 마이페이지</a>
 						<a class="nav-link" href="<%=request.getContextPath()%>/InstallController?command=install">
 								<i class="fas fa-table"></i>
-							 렌탈리스트</a>
-						<a class="nav-link" href="<%=request.getContextPath()%>/InstallController">
-								<i class="fas fa-table"></i>
-							 AS리스트</a>
-						<a class="nav-link" href="<%=request.getContextPath()%>/">
+							 AS리스트 선택하기</a>
+						<a class="nav-link" href="<%=request.getContextPath()%>/installConfirm?command=home">
 								<i class="fas fa-table"></i>
 							 나의 AS리스트</a>
+						<a class="nav-link" href="<%=request.getContextPath()%>/installcompController?command=home">
+								<i class="fas fa-table"></i>
+							 나의 완료 AS리스트</a>
 					</div>
 					
 					<%} else if (mrgMem.getMgr_auth() == 2){ %>
@@ -99,15 +104,18 @@
 								<i class="fas fa-chart-area"></i>
 							공지사항
 						</a> 
+						<a class="nav-link" href="<%=request.getContextPath()%>/mgrMyPage?command=home">
+								<i class="fas fa-table"></i>
+							마이페이지</a>
 						<a class="nav-link" href="<%=request.getContextPath()%>/InstallController?command=install">
 								<i class="fas fa-table"></i>
-							 렌탈리스트</a>
-						<a class="nav-link" href="<%=request.getContextPath()%>/InstallController">
-								<i class="fas fa-table"></i>
-							 설치 리스트</a>
-					<a class="nav-link" href="<%=request.getContextPath()%>/installConfirm?command=home">
+							 설치 리스트 선택하기</a>
+						<a class="nav-link" href="<%=request.getContextPath()%>/installConfirm?command=home">
 								<i class="fas fa-table"></i>
 							 나의 설치 리스트</a>
+						<a class="nav-link" href="<%=request.getContextPath()%>/installcompController?command=home">
+								<i class="fas fa-table"></i>
+							 나의 완료 설치 리스트</a>	 
 					</div>
 					<%} %>
 				</div>
