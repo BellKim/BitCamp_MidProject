@@ -61,6 +61,28 @@
 			$("#loginInfo").submit();
 		}
 	});
+		
+		var user_id = $.cookie("user_id");
+		if(user_id != null){			
+			$("#mem_id").val( user_id );
+			$("#chk_save_id").attr("checked", "checked");
+		}
+
+		$("#chk_save_id").click(function() {
+			
+			if( $("#chk_save_id").is(":checked") ){			
+				if( $("#mem_id").val().trim() == "" ){
+					alert("ID를 입력해 주십시오");
+					$("#chk_save_id").prop("checked", false);			
+				}else{					
+					$.cookie("user_id", $("#mem_id").val().trim(), {expires:7, path:'./'});
+				}
+			}
+			else{			
+				$.removeCookie("user_id", {path:'./'});
+			}
+			
+		});
 
 	var user_id = $.cookie("user_id");
 	if (user_id != null) {
