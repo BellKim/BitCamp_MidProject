@@ -59,10 +59,10 @@
 						<a class="nav-link" href="<%=request.getContextPath()%>/showMrgMember">
 								<i class="fas fa-table"></i>
 							직원리스트</a>
-						<a class="nav-link" href="tables.html">
+						<a class="nav-link" href="<%=request.getContextPath()%>/memberlist">
 								<i class="fas fa-table"></i>
 							회원리스트</a>
-						<a class="nav-link" href="<%=request.getContextPath()%>/InstallController?command=install">
+						<a class="nav-link" href="<%=request.getContextPath()%>/rentallist">
 								<i class="fas fa-table"></i>
 							 렌탈리스트</a>
 						<a class="nav-link" href="<%=request.getContextPath()%>/InstallController?command=install">
@@ -87,6 +87,9 @@
 						<a class="nav-link" href="<%=request.getContextPath()%>/InstallController">
 								<i class="fas fa-table"></i>
 							 AS리스트</a>
+						<a class="nav-link" href="<%=request.getContextPath()%>/">
+								<i class="fas fa-table"></i>
+							 나의 AS리스트</a>
 					</div>
 					
 					<%} else if (mrgMem.getMgr_auth() == 2){ %>
@@ -101,7 +104,10 @@
 							 렌탈리스트</a>
 						<a class="nav-link" href="<%=request.getContextPath()%>/InstallController">
 								<i class="fas fa-table"></i>
-							 AS리스트</a>
+							 설치 리스트</a>
+					<a class="nav-link" href="<%=request.getContextPath()%>/InstallController">
+								<i class="fas fa-table"></i>
+							 나의 설치 리스트</a>
 
 					</div>
 					<%} %>

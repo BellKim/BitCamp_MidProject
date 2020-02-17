@@ -7,7 +7,7 @@
 	//ManagerMemberDto mrgMem = (ManagerMemberDto) session.getAttribute("managerLogin");
 %>
 <%@ include file="./../include/header.jsp"%>
-<div class="container">
+<div class="container-fluid">
 	<h1 class="mt-4 mb-3" >공지사항</h1>
 		<hr>
 		<form
@@ -43,6 +43,7 @@
 				</div>
 				<div align="center" style="padding-bottom : 10px;">
 					<button type="submit" class="btn btn-primary">글쓰기</button>
+					<button type="button" class="btn btn-primary" onclick="location.href='<%=request.getContextPath() %>/noticelist?command=admin'">취소</button>
 				</div>
 			</fieldset>
 		</form>

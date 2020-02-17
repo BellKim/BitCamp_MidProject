@@ -25,7 +25,7 @@
 %>
 
 <%@ include file="./../include/header.jsp" %>
-<div class="container">
+<div class="container-fluid">
 	<h1 class="mt-4 mb-3" >공지사항</h1>
 	<form id = "noticelistForm" method="post">
 		<input type = "hidden" name = "command" value ="multiDelete">
