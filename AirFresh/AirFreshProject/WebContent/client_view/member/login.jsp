@@ -32,7 +32,7 @@
 						<div
 							class="form-group d-flex align-items-center justify-content-between mt-4 mb-0">
 							<a class="small"
-								href="<%=request.getContextPath()%>/memlogin?command=idpw">아이디·패스워드
+								href="<%=request.getContextPath() %>/findidpw?command=searchidpw">아이디·패스워드
 								찾기</a>
 							<button type="button" class="btn btn-primary" id="btnlogin">로그인</button>
 						</div>
@@ -41,17 +41,12 @@
 				</div>
 				<div class="card-footer text-center">
 					<div class="small">
-						<a href="<%=request.getContextPath()%>/memlogin?command=terms'">회원가입</a>
+						<a href="<%=request.getContextPath() %>/addmem?command=regi">회원가입</a>
 					</div>
 				</div>
 			</div>
 		</div>
-				<button type="button" id="btnlogin">로그인</button>
-			<div>
-				<input type="button" value="아이디·패스워드 찾기" id="_btnidpw" onclick="location.href='<%=request.getContextPath() %>/findidpw?command=searchidpw'">
-				<input type="button" value="회원가입" id="_btnJoin" onclick="location.href='<%=request.getContextPath() %>/addmem?command=regi'">
-			</div>		
-		</form>
+	
 	</div>
 </div>
 
@@ -68,48 +63,5 @@
 		}
 	});
 
-	var user_id = $.cookie("user_id");
-	if (user_id != null) {
-		$("#mem_id").val(user_id);
-		$("#chk_save_id").attr("checked", "checked");
-/* $("#btnlogin").click(function () ) {
-	$.ajax({
-		type:"post",
-		url:"memlogin",
-		data:{ "id":$("#mem_id").val(), "pw":$("#mem_pw").val() },
-		success:function( data ){
-			alert("안녕하세요 ♥" + $("#mem_name").val() + "♥님");
-		},
-		error:function(){
-			alert("로그인 실패!");
-		}
-	});
-} */
-
-$("#btnlogin").click(function () {
-	if( $("#mem_id").val().trim() == "" ){
-		alert("id를 입력해 주십시오");
-		$("#mem_id").focus();
-	}
-
-	$("#chk_save_id").click(function() {
-
-		if ($("#chk_save_id").is(":checked")) {
-			if ($("#mem_id").val().trim() == "") {
-				alert("ID를 입력해 주십시오");
-				$("#chk_save_id").prop("checked", false);
-			} else {
-				$.cookie("user_id", $("#mem_id").val().trim(), {
-					expires : 7,
-					path : './'
-				});
-			}
-		} else {
-			$.removeCookie("user_id", {
-				path : './'
-			});
-		}
-
-	});
 </script>
 <%@ include file="./../include/footer.jsp"%>
