@@ -127,7 +127,8 @@
 
 						if(d=="true"){
 							td.eq(1).text("구매취소");
-							td.eq(3).children().html("취소완료"); 
+							td.eq(3).children().removeAttr('href');
+							td.eq(3).children().text("취소완료"); 
 							td.eq(4).children().text(" "); 
 							//var a = td.eq(1).children().text();
 							//alert("a: "+a);
