@@ -16,9 +16,9 @@
 <body>
 <h3>(마이페이지)</h3>
 <%
-	String isS = request.getParameter("isS");
+	String command = request.getParameter("command");
 
-	if(isS.equals("true")){
+	if(command.equals("true")){
 %>
 		<a href="<%=request.getContextPath() %>/printAsApp?id=<%=mem.getMem_id()%>">수리내역</a>
 <%

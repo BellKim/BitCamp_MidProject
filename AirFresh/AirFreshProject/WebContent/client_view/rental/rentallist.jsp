@@ -59,57 +59,35 @@
 					} else {
 						for (int i = 0; i < list.size(); i++) {
 							PurchaseNameDto dto = list.get(i);
+							
+							if(dto.getOrder_auth()==0){	
 				%>
 				<tr align="center">
 					<td><%=dto.getPur_date() %></td>
 					<td><%=dto.getIns_date()%></td>
 					<td>	<img src="<%= request.getContextPath() %>/client_view/model/prd_detail_img/<%=dto.getPrd_model_name() %>_m1.png" alt="" style="width: 40px;height: 40px;">
 						<b><%=dto.getPrd_name()%></b> (<%=dto.getPrd_model_name() %>)</td>
-					<td><a href="delPur?seq=<%=dto.getPur_index() %>">구매취소</a></td>
+					<td><a href="delPur?seq=<%=dto.getPur_index() %>" id="_delPer">구매취소</a></td>
 					<td><a href="asAppPage?seq=<%= dto.getPur_index()%>&prd_name=<%=dto.getPrd_name() %>">A/S신청</a></td>
-				</tr>
+				</tr>	
 				<%
+							} else if (dto.getOrder_auth()==1){	//구매취소된 주문일때
+				%>
+					<tr align="center">
+					<td><%=dto.getPur_date() %></td>
+					<td>구매취소</td>
+					<td>	<img src="<%= request.getContextPath() %>/client_view/model/prd_detail_img/<%=dto.getPrd_model_name() %>_m1.png" alt="" style="width: 40px;height: 40px;">
+						<b><%=dto.getPrd_name()%></b> (<%=dto.getPrd_model_name() %>)</td>
+					<td>취소완료</td>
+					<td>-----</td>
+					</tr>	
+				<%
+							}//else if문종료
 						}//for문종료
-					}//ifesle문 종료
+					}//else문 종료
 				%>
 			</tbody>
 		</table>
-		
 	</div>
-	<%-- <table border="1">
-		<tr>
-			<td>번호</td><td>구매일</td><td>설치희망일</td><td>제품index</td><td>상품명</td><td>[구매취소]</td><td>A/S신청</td>
-		</tr>
-			<% 
-				for(int i=0; i<list.size(); i++)  { 
-					PurchaseNameDto pur = list.get(i);
-					
-			%>
-				<tr>
-					<td><%= i+1 %></td>
-					<td><%= pur.getPur_date() %></td>
-					<td><%= pur.getIns_date() %></td>
-					<td><%= pur.getPrd_index() %></td>
-					<td><%= pur.getPrd_name() %></td>
-					<% if(pur.getOrder_auth()==0){ 
-						//구매중일때
-					%>
-						<td><a href="delPur?seq=<%=pur.getPur_index() %>">[구매취소]</a></td>
-						<td><a href="asAppPage?seq=<%= pur.getPur_index()%>&prd_name=<%=pur.getPrd_name() %>">[A/S신청]</a></td>
-					<%	
-						} else if(pur.getOrder_auth()==1) {
-						//구매취소했을때
-					%>
-						<td>취소된 구매</td>
-						<td>----</td>
-					<%
-						} 
-					%>
-				</tr>
-			<%
-				}
-			%>
-	</table>
-	 --%>
 
 <%@ include file="./../include/footer.jsp"%>

@@ -1,3 +1,4 @@
+<%@page import="Dto.MemberDto"%>
 <%@page import="Dto.ManagerMemberDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -71,9 +72,9 @@
               마이페이지
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
-<!--  -->     <a class="dropdown-item" href="<%=request.getContextPath()%>/login?command=login">내 정보</a>
-              <a class="dropdown-item" href="<%=request.getContextPath()%>/printPurchase?id=bbb">렌탈 내역</a>
-              <a class="dropdown-item" href="#">AS 내역</a>
+              <a class="dropdown-item" href="#">내 정보</a>
+              <a class="dropdown-item" href="<%=request.getContextPath()%>/printPurchase">렌탈 내역</a>
+              <a class="dropdown-item" href="<%=request.getContextPath()%>/printAsApp">AS 내역</a>
             </div>
           </li>
         </ul>

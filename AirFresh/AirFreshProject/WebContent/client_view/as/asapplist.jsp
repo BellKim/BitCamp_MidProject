@@ -7,33 +7,58 @@
  	List<AsAppDto> list = (List<AsAppDto>)request.getAttribute("list");
  	System.out.println("asapplist list갯수: "+list.size());
  %>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
-<h1>수리신청내역</h1>
-	<table border="1">
-			<tr>
-				<td>a/s요청제품</td><td>a/s희망일</td><td>제목</td><td>수리취소</td>
-			</tr>
-				<% 
-					for(int i=0; i<list.size(); i++){
-						AsAppDto dto = list.get(i);
-			    %>
-	
-			<tr>
-				<td><%=dto.getPrd_name() %></td>
-				<td><%=dto.getReq_date() %></td>
-				<td><a href="asDetail?seq=<%=dto.getAsSeq() %>"><%=dto.getAsTitle() %></a></td>
-				<td><a href="delAsApp?seq=<%=dto.getAsSeq()%>">[수리취소]</a></td>
-			</tr>
-	
-			<%
-				}
-			%>  
-		</table>
-</body>
-</html>
+<%@ include file="./../include/header.jsp"%>
+	<div class="container" style="margin-bottom: 100px;">
+		 <h1 class="mt-4 mb-3">수리신청내역
+      <small>AS Application List</small>
+    </h1>
+    
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item">
+        <a href="#">마이페이지</a>
+      </li>
+      <li class="breadcrumb-item active">as신청내역</li>
+    </ol>
+    
+    		<div style="clear: left"></div>
+			<table class="table table-hover">
+				<col width="200">
+				<col width="200">
+				<col width="300">
+				<col width="100">
+			<thead>
+					<tr align="center">
+						<th scope="col">a/s요청제품</th>
+						<th scope="col">a/s희망일</th>
+						<th scope="col">제목</th>
+						<th scope="col">수리취소</th>
+					</tr>
+			</thead>
+			<tbody>
+					<%
+						if(list.size()==0|| list ==null){
+					%>
+						<tr align="center">
+							<th colspan="4">AS신청내역이 없습니다.</th>
+						</tr>
+					
+						<% } else {
+							for(int i=0; i<list.size(); i++){
+								AsAppDto dto = list.get(i);
+					    %>
+			
+					<tr align="center">
+						<td><%=dto.getPrd_name() %></td>
+						<td><%=dto.getReq_date() %></td>
+						<td><a href="asDetail?seq=<%=dto.getAsSeq() %>"><%=dto.getAsTitle() %></a></td>
+						<td><a href="delAsApp?seq=<%=dto.getAsSeq()%>">[수리취소]</a></td>
+					</tr>
+			
+					<%
+							}//for문종료
+						}//else문종료
+					%>  
+					</tbody>
+				</table>
+		</div>
+<%@ include file="./../include/footer.jsp"%>
