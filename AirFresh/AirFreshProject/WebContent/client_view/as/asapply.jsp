@@ -122,7 +122,7 @@
 		 $( "#datepicker" ).datepicker(
 	    			{ minDate: 0, 
 	    			  maxDate: "+1M +10D",
-	    			  dateFormat: "yy/mm/dd"
+	    			  dateFormat: "yy-mm-dd"
 	    });
 		 
 		 $("button").click(function() {

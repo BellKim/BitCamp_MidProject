@@ -8,6 +8,8 @@
 	pageEncoding="UTF-8"%>
 <%@ include file="./../include/header.jsp"%>
 <%
+
+
 	MemberDto mem = (MemberDto) session.getAttribute("login");
 	ModelDto model = (ModelDto) session.getAttribute("model");
 

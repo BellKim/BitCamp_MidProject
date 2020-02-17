@@ -112,6 +112,8 @@ public class InstallController extends HttpServlet implements Serializable{
 				resp.setCharacterEncoding("UTF-8");
 				
 				String res = "{ isS: 'true'}";
+			
+				
 				//변환한 json형식을 리턴 
 				resp.getWriter().write(res);
 				

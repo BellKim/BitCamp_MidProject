@@ -142,7 +142,7 @@ public class updateAsApplication extends HttpServlet {
 				}
 				
 				req.setAttribute("dto", dto);
-				resp.sendRedirect("./client_view/as/asappcomplete.jsp?isS="+isS);
+				resp.sendRedirect("./client_view/as/asappcomplete.jsp?command="+isS);
 				
 			}
 
