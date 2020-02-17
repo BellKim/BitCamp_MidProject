@@ -2,12 +2,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 	
-	
-<%
-HttpSession adminlogincheck = request.getSession();
-ManagerMemberDto managerMem = (ManagerMemberDto)session.getAttribute("managerLogin");
-System.out.println(managerMem);
-%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -39,8 +33,9 @@ System.out.println(managerMem);
         <div class="topSec clearfix">
           <ul class="clearfix">
              <li><a href="<%=request.getContextPath() %>/login?command=login" id="loginBtn">로그인</a></li>
+             
              <li><a href="#" id="logoutBtn">로그아웃</a></li>
-             <li><a href="<%=request.getContextPath()%>/addmem?command=regi">회원가입</a></li>
+             <li><a href="<%=request.getContextPath()%>/addmem?command=regi" id ="regiBtn">회원가입</a></li>
           </ul>
         </div>
         <ul class="navbar-nav ml-auto">
@@ -95,9 +90,11 @@ System.out.println(managerMem);
   		if('<%=request.getSession().getAttribute("login") %>' != 'null'){
 			$("#loginBtn").hide();
 			$("#logoutBtn").show();
+			$("#regiBtn").hide();
 		}else if('<%=request.getSession().getAttribute("login") %>' == 'null'){
 			$("#loginBtn").show();
 			$("#logoutBtn").hide();
+			$("#regiBtn").show();
 		}
   		
   		

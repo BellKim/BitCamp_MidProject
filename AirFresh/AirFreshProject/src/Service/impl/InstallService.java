@@ -58,4 +58,15 @@ public class InstallService implements InstallServiceInterface,Serializable {
 	public List<InstallDto> getGitaNullList(String date){
 		return dao.getGitaNullList(date);
 	}
+	
+	
+	//완료가 안된 MyList
+	public List<InstallDto> getNoCompMyList(int mgr_index){
+		return dao.getNoCompMyList(mgr_index);
+	}
+		
+	//완료된 MyList
+	public List<InstallDto> getCompMyList(int mgr_index){
+		return dao.getCompMyList(mgr_index);
+	}
 }

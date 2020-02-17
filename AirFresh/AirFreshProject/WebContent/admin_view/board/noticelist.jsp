@@ -6,7 +6,7 @@
 
 <%
 	List<NoticeBbsDto> list = (List<NoticeBbsDto>) request.getAttribute("noticeList");
-	ManagerMemberDto mrgMem = (ManagerMemberDto) session.getAttribute("managerLogin");
+	//ManagerMemberDto mrgMem = (ManagerMemberDto) session.getAttribute("managerLogin");
 
 	int len = (int)request.getAttribute("len");
 	System.out.println("총 글의 갯수 " + len);
@@ -25,7 +25,7 @@
 %>
 
 <%@ include file="./../include/header.jsp" %>
-<div class="container">
+<div class="container-fluid">
 	<h1 class="mt-4 mb-3" >공지사항</h1>
 	<form id = "noticelistForm" method="post">
 		<input type = "hidden" name = "command" value ="multiDelete">
@@ -97,7 +97,11 @@
 							NoticeBbsDto notice = list.get(i);
 				%>
 				<tr align="center">
+				<%
+			if (mrgMem.getMgr_auth() == 0) { // 왕관리자일 경우 
+				%>
 					<td><input type = "checkbox" name = "delck" value = "<%=notice.getNoti_index()%>"></td>
+					<%} %>
 					<th><%=i + 1%></th>
 					<td align="left">
 						<%

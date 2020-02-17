@@ -391,5 +391,11 @@ public class MemberDao implements MemberDaoInterface{
 		return list;
 	}
 
+	@Override
+	public List<MemberDto> getMemberList(String opt, String keyword, int page) {
+
+		return null;
+	}
+
 
 }
