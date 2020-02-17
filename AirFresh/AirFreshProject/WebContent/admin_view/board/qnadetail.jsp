@@ -4,7 +4,7 @@
     pageEncoding="UTF-8"%>
     <%
 QnaBbsDto qna = (QnaBbsDto) request.getAttribute("qnadto");
-ManagerMemberDto mrgMem = (ManagerMemberDto) session.getAttribute("managerLogin");
+//ManagerMemberDto mrgMem = (ManagerMemberDto) session.getAttribute("managerLogin");
 String sdate = qna.getWdate().substring(0, 10);
 %>
 <%@ include file="./../include/header.jsp"%>

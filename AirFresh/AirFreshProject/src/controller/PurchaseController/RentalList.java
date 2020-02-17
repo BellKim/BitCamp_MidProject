@@ -28,7 +28,7 @@ public class RentalList extends HttpServlet {
 		singleton s = singleton.getInstance();
 		
 		List<PurchaseDto> list = s.ps.getPurchaseList();
-		
+		req.setAttribute("rentalList", list);
 		ProjectUtil.forward("./admin_view/rental/rentallist.jsp", req, resp);
 		
 	}

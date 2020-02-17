@@ -53,7 +53,7 @@
             <h4 class="card-title">
               <a href="<%=request.getContextPath()%>/modelDetail?seq=10003&command=detail">U필터 공기청정기</a>
             </h4>
-            <p class="card-text">월 <span style ="font-size : 2em;font-weight: 500;">32,900</span>원</p>
+            <p class="card-text">월 <span style ="font-size : 2em;font-weight: 500; color:#d80546;">32,900</span>원</p>
           </div>
         </div>
       </div>
@@ -65,7 +65,7 @@
             <h4 class="card-title">
               <a href="<%=request.getContextPath()%>/modelDetail?seq=10004&command=detail">미니언즈 공기청정기</a>
             </h4>
-            <p class="card-text">월 <span style ="font-size : 2em;font-weight: 500; ">25,900</span>원</p>
+            <p class="card-text">월 <span style ="font-size : 2em;font-weight: 500; color:#d80546;">25,900</span>원</p>
           </div>
         </div>
       </div>
@@ -76,7 +76,7 @@
             <h4 class="card-title">
               <a href="<%=request.getContextPath()%>/modelDetail?seq=10000&command=detail">모션공기청정기</a>
             </h4>
-            <p class="card-text">월 <span style ="font-size : 2em; font-weight: 500;">29,900</span>원</p>
+            <p class="card-text">월 <span style ="font-size : 2em; font-weight: 500; color:#d80546;">29,900</span>원</p>
           </div>
         </div>
       </div>      

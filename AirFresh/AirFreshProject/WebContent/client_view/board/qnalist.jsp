@@ -112,7 +112,7 @@
 	<div>
 	<%if(mem==null){ %>
 		<button type="button" class="btn btn-primary"
-			onclick="location.href='<%=request.getContextPath()%>/addQna?command=add'">로그인보내기</button>
+			onclick="login()">글쓰기</button>
 	<%} else {%>
 		<button type="button" class="btn btn-primary"
 			onclick="location.href='<%=request.getContextPath()%>/addQna?command=add'">글쓰기</button>	
@@ -172,6 +172,11 @@
 			alert("작성자 외에 열람하실 수 없습니다.");
 			return;
 		}
+	}
+	
+	function login() {
+		alert("로그인이 필요합니다.");
+		location.href="<%=request.getContextPath()%>/memlogin";
 	}
 
 	</script>
