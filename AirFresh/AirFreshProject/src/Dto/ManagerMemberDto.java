@@ -26,6 +26,7 @@ public class ManagerMemberDto implements Serializable {
 	private String mgr_name; 
 	private int mgr_loc; 
 	private int mgr_cell;
+	private String  mgr_joinDate;
 	private String mgr_delDate;
 	private int mgr_del;
 	
@@ -43,7 +44,7 @@ public class ManagerMemberDto implements Serializable {
 	}
 	
 	public ManagerMemberDto(int mgr_auth, String mgr_id, String mgr_pw, String mgr_name, int mgr_loc, int mgr_cell,
-			String mgr_delDate, int mgr_del) {
+			String mgr_joinDate, String mgr_delDate, int mgr_del) {
 		super();
 		this.mgr_auth = mgr_auth;
 		this.mgr_id = mgr_id;
@@ -51,14 +52,15 @@ public class ManagerMemberDto implements Serializable {
 		this.mgr_name = mgr_name;
 		this.mgr_loc = mgr_loc;
 		this.mgr_cell = mgr_cell;
+		this.mgr_joinDate = mgr_joinDate;
 		this.mgr_delDate = mgr_delDate;
 		this.mgr_del = mgr_del;
 	}
 	
-	
+
 
 	public ManagerMemberDto(int mgr_index, int mgr_auth, String mgr_id, String mgr_pw, String mgr_name, int mgr_loc,
-			int mgr_cell) {
+			int mgr_cell, String  mgr_joinDate) {
 		super();
 		this.mgr_index = mgr_index;
 		this.mgr_auth = mgr_auth;
@@ -67,10 +69,11 @@ public class ManagerMemberDto implements Serializable {
 		this.mgr_name = mgr_name;
 		this.mgr_loc = mgr_loc;
 		this.mgr_cell = mgr_cell;
+		this.mgr_joinDate=mgr_joinDate;
 	}
 
 	public ManagerMemberDto(int mgr_index, int mgr_auth, String mgr_id, String mgr_pw, String mgr_name, int mgr_loc,
-			int mgr_cell, String mgr_delDate, int mgr_del) {
+			int mgr_cell, String mgr_joinDate, String mgr_delDate, int mgr_del) {
 		super();
 		this.mgr_index = mgr_index;
 		this.mgr_auth = mgr_auth;
@@ -79,6 +82,7 @@ public class ManagerMemberDto implements Serializable {
 		this.mgr_name = mgr_name;
 		this.mgr_loc = mgr_loc;
 		this.mgr_cell = mgr_cell;
+		this.mgr_joinDate = mgr_joinDate;
 		this.mgr_delDate = mgr_delDate;
 		this.mgr_del = mgr_del;
 	}
@@ -145,6 +149,14 @@ public class ManagerMemberDto implements Serializable {
 	}
 	
 	
+	public String getMgr_joinDate() {
+		return mgr_joinDate;
+	}
+
+	public void setMgr_joinDate(String mgr_joinDate) {
+		this.mgr_joinDate = mgr_joinDate;
+	}
+
 	public String getMgr_delDate() {
 		return mgr_delDate;
 	}

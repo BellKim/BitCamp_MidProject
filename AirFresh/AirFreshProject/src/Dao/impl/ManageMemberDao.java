@@ -97,10 +97,11 @@ public class ManageMemberDao implements ManageMemberDaoInterface {
 				  String mgr_name = rs.getString("mgr_name"); 
 				  int mgr_loc = rs.getInt("mgr_loc");
 				  int mgr_cell = rs.getInt("mgr_cell");
+				  String  mgr_joinDate = rs.getString("mgr_joinDate");
 				  String mgr_delDate = rs.getString("mgr_delDate");
 				  int mgr_del = rs.getInt("mgr_del");
 				  
-				  list.add(new ManagerMemberDto(mgr_index, mgr_auth, mgr_id, mgr_pw, mgr_name, mgr_loc, mgr_cell, mgr_delDate, mgr_del));
+				  list.add(new ManagerMemberDto(mgr_index, mgr_auth, mgr_id, mgr_pw, mgr_name, mgr_loc, mgr_cell, mgr_joinDate, mgr_delDate, mgr_del));
 				  
 			}//end while()
 			System.out.println(" 5/6 receiveManagerMemberAll success ");
@@ -156,12 +157,13 @@ public class ManageMemberDao implements ManageMemberDaoInterface {
 				  String mgr_name = rs.getString("mgr_name"); 
 				  int mgr_loc = rs.getInt("mgr_loc");
 				  int mgr_cell = rs.getInt("mgr_cell");
+				  String mgr_joinDate = rs.getString("mgr_joinDate");
 				  String mgr_delDate = rs.getString("mgr_delDate");
 				  int mgr_del = rs.getInt("mgr_del");
 				  
-				  System.out.println("!!!!!!!!!!!!!!!!!"+mgr_index+" "+mgr_auth+" "+mgr_id+" "+mgr_pw+" "+mgr_name+" "+mgr_loc+" "+mgr_cell+""+ mgr_delDate + " "+mgr_del);
+				  System.out.println("!!!!!!!!!!!!!!!!!"+mgr_index+" "+mgr_auth+" "+mgr_id+" "+mgr_pw+" "+mgr_name+" "+mgr_loc+" "+mgr_cell+" "+mgr_joinDate+" "+ mgr_delDate + " "+mgr_del);
 				  
-				  dto = new ManagerMemberDto(mgr_index, mgr_auth, mgr_id, mgr_pw, mgr_name, mgr_loc, mgr_cell, mgr_delDate, mgr_del);
+				  dto = new ManagerMemberDto(mgr_index, mgr_auth, mgr_id, mgr_pw, mgr_name, mgr_loc, mgr_cell, mgr_joinDate, mgr_delDate, mgr_del);
 				  
 			}
 			
@@ -216,11 +218,12 @@ public class ManageMemberDao implements ManageMemberDaoInterface {
 			  String mgr_name = rs.getString("mgr_name"); 
 			  int mgr_loc = rs.getInt("mgr_loc");
 			  int mgr_cell = rs.getInt("mgr_cell");
+			  String mgr_joinDate = rs.getString("mgr_joinDate");
 			  String mgr_delDate = rs.getString("mgr_delDate");
 			  int mgr_del = rs.getInt("mgr_del");
 			  System.out.println("!!!receiveManagerMemberSelect!!!"+mgr_index+" "+mgr_auth+" "+mgr_id+" "+mgr_pw+" "+mgr_name+" "+mgr_loc+" "+mgr_cell+" "+mgr_del);
 			  
-			  dto = new ManagerMemberDto(mgr_index, mgr_auth, mgr_id, mgr_pw, mgr_name, mgr_loc, mgr_cell, mgr_delDate, mgr_del);
+			  dto = new ManagerMemberDto(mgr_index, mgr_auth, mgr_id, mgr_pw, mgr_name, mgr_loc, mgr_cell, mgr_joinDate,  mgr_delDate, mgr_del);
 			  
 		}
 			

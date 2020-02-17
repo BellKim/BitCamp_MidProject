@@ -243,6 +243,7 @@ CREATE TABLE noticeBbs
 --  2020-02-18
 --	김종현
 --  mgr_delDate 맴버의 삭제 날짜를 남기기 위해서 칼럼추가. 
+--  mgr_joinDate 맴버 입사일 추가.
 CREATE TABLE managerMember
 (
     mgr_index    NUMBER(6)       NOT NULL, 
@@ -252,6 +253,7 @@ CREATE TABLE managerMember
     mgr_name     VARCHAR2(20)    NULL, 
     mgr_loc      NUMBER(3)       NULL, 
     mgr_cell     VARCHAR2(12)      NULL,
+    mgr_joinDate DATE			NULL,
     mgr_delDate	 DATE			NULL,
     mgr_del      NUMBER(1)       NULL, 
     CONSTRAINT MANAGERMEMBER_PK PRIMARY KEY (mgr_index)
