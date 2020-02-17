@@ -73,6 +73,11 @@ public class InstallController extends HttpServlet implements Serializable{
 				//달력 
 				installCarlender(req, resp);
 			}
+			
+			
+			if(command.equals("savet")) {
+				resp.sendRedirect("./admin_view/main.jsp"); 
+			}
 		}
 
 	}

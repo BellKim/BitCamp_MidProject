@@ -207,8 +207,10 @@
 						</tr>
 					</table>
 				</div>
-				
-				<div align="left" class="listdiv">
+			</div>
+			<div class="back2">
+				<br>
+				<div align="left" class="listdiv"  style="float: left; width: 600px;">
 					<br>
 					<h3>신청가능 목록</h3>
 					<table style="width: 100%" id="InstallTable" class="list">
@@ -222,15 +224,14 @@
 						</tr>
 					</table>
 				</div>
-			</div>
-			<div class="back2">
-				<br>
-				<font>예약 신청 목록</font>
-				<table style="width: 100%" id="basketList">
-					<col width="15"><col width="15"><col width="20"><col width="15"><col width="17">
-					<col width="10"><col width="8">
-				</table>
-				<button type="button" id="save" style="margin-left: 400px;">저장하기</button>
+				<div>
+					<font>예약 신청 목록</font>
+					<table style="width: 100%" id="basketList">
+						<col width="15"><col width="15"><col width="20"><col width="15"><col width="17">
+						<col width="10"><col width="8">
+					</table>
+					<button type="button" id="save" style="margin-left: 400px;">저장하기</button>
+				</div>
 			</div>
 		</div>
 		
@@ -384,7 +385,13 @@
 							alert("통신성공");
 							//배열 초기화 
 							insArr = [];
-							alert(data);
+							//alert(data);
+							if(data=="true"){
+								//alert("저장성공");
+								location.replace("<%=request.getContextPath() %>/InstallController?command=savet");
+							}else{
+								alert("저장실패");
+							}
 						},
 						error: function () {
 							alert("통신 실패");
