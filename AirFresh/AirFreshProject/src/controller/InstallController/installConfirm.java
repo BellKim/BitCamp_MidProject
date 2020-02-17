@@ -31,7 +31,16 @@ public class installConfirm extends HttpServlet {
 	
 	protected void proc(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		
+		if(request.getParameter("command") != null) {
+			String command = request.getParameter("command");
+			if(command.equals("home")) {
+				//나의 as리스트 메인으로 연결 
+			}
+			if(command.equals("getList")) {
+				//
+			}
+			
+		}
 	}
 	
 	protected void forward(String url, HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -40,5 +49,7 @@ public class installConfirm extends HttpServlet {
 		RequestDispatcher dispatch = req.getRequestDispatcher(url);
 		dispatch.forward(req, resp);	
 	}
+	
+	
 	
 }

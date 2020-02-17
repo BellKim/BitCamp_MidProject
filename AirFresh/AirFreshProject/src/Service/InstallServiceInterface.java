@@ -26,4 +26,11 @@ public interface InstallServiceInterface {
 	
 	//강남구, 성동구, 중랑구를 제외한 나머지 지역들의 Null 설치 리스트를 가져오는 메소드 
 	public List<InstallDto> getGitaNullList(String date);
+	
+	//완료가 안된 MyList
+	public List<InstallDto> getNoCompMyList(int mgr_index);
+	
+	//완료된 MyList
+	public List<InstallDto> getCompMyList(int mgr_index);
+	
 }

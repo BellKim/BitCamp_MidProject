@@ -105,10 +105,9 @@
 						<a class="nav-link" href="<%=request.getContextPath()%>/InstallController">
 								<i class="fas fa-table"></i>
 							 설치 리스트</a>
-					<a class="nav-link" href="<%=request.getContextPath()%>/InstallController">
+					<a class="nav-link" href="<%=request.getContextPath()%>/installConfirm?command=home">
 								<i class="fas fa-table"></i>
 							 나의 설치 리스트</a>
-
 					</div>
 					<%} %>
 				</div>

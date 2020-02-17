@@ -155,7 +155,7 @@ public class InstallController extends HttpServlet implements Serializable{
 				resp.setContentType("application/text");
 				resp.setCharacterEncoding("UTF-8");
 				
-				String res = "true";
+				String res = "True";
 				//변환한 json형식을 리턴 
 				resp.getWriter().write(res);
 			}else {
@@ -163,7 +163,7 @@ public class InstallController extends HttpServlet implements Serializable{
 				resp.setContentType("application/text");
 				resp.setCharacterEncoding("UTF-8");
 				
-				String res = "false";
+				String res = "False";
 				//변환한 json형식을 리턴 
 				resp.getWriter().write(res);
 			}

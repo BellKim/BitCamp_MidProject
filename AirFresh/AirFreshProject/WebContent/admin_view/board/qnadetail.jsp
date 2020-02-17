@@ -2,12 +2,14 @@
 <%@page import="Dto.QnaBbsDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%
+
+<%@ include file="./../include/header.jsp"%>
+<%
 QnaBbsDto qna = (QnaBbsDto) request.getAttribute("qnadto");
-ManagerMemberDto mrgMem = (ManagerMemberDto) session.getAttribute("managerLogin");
+//ManagerMemberDto mrgMem = (ManagerMemberDto) request.getSession().getAttribute("managerLogin");
+//위에  헤더 파일에서 ManagerMemberDto 객체의 이름을 'mrgMem'으로 사용하고 있어서 이름때문에 에러남 
 String sdate = qna.getWdate().substring(0, 10);
 %>
-<%@ include file="./../include/header.jsp"%>
 <div class="container">
 	<h1 class="mt-4 mb-3" >QnA</h1>
 	<div class="card mb-4">

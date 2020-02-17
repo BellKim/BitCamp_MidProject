@@ -412,13 +412,13 @@
 								seqArr: insArr,
 								/* 로그인 회원 index 추가  <-- 안해도 됨 controller 가서 session으로 뺴면 됨  */
 						},
-						datatype:"json",
-						success: function ( data ) {
+						datatype:"text",
+						success: function ( result ) {
 							alert("통신성공");
 							//배열 초기화 
 							insArr = [];
-							alert(data);
-							if(data=="true"){
+							alert(result);
+							if(result=="True"){
 								//alert("저장성공");
 								location.href="<%=request.getContextPath() %>/InstallController?command=savet";
 							}else{
