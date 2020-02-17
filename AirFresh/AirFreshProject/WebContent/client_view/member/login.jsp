@@ -32,7 +32,7 @@
 						<div
 							class="form-group d-flex align-items-center justify-content-between mt-4 mb-0">
 							<a class="small"
-								href="<%=request.getContextPath()%>/memlogin?command=idpw">아이디·패스워드
+								href="<%=request.getContextPath() %>/findidpw?command=searchidpw">아이디·패스워드
 								찾기</a>
 							<button type="button" class="btn btn-primary" id="btnlogin">로그인</button>
 						</div>
@@ -41,7 +41,7 @@
 				</div>
 				<div class="card-footer text-center">
 					<div class="small">
-						<a href="<%=request.getContextPath()%>/memlogin?command=terms'">회원가입</a>
+						<a href="<%=request.getContextPath() %>/addmem?command=regi">회원가입</a>
 					</div>
 				</div>
 			</div>
