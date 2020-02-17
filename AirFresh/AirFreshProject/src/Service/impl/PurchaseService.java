@@ -6,6 +6,7 @@ import Dao.PurchaseDaoInterface;
 import Dao.impl.PurchaseDao;
 import Dto.PurchaseDto;
 import Dto.PurchaseNameDto;
+import Dto.RentalDetailDto;
 import Service.PurchaseServiceInterface;
 
 public class PurchaseService implements PurchaseServiceInterface {
@@ -20,16 +21,6 @@ public class PurchaseService implements PurchaseServiceInterface {
 		return dao.purchaseDelete(pur_index);
 	}
 	
-	
-	/*
-	 * @Override public List<PurchaseDto> getPurchaseList() { return
-	 * dao.getPurchaseList(); }
-	 */
-
-	/*
-	 * @Override public List<PurchaseDto> memPurchaseList(String mem_id) { return
-	 * dao.memPurchaseList(mem_id); }
-	 */
 	@Override
 	public List<PurchaseNameDto> getPurchaseList() {
 		return dao.getPurchaseList();
@@ -44,10 +35,6 @@ public class PurchaseService implements PurchaseServiceInterface {
 	
 	
 	@Override
-	public PurchaseDto getPurchaseOne(int pur_index) {
-		return dao.getPurchaseOne(pur_index);
-	}
-	@Override
 	public List<PurchaseNameDto> getModelName(String mem_id) {
 		return dao.getModelName(mem_id);
 	}
@@ -60,6 +47,11 @@ public class PurchaseService implements PurchaseServiceInterface {
     public boolean userPurConfirm(String userID) {
     	return dao.userPurConfirm(userID);
     }
+	@Override
+	public RentalDetailDto getDetailDto(int pur_index) {
+		return dao.getDetail(pur_index);
+	}
+
 
 	
 	

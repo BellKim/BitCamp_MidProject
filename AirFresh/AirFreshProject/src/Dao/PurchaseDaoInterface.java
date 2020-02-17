@@ -4,6 +4,7 @@ import java.util.List;
 
 import Dto.PurchaseDto;
 import Dto.PurchaseNameDto;
+import Dto.RentalDetailDto;
 
 public interface PurchaseDaoInterface {
 
@@ -21,9 +22,9 @@ public interface PurchaseDaoInterface {
     //List<PurchaseDto> memPurchaseList(String mem_id);
 	List<PurchaseNameDto> memPurchaseList(String mem_id);
     
-    //구매 상세 dto 보기
-    PurchaseDto getPurchaseOne(int pur_index);
-    
+    //구매 상세 dto 보기 
+	RentalDetailDto getDetail(int pur_index);
+	    
     //model name뽑아오기
     List<PurchaseNameDto> getModelName(String mem_id);
     

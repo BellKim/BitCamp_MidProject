@@ -59,10 +59,11 @@
 
 						if (dto.getOrder_auth() == 0) {
 			%>
-			<tr align="center">
+			<tr align="center" >
 				<td><%=dto.getPur_date()%></td>
 				<td><%=dto.getIns_date()%></td>
-				<td><img
+				<td onclick="location.href='<%=request.getContextPath()%>/detailPur?seq=<%=dto.getPur_index() %>'" style="cursor: pointer;"
+				title="클릭하면 상세내역을 보실 수 있습니다."><img
 					src="<%=request.getContextPath()%>/client_view/model/prd_detail_img/<%=dto.getPrd_model_name()%>_m1.png"
 					alt="" style="width: 40px; height: 40px;"> <b><%=dto.getPrd_name()%></b>
 					(<%=dto.getPrd_model_name()%>)</td>
@@ -114,11 +115,8 @@
 					datatype : "text",
 					success : function(data) {
 						//alert("통신성공");
-						//data
-						//var d = JSON.stringify(data);
 						var d = JSON.parse(data);
 						//alert("data:"+data+"d: "+d);
-						
 						
 						var tr = del.parent().parent();
 						var td = tr.children();
@@ -130,19 +128,14 @@
 							td.eq(3).children().removeAttr('href');
 							td.eq(3).children().text("취소완료"); 
 							td.eq(4).children().text(" "); 
-							//var a = td.eq(1).children().text();
-							//alert("a: "+a);
-							//alert("true로 옴");
+							
 							console.log("클릭한 row의데이터:"+tr.text());
 							
 						} else {
 							alert("실패");
 							
 						} 
-						
-						
-					/* 	var tt = td.eq(3).children().text(); */
-						//alert(tt); 
+	
 					},
 					error : function() {
 						alert("통신실패");
