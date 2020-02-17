@@ -170,7 +170,7 @@ public class ManageMemberDao implements ManageMemberDaoInterface {
 			DBClose.close(psmt, conn, rs);
 		}
 		
-		
+		System.out.println("loginManagerMemberCehck RESULT =  "+dto);
 		return dto;
 		
 	}//end of loginManagerMemberCehck

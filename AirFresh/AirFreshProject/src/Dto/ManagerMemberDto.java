@@ -31,6 +31,10 @@ public class ManagerMemberDto implements Serializable {
 	
 	
 	
+	public ManagerMemberDto() {
+		super();
+	}
+
 	public ManagerMemberDto(String mgr_id, String mgr_pw) {
 		super();
 		this.mgr_id = mgr_id;
