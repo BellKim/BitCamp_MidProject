@@ -52,7 +52,8 @@ public class PurchaseService implements PurchaseServiceInterface {
 		return dao.getDetail(pur_index);
 	}
 
-
-	
+	public List<PurchaseNameDto> getModelName() {
+		return  dao.getModelName();
+	}
 	
 }

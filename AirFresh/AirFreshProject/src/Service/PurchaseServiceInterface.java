@@ -18,6 +18,9 @@ public interface PurchaseServiceInterface {
 	//List<PurchaseDto> getPurchaseList();
 	List<PurchaseNameDto> getPurchaseList();
 	
+	//관리자
+	List<PurchaseNameDto> getModelName();
+	
 	//회원별 구매 list 보기
 	//List<PurchaseDto> memPurchaseList(String mem_id);
 	List<PurchaseNameDto> memPurchaseList(String mem_id);

@@ -1,9 +1,9 @@
-<%@page import="Dto.PurchaseDto"%>
+<%@page import="Dto.PurchaseNameDto"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%
-	List<PurchaseDto> list = (List<PurchaseDto>) request.getAttribute("rentalList");
+	List<PurchaseNameDto> list = (List<PurchaseNameDto>) request.getAttribute("rentalList");
 %>
 
 <%!
@@ -31,7 +31,7 @@
 						onclick="deleteChecks(this.checked)"></th>
 					<th>번호</th>
 					<th>렌탈번호</th>
-					<th>제품번호</th>
+					<th>제품명</th>
 					<th>구매 아이디</th>
 					<th>비고</th>
 				</tr>
@@ -47,13 +47,13 @@
 				<%
 					} else {
 						for(int i = 0; i < list.size(); i++){
-							PurchaseDto purchase = list.get(i);
+							PurchaseNameDto purchase = list.get(i);
 				%>
 				<tr>
 					<td><input type = "checkbox" name = "delck" value = "<%=purchase.getPur_index()%>"></td>
 					<th><%=i+1 %></th>
 					<td><%=purchase.getPur_index() %></td>
-					<td><%=purchase.getPrd_index() %></td>
+					<td><%=purchase.getPrd_model_name() %></td>
 					<td><%=purchase.getMem_id() %></td>
 					<td><%=purchaseCancle(purchase.getOrder_auth()) %></td>
 				</tr>
