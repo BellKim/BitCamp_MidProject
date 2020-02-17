@@ -62,7 +62,8 @@
 							for (int i = 0; i < list.size(); i++) {
 								NoticeBbsDto notice = list.get(i);
 					%>
-					<tr align="center">
+					<tr align="center" onclick="location.href='<%=request.getContextPath()%>/noticedetail?command=user&noti_index=<%=notice.getNoti_index()%>'"
+					 style="cursor:pointer;">
 						<th><%=i + 1%></th>
 						<td align="left"><a
 							href="<%=request.getContextPath()%>/noticedetail?command=user&noti_index=<%=notice.getNoti_index()%>"><%=notice.getNoti_title()%></a>
