@@ -23,16 +23,20 @@ public class ManagerLogin extends HttpServlet {
 		System.out.println(" managerLogin service Now. ");
 		
 		//로그인 체크 합니다. 
+		//boolean isS = loginCheck(req, resp);
+		
+		//System.out.println(isS);
+		
 		ManagerMemberDto isS = loginCheck(req, resp);
 
 		if(isS != null && !isS.getMgr_id().equals("")) {
 			req.getSession().setAttribute("managerLogin", isS);
 			System.out.println("로그인성공 관리자 리스트로 이동 ");
-			ProjectUtil.forward("./admin_view/manageMgr/adminIndex.jsp", req, resp);
+			ProjectUtil.forward("/adminmain", req, resp);
 
 		}else {
 			System.out.println("실패했습니다. 재접속 해주세요");
-			ProjectUtil.forward("/main.jsp", req, resp);
+			ProjectUtil.forward("./admin_view/manageMgr/login/adminlogin.jsp", req, resp);
 		}
 
 	}//end class

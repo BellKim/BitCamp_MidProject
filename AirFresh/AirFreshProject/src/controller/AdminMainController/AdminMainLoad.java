@@ -1,6 +1,7 @@
-package controller.NoticeBbsController;
+package controller.AdminMainController;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,11 +10,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import Dto.NoticeBbsDto;
+import projectutil.ProjectUtil;
 import singleton.singleton;
-
-@WebServlet("/noticedelete")
-public class DeleteNotice extends HttpServlet {
-
+@WebServlet("/adminmain")
+public class AdminMainLoad extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		this.processFunc(req, resp);
@@ -23,26 +23,12 @@ public class DeleteNotice extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		this.processFunc(req, resp);
 	}
-
+	
 	public void processFunc(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException  {
+
 		singleton s = singleton.getInstance();
-		req.setCharacterEncoding("utf-8");
-		String command = req.getParameter("command");
-		if(command.contentEquals("oneDelete")) {
-			int noti_index = Integer.parseInt(req.getParameter("noti_index"));
-			
-			boolean isS = s.nbsi.deleteNotice(noti_index);
-			
-			resp.sendRedirect(req.getContextPath() + "/admin_view/board/finding.jsp?command=delete&isS="+isS);
-		
-		} else if(command.contentEquals("multiDelete")) {
-			String qnaIndex[] = req.getParameterValues("delck");
-			boolean isS = s.nbsi.multiDelNotice(qnaIndex);
-			
-			resp.sendRedirect(req.getContextPath() + "/admin_view/board/finding.jsp?command=multiDelete&isS="+isS);
-		}
+		List<NoticeBbsDto> list = s.nbsi.getNoticeList();
+		req.setAttribute("mainList", list);
+		ProjectUtil.forward("./admin_view/main.jsp", req, resp);
 	}
-	
-	
-	
 }

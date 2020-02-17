@@ -17,14 +17,14 @@
 				<div class="form-group">
 					<label class="col-form-label" for="inputDefault">제목</label>
 					<div>
-						<div style="width: 100px; float: left; margin-right: 5px;">
+						<div style="width: 10%; float: left; margin-right: 5px;">
 
 							<select class="form-control" id="exampleSelect1" name="catagory">
 								<option value="1">고객</option>
 								<option value="2">매니저</option>
 							</select>
 						</div>
-						<div style="width: 500px; float: left;">
+						<div style="width : 89%; float: left;">
 							<input type="text" class="form-control" id="inputDefault"
 								name="title">
 						</div>
@@ -41,7 +41,7 @@
 					<input type="file" class="form-control-file" id="exampleInputFile"
 						aria-describedby="fileHelp" name="fileload">
 				</div>
-				<div align="center">
+				<div align="center" style="padding-bottom : 10px;">
 					<button type="submit" class="btn btn-primary">글쓰기</button>
 				</div>
 			</fieldset>
