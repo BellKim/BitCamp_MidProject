@@ -125,9 +125,10 @@
 			
 		%>
 		
-		<div class="content">
-			<div class="back1" align="center">
-				<br>
+		<div class="container-fluid">
+			<div class="back1">
+				<h1 class="mt-4 mb-3" >설치 리스트 선택하기</h1>
+				<hr>
 				<div class="calender">
 					<table border="1" id="cal" style="width: 100%">
 						<col width="7"><col width="7"><col width="7"><col width="7"><col width="7">
@@ -208,12 +209,12 @@
 					</table>
 				</div>
 			</div>
-			<div class="back2">
+			<div class="back2" >
 				<br>
-				<div align="left" class="listdiv"  style="float: left; width: 600px;">
+				<div style="float: left; width: 50%; background-color: yellow;">
 					<br>
 					<h3>신청가능 목록</h3>
-					<table style="width: 100%" id="InstallTable" class="list">
+					<table style="width: 100%" id="InstallTable" class="table table-hover">
 						<col width="15"><col width="15"><col width="20"><col width="15"><col width="17">
 						<col width="10"><col width="8">
 						<tr>
@@ -224,21 +225,42 @@
 						</tr>
 					</table>
 				</div>
-				<div>
+				<div style="float: left; width: 50%; background-color: gray;">
 					<font>예약 신청 목록</font>
-					<table style="width: 100%" id="basketList">
-						<col width="15"><col width="15"><col width="20"><col width="15"><col width="17">
+					<table style="width: 100%;" id="basketList" class="table table-hover">
+						<col width="15"><col width="15"><col width="20"><col width="16"><col width="16">
 						<col width="10"><col width="8">
-					</table>
-					<button type="button" id="save" style="margin-left: 400px;">저장하기</button>
+					</table>	
+				</div>
+				<div style=" background-color: darkgray; clear: both;">
+					<button type="button" id="save">예약 저장하기</button>
 				</div>
 			</div>
 		</div>
-		
+		<div id="popup" style="	width: 300px;
+								height: 400px;
+								background-color: gray;
+								position: absolute;
+								top: 200px;
+								left: 500px;
+								text-align: center;
+								border: 2px solid #000;	
+								display: none">
+			<div id="detail" style="width: 300px; height: 370px;">
+				<span>선택한 신청리스트의 상세정보</span>
+				<ul id="detail_List">
+				</ul>
+			</div>
+			<div id="declose" style="width: 100px; margin: auto;">close</div>
+		</div>
 		
 		
 		<script type="text/javascript">
+			
+		
 			$(document).ready(function () {
+				
+				
 				//장바구니에 뿌려주기 위한 변수 
 				var list = null;
 				//장바구니로 사용되는 변수 
@@ -247,6 +269,17 @@
 				var listCount = 0;
 				//servlet에 보내기 위해  seq를 저장하기 위한 배열 생성 
 				var insArr = [];
+				
+				$(document.body).delegate('.getList', 'click', function() {
+					//alert("크크크크클릭");
+					//디테일로 넘어가기 
+					var index = $(".plus").val();
+					alert(list[0].ins_index);
+					$("#popup").css("display","block");
+					
+				});
+				
+				
 				
 				$("#cal span").click(function name() {
 					//alert("날짜 클릭");
@@ -259,7 +292,7 @@
 						type: "post",
 						data: { "command": "getDayList",
 								"date": sdate,
-							},
+						},
 						datatype: "json",
 						success: function (data) {
 							//alert("통신성공");
@@ -292,14 +325,14 @@
 										 $("#InstallTable").append(str); 
 									for(i = 0; i < data.length; i++){
 			 
-										var str = "<tr id='intr" + i + "'>" ;
-											str += "<td class='getList' align='center'>" + data[i].ins_index  + "</td>";
-											str += "<td class='getList' align='center'>" + data[i].prd_model_name + "</td>";
-											str += "<td class='getList' align='center'>" + data[i].mem_id + "</td>";
+										var str = "<tr id='intr" + i + "'>" ;				//list.get(0).getIns_index()
+											str += "<td class='getList' align='center' >" + data[i].ins_index  + "</td>";
+											str += "<td class='getList' align='center' style='font-size: 10px;'>" + data[i].prd_model_name + "</td>";
+											str += "<td class='getList' align='center' style='font-size: 10px;'>" + data[i].mem_id + "</td>";
 											str += "<td class='getList' align='center'>" + data[i].pur_date.substr(0,10) + "</td>";
 											str += "<td class='getList' align='center'>" + data[i].ins_date.substr(0,10) + "</td>";
 											str += "<td class='getList' align='center'>" + data[i].mem_addr1 + "</td>";
-											str += "<td class='getList' align='center'>" + "<button class='plus' type='button' value='" + i + "'>+</button>" + "</td></tr>";
+											str += "<td align='center'>" + "<button class='plus' type='button' value='" + i + "'>+</button>" + "</td></tr>";
 											$("#InstallTable").append(str);
 									}
 								}
@@ -323,13 +356,13 @@
 					
 					//alert(list[parseInt(addr)].ins_date);
 					var str = "<tr id='bastr" + (listCount - 1) + "'>" ;
-					str += "<td class='getList' align='center'>" + list[parseInt(addr)].ins_index  + "</td>";
-					str += "<td class='getList' align='center'>" + list[parseInt(addr)].prd_model_name + "</td>";
-					str += "<td class='getList' align='center'>" + list[parseInt(addr)].mem_id + "</td>";
-					str += "<td class='getList' align='center'>" + list[parseInt(addr)].pur_date.substr(0,10) + "</td>";
-					str += "<td class='getList' align='center'>" + list[parseInt(addr)].ins_date.substr(0,10) + "</td>";
-					str += "<td class='getList' align='center'>" + list[parseInt(addr)].mem_addr1 + "</td>";
-					str += "<td class='getList' align='center'>" + "<button class='minus' type='button' value='" + (listCount - 1) + "'  intr='"+ addr + "'>-</button>" + "</td></tr>";
+					str += "<td class='getList' align='center' style='font-size: 14px;'>" + list[parseInt(addr)].ins_index  + "</td>";
+					str += "<td class='getList' align='center' style='font-size: 14px;'>" + list[parseInt(addr)].prd_model_name + "</td>";
+					str += "<td class='getList' align='center' style='font-size: 14px;'>" + list[parseInt(addr)].mem_id + "</td>";
+					str += "<td class='getList' align='center' style='font-size: 14px;'>" + list[parseInt(addr)].pur_date.substr(0,10) + "</td>";
+					str += "<td class='getList' align='center' style='font-size: 14px;'>" + list[parseInt(addr)].ins_date.substr(0,10) + "</td>";
+					str += "<td class='getList' align='center' style='font-size: 14px;'>" + list[parseInt(addr)].mem_addr1 + "</td>";
+					str += "<td align='center' style='font-size: 14px;'>" + "<button class='minus' type='button' value='" + (listCount - 1) + "'  intr='"+ addr + "'>-</button>" + "</td></tr>";
 					$("#basketList").append(str);
 					
 					$("#intr"+addr).hide();
@@ -380,15 +413,15 @@
 								seqArr: insArr,
 								/* 로그인 회원 index 추가  <-- 안해도 됨 controller 가서 session으로 뺴면 됨  */
 						},
-						datatype:"json",
-						success: function ( data ) {
+						datatype:"text",
+						success: function ( result ) {
 							alert("통신성공");
 							//배열 초기화 
 							insArr = [];
-							//alert(data);
-							if(data=="true"){
+							alert(result);
+							if(result=="True"){
 								//alert("저장성공");
-								location.replace("<%=request.getContextPath() %>/InstallController?command=savet");
+								location.href="<%=request.getContextPath() %>/InstallController?command=savet";
 							}else{
 								alert("저장실패");
 							}

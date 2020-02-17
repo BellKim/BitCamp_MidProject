@@ -37,7 +37,7 @@ public class InstallController extends HttpServlet implements Serializable{
 	}
 
 	protected void processing(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		System.out.println("getInstallList_Null 도착");
+		System.out.println("InstallController 도착");
 		singleton s = singleton.getInstance();
 
 		//명령어 판단 
@@ -76,7 +76,8 @@ public class InstallController extends HttpServlet implements Serializable{
 			
 			
 			if(command.equals("savet")) {
-				resp.sendRedirect("./admin_view/main.jsp"); 
+				System.out.println("savet 도착");
+				forward("./admin_view/main.jsp", req, resp);
 			}
 		}
 
@@ -154,7 +155,7 @@ public class InstallController extends HttpServlet implements Serializable{
 				resp.setContentType("application/text");
 				resp.setCharacterEncoding("UTF-8");
 				
-				String res = "true";
+				String res = "True";
 				//변환한 json형식을 리턴 
 				resp.getWriter().write(res);
 			}else {
@@ -162,7 +163,7 @@ public class InstallController extends HttpServlet implements Serializable{
 				resp.setContentType("application/text");
 				resp.setCharacterEncoding("UTF-8");
 				
-				String res = "false";
+				String res = "False";
 				//변환한 json형식을 리턴 
 				resp.getWriter().write(res);
 			}

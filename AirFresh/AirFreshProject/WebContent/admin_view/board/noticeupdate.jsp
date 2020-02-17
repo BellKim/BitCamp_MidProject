@@ -6,12 +6,12 @@
     <%
 	NoticeBbsDto notice = (NoticeBbsDto) request.getAttribute("noticeBbs");
 
-	ManagerMemberDto mrgMem = (ManagerMemberDto) session.getAttribute("managerLogin");
+	//ManagerMemberDto mrgMem = (ManagerMemberDto) session.getAttribute("managerLogin");
     
     
     %>
 <%@ include file="./../include/header.jsp"%>
-<div class="container">
+<div class="container-fluid">
 	<h1 class="mt-4 mb-3" >공지사항</h1>
 		<hr>
 		<form
@@ -65,6 +65,7 @@
 				</div>
 				<div align="center">
 					<button type="submit" class="btn btn-primary">수정하기</button>
+					<button type="button" class="btn btn-primary" onclick = "location.href ='<%=request.getContextPath()%>/noticedetail?command=admin&noti_index=<%=notice.getNoti_index()%>'">취소</button>
 				</div>
 			</fieldset>
 		</form>
