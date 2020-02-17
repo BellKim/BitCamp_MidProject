@@ -10,7 +10,11 @@ System.out.println(managerMem);
 %>
 
 
-<div style="
+
+
+<div class="container">
+	<h1 class="mt-4 mb-3" >위치명</h1>
+	<div style="
     width: 100%;
     height: 100%;
     text-align: -webkit-center;">
@@ -24,8 +28,8 @@ System.out.println(managerMem);
 	
 
 </div>
-
-			
+		
+</div>
 
 
 			
