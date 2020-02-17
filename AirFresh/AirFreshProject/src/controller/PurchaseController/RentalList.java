@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import Dto.PurchaseDto;
+import Dto.PurchaseNameDto;
 import projectutil.ProjectUtil;
 import singleton.singleton;
 @WebServlet("/rentallist")
@@ -27,7 +28,7 @@ public class RentalList extends HttpServlet {
 	public void processFunc(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException  {
 		singleton s = singleton.getInstance();
 		
-		List<PurchaseDto> list = s.ps.getPurchaseList();
+		List<PurchaseNameDto> list = s.ps.getModelName();
 		req.setAttribute("rentalList", list);
 		ProjectUtil.forward("./admin_view/rental/rentallist.jsp", req, resp);
 		

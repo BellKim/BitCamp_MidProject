@@ -346,6 +346,52 @@ public class PurchaseDao implements PurchaseDaoInterface {
 		
 		return count>0?true:false;
 	}
+
+	@Override
+	public List<PurchaseNameDto> getModelName() {
+		//모델name 뽑아오기
+		String sql = " SELECT PUR_INDEX, MEM_ID, P.PRD_INDEX, M.PRD_NAME, M.PRD_MODEL_NAME, PUR_DATE, INS_DATE, ORDER_NUM, REVIEW, ORDER_AUTH "
+				+ " FROM MODELLIST M, PURCHASE P "
+				+ " WHERE P.PRD_INDEX = M.PRD_INDEX ";
+		
+		Connection conn = null;
+		PreparedStatement psmt = null;
+		ResultSet rs = null;
+		
+		List<PurchaseNameDto> list = new ArrayList<PurchaseNameDto>();
+		
+		try {
+			conn = DBConnection.getConnection();
+			System.out.println("1/6 getModelName success");
+			psmt = conn.prepareStatement(sql);
+			System.out.println("2/6 getModelName success");
+			
+			rs = psmt.executeQuery();
+			while(rs.next()) {
+				int i = 1;
+				PurchaseNameDto dto = new PurchaseNameDto(rs.getInt(i++),//pur_index, 
+														  rs.getString(i++),//mem_id,
+														  rs.getInt(i++),//prd_index, 
+														  rs.getString(i++),//prd_name,
+														  rs.getString(i++),//prd_model_name, 
+														  rs.getString(i++),//pur_date, 
+														  rs.getString(i++),//ins_date,
+														  rs.getInt(i++),//order_num, 
+														  rs.getInt(i++),//review,
+														  rs.getInt(i++));//order_auth)
+				
+				list.add(dto);
+			}
+			
+			System.out.println("3/6 getModelName success");
+			
+		} catch (SQLException e) {
+			System.out.println("getModelName fail");
+			e.printStackTrace();
+		}
+		
+		return list;
+	}
 	
 	
 	

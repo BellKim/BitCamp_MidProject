@@ -25,6 +25,9 @@ public interface PurchaseDaoInterface {
     //model name뽑아오기
     List<PurchaseNameDto> getModelName(String mem_id);
     
+    //model name
+    List<PurchaseNameDto> getModelName();
+
     //INSTALL 생성을 위한 직전에 생성된 제품구매 데이터의  FK 값 가져오는 함수 
     public PurchaseDto getNewCreate_Pur();
     

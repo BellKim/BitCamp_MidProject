@@ -44,5 +44,9 @@ public class PurchaseService implements PurchaseServiceInterface {
     public boolean userPurConfirm(String userID) {
     	return dao.userPurConfirm(userID);
     }
+	@Override
+	public List<PurchaseNameDto> getModelName() {
+		return  dao.getModelName();
+	}
 	
 }
