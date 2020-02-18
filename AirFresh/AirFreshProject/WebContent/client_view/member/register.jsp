@@ -50,12 +50,12 @@
 			<tr>
 				<td>주소</td>
 				<td><input type="text" id="mem_addr1" name="mem_addr1"
-					placeholder="우편번호"> <input type="button"
+					placeholder="우편번호" readonly="readonly" onclick="sample6_execDaumPostcode();"> <input type="button"
 					onclick="sample6_execDaumPostcode()" value="우편번호 찾기"><br>
-					<input type="text" id="mem_addr2" name="mem_addr2" placeholder="주소"><br>
+					<input type="text" id="mem_addr2" name="mem_addr2" placeholder="주소" readonly="readonly"><br>
 					<input type="text" id="mem_addr3" name="mem_addr3"
 					placeholder="상세주소"> <input type="text"
-					id="sample6_extraAddress" placeholder="참고항목"></td>
+					id="sample6_extraAddress" placeholder="참고항목" readonly="readonly"></td>
 			</tr>
 			<tr>
 				<td colspan="2" align="center"><input type="button"
@@ -94,13 +94,31 @@ $(document).ready(function () {
 	 
 	 
 	$("#_btnid").click(function () {	
-		
-		$.ajax({
+		 $.ajax({
 			type:"post",	
 			url:"${pageContext.request.contextPath}/idcheck",	// idcheck / ./idcheck.jsp
-			data:{ "_id":$("#mem_id").val() },
+			data:{ _id : $("#mem_id").val() },
+			traditional : true,
+			datatype : "text",
 			success:function( data ){	// idcheck에서 넘겨준 결과값	
-				if(data.trim() == "YES"){
+				
+				var d = JSON.parse(data);
+				//alert("d: "+d);
+				
+				if(d=="true"){
+					//아이디가 존재해서 사용불가능
+					$("#idcheck").css("color", "#ff0000");
+					$("#idcheck").html('사용 중인 id입니다');
+					$("#mem_id").val("");
+					$("#mem_id").focus();
+				} else {
+					//아이디 사용가능
+					$("#idcheck").css("color", "#0000ff");
+					$("#idcheck").html('사용할 수 있는 id입니다');
+				}
+				
+				
+				/* if(data.trim() == "YES"){
 					$("#idcheck").css("color", "#0000ff");
 					$("#idcheck").html('사용할 수 있는 id입니다');
 				}else{
@@ -108,12 +126,15 @@ $(document).ready(function () {
 					$("#idcheck").html('사용 중인 id입니다');
 					$("#mem_id").val("");
 					$("#mem_id").focus();
-				}			
+				}		 */	
 			},
 			error:function(){
 				alert("error");
 			}		
-		});
+
+		}); //end ajax
+
+
 	});
 	
 	

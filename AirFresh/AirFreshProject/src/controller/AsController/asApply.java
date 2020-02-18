@@ -51,7 +51,8 @@ public class asApply extends HttpServlet implements Serializable{
 				//response.sendRedirect(request.getContextPath() + "/client_view/as/asapply.jsp");
 				
 				
-				List<PurchaseNameDto> list = s.ps.getModelName(mdto.getMem_id());
+				/* List<PurchaseNameDto> list = s.ps.getModelName(mdto.getMem_id()); */
+				List<PurchaseNameDto> list = s.ps.memPurchaseList(mdto.getMem_id());
 				
 				request.setAttribute("list", list);
 				request.getRequestDispatcher("./client_view/rental/rentallist.jsp").forward(request, response);

@@ -22,7 +22,7 @@
 %>
 <%@ include file="./../include/header.jsp"%>
 <div class="container">
-	<h1 class="mt-4 mb-3" >공지사항</h1>
+	<h1 class="mt-4 mb-3">공지사항</h1>
 
 	<ol class="breadcrumb">
 		<li class="breadcrumb-item"><a href="index.html">Home</a></li>
@@ -62,8 +62,9 @@
 							for (int i = 0; i < list.size(); i++) {
 								NoticeBbsDto notice = list.get(i);
 					%>
-					<tr align="center">
-						<th><%=i + 1%></th>
+					<tr align="center" onclick="location.href='<%=request.getContextPath()%>/noticedetail?command=user&noti_index=<%=notice.getNoti_index()%>'"
+					 style="cursor:pointer;">
+						<th><%=notice.getNoti_index()%></th>
 						<td align="left"><a
 							href="<%=request.getContextPath()%>/noticedetail?command=user&noti_index=<%=notice.getNoti_index()%>"><%=notice.getNoti_title()%></a>
 						</td>

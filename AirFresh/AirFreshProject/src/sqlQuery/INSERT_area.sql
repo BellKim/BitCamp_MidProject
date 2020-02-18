@@ -66,6 +66,12 @@ INSERT INTO MODELLIST (PRD_INDEX, PRD_NAME, PRD_MODEL_NAME, PRD_PRICE) VALUES(mo
 INSERT INTO MODELLIST (PRD_INDEX, PRD_NAME, PRD_MODEL_NAME, PRD_PRICE) VALUES(modelList_SEQ.NEXTVAL, 'U필터 공기청정기', 'ACL120UASKCG', 32900);
 INSERT INTO MODELLIST (PRD_INDEX, PRD_NAME, PRD_MODEL_NAME, PRD_PRICE) VALUES(modelList_SEQ.NEXTVAL, '미니언즈 공기청정기', 'ACL121CZSKYL', 25900);
 INSERT INTO MODELLIST (PRD_INDEX, PRD_NAME, PRD_MODEL_NAME, PRD_PRICE) VALUES(modelList_SEQ.NEXTVAL, '공기청정기 MINI', 'ACLV12BRTLWH', 23900);
+INSERT INTO MODELLIST (PRD_INDEX, PRD_NAME, PRD_MODEL_NAME, PRD_PRICE) VALUES(modelList_SEQ.NEXTVAL, 'AI 공기청정기 32평형', 'ACLV32BRTLWH', 49900);
+INSERT INTO MODELLIST (PRD_INDEX, PRD_NAME, PRD_MODEL_NAME, PRD_PRICE) VALUES(modelList_SEQ.NEXTVAL, '공기청정기 R11', 'ACLR11BRTLWH', 21900);
+INSERT INTO MODELLIST (PRD_INDEX, PRD_NAME, PRD_MODEL_NAME, PRD_PRICE) VALUES(modelList_SEQ.NEXTVAL, '코어 공기청정기 21평형', 'ACL211Z0SKGR', 58900);
+INSERT INTO MODELLIST (PRD_INDEX, PRD_NAME, PRD_MODEL_NAME, PRD_PRICE) VALUES(modelList_SEQ.NEXTVAL, '가습청정기 MINI 9평형', 'ACLV09HRTLWH', 25900);
+INSERT INTO MODELLIST (PRD_INDEX, PRD_NAME, PRD_MODEL_NAME, PRD_PRICE) VALUES(modelList_SEQ.NEXTVAL, 'AI 공기청정기 20평형', 'ACLV20BRTLSL', 31900);
+INSERT INTO MODELLIST (PRD_INDEX, PRD_NAME, PRD_MODEL_NAME, PRD_PRICE) VALUES (modelList_SEQ.NEXTVAL, '20년 형 AI 공기청정기 20평형', 'ACL201VASKWH', 31900);
 
 SELECT * FROM MODELLIST;
 
@@ -161,9 +167,9 @@ select * from ORDERREVIEW;
 --		noticebbs insert
 ----------------------------------------------------------------------------------------------------------------------
 
-INSERT INTO noticebbs(noti_index, noti_title, noti_content, noti_catagory, noti_writer, noti_wdate,
-filename, tempfile, readcount, noti_del)
-VALUES(NOTICEBBS_SEQ.nextval,)
+--INSERT INTO noticebbs(noti_index, noti_title, noti_content, noti_catagory, noti_writer, noti_wdate,
+--filename, tempfile, readcount, noti_del)
+--VALUES(NOTICEBBS_SEQ.nextval,)
 
 
 select * from noticebbs;
@@ -172,9 +178,9 @@ select * from noticebbs;
 ----------------------------------------------------------------------------------------------------------------------
 --		QnaBbs insert
 ----------------------------------------------------------------------------------------------------------------------
-INSERT INTO qnaBbs(qna_index, mem_id, qna_title, qna_content, wdate, qna_secret, re_content, re_date,
-readcount, depth, qna_del)
-VALUES(QNABBS_SEQ.nextval,)
+--INSERT INTO qnaBbs(qna_index, mem_id, qna_title, qna_content, wdate, qna_secret, re_content, re_date,
+--readcount, depth, qna_del)
+--VALUES(QNABBS_SEQ.nextval,)
 
 select * from qnaBbs;
 

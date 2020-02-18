@@ -31,15 +31,22 @@ public class DetailPurchase extends HttpServlet {
 		
 		
 		int pur_index = Integer.parseInt(seq);
+		String command = req.getParameter("command");
 		
 		singleton s = singleton.getInstance();
-
-		RentalDetailDto dto = s.ps.getDetailDto(pur_index);
-		System.out.println("선택 된 seq의 dto: "+dto.toString());
-		
-		req.setAttribute("dto", dto);
-		req.getRequestDispatcher("./client_view/rental/detailPurchase.jsp").forward(req, resp);
-		
+		if(command.contentEquals("user")) {
+			RentalDetailDto dto = s.ps.getDetailDto(pur_index);
+			System.out.println("선택 된 seq의 dto: "+dto.toString());
+			
+			req.setAttribute("dto", dto);
+			req.getRequestDispatcher("./client_view/rental/detailPurchase.jsp").forward(req, resp);
+		} else if(command.contentEquals("admin")) {
+			RentalDetailDto dto = s.ps.getDetailDto(pur_index);
+			System.out.println("선택 된 seq의 dto: "+dto.toString());
+			
+			req.setAttribute("dto", dto);
+			req.getRequestDispatcher("./admin_view/rental/rentaldetail.jsp").forward(req, resp);
+		}
 	}
 
 }
