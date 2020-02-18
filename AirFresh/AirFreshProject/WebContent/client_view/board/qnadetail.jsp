@@ -51,10 +51,13 @@ String sdate = qna.getWdate().substring(0, 10);
         </div>
      <%} %>
 	<div align="right" style = "padding :10px;">
+		<%if(mem != null){ %>
 				<% if(qna.getDepth()==0 && mem.getMem_id().equals(qna.getMem_id()) ){%>
 				<a href="<%=request.getContextPath()%>/updateqnabbs?command=user&qna_index=<%=qna.getQna_index() %>" class="btn btn-primary">수정</a>
 				<%} %>
-				<a href="#" onclick="deleteFunc()" class="btn btn-primary">삭제</a> 
+				<a href="#" onclick="deleteFunc()" class="btn btn-primary">삭제</a>
+				
+		<%} %> 
 				<a href="<%=request.getContextPath()%>/qnalist?command=user" class="btn btn-primary">목록</a>
 	</div>
 	</div>

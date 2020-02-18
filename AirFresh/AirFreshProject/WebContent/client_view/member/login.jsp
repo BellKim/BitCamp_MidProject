@@ -1,32 +1,50 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="./../include/header.jsp"%>
-<div class="container" align="center">
-	<div class="title">	
-		<h2 class="mt-4 mb-3">로그인</h2>	
-		<p><strong>Air FRESH</strong> 홈페이지에 오신 것을 환영합니다.</p>
-	</div>	
-	<div class="login">
-		<form id="loginInfo" action="<%=request.getContextPath() %>/memlogin" method="post">	
-			<input type="hidden" name="command" value="loginAf">		
-			<div>
-			<div>
-				<input type="text" placeholder="아이디(이메일)을 입력해주세요." id="mem_id" name="mem_id">
+<div class="container" style = "padding-top:50px; padding-bottom:50px;">
+	<div class="row justify-content-center">
+		<div class="col-lg-5">
+			<div class="card shadow-lg border-0 rounded-lg mt-5">
+				<div class="card-header">
+					<h3 class="text-center font-weight-light my-4">Air FRESH 로그인</h3>
+				</div>
+				<div class="card-body">
+					<form id="loginInfo"
+						action="<%=request.getContextPath()%>/memlogin" method="post">
+						<div class="form-group">
+							<label class="small mb-1" for="inputId">ID</label> <input
+								class="form-control py-4" type="email"
+								placeholder="아이디(이메일)을 입력해주세요." id="mem_id" name="mem_id" />
+						</div>
+						<div class="form-group">
+							<label class="small mb-1" for="inputPw">Password</label> <input
+								class="form-control py-4" type="password"
+								placeholder="비밀번호를 입력해주세요." id="mem_pw" name="mem_pw" />
+						</div>
+						<div class="form-group">
+							<div>
+								<input type="checkbox" id="chk_save_id"> 
+								<label >ID 저장</label>
+							</div>
+						</div>
+						<div
+							class="form-group d-flex align-items-center justify-content-between mt-4 mb-0">
+							<a class="small"
+								href="<%=request.getContextPath() %>/findidpw?command=searchidpw">아이디·패스워드
+								찾기</a>
+							<button type="button" class="btn btn-primary" id="btnlogin">로그인</button>
+						</div>
+
+					</form>
+				</div>
+				<div class="card-footer text-center">
+					<div class="small">
+						<a href="<%=request.getContextPath() %>/addmem?command=regi">회원가입</a>
+					</div>
+				</div>
 			</div>
-			<div>
-				<input type="password" placeholder="비밀번호를 입력해주세요." id="mem_pw" name="mem_pw">	
-			</div>
-			<div class="idcheck">
-				<input type="checkbox" id="chk_save_id">
-				<label for="saveid">아이디 저장</label>
-			</div>
-			</div>
-				<button type="button" id="btnlogin">로그인</button>
-			<div>
-				<input type="button" value="아이디·패스워드 찾기" id="_btnidpw" onclick="location.href='<%=request.getContextPath() %>/findidpw?command=searchidpw'">
-				<input type="button" value="회원가입" id="_btnJoin" onclick="location.href='<%=request.getContextPath() %>/addmem?command=regi'">
-			</div>		
-		</form>
+		</div>
+	
 	</div>
 </div>
 

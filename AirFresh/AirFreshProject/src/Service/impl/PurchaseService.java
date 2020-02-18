@@ -26,8 +26,6 @@ public class PurchaseService implements PurchaseServiceInterface {
 		return dao.getPurchaseList();
 	}
     
-	
-	
 	@Override
 	public List<PurchaseNameDto> memPurchaseList(String mem_id) {
 		return dao.memPurchaseList(mem_id);
@@ -50,6 +48,14 @@ public class PurchaseService implements PurchaseServiceInterface {
 	@Override
 	public RentalDetailDto getDetailDto(int pur_index) {
 		return dao.getDetail(pur_index);
+	}
+	@Override
+	public List<PurchaseNameDto> getModelName(int pageNumber) {
+		return dao.getModelName(pageNumber);
+	}
+	@Override
+	public int getlength() {
+		return dao.getlength();
 	}
 
 

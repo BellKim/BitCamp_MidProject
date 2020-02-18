@@ -17,6 +17,9 @@ public interface PurchaseServiceInterface {
 	//구매 전체 list보기
 	//List<PurchaseDto> getPurchaseList();
 	List<PurchaseNameDto> getPurchaseList();
+	public int getlength();
+	//관리자
+	List<PurchaseNameDto> getModelName(int pageNumber);
 	
 	//회원별 구매 list 보기
 	//List<PurchaseDto> memPurchaseList(String mem_id);

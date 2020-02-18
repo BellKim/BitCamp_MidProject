@@ -567,6 +567,89 @@ public class PurchaseDao implements PurchaseDaoInterface {
 		return dto;
 	}
 
+	@Override
+	public List<PurchaseNameDto> getModelName(int pageNumber) {
+		//모델name 뽑아오기
+				String sql = " SELECT PUR_INDEX, MEM_ID, PRD_INDEX, PRD_NAME, PRD_MODEL_NAME, PUR_DATE, INS_DATE, ORDER_NUM, REVIEW, ORDER_AUTH "
+						+ " FROM (SELECT ROWNUM as rnum, PUR_INDEX, MEM_ID, PRD_INDEX, PRD_NAME, PRD_MODEL_NAME, PUR_DATE, INS_DATE,  "
+						+ " ORDER_NUM, REVIEW, ORDER_AUTH "
+						+ " FROM (SELECT PUR_INDEX, MEM_ID, P.PRD_INDEX, M.PRD_NAME,M.PRD_MODEL_NAME, PUR_DATE, "
+						+ " INS_DATE, ORDER_NUM, REVIEW, ORDER_AUTH "
+						+ " FROM MODELLIST M, PURCHASE P  "
+						+ " WHERE P.PRD_INDEX = M.PRD_INDEX"
+						+ " ORDER BY PUR_DATE DESC ) "
+						+ " ) "
+						+ " WHERE rnum >=? AND rnum <=? ";
+				
+				Connection conn = null;
+				PreparedStatement psmt = null;
+				ResultSet rs = null;
+				
+				int start, end;
+				start = 1 + 10 * pageNumber;	// 0 -> 1	1 -> 11
+				end = 10 + 10 * pageNumber;	// 0 -> 10  1 -> 20
+				List<PurchaseNameDto> list = new ArrayList<PurchaseNameDto>();
+				
+				try {
+					conn = DBConnection.getConnection();
+					System.out.println("1/6 getModelName success");
+					psmt = conn.prepareStatement(sql);
+					psmt.setInt(1, start);
+					psmt.setInt(2, end);	
+					System.out.println("2/6 getModelName success");
+					
+					rs = psmt.executeQuery();
+					while(rs.next()) {
+						int i = 1;
+						PurchaseNameDto dto = new PurchaseNameDto(rs.getInt(i++),//pur_index, 
+																  rs.getString(i++),//mem_id,
+																  rs.getInt(i++),//prd_index, 
+																  rs.getString(i++),//prd_name,
+																  rs.getString(i++),//prd_model_name, 
+																  rs.getString(i++),//pur_date, 
+																  rs.getString(i++),//ins_date,
+																  rs.getInt(i++),//order_num, 
+																  rs.getInt(i++),//review,
+																  rs.getInt(i++));//order_auth)
+						
+						list.add(dto);
+					}
+					
+					System.out.println("3/6 getModelName success");
+					
+				} catch (SQLException e) {
+					System.out.println("getModelName fail");
+					e.printStackTrace();
+				}
+				
+				return list;
+				
+	}
+
+	@Override
+	public int getlength() {
+		String sql = " SELECT COUNT(*) FROM PURCHASE ";
+		Connection conn = null;
+		PreparedStatement psmt = null;
+		ResultSet rs = null;
+		int len = 0;
+		
+		try {
+			conn = DBConnection.getConnection();
+			psmt = conn.prepareStatement(sql);
+			rs = psmt.executeQuery();
+			if(rs.next()) {
+				len = rs.getInt(1);
+			}			
+		} catch (SQLException e) {
+			System.out.println("getAllBbsLength fail");
+			e.printStackTrace();
+		} finally {
+			DBClose.close(psmt, conn, rs);			
+		}
+		return len;	
+	}
+
 	
 	 
 
