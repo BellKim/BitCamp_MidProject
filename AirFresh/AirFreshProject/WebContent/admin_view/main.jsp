@@ -7,6 +7,7 @@
 <%
 	HttpSession adminlogincheck = request.getSession();
 	ManagerMemberDto managerMem = (ManagerMemberDto) session.getAttribute("managerLogin");
+	
 	List<NoticeBbsDto> list = request.getAttribute("mainList")==null?null:(List<NoticeBbsDto>) request.getAttribute("mainList");
 %>
 
@@ -25,14 +26,14 @@
 				<div class="card-body">
 					
 					<ul style="list-style-type: decimal;">
-						<%	
-							if(list != null && list.size() > 0){
+						<%
+							if(list != null && list.size() > 0 ){
 								for (int i = 0; i < list.size(); i++) {
 						%>
 						<li><a
 							href="<%=request.getContextPath()%>/noticedetail?command=admin&noti_index=<%=list.get(i).getNoti_index()%>">
 								<%=list.get(i).getNoti_title()%></a></li>
-						<%		
+						<%
 								}
 							}else{
 								%>

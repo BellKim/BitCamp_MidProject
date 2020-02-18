@@ -1,10 +1,6 @@
-<%@page import="db.DBConnection"%>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%
-    DBConnection.initConnection();
-    %>
-
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script src="http://lab.alexcican.com/set_cookies/cookie.js" type="text/javascript" ></script>
@@ -32,14 +28,28 @@
 			</div>
 				<button type="button" id="btnlogin">로그인</button>
 			<div>
-				<input type="button" value="아이디·패스워드 찾기" id="_btnidpw" onclick="location.href='<%=request.getContextPath() %>/memlogin?command=idpw'">
-				<input type="button" value="회원가입" id="_btnJoin" onclick="location.href='<%=request.getContextPath() %>/memlogin?command=terms'">
+				<input type="button" value="아이디·패스워드 찾기" id="_btnidpw" onclick="location.href='<%=request.getContextPath() %>/findidpw?command=searchidpw'">
+				<input type="button" value="회원가입" id="_btnJoin" onclick="location.href='<%=request.getContextPath() %>/addmem?command=regi'">
 			</div>		
 		</form>
 	</div>
 </div>
 
 <script type="text/javascript">
+
+/* $("#btnlogin").click(function () ) {
+	$.ajax({
+		type:"post",
+		url:"memlogin",
+		data:{ "id":$("#mem_id").val(), "pw":$("#mem_pw").val() },
+		success:function( data ){
+			alert("안녕하세요 ♥" + $("#mem_name").val() + "♥님");
+		},
+		error:function(){
+			alert("로그인 실패!");
+		}
+	});
+} */
 
 $("#btnlogin").click(function () {
 	if( $("#mem_id").val().trim() == "" ){

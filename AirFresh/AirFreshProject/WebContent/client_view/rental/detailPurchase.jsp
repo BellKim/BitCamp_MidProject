@@ -1,57 +1,40 @@
-
-<%@page import="com.sun.org.apache.regexp.internal.RE"%>
-<%@page import="Dto.RentalDetailDto"%>
-<%@page import="Dto.PurchaseNameDto"%>
-<%@page import="java.util.List"%>
 <%@page import="java.text.DecimalFormat"%>
-<%@page import="Dto.PurchaseDto"%>
-<%@page import="Dto.ModelDto"%>
-<%@page import="Dto.MemberDto"%>
+<%@page import="Dto.RentalDetailDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"%>
+    
 <%@ include file="./../include/header.jsp"%>
-<%
 
 
-	MemberDto mem = (MemberDto) session.getAttribute("login");
+<% 
+		RentalDetailDto dto = (RentalDetailDto) request.getAttribute("dto");
+	  MemberDto mem = (MemberDto) session.getAttribute("login");
+	  
+	  String addr = mem.getMem_addr1() + " " + mem.getMem_addr2() + " " + mem.getMem_addr3();
 
-	String command = request.getParameter("command");
+	 	int price = dto.getPrd_price();
 
-
-	//상세내역 뽑아내기위한 dto
-	RentalDetailDto dto = (RentalDetailDto) request.getAttribute("dto");
-	int price = dto.getPrd_price();
-
-	String addr = dto.getMem_addr1() + " " + dto.getMem_addr2() + " " + dto.getMem_addr3();
-	DecimalFormat formatter = new DecimalFormat("###,###");
-	String sprice = formatter.format(price);
+		DecimalFormat formatter = new DecimalFormat("###,###");
+		String sprice = formatter.format(price);
+ 
 
 %>
 
 <!-- Page Content -->
-<div class="container">
-	<!-- Page Heading/Breadcrumbs -->
-	<div class="" align="center">
-		<h1 class="mt-4 mb-3"><%=mem.getMem_name()%>고객님의 신청이 완료되었습니다.
-		</h1>
-	</div>
+<div class="container" style="margin-bottom: 100px;">
+	<h1 class="mt-4 mb-3">
+		상세 내역 <small>Rental Detail</small>
+	</h1>
 
-	<ol class="breadcrumb" style="background-color: #fff;width: 1000px; margin: 0 auto;"  >
-		<li class="breadcrumb-item">
-			<!-- <a href="index.html">Home</a>
-        <a href="#" style="padding-left: 20px">My Page</a> -->
-			<div class="" style="margin: 20px;">
-				<img src="<%=request.getContextPath()%>/client_view/img/apply_step.png"	alt="xx">
-			</div>
-		</li>
-		<!--       <li class="breadcrumb-item active" ></li> -->
+	<ol class="breadcrumb">
+		<li class="breadcrumb-item"><a href="#">마이페이지</a></li>
+		<li class="breadcrumb-item active">렌탈상세내역</li>
 	</ol>
 
 	<!-- 주문상세내역 -->
-	<div style="border-top: 1px solid #ddd; text-align: center; margin-top: 50px; padding: 50px 0;">
+	<div style=" text-align: center; margin-top: 20px; padding: 50px 0;">
 		<fieldset>
-			<h1 class="mt-4 mb-3" style="font-size: 27px;text-align: left;border"><span style="color:#d80546"><%=mem.getMem_name() %></span>고객님께서 신청해주신 상세내역입니다.</h1>
-			<div class="tbl_frm01 tbl_wrap" style="text-align: left;border-top:3px solid #d80546;">
+			<div class="tbl_frm01 tbl_wrap" style="text-align: left;">
 				<table class="board-view bg_no" cellspacing="0" cellpadding="8px"
 					summary="온라인문의를 위한 상품선택, 고객명, 연락처, 주소 상세내역입니다.">
 					<colgroup>
@@ -69,41 +52,55 @@
 										src="<%=request.getContextPath()%>/client_view/model/prd_img/<%=dto.getPrd_model_name()%>.png"
 										width='60px' alt="xx">
 								</div>
-								<div style="width: 560px; float: left; font-size: 16pt"><%=dto.getPrd_name()%>
+								<div style="width: 560px; float: left; font-size: 16pt" >
+									<a href="<%=request.getContextPath() %>/modelDetail?command=detail&seq=<%= dto.getPrd_index() %>" title="클릭하면 상품정보로 이동합니다." style="text-decoration: none;"><%=dto.getPrd_name()%>
 									<%=dto.getPrd_model_name()%>24개월약정 등록비0원 <br> 월 요금 : <span style="color: #ff0000"> <strong> <%=sprice%></strong></span> 원
+									</a>
 								</div>
 							</td>
 						</tr>
 						<tr>
 							<th scope="row">신청일</th>
-							<td><%= dto.getIns_date() %></td>
+							<td><%= dto.getPur_date() %></td>
 						</tr>
 						<tr>
 							<th scope="row">설치희망일</th>
 							<td><%= dto.getIns_date() %></td>
 						</tr>
 						<tr>
-							<th scope="row">고객명</th>
-							<td><%=mem.getMem_name()%></td>
-						</tr>
-						<tr>
 							<th scope="row">연락처</th>
 							<td><%=mem.getMem_cell()%></td>
 						</tr>
 						<tr>
-							<th scope="row">주소</th>
+							<th scope="row">받으실 주소</th>
 							<td colspan='3'><%=addr%></td>
 						</tr>			
+						<tr>
+							<th scope="row">진행상태</th>
+							<% if(dto.getComp_date()== null){ %>
+								<td colspan='3'>설치진행 중</td>
+							<% } else { %>
+								<td colspan='3'>설치완료</td>
+							<%
+								}
+							%>
+						</tr>
 					</tbody>
 				</table>
 				<div class="" align="center" style="">
 					<div class="" style="width: 50%;margin-top:50px; ">
 							<ul class="shop_btns">
 								<li class="mainhome" style="background-color: #d80546;">
-									<a href="<%=request.getContextPath()%>/index.jsp">홈으로</a>
+									<a href="javascript:window.history.back();">돌아가기</a>
 								</li>
-								<li class="rentallist">
-									<a href="<%=request.getContextPath() %>/printPurchase?id=<%=mem.getMem_id()%>">신청내역</a>
+								<li class="reviewWrite">
+									<% if(dto.getComp_date() != null){ %>
+										<a href="#">리뷰작성</a>
+									<% } else { %>
+										<a href="#" onclick="alert('설치진행 중일때 리뷰를 작성하실 수 없습니다.'); return">리뷰작성</a>
+									<%
+										}
+									%>
 								</li>
 							</ul>
 						</div>
@@ -150,5 +147,6 @@
 		</fieldset>
 	</div>
 </div>
-<!-- /.container -->
+
+
 <%@ include file="./../include/footer.jsp"%>

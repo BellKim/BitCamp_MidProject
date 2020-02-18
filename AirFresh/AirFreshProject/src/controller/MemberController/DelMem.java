@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import Dto.MemberDto;
+import projectutil.ProjectUtil;
 import singleton.singleton;
 
 @WebServlet("/delmem")
@@ -32,15 +34,19 @@ public class DelMem extends HttpServlet{
 		singleton s = singleton.getInstance();
 		
 		if(command.equals("signout")) {
-			resp.sendRedirect("./client_view/member/delete.jsp");
+			String id = req.getParameter("id");
+			String pw = req.getParameter("pw");
+			MemberDto mem = s.ms.memLogin(id, pw);
+			req.getSession().setAttribute("login", mem);
+			ProjectUtil.forward("./client_view/member/delete.jsp", req, resp);					
 		}else if(command.equals("deleteAf")) {
 			String _id = req.getParameter("mem_id");
 			String _pw = req.getParameter("mem_pw");
 			
 			System.out.println(_id + "" + _pw);
 						
-			boolean isS2 = s.ms.delMem(_id, _pw);			
-			resp.sendRedirect(req.getContextPath() + "./client_view/member/deleteAf.jsp?isS2=" + isS2);						
+			boolean isS = s.ms.delMem(_id, _pw);			
+			resp.sendRedirect(req.getContextPath() + "/client_view/member/finding.jsp?command=delete&isS=" + isS);						
 			
 		}
 	}	

@@ -42,7 +42,14 @@ public class ModelDetail extends HttpServlet {
 			req.getRequestDispatcher("./client_view/rental/rentalDetail.jsp").forward(req, resp);
 			
 		} else if(command.equals("purcha")) {
-			req.getRequestDispatcher("./client_view/rental/purchase.jsp").forward(req, resp);
+			
+			if(req.getSession().getAttribute("login") == null) {
+				//비로그인 상태   ---> 로그인 페이지로 이동 
+				resp.sendRedirect(req.getContextPath() + "/client_view/member/login.jsp");
+			} else {
+				
+				req.getRequestDispatcher("./client_view/rental/purchase.jsp").forward(req, resp);
+			}
 		}
 		
 		

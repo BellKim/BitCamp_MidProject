@@ -13,10 +13,10 @@ $(document).ready(function(){
 	
 	for(i=0; i<option_size1; i++){
 		if(compaire_value1 == $("#loc_loc").children()[i].text){
-		    console.log("내용이 같다");
+		    //console.log("내용이 같다");
 		    $("#loc_loc").val(i+1).prop("selected", true);
 		}else{
-		    console.log("내용이 다르다");
+		    //console.log("내용이 다르다");
 		}
 	}
 	
@@ -47,19 +47,14 @@ $(document).ready(function(){
 	/*
 		1. 비밀번호 입력칸 두곳에 같은 비밀번호가 입력되어야 한다.
 		2. 두곳 모두 입력되지 않았을 경우에는 파라미터생성이 되면 안된다.    */
-
-
 	$("#mgr_pw", "#mgr_pw_confirm").on('keyup', function(){
-		if($("#mgr_pw").val()  == $("#mgr_pw_confirm").val()){
-			
+		if(($("#mgr_pw").val()  == $("#mgr_pw_confirm").val()) && 
+							($("#mgr_pw").val()=="" || $("#mgr_pw_confirm").val()=="" )){
 				$('#message').html('Matching').css('color', 'green');
-				$("mgr_pw").attr("name","mgr_id")
-				
+				$("mgr_pw").attr("name","mgr_id");
 			} else{
-				
 				$('#message').html('Not Matching').css('color', 'red');
 				$("mgr_pw").removeAttr("name");
-				
 			}
 	});
 
@@ -75,7 +70,11 @@ $(document).ready(function(){
 		$("#mgr_indxe_dto").attr("value", "<%=managerSelectOneDTO.getMgr_index() %>");
 		//console.log($("#Status_Selector").attr("value"));
 		//console.log($("#mgr_indxe_dto").attr("value"));
-		$("#SelectForm").submit();
+		//$("#SelectForm").submit();
+		
+		
+		
+		
 	});	
 	$(".modify_btn").click(function(){
 		$("#Status_Selector").attr("value","modify");
@@ -83,13 +82,17 @@ $(document).ready(function(){
 		//console.log($("#Status_Selector").attr("value"));
 		//console.log($("#mgr_indxe_dto").attr("value"));
 		$("#mgr_index").removeAttr("readonly");
-		//$("#SelectForm").submit();
+		$("#SelectForm").submit();
 	});	
-	$(".mgr_pw").click(function(){
-	    alert("hello");
-	});
-});
+	
+	
 
-
-
-
+	
+	
+	
+	
+	
+	
+	
+	
+});// end $(document).ready(function(){});

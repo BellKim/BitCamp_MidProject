@@ -59,7 +59,8 @@ public class AsDao implements AsDaoInterface {
 		//AS신청 전체보기
 		String sql = " SELECT AS_INDEX , a.MEM_ID, WDATE , REQ_DATE, AS_TITLE, AS_CONTENT, AS_IMG_PATH, a.PUR_INDEX, m.prd_name  "
 				+ " FROM ASAPPLICATION a, PURCHASE p, MODELLIST m "
-				+ " WHERE a.pur_index=p.pur_index AND p.prd_index=m.prd_index ";
+				+ " WHERE a.pur_index=p.pur_index AND p.prd_index=m.prd_index "
+				+ " ORDER BY WDATE DESC ";
 		
 		Connection conn = null;
 		PreparedStatement psmt = null;
@@ -104,7 +105,8 @@ public class AsDao implements AsDaoInterface {
 		//회원별 AS신청내역보기
 		String sql = " SELECT AS_INDEX, a.MEM_ID, WDATE , REQ_DATE, MGR_INDEX, AS_TITLE, AS_CONTENT, AS_IMG_PATH, a.PUR_INDEX, m.prd_name "
 				+ " FROM ASAPPLICATION a, PURCHASE p, MODELLIST m "
-				+ " WHERE a.pur_index=p.pur_index AND p.prd_index=m.prd_index AND a.mem_id = ? ";
+				+ " WHERE a.pur_index=p.pur_index AND p.prd_index=m.prd_index AND a.mem_id = ? "
+				+ " ORDER BY WDATE DESC ";
 		
 		Connection conn = null;
 		PreparedStatement psmt = null;

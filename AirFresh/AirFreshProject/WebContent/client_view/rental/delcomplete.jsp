@@ -1,12 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
+<%@ include file="./../include/header.jsp"%>
 
 <%
 	String command = request.getParameter("command");
@@ -14,10 +8,12 @@
 	
 	if(command.equals("true")){
 %>
+
+	<div class="container" style="margin-bottom: 100px;">
 		<h1>주문 취소 성공</h1>
+	</div>
 <%
 	}
 %>
 
-</body>
-</html>
+<%@ include file="./../include/footer.jsp"%>
