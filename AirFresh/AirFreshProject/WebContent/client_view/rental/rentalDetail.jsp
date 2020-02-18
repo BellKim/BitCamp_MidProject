@@ -80,7 +80,7 @@
 		<input type="hidden" name="command" value="purcha">
 		<ul class="shop_btns" style="margin-top: 15px;">
 			<li class="order"><a href="./modelDetail?seq=<%=model.getPrd_index() %>&command=purcha">렌탈신청하기</a></li>
-			<li class="qna"><a href="#">Q&A게시판</a></li>
+			<li class="qna"><a href="<%=request.getContextPath()%>/qnalist?command=user">Q&A게시판</a></li>
 		</ul>
 		<style>
 		
