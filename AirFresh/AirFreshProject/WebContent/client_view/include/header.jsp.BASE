@@ -2,12 +2,17 @@
 <%@page import="Dto.ManagerMemberDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	
+<<<<<<<<< Temporary merge branch 1
+	
 <%
 HttpSession adminlogincheck = request.getSession();
 ManagerMemberDto managerMem = (ManagerMemberDto)session.getAttribute("managerLogin");
 System.out.println(managerMem);
 
 %>
+=========
+>>>>>>>>> Temporary merge branch 2
 <!DOCTYPE html>
 <html>
 <head>
@@ -39,8 +44,14 @@ System.out.println(managerMem);
         <div class="topSec clearfix">
           <ul class="clearfix">
              <li><a href="<%=request.getContextPath() %>/login?command=login" id="loginBtn">로그인</a></li>
-             <li><a href="<%=request.getContextPath() %>/login?command=logout" id="logoutBtn">로그아웃</a></li>
+<<<<<<<<< Temporary merge branch 1
+             
+             <li><a href="#" id="logoutBtn">로그아웃</a></li>
              <li><a href="<%=request.getContextPath()%>/addmem?command=regi" id ="regiBtn">회원가입</a></li>
+=========
+             <li><a href="<%=request.getContextPath() %>/login?command=logout" id="logoutBtn">로그아웃</a></li>
+             <li><a href="<%=request.getContextPath()%>/addmem?command=regi">회원가입</a></li>
+>>>>>>>>> Temporary merge branch 2
           </ul>
         </div>
         <ul class="navbar-nav ml-auto">
@@ -67,7 +78,7 @@ System.out.println(managerMem);
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
               <a class="dropdown-item" href="<%=request.getContextPath()%>/noticelist?command=user">공지사항</a>
               <a class="dropdown-item" href="<%=request.getContextPath()%>/qnalist?command=user">QNA</a>
-              <a class="dropdown-item" href="<%=request.getContextPath()%>/faqList">FAQ</a>
+              <a class="dropdown-item" href="#">FAQ</a>
             </div>
           </li>
 
@@ -77,9 +88,15 @@ System.out.println(managerMem);
               마이페이지
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
+<<<<<<<<< Temporary merge branch 1
+              <a class="dropdown-item" href="#">내 정보</a>
               <a class="dropdown-item" href="<%=request.getContextPath()%>/printPurchase">렌탈 내역</a>
               <a class="dropdown-item" href="<%=request.getContextPath()%>/printAsApp">AS 내역</a>
-               <a class="dropdown-item" href="<%=request.getContextPath()%>/login?command=login">내 정보</a>
+=========
+<!--  -->     <a class="dropdown-item" href="<%=request.getContextPath()%>/login?command=login">내 정보</a>
+              <a class="dropdown-item" href="<%=request.getContextPath()%>/printPurchase?id=bbb">렌탈 내역</a>
+              <a class="dropdown-item" href="#">AS 내역</a>
+>>>>>>>>> Temporary merge branch 2
             </div>
           </li>
         </ul>

@@ -23,12 +23,12 @@
 request.setCharacterEncoding("utf-8");
 ManagerMemberDto managerSelectOneDTO = (ManagerMemberDto)request.getAttribute("managerInfoSelectOne");
 %>
-	<h1>showmgrMemberDetail</h1>
 	
 	
 	<div class="container">
+	<h1>showmgrMemberDetail</h1>
 
-	  <h2> <%=managerSelectOneDTO.getMgr_id() %> 님의 상세 정보</h2>
+	  <h2> <%=managerSelectOneDTO.getMgr_name() %> 님의 상세 정보</h2>
 	  
 	  <div class="addClass">
 		  <ul class="list-group">

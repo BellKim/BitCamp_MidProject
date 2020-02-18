@@ -48,10 +48,13 @@ public class PrintPurchase extends HttpServlet {
 			//System.out.println("prd_index: "+prd_index);
 			
 			singleton s = singleton.getInstance();
-			//List<PurchaseDto> list = s.ps.memPurchaseList(mem_id);
+			List<PurchaseNameDto> list = s.ps.memPurchaseList(mem_id);
 			
-			List<PurchaseNameDto> list = s.ps.getModelName(mem_id);
-			
+			//List<PurchaseNameDto> list = s.ps.getModelName(mem_id);
+			for (int i = 0; i < list.size(); i++) {
+				//System.out.println("렌탈일 : "+list.get(i).getPur_date());
+				System.out.println("렌탈INDX: "+list.get(i).getPur_index());
+			}
 			req.setAttribute("list", list);
 			req.getRequestDispatcher("./client_view/rental/rentallist.jsp").forward(req, resp);
 		

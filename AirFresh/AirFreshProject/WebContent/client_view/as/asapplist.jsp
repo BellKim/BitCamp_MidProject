@@ -51,7 +51,7 @@
 						<td><%=dto.getPrd_name() %></td>
 						<td><%=dto.getReq_date() %></td>
 						<td><a href="asDetail?seq=<%=dto.getAsSeq() %>"><%=dto.getAsTitle() %></a></td>
-						<td><a href="delAsApp?seq=<%=dto.getAsSeq()%>">[수리취소]</a></td>
+						<td><a href="./delAsApp?seq=<%=dto.getAsSeq() %>" onclick="return confirm('정말삭제하시겠씁니까?')">[수리취소]</a></td>
 					</tr>
 			
 					<%

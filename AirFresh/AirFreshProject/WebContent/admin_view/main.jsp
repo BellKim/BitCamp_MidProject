@@ -7,7 +7,8 @@
 <%
 	HttpSession adminlogincheck = request.getSession();
 	ManagerMemberDto managerMem = (ManagerMemberDto) session.getAttribute("managerLogin");
-	List<NoticeBbsDto> list = (List<NoticeBbsDto>) request.getAttribute("mainList");
+	
+	List<NoticeBbsDto> list = request.getAttribute("mainList")==null?null:(List<NoticeBbsDto>) request.getAttribute("mainList");
 %>
 
 <div class="container-fluid">
@@ -26,12 +27,18 @@
 					
 					<ul style="list-style-type: decimal;">
 						<%
-							for (int i = 0; i < list.size(); i++) {
+							if(list != null && list.size() > 0 ){
+								for (int i = 0; i < list.size(); i++) {
 						%>
 						<li><a
 							href="<%=request.getContextPath()%>/noticedetail?command=admin&noti_index=<%=list.get(i).getNoti_index()%>">
 								<%=list.get(i).getNoti_title()%></a></li>
 						<%
+								}
+							}else{
+								%>
+								<li><span>데이터가 없습니다</span></li>
+								<%
 							}
 						%>
 					</ul>

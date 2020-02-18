@@ -10,9 +10,10 @@
 	//String wdate = dto.getWdate().substring(0,10);	//요청일
 	//String savePath = request.getServletContext().getRealPath("/asupload");
 	
-	int idx = dto.getAsImgPath().lastIndexOf(".");
-	String str = dto.getAsImgPath().substring(idx+1);	//확장자
-	
+	if(dto.getAsImgPath()!= null){
+		int idx = dto.getAsImgPath().lastIndexOf(".");
+		String str = dto.getAsImgPath().substring(idx+1);	//확장자
+	}
 	//String m_fileFullPath = savePath+"\\"+ dto.getAsImgPath()+"."+str;	//완전한 이미지 경로
 	//System.out.println(m_fileFullPath);
 %>
@@ -85,7 +86,7 @@
 						aria-describedby="fileHelp" name="fileload">
 				</div><!-- /form-group -->
 				<div class="form-group">
-					<% if(dto.getAsImgPath()== null || dto.getAsImgPath()=="" || dto.getAsImgPath().equals("null")){ %>
+					<% if(dto.getAsImgPath()== null){ %>
 						첨부파일 없음
 					<%
 						} else {
@@ -93,6 +94,7 @@
 					<a class="image-popup-vertical-fit" href="http://localhost:8090/AirFreshProject/asupload/<%=dto.getAsImgPath()%>" target="_self">
 						<img src="http://localhost:8090/AirFreshProject/asupload/<%=dto.getAsImgPath()%>" style="width: 180px; height: 180px;" data-scale="2">
 						</a>
+						<input type="hidden" name="oldfile" value="<%=dto.getAsImgPath()%>">
 					<%
 						}
 					%>
@@ -101,7 +103,7 @@
 				<div align="center">
 					<button type="button" class="btn btn-primary" onclick="location.href='javascript:window.history.back();'">돌아가기</button>
 					<button type="button" class="btn btn-primary" id="_asBtn">수정하기</button>
-					<button type="button" class="btn btn-primary" id="_delBtn">삭제하기</button>
+					<button type="button" class="btn btn-primary" id="_delBtn">취소하기</button>
 				</div>
 		</fieldset>
 	</form>	
@@ -115,15 +117,16 @@
 	    			  dateFormat: "yy/mm/dd"
 	    });
 		 
-		<%--  $("#_delBtn").click(function() {
-			var result = confirm("정말 삭제하시겠습니까?");
+		 $("#_delBtn").click(function() {
+			var result = confirm("정말 취소하시겠습니까?");
 			
 			if(result){
+				alert("정상적으로 취소되었습니다.");
 				location.href= "./delAsApp?seq="+<%=dto.getAsSeq()%>
 				
 			} else return;
-		}); --%>
-		 
+		}); 
+		 		 
 		 $("#_asBtn").click(function() {
 /* 			if($("#datepicker").val()==""){
 				alert("as방문 희망날짜를 선택해주세요.");
@@ -139,7 +142,15 @@
 				$("#frm").submit();
 			} */
 			
-			$("#frm").submit();
+			 var result = confirm("정말 수정하시겠습니까?");
+				
+				if(result){
+					alert("정상적으로 수정되었습니다.");
+					$("#frm").submit();
+					
+				} else return;
+			
+		
 		});
 	});
 </script>

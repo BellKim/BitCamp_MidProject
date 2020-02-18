@@ -10,6 +10,5 @@
 <%
 response.sendRedirect(request.getContextPath()+"/main");
 %>
-
 </body>
 </html>

@@ -153,6 +153,7 @@ td {
 				alert("설치를 희망하는 날짜를 선택해주세요.");
 				$("#datepicker").focus();
 			} else {
+				alert("정상적으로 접수되었습니다.");
 				$("#frm").submit();
 			}
 		});

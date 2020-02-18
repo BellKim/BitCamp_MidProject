@@ -2,6 +2,7 @@
 <%@page import="db.DBConnection"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+
 <%
 //ManagerMemberDto mem = request.getSession().setAttribute("managerLogin", key);
 HttpSession adminlogincheck = request.getSession();
@@ -33,7 +34,8 @@ System.out.println(mem);
                                 <div class="card shadow-lg border-0 rounded-lg mt-5">
                                     <div class="card-header"><h3 class="text-center font-weight-light my-4">Air FRESH 관리자 로그인 페이지</h3></div>
                                     <div class="card-body">
-                                        <form id="loginInfo" action="<%=request.getContextPath() %>/managerLogin" method="post">
+                                        <!-- <form id="loginInfo" action="<%=request.getContextPath() %>/managerLogin" method="post"> -->
+                                        <form id="loginInfo">
                                             <div class="form-group"><label class="small mb-1" for="inputId">ID</label>
                                             <input class="form-control py-4" type="email" placeholder="Enter ID" id="manager_id" name="manager_id"/></div>
                                             <div class="form-group"><label class="small mb-1" for="inputPw">Password</label>
@@ -101,6 +103,11 @@ System.out.println(mem);
 			</div>
 		</div--%>
 	<script type="text/javascript">
+		
+	$(document).ready(function(){
+	
+
+	
 			$("#btnlogin").click(function () {
 				if( $("#manager_id").val().trim() == "" ){
 					alert("id를 입력해 주십시오");
@@ -111,9 +118,52 @@ System.out.println(mem);
 					$("#manager_pw").focus();
 				}
 				else{
-					$("#loginInfo").submit();
-				}
-			});
+					//전체 조건을 만족할 시에 전송시킨다. 
+					//$("#btnlogin").submit();		//바로 전송을 시키는 방식.
+					
+					//===========================================================================================================================
+					//저장하기 버튼 클릭시 이벤트 
+						console.log(" 로그인 클릭됨 .");
+						var input_id = $("input[name='manager_id']").val();
+						var input_pw = $("input[name='manager_pw']").val();
+						
+						console.log("들어온 id값 : "+input_id);
+						console.log("들어온 pw값 : "+input_pw);
+
+					$.ajax({
+						url:'<%=request.getContextPath() %>/managerLogin?command=checkID_PW',
+						type:"post",
+						datatype:"json",
+						data:{
+							manager_id:input_id,
+							manager_pw:input_pw
+						},
+						datatype:"text",
+						success: function ( data ) {
+							console.log("통신성공");
+							console.log(data);
+							//location.replace("<%=request.getContextPath() %>"+data);
+							if(data == "true"){
+								alert("로그인성공");
+								location.href="<%=request.getContextPath() %>/managerLogin?command=success";
+							}else{
+								alert("로그인실패");
+							}
+							//location.href(data);
+						},
+						error: function () {
+							alert("통신 실패");
+						}
+					});//end ajax
+					
+			}//else		
+						
+						
+						
+					
+					
+
+			});//end btnlogin()
 			
 			var user_id = $.cookie("user_id");
 			if(user_id != null){			
@@ -133,6 +183,7 @@ System.out.println(mem);
 					$.removeCookie("user_id", {path:'./'});
 				}
 			});
+	});//end of document.ready(function());
 		</script>
 	</body>
 </html>
