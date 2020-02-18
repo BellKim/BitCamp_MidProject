@@ -25,7 +25,9 @@ public class ManagerMemberDto implements Serializable {
 	private String mgr_pw; 
 	private String mgr_name; 
 	private int mgr_loc; 
-	private int mgr_cell; 
+	private int mgr_cell;
+	private String  mgr_joinDate;
+	private String mgr_delDate;
 	private int mgr_del;
 	
 	
@@ -40,20 +42,25 @@ public class ManagerMemberDto implements Serializable {
 		this.mgr_id = mgr_id;
 		this.mgr_pw = mgr_pw;
 	}
-
-	public ManagerMemberDto(int mgr_index, int mgr_auth, String mgr_id, String mgr_pw, String mgr_name, int mgr_loc, int mgr_cell, int mgr_del) {
+	
+	public ManagerMemberDto(int mgr_auth, String mgr_id, String mgr_pw, String mgr_name, int mgr_loc, int mgr_cell,
+			String mgr_joinDate, String mgr_delDate, int mgr_del) {
 		super();
-		this.mgr_index = mgr_index;
 		this.mgr_auth = mgr_auth;
 		this.mgr_id = mgr_id;
 		this.mgr_pw = mgr_pw;
 		this.mgr_name = mgr_name;
 		this.mgr_loc = mgr_loc;
 		this.mgr_cell = mgr_cell;
+		this.mgr_joinDate = mgr_joinDate;
+		this.mgr_delDate = mgr_delDate;
 		this.mgr_del = mgr_del;
 	}
 	
-	public ManagerMemberDto(int mgr_index, int mgr_auth, String mgr_id, String mgr_pw, String mgr_name, int mgr_loc, int mgr_cell) {
+
+
+	public ManagerMemberDto(int mgr_index, int mgr_auth, String mgr_id, String mgr_pw, String mgr_name, int mgr_loc,
+			int mgr_cell, String  mgr_joinDate) {
 		super();
 		this.mgr_index = mgr_index;
 		this.mgr_auth = mgr_auth;
@@ -62,7 +69,26 @@ public class ManagerMemberDto implements Serializable {
 		this.mgr_name = mgr_name;
 		this.mgr_loc = mgr_loc;
 		this.mgr_cell = mgr_cell;
+		this.mgr_joinDate=mgr_joinDate;
 	}
+
+	public ManagerMemberDto(int mgr_index, int mgr_auth, String mgr_id, String mgr_pw, String mgr_name, int mgr_loc,
+			int mgr_cell, String mgr_joinDate, String mgr_delDate, int mgr_del) {
+		super();
+		this.mgr_index = mgr_index;
+		this.mgr_auth = mgr_auth;
+		this.mgr_id = mgr_id;
+		this.mgr_pw = mgr_pw;
+		this.mgr_name = mgr_name;
+		this.mgr_loc = mgr_loc;
+		this.mgr_cell = mgr_cell;
+		this.mgr_joinDate = mgr_joinDate;
+		this.mgr_delDate = mgr_delDate;
+		this.mgr_del = mgr_del;
+	}
+	
+	
+	
 	
 
 
@@ -121,29 +147,33 @@ public class ManagerMemberDto implements Serializable {
 	public void setMgr_cell(int mgr_cell) {
 		this.mgr_cell = mgr_cell;
 	}
+	
+	
+	public String getMgr_joinDate() {
+		return mgr_joinDate;
+	}
+
+	public void setMgr_joinDate(String mgr_joinDate) {
+		this.mgr_joinDate = mgr_joinDate;
+	}
+
+	public String getMgr_delDate() {
+		return mgr_delDate;
+	}
+
+	public void setMgr_delDate(String mgr_delDate) {
+		this.mgr_delDate = mgr_delDate;
+	}
 
 	public int getMgr_del() {
 		return mgr_del;
 	}
 
-//	public String getMgr_del(int mrg_del) {
-//		if(mrg_del ==0) {
-//			return "재직중";
-//		}else {
-//			return "퇴사상태";
-//		}
-//	}
 	public void setMgr_del(int mgr_del) {
 		
 		this.mgr_del = mgr_del;
 	}
 
-	@Override
-	public String toString() {
-		return "ManagerMemberDto [mgr_index=" + mgr_index + ", mgr_auth=" + mgr_auth + ", mgr_id=" + mgr_id
-				+ ", mgr_pw=" + mgr_pw + ", mgr_name=" + mgr_name + ", mgr_loc=" + mgr_loc + ", mgr_cell=" + mgr_cell
-				+ ", mgr_del=" + mgr_del + "]";
-	}
 
 
 	

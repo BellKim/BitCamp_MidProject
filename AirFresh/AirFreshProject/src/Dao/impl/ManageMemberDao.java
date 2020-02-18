@@ -22,8 +22,8 @@ public class ManageMemberDao implements ManageMemberDaoInterface {
 	@Override
 	public boolean insertManagerMember(ManagerMemberDto dto) {
 		String sql = " INSERT INTO managerMember(mgr_index, mgr_auth, mgr_id, "
-				+ " mgr_pw, mgr_name, mgr_loc, mgr_cell, mgr_del) "
-				+ " VALUES(managerMember_SEQ.NEXTVAL, ?, ?, ?, ?, ?, ?, ? ) ";
+				+ " mgr_pw, mgr_name, mgr_loc, mgr_cell, mgr_delDate, mgr_del) "
+				+ " VALUES(managerMember_SEQ.NEXTVAL, ?, ?, ?, ?, ?, ?, ?, ? ) ";
 		System.out.println(" 1/6 ManageMemberDao success ");
 		Connection conn = null;
 		PreparedStatement psmt = null;
@@ -44,7 +44,8 @@ public class ManageMemberDao implements ManageMemberDaoInterface {
 			psmt.setString(4, dto.getMgr_name());
 			psmt.setInt(5, dto.getMgr_loc());
 			psmt.setInt(6, dto.getMgr_cell());
-			psmt.setInt(7, 0);
+			psmt.setString(7, " ");
+			psmt.setInt(8, 0);
 			
 			System.out.println(" 5/6 ManageMemberDao success ");
 			
@@ -66,7 +67,7 @@ public class ManageMemberDao implements ManageMemberDaoInterface {
 	@Override
 	public List<ManagerMemberDto> receiveManagerMemberAll() {
 		
-		String sql = " SELECT mgr_index, mgr_auth, mgr_id, mgr_pw, mgr_name, mgr_loc, mgr_cell, mgr_del "
+		String sql = " SELECT mgr_index, mgr_auth, mgr_id, mgr_pw, mgr_name, mgr_loc, mgr_cell,mgr_delDate, mgr_del "
 				+ " FROM managerMember "
 				+ " order by MGR_INDEX ASC "; 
 		
@@ -96,9 +97,11 @@ public class ManageMemberDao implements ManageMemberDaoInterface {
 				  String mgr_name = rs.getString("mgr_name"); 
 				  int mgr_loc = rs.getInt("mgr_loc");
 				  int mgr_cell = rs.getInt("mgr_cell");
+				  String  mgr_joinDate = rs.getString("mgr_joinDate");
+				  String mgr_delDate = rs.getString("mgr_delDate");
 				  int mgr_del = rs.getInt("mgr_del");
 				  
-				  list.add(new ManagerMemberDto(mgr_index, mgr_auth, mgr_id, mgr_pw, mgr_name, mgr_loc, mgr_cell, mgr_del));
+				  list.add(new ManagerMemberDto(mgr_index, mgr_auth, mgr_id, mgr_pw, mgr_name, mgr_loc, mgr_cell, mgr_joinDate, mgr_delDate, mgr_del));
 				  
 			}//end while()
 			System.out.println(" 5/6 receiveManagerMemberAll success ");
@@ -117,7 +120,7 @@ public class ManageMemberDao implements ManageMemberDaoInterface {
 
 	@Override
 	public ManagerMemberDto loginManagerMemberCehck(ManagerMemberDto managermemberdto) {
-		String sql = " SELECT mgr_index, mgr_auth, mgr_id, mgr_pw, mgr_name, mgr_loc, mgr_cell, mgr_del "
+		String sql = " SELECT mgr_index, mgr_auth, mgr_id, mgr_pw, mgr_name, mgr_loc, mgr_cell, mgr_delDate, mgr_del "
 					+ " FROM managerMember "
 					+ " WHERE mgr_id=? AND mgr_pw=? ";
 		
@@ -154,11 +157,13 @@ public class ManageMemberDao implements ManageMemberDaoInterface {
 				  String mgr_name = rs.getString("mgr_name"); 
 				  int mgr_loc = rs.getInt("mgr_loc");
 				  int mgr_cell = rs.getInt("mgr_cell");
+				  String mgr_joinDate = rs.getString("mgr_joinDate");
+				  String mgr_delDate = rs.getString("mgr_delDate");
 				  int mgr_del = rs.getInt("mgr_del");
 				  
-				  System.out.println("!!!!!!!!!!!!!!!!!"+mgr_index+" "+mgr_auth+" "+mgr_id+" "+mgr_pw+" "+mgr_name+" "+mgr_loc+" "+mgr_cell+" "+mgr_del);
+				  System.out.println("!!!!!!!!!!!!!!!!!"+mgr_index+" "+mgr_auth+" "+mgr_id+" "+mgr_pw+" "+mgr_name+" "+mgr_loc+" "+mgr_cell+" "+mgr_joinDate+" "+ mgr_delDate + " "+mgr_del);
 				  
-				  dto = new ManagerMemberDto(mgr_index, mgr_auth, mgr_id, mgr_pw, mgr_name, mgr_loc, mgr_cell, mgr_del);
+				  dto = new ManagerMemberDto(mgr_index, mgr_auth, mgr_id, mgr_pw, mgr_name, mgr_loc, mgr_cell, mgr_joinDate, mgr_delDate, mgr_del);
 				  
 			}
 			
@@ -213,11 +218,12 @@ public class ManageMemberDao implements ManageMemberDaoInterface {
 			  String mgr_name = rs.getString("mgr_name"); 
 			  int mgr_loc = rs.getInt("mgr_loc");
 			  int mgr_cell = rs.getInt("mgr_cell");
+			  String mgr_joinDate = rs.getString("mgr_joinDate");
+			  String mgr_delDate = rs.getString("mgr_delDate");
 			  int mgr_del = rs.getInt("mgr_del");
-			  
 			  System.out.println("!!!receiveManagerMemberSelect!!!"+mgr_index+" "+mgr_auth+" "+mgr_id+" "+mgr_pw+" "+mgr_name+" "+mgr_loc+" "+mgr_cell+" "+mgr_del);
 			  
-			  dto = new ManagerMemberDto(mgr_index, mgr_auth, mgr_id, mgr_pw, mgr_name, mgr_loc, mgr_cell, mgr_del);
+			  dto = new ManagerMemberDto(mgr_index, mgr_auth, mgr_id, mgr_pw, mgr_name, mgr_loc, mgr_cell, mgr_joinDate,  mgr_delDate, mgr_del);
 			  
 		}
 			

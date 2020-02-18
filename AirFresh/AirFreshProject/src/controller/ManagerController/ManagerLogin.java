@@ -54,7 +54,6 @@ public class ManagerLogin extends HttpServlet {
 				resp.getWriter().write(respon);
 				//ProjectUtil.forward("/adminmain", req, resp);
 			}else {
-				
 				System.out.println("실패했습니다. 재접속 해주세요");
 				resp.setContentType("application/text");
 				resp.setCharacterEncoding("UTF-8");

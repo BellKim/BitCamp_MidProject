@@ -87,7 +87,18 @@ List<ManagerMemberDto> managerMemberDto =
 			    	<span>메니저 권한부여번호 : <%=memberdto.getMgr_auth() %> </span>
 			    	</li>
 			    	<li>
-			    	<span>메니저 삭제여부 : <%=memberdto.getMgr_del() %> </span>
+			    	<span>메니저 퇴사일자 : 
+			    		<%	if((memberdto.getMgr_delDate() ==  null) || memberdto.getMgr_delDate().equals("0")  || memberdto.getMgr_delDate().equals(" ") ){%>
+			    			-
+			    		<%} else  { %>
+			    			<%=memberdto.getMgr_delDate() %>
+			    		<%} %>
+			    		 
+			    	
+			    	</span>
+			    	</li>
+			    	<li>
+			    	<span>메니저 퇴사여부 : <%=memberdto.getMgr_del() %> </span>
 			    	</li>
 			    	<li>
 			    	<form action="<%=request.getContextPath() %>/showMgrMemberDetail" method="POST">

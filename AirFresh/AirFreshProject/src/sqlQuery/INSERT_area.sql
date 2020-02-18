@@ -3,21 +3,21 @@
 --		0 : 왕어드민 1부어드민 2: 매니저 	3 : 설치기사ㅏ
 ----------------------------------------------------------------------------------------------------------------------
 
-insert into managerMember (mgr_index, mgr_auth, mgr_id, mgr_pw, mgr_name, mgr_loc, mgr_cell, mgr_del)
-values (managerMember_SEQ.NEXTVAL, 0, 'k_admin', '1234', '최고관리자', 3, 01012341234, 0);
+insert into managerMember (mgr_index, mgr_auth, mgr_id, mgr_pw, mgr_name, mgr_loc, mgr_cell, MGR_JOINDATE, mgr_delDate, mgr_del)
+values (managerMember_SEQ.NEXTVAL, 0, 'k_admin', '1234', '최고관리자', 3, 01012341234, TO_DATE('2018-06-20','YYYY-MM-DD'), null, 0);
 
-insert into managerMember (mgr_index, mgr_auth, mgr_id, mgr_pw, mgr_name, mgr_loc, mgr_cell, mgr_del)
-values (managerMember_SEQ.NEXTVAL, 0, 'qwe', 'qwe', '최고관리자', 3, 01012341234, 0);
+insert into managerMember (mgr_index, mgr_auth, mgr_id, mgr_pw, mgr_name, mgr_loc, mgr_cell, MGR_JOINDATE, mgr_delDate, mgr_del)
+values (managerMember_SEQ.NEXTVAL, 0, 'qwe', 'qwe', '최고관리자', 3, 01012341234, SYSDATE, null, 0);
 
-insert into managerMember (mgr_index, mgr_auth, mgr_id, mgr_pw, mgr_name, mgr_loc, mgr_cell, mgr_del)
-values (managerMember_SEQ.NEXTVAL, 1, 'J_admin', '1234', '부메니저', 1, 01012341234, 0);
+insert into managerMember (mgr_index, mgr_auth, mgr_id, mgr_pw, mgr_name, mgr_loc, mgr_cell, MGR_JOINDATE, mgr_delDate, mgr_del)
+values (managerMember_SEQ.NEXTVAL, 1, 'J_admin', '1234', '부메니저', 1, 01012341234, TO_DATE('2015-10-20','YYYY-MM-DD'), null, 0);
 
 
-insert into managerMember (mgr_index, mgr_auth, mgr_id, mgr_pw, mgr_name, mgr_loc, mgr_cell, mgr_del)
-values (managerMember_SEQ.NEXTVAL, 2, '123', '123', '김철근', 2, 01012341234, 0);
+insert into managerMember (mgr_index, mgr_auth, mgr_id, mgr_pw, mgr_name, mgr_loc, mgr_cell, MGR_JOINDATE, mgr_delDate, mgr_del)
+values (managerMember_SEQ.NEXTVAL, 2, '123', '123', '김철근', 2, 01012341234, TO_DATE('2012-11-23','YYYY-MM-DD'), null, 0);
 
-insert into managerMember (mgr_index, mgr_auth, mgr_id, mgr_pw, mgr_name, mgr_loc, mgr_cell, mgr_del)
-values (managerMember_SEQ.NEXTVAL, 3, '456', '456', '김공사', 1, 01012341234, 0);
+insert into managerMember (mgr_index, mgr_auth, mgr_id, mgr_pw, mgr_name, mgr_loc, mgr_cell, MGR_JOINDATE, mgr_delDate, mgr_del)
+values (managerMember_SEQ.NEXTVAL, 3, '456', '456', '김공사', 1, 01012341234,   TO_DATE('2012-11-23','YYYY-MM-DD'), null,0);
 
 
 SELECT * FROM managerMember;
