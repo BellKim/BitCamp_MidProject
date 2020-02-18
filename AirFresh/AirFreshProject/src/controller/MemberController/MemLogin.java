@@ -41,8 +41,13 @@ public class MemLogin extends HttpServlet{
 		MemberDto mem = s.ms.memLogin(mem_id, mem_pw);		
 		req.getSession().setAttribute("login", mem);
 		System.out.println("memlogin 도착2");		// ok!
-		ProjectUtil.forward("./client_view/member/loginAf.jsp", req, resp);
+		forward("./client_view/member/loginAf.jsp", req, resp);
 	
+	}
+	
+	public static void forward(String link, HttpServletRequest req, HttpServletResponse resp)throws ServletException, IOException {
+		RequestDispatcher dispatch = req.getRequestDispatcher(link);
+		dispatch.forward(req, resp);		
 	}
 
 	

@@ -79,7 +79,7 @@ public class MemberDao implements MemberDaoInterface{
 			psmt.setString(3, dto.getMem_name());
 			psmt.setString(4, dto.getMem_cell());
 			psmt.setString(5, dto.getMem_birth());
-			psmt.setInt(6, dto.getMem_addr1());
+			psmt.setString(6, dto.getMem_addr1());
 			psmt.setString(7, dto.getMem_addr2());
 			psmt.setString(8, dto.getMem_addr3());			
 			
@@ -118,7 +118,7 @@ public class MemberDao implements MemberDaoInterface{
 						
 			rs = psmt.executeQuery();
 			System.out.println("3/6 getMem success");
-			//String mem_id, String mem_pw, String mem_name, String mem_cell, String mem_birth, int mem_addr1,
+			//String mem_id, String mem_pw, String mem_name, String mem_cell, String mem_birth, String mem_addr1,
 			//String mem_addr2, String mem_addr3, String mem_in_date, String mem_out_date, int mem_auth
 			if(rs.next()) {
 				int i = 1;
@@ -127,7 +127,7 @@ public class MemberDao implements MemberDaoInterface{
 									rs.getString(i++),
 									rs.getString(i++),		
 									rs.getString(i++),	
-									rs.getInt(i++),
+									rs.getString(i++),
 									rs.getString(i++),
 									rs.getString(i++),
 									rs.getString(i++),
@@ -176,7 +176,7 @@ public class MemberDao implements MemberDaoInterface{
 				String _name = rs.getString(2);
 				String _cell = rs.getString(3);
 				String _birth = rs.getString(4);
-				int _addr1 = rs.getInt(5);
+				String _addr1 = rs.getString(5);
 				String _addr2 = rs.getString(6);
 				String _addr3 = rs.getString(7);				
 				int _auth = rs.getInt(8);
@@ -278,7 +278,7 @@ public class MemberDao implements MemberDaoInterface{
 			psmt = conn.prepareStatement(sql);			
 			psmt.setString(1, dto.getMem_pw());
 			psmt.setString(2, dto.getMem_cell());
-			psmt.setInt(3, dto.getMem_addr1());
+			psmt.setString(3, dto.getMem_addr1());
 			psmt.setString(4, dto.getMem_addr2());
 			psmt.setString(5, dto.getMem_addr3());
 			
@@ -339,7 +339,7 @@ public class MemberDao implements MemberDaoInterface{
 			rs = psmt.executeQuery();
 			/*
 			 * String mem_id, String mem_name, String mem_cell, String
-			 * mem_birth, int mem_addr1, String mem_addr2, String mem_addr3
+			 * mem_birth, String mem_addr1, String mem_addr2, String mem_addr3
 			 */
 			while(rs.next()) {
 				
@@ -347,7 +347,7 @@ public class MemberDao implements MemberDaoInterface{
 											  rs.getString(2),
 											  rs.getString(3),
 											  rs.getString(4),
-											  rs.getInt(5),
+											  rs.getString(5),
 											  rs.getString(6),
 											  rs.getString(7)
 											);
