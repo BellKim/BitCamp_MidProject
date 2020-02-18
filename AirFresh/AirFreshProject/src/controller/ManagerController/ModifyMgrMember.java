@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import Dto.ManagerMemberDto;
+import singleton.singleton;
 
 @WebServlet("/modifyMgrMember")
 public class ModifyMgrMember extends HttpServlet {
@@ -21,13 +22,20 @@ public class ModifyMgrMember extends HttpServlet {
 /*		command list  submit 회원정보를 수정한다.  
  
  */
-		//들어온 파라미터를 전부 수집한다. 
-		ManagerMemberDto managermemdto = new ManagerMemberDto();
+		//들어온 파라미터를 수집하여 dto 에 넣는다.  
+		ManagerMemberDto managermemdto = collectParameterToDto(req, resp);
 		
 		
 		
 		
 		if(command.equals("submit")) {
+/*
+			1. dao 에서 데이더 업데이트가 이루어지고 난 뒤에 true가 들어오면 ajax 에서 true를 전다. 
+			2. ajax 에서는 true 신호를 받아서 CONTROLLER로 comment=updatesuccess 를 보내서 상세정보 페이지로 이동한다.
+					(mgrMemberDetail.jsp와 mgrindex를 같이 전달한다.)
+			3. 
+*/
+			
 			
 		}
 		
@@ -38,7 +46,7 @@ public class ModifyMgrMember extends HttpServlet {
 	}//end of service 
 	
 	
-	protected ManagerMemberDto collectParameter(HttpServletRequest req, HttpServletResponse resp) {
+	protected ManagerMemberDto collectParameterToDto(HttpServletRequest req, HttpServletResponse resp) {
 		String mgr_index_s	=	req.getParameter("mgr_index");
 		int mgr_index 		= 	Integer.parseInt(mgr_index_s);
 		
@@ -51,11 +59,51 @@ public class ModifyMgrMember extends HttpServlet {
 		int mgr_loc 		= 	Integer.parseInt(mgr_loc_s);
 		
 		String mgr_cell		=	req.getParameter("mgr_cell");
+		String mgr_delDate	=	req.getParameter("mgr_delDate");
+		
 		String mgr_del_s	=	req.getParameter("mgr_del");
 		int mgr_del			= 	Integer.parseInt(mgr_del_s);
 		
+		singleton si = singleton.getInstance();
+		/*데이터 조건처리
+		1. 재직중에서 퇴사상태로 전환시 0->1 날짜를 직접 입력하도록한다.(SYSDATE)
+		2. 퇴직상태에서 재직중으로 변경시 1-> 0 일경우  "-" 으로 문자열을 입력해준다. */
 		
-		return null;
+		//조건1 //mgr_del의 이전과 이후를 비교하기 위해서 정보를 가져온다.
+		ManagerMemberDto beforedto = si.managerMember.receiveManagerMemberSelect(mgr_index_s);
+		
+		if(mgr_del == beforedto.getMgr_del()) {
+			System.out.println("변동없음.");
+		}else if(mgr_del > beforedto.getMgr_del()) {
+		
+			
+		}else if(mgr_del < beforedto.getMgr_del()) {
+			
+			
+			
+		}
+		
+		
+		
+		
+		
+		
+		
+		
+		ManagerMemberDto managerMemDto = new ManagerMemberDto();
+		managerMemDto.setMgr_index(mgr_index);
+		managerMemDto.setMgr_auth(mgr_auth);
+		managerMemDto.setMgr_id(mgr_id);
+		managerMemDto.setMgr_name(mgr_name);
+		managerMemDto.setMgr_loc(mgr_loc);
+		managerMemDto.setMgr_cell(mgr_cell);
+		managerMemDto.setMgr_delDate(mgr_delDate);
+		managerMemDto.setMgr_del(mgr_del);
+		
+		
+		
+		
+		return managerMemDto;
 	
 	}//end of collectParameter
 	

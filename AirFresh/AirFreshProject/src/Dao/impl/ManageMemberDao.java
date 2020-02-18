@@ -43,7 +43,7 @@ public class ManageMemberDao implements ManageMemberDaoInterface {
 			psmt.setString(3, dto.getMgr_pw());
 			psmt.setString(4, dto.getMgr_name());
 			psmt.setInt(5, dto.getMgr_loc());
-			psmt.setInt(6, dto.getMgr_cell());
+			psmt.setString(6, dto.getMgr_cell());
 			psmt.setString(7, null);
 			psmt.setString(8, null);
 			psmt.setInt(9, 0);
@@ -97,7 +97,7 @@ public class ManageMemberDao implements ManageMemberDaoInterface {
 				  String mgr_pw = rs.getString("mgr_pw");
 				  String mgr_name = rs.getString("mgr_name"); 
 				  int mgr_loc = rs.getInt("mgr_loc");
-				  int mgr_cell = rs.getInt("mgr_cell");
+				  String mgr_cell = rs.getString("mgr_cell");
 				  String  mgr_joinDate = rs.getString("mgr_joinDate");
 				  String mgr_delDate = rs.getString("mgr_delDate");
 				  int mgr_del = rs.getInt("mgr_del");
@@ -157,7 +157,7 @@ public class ManageMemberDao implements ManageMemberDaoInterface {
 				  String mgr_pw = null;
 				  String mgr_name = rs.getString("mgr_name"); 
 				  int mgr_loc = rs.getInt("mgr_loc");
-				  int mgr_cell = rs.getInt("mgr_cell");
+				  String mgr_cell = rs.getString("mgr_cell");
 				  String mgr_joinDate = rs.getString("mgr_joindate");
 				  String mgr_delDate = rs.getString("mgr_deldate");
 				  int mgr_del = rs.getInt("mgr_del");
@@ -218,11 +218,12 @@ public class ManageMemberDao implements ManageMemberDaoInterface {
 			  String mgr_pw = null;
 			  String mgr_name = rs.getString("mgr_name"); 
 			  int mgr_loc = rs.getInt("mgr_loc");
-			  int mgr_cell = rs.getInt("mgr_cell");
+			  String mgr_cell = rs.getString("mgr_cell");
 			  String mgr_joinDate = rs.getString("mgr_joinDate");
 			  String mgr_delDate = rs.getString("mgr_delDate");
 			  int mgr_del = rs.getInt("mgr_del");
-			  System.out.println("!!!receiveManagerMemberSelect!!!"+mgr_index+" "+mgr_auth+" "+mgr_id+" "+mgr_pw+" "+mgr_name+" "+mgr_loc+" "+mgr_cell+" "+mgr_del);
+			  System.out.println("!!!receiveManagerMemberSelect!!!"+
+			  mgr_index+" "+mgr_auth+" "+mgr_id+" "+mgr_pw+" "+mgr_name+" "+mgr_loc+" "+mgr_cell+" "+mgr_joinDate+" "+mgr_delDate+" "+mgr_del);
 			  
 			  dto = new ManagerMemberDto(mgr_index, mgr_auth, mgr_id, mgr_pw, mgr_name, mgr_loc, mgr_cell, mgr_joinDate,  mgr_delDate, mgr_del);
 			  
@@ -248,9 +249,7 @@ public class ManageMemberDao implements ManageMemberDaoInterface {
 		
 		String sql = "update managerMember "
 				+ " set mgr_del=1 where mgr_index=? ";
-		
-		
-		
+
 		
 		
 		System.out.println(" 1/6 ManageMemberDao success ");

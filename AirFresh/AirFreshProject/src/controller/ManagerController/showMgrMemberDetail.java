@@ -16,25 +16,6 @@ import singleton.singleton;
 
 @WebServlet("/showMgrMemberDetail")
 public class showMgrMemberDetail extends HttpServlet{
-
-//	@Override
-//	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-//		System.out.println("detail do get  ");
-//		
-//		
-//		singleton si = singleton.getInstance();
-//		List<ManagerMemberDto> listmanagermemberlist1 = si.managerMember.receiveManagerMemberAll();
-//		System.out.println(listmanagermemberlist1);
-//		req.setAttribute("managerMemberList1", listmanagermemberlist1);
-//		
-//		forward("admin_view/manageMgr/showMgrMemberDetail.jsp", req, resp);
-//		
-//		
-//		String reqno = req.getParameter("mgr_id");
-//		System.out.println("showMgrMemberDetail  reqno = "+reqno );
-//		
-//	}
-
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		System.out.println("detail do post ");
