@@ -2,17 +2,14 @@
 <%@page import="Dto.ManagerMemberDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	
-<<<<<<< HEAD
-	
+
 <%
 HttpSession adminlogincheck = request.getSession();
 ManagerMemberDto managerMem = (ManagerMemberDto)session.getAttribute("managerLogin");
 System.out.println(managerMem);
 
 %>
-=======
->>>>>>> subMaster
+
 <!DOCTYPE html>
 <html>
 <head>
