@@ -35,7 +35,7 @@
 
     <ol class="breadcrumb">
       <li class="breadcrumb-item">
-        <a href="javascript:window.history.back();">상품목록</a>
+        <a href="<%=request.getContextPath()%>/modelist">상품목록</a>
       </li>
       <li class="breadcrumb-item active">공기청정기</li>
     </ol>

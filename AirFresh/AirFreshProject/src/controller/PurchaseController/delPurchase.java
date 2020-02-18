@@ -38,21 +38,17 @@ public class delPurchase  extends HttpServlet {
 		String seq = req.getParameter("seq");
 		int pur_index = Integer.parseInt(seq);
 		
+		String del = req.getParameter("del");
+		System.out.println("넘어온 del : "+del);
 		
 		HttpSession session = req.getSession();
 		MemberDto mem = (MemberDto)session.getAttribute("login");
-		//String mem_id = req.getParameter("id");
 		String mem_id = mem.getMem_id();
 		
 
 		System.out.println("delPur seq: "+seq);
 		singleton s = singleton.getInstance();
 		
-		//제품 삭제를 위해 dto 던져줌
-		/*
-		 * PurchaseDto pur = s.ps.getPurchaseOne(pur_index); req.setAttribute("pur",
-		 * pur);
-		 */
 		
 		boolean command = s.ps.purchaseDelete(pur_index);
 		System.out.println("del pur command: "+command);
@@ -62,34 +58,47 @@ public class delPurchase  extends HttpServlet {
 			
 			List<PurchaseNameDto> list = s.ps.memPurchaseList(mem_id);
 			req.setAttribute("list", list);
-			//리턴값 타입 json 으로 지정 
-			resp.setContentType("application/text");
-			resp.setCharacterEncoding("UTF-8");
 			
-			//list를 json형식의 string으로 변환
-			String str = "true";
-			String gson = new Gson().toJson(str);
 			
-			//변환한 json형식을 리턴 
-			resp.getWriter().write(gson);
-			resp.getWriter().flush();
-			resp.getWriter().close();
+			if(del.equals("detail")) {
+				req.getRequestDispatcher("./client_view/rental/rentallist.jsp").forward(req, resp);
+			} else {
+			
+				//리턴값 타입 json 으로 지정 
+				resp.setContentType("application/text");
+				resp.setCharacterEncoding("UTF-8");
+				
+				//list를 json형식의 string으로 변환
+				String str = "true";
+				String gson = new Gson().toJson(str);
+				
+				//변환한 json형식을 리턴 
+				resp.getWriter().write(gson);
+				resp.getWriter().flush();
+				resp.getWriter().close();
+			}
 			
 		} else {
 			System.out.println("삭제실패");
-			//리턴값 타입 json 으로 지정 
-			resp.setContentType("application/text");
-			resp.setCharacterEncoding("UTF-8");
 			
-			//list를 json형식의 string으로 변환
-			//String gson = new Gson().toJson(list);
-			String str = "false";
-			String gson = new Gson().toJson(str);
-			
-			//변환한 json형식을 리턴 
-			resp.getWriter().write(gson);
-			resp.getWriter().flush();
-			resp.getWriter().close();
+			if(del.equals("detail")) {
+				req.getRequestDispatcher("./client_view/rental/rentallist.jsp").forward(req, resp);
+			} else {
+				
+				//리턴값 타입 json 으로 지정 
+				resp.setContentType("application/text");
+				resp.setCharacterEncoding("UTF-8");
+				
+				//list를 json형식의 string으로 변환
+				//String gson = new Gson().toJson(list);
+				String str = "false";
+				String gson = new Gson().toJson(str);
+				
+				//변환한 json형식을 리턴 
+				resp.getWriter().write(gson);
+				resp.getWriter().flush();
+				resp.getWriter().close();
+			}
 			
 		}
 		

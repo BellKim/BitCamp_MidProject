@@ -91,7 +91,7 @@
 					<div class="" style="width: 50%;margin-top:50px; ">
 							<ul class="shop_btns">
 								<li class="mainhome" style="background-color: #d80546;">
-									<a href="javascript:window.history.back();">돌아가기</a>
+									<a href="<%=request.getContextPath()%>/printPurchase">돌아가기</a>
 								</li>
 								<li class="reviewWrite">
 									<% if(dto.getComp_date() != null){ %>
@@ -102,9 +102,21 @@
 										}
 									%>
 								</li>
+									<li class="delpur">
+									<a href="<%=request.getContextPath()%>/delPur?seq=<%= dto.getPur_index()%>&del=detail" 
+										onclick="del()">취소하기</a>
+								</li>
 							</ul>
 						</div>
 				</div>
+				
+				<script>
+					function del() {
+						if(confirm('정말 취소하시겠습니까?')){
+							alert("정상적으로 취소되었습니다.");
+						}						
+					}
+				</script>
 			<style>	
 			th {
 				text-align: center;
@@ -124,7 +136,7 @@
 			} 
 			
 			.shop_btns li {
-				width: 47%;
+				width: 33%;
 				display: inline-block;
 				margin: 0 auto;
 				border: 1px solid #fff;
