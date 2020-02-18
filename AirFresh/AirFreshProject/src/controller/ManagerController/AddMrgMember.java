@@ -33,7 +33,7 @@ public class AddMrgMember extends HttpServlet {
 			receiveManagerAll(req, resp);
 		}else if(status.equals("enter")) {
 			System.out.println("page redirect to add member " );
-			ProjectUtil.forward("/admin_view/manageMgr/addManager.jsp", req, resp);
+			forward("/admin_view/manageMgr/addManager.jsp", req, resp);
 		} else {
 			System.out.println("AddMrgMember 오류. 로직 확인해주세요 ");
 		}

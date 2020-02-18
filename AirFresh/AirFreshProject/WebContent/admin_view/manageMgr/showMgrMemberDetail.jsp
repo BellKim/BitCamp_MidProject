@@ -35,35 +35,45 @@ ManagerMemberDto managerSelectOneDTO = (ManagerMemberDto)request.getAttribute("m
 		    <li class="list-group-item">
 		    </li>
 			<li class="list-group-item">
-		     	<label for="Mgr_id" class="width50">메니저 인덱스 : </label>
+		     	<label for="Mgr_id" class="width50">매니저 인덱스 : </label>
 		    	<input type="text" id="Mgr_index" name="Mgr_index" value="<%=managerSelectOneDTO.getMgr_index() %>" readonly>
 		    </li>
 		    <li class="list-group-item">
-		     	<label for="Mgr_id" class="width50">메니저 아아디 : </label>
+		     	<label for="Mgr_id" class="width50">매니저 아아디 : </label>
 		    	<input type="text" id="Mgr_id" name="Mgr_id" value="<%=managerSelectOneDTO.getMgr_id() %>" readonly>
 		    </li>
 		    <li class="list-group-item">
-		    	<label for="Mgr_pw" class="width50">메니저 비밀번호 : </label>
+		    	<label for="Mgr_pw" class="width50">매니저 비밀번호 : </label>
 		    	<input type="text" id="Mgr_pw" name="Mgr_pw" value="<%--<%=managerSelectOneDTO.getMgr_pw() %>--%>" readonly> 
 		    </li>
 		    <li class="list-group-item">
-		    <label for="Mgr_name" class="width50">메니저 이름 : </label>	
+		    <label for="Mgr_name" class="width50">매니저 이름 : </label>	
 		    	<input type="text" id="Mgr_name" name="Mgr_name" value="<%=managerSelectOneDTO.getMgr_name() %>" readonly>
 		    </li>
 		    <li class="list-group-item">
-		    	<label for="Mgr_loc" class="width50">메니저 지역구:</label>
+		    	<label for="Mgr_loc" class="width50">매니저 지역구:</label>
 		    	<input type="text" id="Mgr_loc" name="Mgr_loc" value="<%=ProjectUtil.locationChange(managerSelectOneDTO.getMgr_loc()) %>" readonly >
 		    </li>
 		    <li class="list-group-item">
-		    	<label for="Mgr_cell" class="width50">메니저 휴대전화번호:</label>
+		    	<label for="Mgr_cell" class="width50">매니저 휴대전화번호:</label>
 		    	<input type="text" id="Mgr_cell" name="Mgr_cell" value="<%=managerSelectOneDTO.getMgr_cell()%>" readonly >
 		    </li>
 		    <li class="list-group-item">
-		    	<label for="Mgr_auth" class="width50">메니저 권한:</label>
+		    	<label for="Mgr_auth" class="width50">매니저 권한:</label>
 		    	<input type="text" id="Mgr_auth" name="Mgr_auth" value="<%=ProjectUtil.managerLevel(managerSelectOneDTO.getMgr_auth()) %>" readonly>
 		    </li>
 		    <li class="list-group-item">
-		    	<label for="Mgr_del" class="width50">메니저 탈퇴여부:</label>
+		    	<label for="Mgr_del" class="width50">입사일자:</label>
+		    	<input type="text" id="Mgr_del" name="Mgr_del" value="<%=ProjectUtil.outputdataValue(managerSelectOneDTO.getMgr_joinDate()) %>" readonly>
+	  			<input type="hidden" name="index" value="<%=managerSelectOneDTO.getMgr_joinDate()%>">
+		    </li>
+		    <li class="list-group-item">
+		    	<label for="Mgr_del" class="width50">퇴사일자:</label>
+		    	<input type="text" id="Mgr_del" name="MGR_DELDATE" value="<%=ProjectUtil.outputdataValue(managerSelectOneDTO.getMgr_delDate()) %>" readonly>
+	  			<input type="hidden" name="index" value="<%=managerSelectOneDTO.getMgr_delDate() %>">
+		    </li>
+		    <li class="list-group-item">
+		    	<label for="Mgr_del" class="width50">탈퇴여부:</label>
 		    	<input type="text" id="Mgr_del" name="Mgr_del" value="<%=ProjectUtil.managerStatus(managerSelectOneDTO.getMgr_del())%>" readonly>
 	  			<input type="hidden" name="index" value="<%=managerSelectOneDTO.getMgr_index() %>">
 		    </li>

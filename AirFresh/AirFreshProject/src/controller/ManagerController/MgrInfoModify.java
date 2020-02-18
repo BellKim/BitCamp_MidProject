@@ -31,11 +31,14 @@ public class MgrInfoModify extends HttpServlet{
 		
 		req.setAttribute("managerModify1", managerdto);
 		
-		ProjectUtil.forward("admin_view/manageMgr/ManagerCURD/modifyManager.jsp", req, resp);
+		forward("admin_view/manageMgr/ManagerCURD/modifyManager.jsp", req, resp);
 		
 	}//end of service
 	
-	
+	public static void forward(String link, HttpServletRequest req, HttpServletResponse resp)throws ServletException, IOException {
+		RequestDispatcher dispatch = req.getRequestDispatcher(link);
+		dispatch.forward(req, resp);		
+	}
 	
 
 }//end of MgrInfoModify class 

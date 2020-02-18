@@ -157,11 +157,6 @@ System.out.println(mem);
 					});//end ajax
 					
 			}//else		
-						
-						
-						
-					
-					
 
 			});//end btnlogin()
 			

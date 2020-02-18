@@ -22,7 +22,7 @@ public class ManageMemberDao implements ManageMemberDaoInterface {
 	@Override
 	public boolean insertManagerMember(ManagerMemberDto dto) {
 		String sql = " INSERT INTO managerMember(mgr_index, mgr_auth, mgr_id, "
-				+ " mgr_pw, mgr_name, mgr_loc, mgr_cell, mgr_delDate, mgr_del) "
+				+ " mgr_pw, mgr_name, mgr_loc, mgr_cell, mgr_joindate, mgr_delDate, mgr_del) "
 				+ " VALUES(managerMember_SEQ.NEXTVAL, ?, ?, ?, ?, ?, ?, ?, ? ) ";
 		System.out.println(" 1/6 ManageMemberDao success ");
 		Connection conn = null;
@@ -44,8 +44,9 @@ public class ManageMemberDao implements ManageMemberDaoInterface {
 			psmt.setString(4, dto.getMgr_name());
 			psmt.setInt(5, dto.getMgr_loc());
 			psmt.setInt(6, dto.getMgr_cell());
-			psmt.setString(7, " ");
-			psmt.setInt(8, 0);
+			psmt.setString(7, null);
+			psmt.setString(8, null);
+			psmt.setInt(9, 0);
 			
 			System.out.println(" 5/6 ManageMemberDao success ");
 			
@@ -67,7 +68,7 @@ public class ManageMemberDao implements ManageMemberDaoInterface {
 	@Override
 	public List<ManagerMemberDto> receiveManagerMemberAll() {
 		
-		String sql = " SELECT mgr_index, mgr_auth, mgr_id, mgr_pw, mgr_name, mgr_loc, mgr_cell,mgr_delDate, mgr_del "
+		String sql = " SELECT mgr_index, mgr_auth, mgr_id, mgr_pw, mgr_name, mgr_loc, mgr_cell, mgr_joindate, mgr_delDate, mgr_del "
 				+ " FROM managerMember "
 				+ " order by MGR_INDEX ASC "; 
 		
@@ -120,7 +121,7 @@ public class ManageMemberDao implements ManageMemberDaoInterface {
 
 	@Override
 	public ManagerMemberDto loginManagerMemberCehck(ManagerMemberDto managermemberdto) {
-		String sql = " SELECT mgr_index, mgr_auth, mgr_id, mgr_pw, mgr_name, mgr_loc, mgr_cell, mgr_delDate, mgr_del "
+		String sql = " SELECT mgr_index, mgr_auth, mgr_id, mgr_pw, mgr_name, mgr_loc, mgr_cell,mgr_joindate, mgr_delDate, mgr_del "
 					+ " FROM managerMember "
 					+ " WHERE mgr_id=? AND mgr_pw=? ";
 		
@@ -157,8 +158,8 @@ public class ManageMemberDao implements ManageMemberDaoInterface {
 				  String mgr_name = rs.getString("mgr_name"); 
 				  int mgr_loc = rs.getInt("mgr_loc");
 				  int mgr_cell = rs.getInt("mgr_cell");
-				  String mgr_joinDate = rs.getString("mgr_joinDate");
-				  String mgr_delDate = rs.getString("mgr_delDate");
+				  String mgr_joinDate = rs.getString("mgr_joindate");
+				  String mgr_delDate = rs.getString("mgr_deldate");
 				  int mgr_del = rs.getInt("mgr_del");
 				  
 				  System.out.println("!!!!!!!!!!!!!!!!!"+mgr_index+" "+mgr_auth+" "+mgr_id+" "+mgr_pw+" "+mgr_name+" "+mgr_loc+" "+mgr_cell+" "+mgr_joinDate+" "+ mgr_delDate + " "+mgr_del);
@@ -182,7 +183,7 @@ public class ManageMemberDao implements ManageMemberDaoInterface {
 
 	@Override
 	public ManagerMemberDto receiveManagerMemberSelect(String index) {
-		String sql = " SELECT mgr_index, mgr_auth, mgr_id, mgr_pw, mgr_name, mgr_loc, mgr_cell, mgr_del "
+		String sql = " SELECT mgr_index, mgr_auth, mgr_id, mgr_pw, mgr_name, mgr_loc, mgr_cell, mgr_joindate, mgr_delDate, mgr_del "
 				+ " FROM managerMember "
 				+ " WHERE mgr_index=?";
 	

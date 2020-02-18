@@ -26,7 +26,7 @@ public class ManagerMemberDto implements Serializable {
 	private String mgr_name; 
 	private int mgr_loc; 
 	private int mgr_cell;
-	private String  mgr_joinDate;
+	private String mgr_joinDate;
 	private String mgr_delDate;
 	private int mgr_del;
 	
@@ -172,6 +172,13 @@ public class ManagerMemberDto implements Serializable {
 	public void setMgr_del(int mgr_del) {
 		
 		this.mgr_del = mgr_del;
+	}
+
+	@Override
+	public String toString() {
+		return "ManagerMemberDto [mgr_index=" + mgr_index + ", mgr_auth=" + mgr_auth + ", mgr_id=" + mgr_id
+				+ ", mgr_pw=" + mgr_pw + ", mgr_name=" + mgr_name + ", mgr_loc=" + mgr_loc + ", mgr_cell=" + mgr_cell
+				+ ", mgr_joinDate=" + mgr_joinDate + ", mgr_delDate=" + mgr_delDate + ", mgr_del=" + mgr_del + "]";
 	}
 
 

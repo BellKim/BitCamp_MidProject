@@ -14,8 +14,11 @@ public class ProjectUtil {
 		dispatch.forward(req, resp);		
 	}
 	
-
-	
+	public static void forward11(String link, HttpServletRequest req, HttpServletResponse resp)throws ServletException, IOException {
+		RequestDispatcher dispatch = req.getRequestDispatcher(link);
+		dispatch.forward(req, resp);		
+	}
+		
 	//근무지 숫자를 넣으면 그에 해당하는 주소로 변환해주는 함수
 	public static String locationChange(int loc) {
 		String[] sloc = {"error","강남구","성동구","중랑구","기타"};
@@ -50,10 +53,20 @@ public class ProjectUtil {
 		}
 		return -1;
 	}
+	
+	
+	public static String outputdataValue(String data) {
+		if(data==null) {
+			return "-";
+		}else {
+			return data;
+		}
+		
+	}//end 
 
 	
 	
 	
-}
+}//end class 
 
 

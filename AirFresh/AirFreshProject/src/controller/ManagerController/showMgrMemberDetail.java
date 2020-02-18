@@ -48,7 +48,7 @@ public class showMgrMemberDetail extends HttpServlet{
 			System.out.println("managerInfoSelectOne mgr_index receiveIndexNo = "+receiveIndexNo );
 			
 			req.setAttribute("managerInfoSelectOne", managerdto);
-			ProjectUtil.forward("admin_view/manageMgr/showMgrMemberDetail.jsp", req, resp);
+			forward("admin_view/manageMgr/showMgrMemberDetail.jsp", req, resp);
 			
 			
 		}else if(status.equals("delete")) {
@@ -61,14 +61,14 @@ public class showMgrMemberDetail extends HttpServlet{
 			
 			System.out.println("check 상태 입력 " + check);
 			
-			ProjectUtil.forward("admin_view/manageMgr/ManagerCURD/deleteManager.jsp", req, resp);
+			forward("admin_view/manageMgr/ManagerCURD/deleteManager.jsp", req, resp);
 		}else if(status.equals("modify")) {
 			System.out.println("수정에 진입. ");
 			String index = req.getParameter("index");
 			System.out.println("modify index   = "+index);
 			
 
-			ProjectUtil.forward("admin_view/manageMgr/ManagerCURD/modifyManager.jsp", req, resp);
+			forward("admin_view/manageMgr/ManagerCURD/modifyManager.jsp", req, resp);
 		}
 		
 		
@@ -78,7 +78,10 @@ public class showMgrMemberDetail extends HttpServlet{
 		
 	}// end of service class
 	
-	
+	public static void forward(String link, HttpServletRequest req, HttpServletResponse resp)throws ServletException, IOException {
+		RequestDispatcher dispatch = req.getRequestDispatcher(link);
+		dispatch.forward(req, resp);		
+	}
 
 	
 
