@@ -1,4 +1,5 @@
 
+<%@page import="Dto.MemberDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -31,57 +32,44 @@
       <!-- Sidebar Column -->
       <div class="col-lg-3 mb-4">
         <div class="list-group">											
-          <a href="content" target="self" class="list-group-item" id="update" onclick="showpage();">회원정보수정</a>
+          <a href="#" target="self" class="list-group-item" id="update">회원정보수정</a>
           <!-- <a href="#content" target="self" class="list-group-item" onclick="showpage(event, update);">회원정보수정</a> -->             
-          <a href="content" target="self" class="list-group-item" onclick="showpage();">리뷰내역</a>
-          <a href="content" target="self" class="list-group-item" onclick="showpage();">렌탈내역</a>
+          <a href="#" target="self" class="list-group-item" id="review">리뷰내역</a>
+          <a href="#" target="self" class="list-group-item" id="rental">렌탈내역</a>
           <%-- <a href="<%=request.getContextPath() %>/rentallist" class="list-group-item">렌탈내역</a> --%>          
-          <a href="content" target="self" class="list-group-item" onclick="showpage();">문의내역</a>          
+          <a href="#" target="self" class="list-group-item" id="qna">문의내역</a>          
         </div>	<%-- "<%=request.getContextPath() %>/qnalist?command=user" --%>
       </div>      
-    <div class="col-lg-9 mb-4" id="content">        
+    <div class="col-lg-9 mb-4" id="content">   
+	    <jsp:include page="/client_view/rental/rentallist.jsp"/>  	<!-- "update.jsp" -->
+	    <%-- <jsp:include page=""/> --%>
+	    <%-- <jsp:include page="<%=request.getContextPath() %>/rentallist.jsp"/> --%>
+	    <%-- <jsp:include page="<%=request.getContextPath() %>/qnalist.jsp"/> --%>
     </div>
     </div>
+</div>    
     <!-- /.row -->
 
-
-
-<div class="tab">
-  <button class="tablinks" onmouseover="openCity(event, 'London')">London</button>
-  <button class="tablinks" onmouseover="openCity(event, 'Paris')">Paris</button>
-  <button class="tablinks" onmouseover="openCity(event, 'Tokyo')">Tokyo</button>
-</div>
-
-<div id="London" class="tabcontent">
-  <h3>London</h3>
-  <p>London is the capital city of England.</p>
-</div>
-
-<div id="Paris" class="tabcontent">
-  <h3>Paris</h3>
-  <p>Paris is the capital of France.</p>
-</div>
-
-<div id="Tokyo" class="tabcontent">
-  <h3>Tokyo</h3>
-  <p>Tokyo is the capital of Japan.</p>
-</div>
-
-<div class="clearfix"></div>
-</div>
-
 <script type="text/javascript">
- $(document).ready(function () {
-	$(showpage (){
-		/* if( $("#").val()){ */
-			$("#content").load("update.jsp");
-			$("#content").load("");
-			$("#content").load("rentallist.jsp");
-			$("#content").load("qnalist.jsp");
-		  
-		
-	})
-}); 
+$(document).ready(function(){
+	$("#update").on("click", function(){
+		$("#content").load("update.jsp");	
+	});
+	
+	$("#review").on("click", function(){
+		$("#content").load("");	
+	});
+	
+	$("#rental").on("click", function(){
+		$("#content").load("rentallist.jsp");	
+	});
+	
+	$("#qna").on("click", function(){
+		$("#content").load("qnalist.jsp");	
+	});
+
+});	
+ 
 </script>
 		
 <%@ include file="./../include/footer.jsp"%>
