@@ -69,7 +69,8 @@
 					<td><input type = "checkbox" name = "delck" value = "<%=purchase.getPur_index()%>"></td>
 					<th><%=i+1 %></th>
 					<td><%=purchase.getPur_index() %></td>
-					<td><%=purchase.getPrd_model_name() %></td>
+					<td onclick="location.href='<%=request.getContextPath()%>/detailPur?seq=<%=purchase.getPur_index() %>'" style="cursor: pointer;"
+				title="클릭하면 상세내역을 보실 수 있습니다."><%=purchase.getPrd_model_name() %></td>
 					<td><%=purchase.getMem_id() %></td>
 					<td><%=purchaseCancle(purchase.getOrder_auth()) %></td>
 				</tr>
