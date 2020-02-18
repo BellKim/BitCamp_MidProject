@@ -64,7 +64,7 @@
 					%>
 					<tr align="center" onclick="location.href='<%=request.getContextPath()%>/noticedetail?command=user&noti_index=<%=notice.getNoti_index()%>'"
 					 style="cursor:pointer;">
-						<th><%=i + 1%></th>
+						<th><%=notice.getNoti_index()%></th>
 						<td align="left"><a
 							href="<%=request.getContextPath()%>/noticedetail?command=user&noti_index=<%=notice.getNoti_index()%>"><%=notice.getNoti_title()%></a>
 						</td>
