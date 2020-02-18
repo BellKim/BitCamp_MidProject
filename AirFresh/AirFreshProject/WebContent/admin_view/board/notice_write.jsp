@@ -26,7 +26,7 @@
 						</div>
 						<div style="width : 89%; float: left;">
 							<input type="text" class="form-control" id="inputDefault"
-								name="title">
+								name="title" required="required">
 						</div>
 						<div style="clear: left"></div>
 					</div>
@@ -34,7 +34,7 @@
 				<div class="form-group">
 					<label for="exampleTextarea">내용</label>
 					<textarea class="form-control" id="exampleTextarea" rows="20"
-						cols="50" name="content"></textarea>
+						cols="50" name="content" required="required"></textarea>
 
 				</div>
 				<div class="form-group">
