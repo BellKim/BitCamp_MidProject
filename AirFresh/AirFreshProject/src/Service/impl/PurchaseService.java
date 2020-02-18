@@ -58,8 +58,6 @@ public class PurchaseService implements PurchaseServiceInterface {
 		return dao.getlength();
 	}
 
-	public List<PurchaseNameDto> getModelName() {
-		return  dao.getModelName();
-	}
 	
 }
+

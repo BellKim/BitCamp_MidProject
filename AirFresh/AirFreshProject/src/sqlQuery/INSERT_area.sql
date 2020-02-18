@@ -161,9 +161,9 @@ select * from ORDERREVIEW;
 --		noticebbs insert
 ----------------------------------------------------------------------------------------------------------------------
 
-INSERT INTO noticebbs(noti_index, noti_title, noti_content, noti_catagory, noti_writer, noti_wdate,
-filename, tempfile, readcount, noti_del)
-VALUES(NOTICEBBS_SEQ.nextval,)
+--INSERT INTO noticebbs(noti_index, noti_title, noti_content, noti_catagory, noti_writer, noti_wdate,
+--filename, tempfile, readcount, noti_del)
+--VALUES(NOTICEBBS_SEQ.nextval,)
 
 
 select * from noticebbs;
@@ -172,9 +172,9 @@ select * from noticebbs;
 ----------------------------------------------------------------------------------------------------------------------
 --		QnaBbs insert
 ----------------------------------------------------------------------------------------------------------------------
-INSERT INTO qnaBbs(qna_index, mem_id, qna_title, qna_content, wdate, qna_secret, re_content, re_date,
-readcount, depth, qna_del)
-VALUES(QNABBS_SEQ.nextval,)
+--INSERT INTO qnaBbs(qna_index, mem_id, qna_title, qna_content, wdate, qna_secret, re_content, re_date,
+--readcount, depth, qna_del)
+--VALUES(QNABBS_SEQ.nextval,)
 
 select * from qnaBbs;
 
