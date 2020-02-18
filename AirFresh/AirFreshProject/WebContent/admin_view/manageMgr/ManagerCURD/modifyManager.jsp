@@ -67,7 +67,7 @@ ManagerMemberDto managerSelectOneDTO = (ManagerMemberDto)request.getAttribute("m
 		   </li>
 		   <li class="list-group-item">
 		   	<label for="mgr_auth" class="width50">매니저 권한:</label>
-		   	<input type="text" id="mgr_authRead" value="<%=ProjectUtil.managerLevel(managerSelectOneDTO.getMgr_auth()) %>"  readonly>
+		   	<input type="text" id="mgr_auth_show" value="<%=ProjectUtil.managerLevel(managerSelectOneDTO.getMgr_auth()) %>"  readonly>
 		   	<label for="mgr_auth" class="width50">에서</label>
 		   	<label>
 				<select id="mgr_auth" name="mgr_auth">
