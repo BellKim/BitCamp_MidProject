@@ -69,7 +69,7 @@
 					<td><input type = "checkbox" name = "delck" value = "<%=purchase.getPur_index()%>"></td>
 					<th><%=i+1 %></th>
 					<td><%=purchase.getPur_index() %></td>
-					<td onclick="location.href='<%=request.getContextPath()%>/detailPur?seq=<%=purchase.getPur_index() %>'" style="cursor: pointer;"
+					<td onclick="location.href='<%=request.getContextPath()%>/detailPur?command=admin&seq=<%=purchase.getPur_index() %>'" style="cursor: pointer;"
 				title="클릭하면 상세내역을 보실 수 있습니다."><%=purchase.getPrd_model_name() %></td>
 					<td><%=purchase.getMem_id() %></td>
 					<td><%=purchaseCancle(purchase.getOrder_auth()) %></td>
@@ -116,17 +116,5 @@
 
 		location.href = "<%=request.getContextPath()%>/rentallist?pageNumber=" + pageNum;
 	}
-	$(function(){
-		$("#delBtn").click(function(){
-			var arrCheck = $("input[name='delck']:checked").length;
-
-			if(arrCheck==0){
-				alert("삭제할 멤버를 선택해주세요");
-				return
-			}
-			//$("#noticelistForm").attr("action","noticedelete?command=multiDelete").submit();
-			
-		});
-	});
 	</script>
 <%@ include file="./../include/footer.jsp"%>

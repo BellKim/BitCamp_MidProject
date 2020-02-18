@@ -58,7 +58,6 @@ public class PurchaseService implements PurchaseServiceInterface {
 		return dao.getlength();
 	}
 
-
-	
 	
 }
+

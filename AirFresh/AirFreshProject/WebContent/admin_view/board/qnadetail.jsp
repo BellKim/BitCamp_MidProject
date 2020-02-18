@@ -6,7 +6,6 @@
 <%@ include file="./../include/header.jsp"%>
 <%
 QnaBbsDto qna = (QnaBbsDto) request.getAttribute("qnadto");
-
 String sdate = qna.getWdate().substring(0, 10);
 %>
 <div class="container">

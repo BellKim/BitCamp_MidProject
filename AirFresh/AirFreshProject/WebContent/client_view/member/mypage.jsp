@@ -1,13 +1,21 @@
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%
-MemberDto mem = (MemberDto)session.getAttribute("login");
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
-/*<jsp:include page="./../rental/rentalDetail.jsp" flush="false"></jsp:include> -->*/
-%>   
+<%
+	MemberDto mem = (MemberDto) session.getAttribute("login");
+%>
+
+<%-- <jsp:include page="./../rental/rentalDetail.jsp" flush="false"></jsp:include> -->
+	<%@ include file="./../rental/rentalDetail.jsp" %>
+	<jsp:include page="./../rental/rentalDetail.jsp" flush="false"></jsp:include>
+	<jsp:include page="./updatemem?command=update&id=<%=mem.getMem_id() %>"></jsp:include>
+	<!-- ./update.jsp -->
+	<jsp:include page="<%=request.getContextPath()%>/updatemem?command=update&id=<%=mem.getMem_id() %>" flush="true"/> --%>
+	
+	
 <%@ include file="./../include/header.jsp"%>
-<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/page.css" />
 
 <div class="container">
@@ -23,24 +31,25 @@ MemberDto mem = (MemberDto)session.getAttribute("login");
 
 	<div>
 		<p><em><%=mem.getMem_name() %></em> 고객님, 안녕하세요! </p>
-		<div class=""><%=mem.getMem_cell() %> / <%=mem.getMem_id() %></div>				
+		<div><%=mem.getMem_cell() %> / <%=mem.getMem_id() %></div>				
 	</div>
 			
     <!-- Content Row -->
     <div class="row">
       <!-- Sidebar Column -->
       <div class="col-lg-3 mb-4">
-        <div class="list-group">				
-          <a href="<%=request.getContextPath() %>/updatemem?command=update&id=<%=mem.getMem_id() %>" class="list-group-item">회원정보수정</a>
-          <a href="<%=request.getContextPath() %>/" class="list-group-item">리뷰내역</a>
-          <a href="<%=request.getContextPath() %>/" class="list-group-item">렌탈내역</a>
-          <a href="<%=request.getContextPath() %>/" class="list-group-item">A/S내역</a>
-          <a href="<%=request.getContextPath() %>/" class="list-group-item">문의내역</a>          
-        </div>
+        <div class="list-group">											<!-- "openCity(event, 'London')" -->
+          <a href="#content" target="self" class="list-group-item" onclick="showpage(event, update);">회원정보수정</a>          
+          <%-- <a href="<%=request.getContextPath() %>/updatemem?command=update&id=<%=mem.getMem_id() %>" class="list-group-item">회원정보수정</a> --%>
+          <a href="#content" target="self" class="list-group-item" onclick="showpage(event, review);">리뷰내역</a>
+          <a href="#content" target="self" class="list-group-item" onclick="showpage(event, rental);">렌탈내역</a>
+          <%-- <a href="<%=request.getContextPath() %>/rentallist" class="list-group-item">렌탈내역</a> --%>          
+          <a href="#content" target="self" class="list-group-item" onclick="showpage(event, qna);">문의내역</a>          
+        </div>	<%-- "<%=request.getContextPath() %>/qnalist?command=user" --%>
       </div>      
     <div class="col-lg-9 mb-4">
-        <h2>Section Heading</h2>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Soluta, et temporibus, facere perferendis veniam beatae non debitis, numquam blanditiis necessitatibus vel mollitia dolorum laudantium, voluptate dolores iure maxime ducimus fugit.</p>
+        <!-- <h2>Section Heading</h2> -->
+        <p id="content"></p>
     </div>
     </div>
     <!-- /.row -->
@@ -70,20 +79,26 @@ MemberDto mem = (MemberDto)session.getAttribute("login");
 
 <div class="clearfix"></div>
 </div>
-<script>
-function openCity(evt, cityName) {
+
+<script type="text/javascript">
+function showpage( index ) {
+	<%-- if(index == 1){
+		$("#content").html = <jsp:include page="update.jsp" flush="false"><jsp:param name="id" value="<%=mem.getMem_id() %>" /></jsp:include>
+	}else if(index == 2){		
+		$("#content").html = <jsp:include page="update.jsp" flush="false"><jsp:param name="id" value="<%=mem.getMem_id() %>" /></jsp:include>
+	} --%>
+}
+
+function showpage(evt, cityName) {
   var i, tabcontent, tablinks;
-  tabcontent = document.getElementsByClassName("tabcontent");
+  tabcontent = document.getElementsByClassName("col-lg-9 mb-4");
   for (i = 0; i < tabcontent.length; i++) {
     tabcontent[i].style.display = "none";
-  }
-  tablinks = document.getElementsByClassName("tablinks");
-  for (i = 0; i < tablinks.length; i++) {
-    tablinks[i].className = tablinks[i].className.replace(" active", "");
-  }
+  }  
   document.getElementById(cityName).style.display = "block";
   evt.currentTarget.className += " active";
 }
 </script>
 		
 <%@ include file="./../include/footer.jsp"%>
+

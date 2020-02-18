@@ -511,6 +511,8 @@ public class PurchaseDao implements PurchaseDaoInterface {
 		return count>0?true:false;
 	}
 
+
+
 	@Override
 	public RentalDetailDto getDetail(int pur_index) {
 		String sql = " select p.pur_index, m.prd_price, m.prd_index, p.mem_id, s.mem_name, s.mem_cell, s.mem_addr1, "

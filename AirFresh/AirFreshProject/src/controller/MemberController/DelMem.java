@@ -38,7 +38,7 @@ public class DelMem extends HttpServlet{
 			String pw = req.getParameter("pw");
 			MemberDto mem = s.ms.memLogin(id, pw);
 			req.getSession().setAttribute("login", mem);
-			ProjectUtil.forward("./client_view/member/delete.jsp", req, resp);					
+			forward("./client_view/member/delete.jsp", req, resp);					
 		}else if(command.equals("deleteAf")) {
 			String _id = req.getParameter("mem_id");
 			String _pw = req.getParameter("mem_pw");
@@ -50,5 +50,12 @@ public class DelMem extends HttpServlet{
 			
 		}
 	}	
+	
+	public static void forward(String link, HttpServletRequest req, HttpServletResponse resp)throws ServletException, IOException {
+		RequestDispatcher dispatch = req.getRequestDispatcher(link);
+		dispatch.forward(req, resp);		
+	}
+	
+	
 	
 }

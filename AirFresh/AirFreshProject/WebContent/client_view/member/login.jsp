@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <%@ include file="./../include/header.jsp"%>
 <div class="container" style = "padding-top:50px; padding-bottom:50px;">
 	<div class="row justify-content-center">
@@ -44,7 +44,6 @@
 				</div>
 			</div>
 		</div>
-	
 	</div>
 </div>
 
@@ -105,6 +104,22 @@ function getCookie(cookieName) {
     }
     return unescape(cookieValue);
 }
+
+		if ($("#chk_save_id").is(":checked")) {
+			if ($("#mem_id").val().trim() == "") {
+				alert("ID를 입력해 주십시오");
+				$("#chk_save_id").prop("checked", false);
+			} else {
+				$.cookie("user_id", $("#mem_id").val().trim(), {
+					expires : 7,
+					path : './'
+				});
+			}
+		} else {
+			$.removeCookie("user_id", {
+				path : './'
+			});
+		}
 
 
 </script>

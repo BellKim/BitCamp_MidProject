@@ -39,13 +39,13 @@ public class UpdateMem extends HttpServlet{
 			//String pw = req.getParameter("pw");								
 			MemberDto mem = s.ms.getMem(id);	// s.ms.memLogin(id, pw);	
 			req.getSession().setAttribute("login", mem);			
-			ProjectUtil.forward("./client_view/member/update.jsp", req, resp);			
+			forward("./client_view/member/update.jsp", req, resp);			
 		}		
 		else if(command.equals("updateAf")) {
 			String _id = req.getParameter("mem_id");
 			String _pw = req.getParameter("mem_pw");				
 			String _cell = req.getParameter("mem_cell"); 		
-			int _addr1 = Integer.parseInt(req.getParameter("mem_addr1"));
+			String _addr1 = req.getParameter("mem_addr1");
 			String _addr2 = req.getParameter("mem_addr2");
 			String _addr3 = req.getParameter("mem_addr3");		
 			
@@ -60,5 +60,10 @@ public class UpdateMem extends HttpServlet{
 			resp.sendRedirect(req.getContextPath() + "/client_view/member/finding.jsp?command=update&isS=" + isS);	
 		}
 	}	
+	
+	public static void forward(String link, HttpServletRequest req, HttpServletResponse resp)throws ServletException, IOException {
+		RequestDispatcher dispatch = req.getRequestDispatcher(link);
+		dispatch.forward(req, resp);		
+	}
 	
 }
