@@ -77,7 +77,7 @@
 			<tr align="center">
 				<td><%=dto.getPur_date()%></td>
 				<td>구매취소</td>
-				<td><img
+				<td style="cursor: pointer;" ><img
 					src="<%=request.getContextPath()%>/client_view/model/prd_detail_img/<%=dto.getPrd_model_name()%>_m1.png"
 					alt="" style="width: 40px; height: 40px;"> <b><%=dto.getPrd_name()%></b>
 					(<%=dto.getPrd_model_name()%>)</td>
@@ -110,7 +110,7 @@
 						$.ajax({
 							url:"<%=request.getContextPath()%>/delPur",
 							type : "post",
-							data : { seq : aa },
+							data : { seq : aa, del : "rlist" }, 
 					traditional : true,
 					datatype : "text",
 					success : function(data) {
@@ -125,10 +125,12 @@
 
 						if(d=="true"){
 							td.eq(1).text("구매취소");
+							td.eq(2).attr('onclick','').unbind("click");
 							td.eq(3).children().removeAttr('href');
 							td.eq(3).children().text("취소완료"); 
 							td.eq(4).children().text(" "); 
 							
+							alert("정상적으로 취소되었습니다.");
 							console.log("클릭한 row의데이터:"+tr.text());
 							
 						} else {
