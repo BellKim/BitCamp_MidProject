@@ -94,13 +94,32 @@ $(document).ready(function () {
 	 
 	 
 	$("#_btnid").click(function () {	
-		location.href='<%=request.getContextPath() %>/idcheck?_id=';
-		/* $.ajax({
+		<%-- location.href='<%=request.getContextPath() %>/idcheck?_id='; --%>
+		 $.ajax({
 			type:"post",	
 			url:"${pageContext.request.contextPath}/idcheck",	// idcheck / ./idcheck.jsp
-			data:{ "_id":$("#mem_id").val() },
+			data:{ _id : $("#mem_id").val() },
+			traditional : true,
+			datatype : "text",
 			success:function( data ){	// idcheck에서 넘겨준 결과값	
-				if(data.trim() == "YES"){
+				
+				var d = JSON.parse(data);
+				//alert("d: "+d);
+				
+				if(d=="true"){
+					//아이디가 존재해서 사용불가능
+					$("#idcheck").css("color", "#ff0000");
+					$("#idcheck").html('사용 중인 id입니다');
+					$("#mem_id").val("");
+					$("#mem_id").focus();
+				} else {
+					//아이디 사용가능
+					$("#idcheck").css("color", "#0000ff");
+					$("#idcheck").html('사용할 수 있는 id입니다');
+				}
+				
+				
+				/* if(data.trim() == "YES"){
 					$("#idcheck").css("color", "#0000ff");
 					$("#idcheck").html('사용할 수 있는 id입니다');
 				}else{
@@ -108,12 +127,12 @@ $(document).ready(function () {
 					$("#idcheck").html('사용 중인 id입니다');
 					$("#mem_id").val("");
 					$("#mem_id").focus();
-				}			
+				}		 */	
 			},
 			error:function(){
 				alert("error");
 			}		
-		}); */
+		}); 
 	});
 	
 	

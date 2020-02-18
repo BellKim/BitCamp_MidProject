@@ -48,45 +48,47 @@
 </div>
 
 <script type="text/javascript">
-	$("#btnlogin").click(function() {
-		if ($("#mem_id").val().trim() == "") {
+
+var user_id = $.cookie("user_id");
+
+if(user_id != null){			
+	//alert("쿠키있음");
+	$("#mem_id").val( user_id );
+	$("#chk_save_id").attr("checked", "checked"); 
+} 
+
+
+$("#chk_save_id").click(function() {
+	
+	if( $("#chk_save_id").is(":checked") ){			
+		if( $("#mem_id").val().trim() == "" ){
+			alert("ID를 입력해 주십시오");
+			$("#chk_save_id").prop("checked", false);			
+		}else{					
+			$.cookie("user_id", $("#mem_id").val().trim(), {expires:7, path:'./'});
+		}
+	}
+	else{			
+		$.removeCookie("user_id", {path:'./'});
+	} 
+	
+});
+
+$(document).ready(function() {
+	
+	$("#btnlogin").click(function () {
+		if( $("#mem_id").val().trim() == "" ){
 			alert("id를 입력해 주십시오");
 			$("#mem_id").focus();
-		} else if ($("#mem_pw").val().trim() == "") {
+		}
+		else if( $("#mem_pw").val().trim() == "" ){
 			alert("password를 입력해 주십시오");
 			$("#mem_pw").focus();
-		} else {
+		}
+		else{
 			$("#loginInfo").submit();
 		}
 	});
-		
-		var user_id = $.cookie("user_id");
-		if(user_id != null){			
-			$("#mem_id").val( user_id );
-			$("#chk_save_id").attr("checked", "checked");
-		}
-
-		$("#chk_save_id").click(function() {
-			
-			if( $("#chk_save_id").is(":checked") ){			
-				if( $("#mem_id").val().trim() == "" ){
-					alert("ID를 입력해 주십시오");
-					$("#chk_save_id").prop("checked", false);			
-				}else{					
-					$.cookie("user_id", $("#mem_id").val().trim(), {expires:7, path:'./'});
-				}
-			}
-			else{			
-				$.removeCookie("user_id", {path:'./'});
-			}
-			
-		});
-
-	var user_id = $.cookie("user_id");
-	if (user_id != null) {
-		$("#mem_id").val(user_id);
-		$("#chk_save_id").attr("checked", "checked");
-	}
 
 	$("#chk_save_id").click(function() {
 
