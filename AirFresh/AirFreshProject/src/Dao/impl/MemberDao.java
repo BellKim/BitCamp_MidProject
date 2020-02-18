@@ -15,14 +15,13 @@ import db.DBConnection;
 public class MemberDao implements MemberDaoInterface{	
 	
 	public MemberDao() {
-		DBConnection.initConnection();
+		//DBConnection.initConnection();
 	}
 	
 	@Override
 	public boolean idCheck(String mem_id) {
-		String sql = " SELECT MEM_ID "
-				+ " FROM MEMBERS "
-				+ " WHERE MEM_ID = ? ";
+		String sql = " SELECT MEM_ID FROM MEMBERS "
+				   + " WHERE MEM_ID = ? ";
 		
 		Connection conn = null;
 		PreparedStatement psmt = null;
@@ -30,7 +29,7 @@ public class MemberDao implements MemberDaoInterface{
 		
 		boolean findid = false;
 		
-		System.out.println("sql:" + sql);
+		//System.out.println("sql:" + sql);
 				
 		try {
 			conn = DBConnection.getConnection();
@@ -46,12 +45,15 @@ public class MemberDao implements MemberDaoInterface{
 				findid = true;
 			}		
 			
+			System.out.println("findid: "+findid);
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 			System.out.println("idCheck fail");
 		} finally {
 			DBClose.close(psmt, conn, rs);			
 		}		
+		
 		return findid;		
 		
 	}
@@ -60,8 +62,8 @@ public class MemberDao implements MemberDaoInterface{
 	public boolean addMem(MemberDto dto) {
 		String sql = " INSERT INTO MEMBERS(MEM_ID, MEM_PW, "
 				+ " MEM_NAME, MEM_CELL, MEM_BIRTH, "
-				+ " MEM_ADDR1, MEM_ADDR2, MEM_ADDR3, MEM_IN_DATE, MEM_OUT_DATE, MEM_AUTH) "
-				+ " VALUES(?, ?, ?, ?, ?, ?, ?, ?, SYSDATE, NULL, 3) ";
+				+ " MEM_ADDR1, MEM_ADDR2, MEM_ADDR3, MEM_IN_DATE, MEM_OUT_DATE, MEM_AUTH, MEM_DELETE) "
+				+ " VALUES(?, ?, ?, ?, ?, ?, ?, ?, SYSDATE, NULL, 3, 0) ";
 	
 		Connection conn = null;
 		PreparedStatement psmt = null;
@@ -133,6 +135,7 @@ public class MemberDao implements MemberDaoInterface{
 									rs.getString(i++),
 									rs.getString(i++),
 									rs.getString(i++),
+									rs.getInt(i++),
 									rs.getInt(i++));
 			}
 			System.out.println("4/6 getMem success");
@@ -148,9 +151,9 @@ public class MemberDao implements MemberDaoInterface{
 	@Override
 	public MemberDto memLogin(String mem_id, String mem_pw) {
 		String sql = " SELECT MEM_ID, MEM_NAME, MEM_CELL, MEM_BIRTH, "
-				+ " MEM_ADDR1, MEM_ADDR2, MEM_ADDR3, MEM_AUTH "	// MEM_IN_DATE, MEM_OUT_DATE,
+				+ " MEM_ADDR1, MEM_ADDR2, MEM_ADDR3, MEM_AUTH "
 				+ " FROM MEMBERS "
-				+ " WHERE MEM_ID=? AND MEM_PW=? ";
+				+ " WHERE MEM_ID=? AND MEM_PW=? AND MEM_DELETE=0 ";	// AND MEM_DELETE=0 : 가입
 	
 		Connection conn = null;
 		PreparedStatement psmt = null;
@@ -294,9 +297,11 @@ public class MemberDao implements MemberDaoInterface{
 	}
 	
 		
-	public boolean delMem(String mem_id, String mem_pw) {
-		String sql = "DELETE FROM MEMBERS "
-				+ " WHERE MEM_ID=? AND MEM_PW=? ";
+	public boolean delMem(String mem_id, String mem_pw) {		
+		
+		String sql = " UPDATE MEMBERS "
+				   + " SET MEM_OUT_DATE=SYSDATE, MEM_DELETE=1 "
+				   + " WHERE MEM_ID=? AND MEM_PW=? ";
 		
 		Connection conn = null;
 		PreparedStatement psmt = null;

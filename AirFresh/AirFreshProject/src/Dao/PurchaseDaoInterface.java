@@ -20,7 +20,8 @@ public interface PurchaseDaoInterface {
 	
 	//회원별 구매 list 보기
     //List<PurchaseDto> memPurchaseList(String mem_id);
-	List<PurchaseNameDto> memPurchaseList(String mem_id);
+	//List<PurchaseNameDto> memPurchaseList(String mem_id);
+	public List<PurchaseNameDto> memPurchaseList(String mem_id);
     
     //구매 상세 dto 보기 
 	RentalDetailDto getDetail(int pur_index);
@@ -28,6 +29,11 @@ public interface PurchaseDaoInterface {
     //model name뽑아오기
     List<PurchaseNameDto> getModelName(String mem_id);
     
+    //model name
+    List<PurchaseNameDto> getModelName(int pageNumber);
+    
+    public int getlength();
+
     //INSTALL 생성을 위한 직전에 생성된 제품구매 데이터의  FK 값 가져오는 함수 
     public PurchaseDto getNewCreate_Pur();
     

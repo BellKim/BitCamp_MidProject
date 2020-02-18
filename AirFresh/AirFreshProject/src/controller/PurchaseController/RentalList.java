@@ -9,6 +9,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+<<<<<<< HEAD
+=======
+import Dto.PurchaseDto;
+>>>>>>> jihyeon
 import Dto.PurchaseNameDto;
 import projectutil.ProjectUtil;
 import singleton.singleton;
@@ -28,9 +32,18 @@ public class RentalList extends HttpServlet {
 	
 	public void processFunc(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException  {
 		singleton s = singleton.getInstance();
+		String spageNumber = req.getParameter("pageNumber");
 		
-		List<PurchaseNameDto> list = s.ps.getPurchaseList();
+		int pageNumber = 0;
+		if(spageNumber != null && !spageNumber.equals("")){
+			pageNumber = Integer.parseInt(spageNumber);
+			System.out.println("pageNumber:"+pageNumber);
+		}
 		
+		List<PurchaseNameDto> list = s.ps.getModelName(pageNumber);
+		int len = s.ps.getlength();
+		req.setAttribute("rentalList", list);
+		req.setAttribute("rentallen", len);
 		ProjectUtil.forward("./admin_view/rental/rentallist.jsp", req, resp);
 		
 	}

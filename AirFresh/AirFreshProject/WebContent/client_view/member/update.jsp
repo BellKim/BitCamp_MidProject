@@ -1,5 +1,5 @@
 <%@page import="singleton.singleton"%>
-<%@page import="Dto.MemberDto"%>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
@@ -98,7 +98,7 @@ $(document).ready(function () {
 	});
 	
 	$("#_btnSignout").click(function () {					
-		location.href = "<%=request.getContextPath() %>/delmem?command=signout&id=<%=mem.getMem_id() %>&pw=<%=mem.getMem_pw() %>";							
+		location.href = "<%=request.getContextPath() %>/delmem?command=signout&id=<%=mem.getMem_id() %>&pw=<%=mem.getMem_pw() %>";
 	});
 	
 });

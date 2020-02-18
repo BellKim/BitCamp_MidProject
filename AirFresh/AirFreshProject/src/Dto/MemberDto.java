@@ -15,6 +15,7 @@ public class MemberDto implements Serializable {
 	private String mem_in_date;
 	private String mem_out_date;
 	private int mem_auth;
+	private int mem_delete;
 	
 	public MemberDto() {		
 	}	
@@ -31,7 +32,7 @@ public class MemberDto implements Serializable {
 	
 	
 	public MemberDto(String mem_id, String mem_pw, String mem_name, String mem_cell, String mem_birth, int mem_addr1,
-			String mem_addr2, String mem_addr3, String mem_in_date, String mem_out_date, int mem_auth) {
+			String mem_addr2, String mem_addr3, String mem_in_date, String mem_out_date, int mem_auth, int mem_delete) {
 		super();
 		this.mem_id = mem_id;
 		this.mem_pw = mem_pw;
@@ -44,6 +45,7 @@ public class MemberDto implements Serializable {
 		this.mem_in_date = mem_in_date;
 		this.mem_out_date = mem_out_date;
 		this.mem_auth = mem_auth;
+		this.mem_delete = mem_delete;
 	}
 
 	public MemberDto(String mem_id, String mem_name, String mem_cell, String mem_birth, int mem_addr1, String mem_addr2,
@@ -72,7 +74,7 @@ public class MemberDto implements Serializable {
 	}
 	//this.mem_in_date = mem_in_date;
 	//this.mem_out_date = mem_out_date;
-
+	//TODO this.mem_delete = mem_delete;
 	public MemberDto(String mem_id, String mem_pw, String mem_name, String mem_cell, String mem_birth, int mem_addr1,
 			String mem_addr2, String mem_addr3, int mem_auth) {
 		super();
@@ -85,7 +87,7 @@ public class MemberDto implements Serializable {
 		this.mem_addr2 = mem_addr2;
 		this.mem_addr3 = mem_addr3;
 		this.mem_auth = mem_auth;
-	}
+	}	//TODO this.mem_delete = mem_delete;
 
 	public String getMem_id() {
 		return mem_id;
@@ -175,14 +177,21 @@ public class MemberDto implements Serializable {
 		this.mem_auth = mem_auth;
 	}
 
+	public int getMem_delete() {
+		return mem_delete;
+	}
+	
+	public void setMem_delete(int mem_delete) {
+		this.mem_delete = mem_delete;
+	}
+
 	@Override
 	public String toString() {
 		return "MemberDto [mem_id=" + mem_id + ", mem_pw=" + mem_pw + ", mem_name=" + mem_name + ", mem_cell="
 				+ mem_cell + ", mem_birth=" + mem_birth + ", mem_addr1=" + mem_addr1 + ", mem_addr2=" + mem_addr2
 				+ ", mem_addr3=" + mem_addr3 + ", mem_in_date=" + mem_in_date + ", mem_out_date=" + mem_out_date
-				+ ", mem_auth=" + mem_auth + "]";
+				+ ", mem_auth=" + mem_auth + ", mem_delete=" + mem_delete + "]";
 	}
 	
 	
-
 }//end class

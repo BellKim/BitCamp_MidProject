@@ -69,7 +69,7 @@
 									<tr>
 										<th scope="row">설치희망일</th>
 										<td><input type="text" name="ins_date" id="datepicker"
-											placeholder="선택해주세요" readonly="readonly"></td>
+											placeholder="선택해주세요" readonly="readonly" style="cursor: pointer;"></td>
 									</tr>
 								</tbody>
 							</table>
@@ -92,7 +92,7 @@
 									제한됩니다.</dd>
 							</dl>								
 						</div>
-							<p class="pcls"><input type="checkbox" name="agree" checked=""> &nbsp;<label for="agree" id="agree">개인정보 수집 및 이용에 대해 동의합니다.</label></p>
+							<p class="pcls"><input type="checkbox" id="_agree" name="agree" checked onclick=""> &nbsp;<label for="agree" id="agree">개인정보 수집 및 이용에 대해 동의합니다.</label></p>
 
 					</div>
 					<div align="center">
@@ -139,9 +139,9 @@ td {
 </style>
 <script>
 	$(document).ready(function() {
+		
+		
 
-		/* 	var check = $("input:checkbox[name='agree']").val();
-			alert(check); */
 		$("#datepicker").datepicker({
 			minDate : 0,
 			maxDate : "+1M +10D",
@@ -152,11 +152,15 @@ td {
 			if ($("#datepicker").val() == "") {
 				alert("설치를 희망하는 날짜를 선택해주세요.");
 				$("#datepicker").focus();
+			} else if ( $("#_agree").prop("checked")==false){
+				alert("개인정보 수집 및 이용에 동의해주셔야합니다.");
+				return;
 			} else {
 				alert("정상적으로 접수되었습니다.");
-				$("#frm").submit();
+				$("#frm").submit(); 
 			}
-		});
+		}); 
+		
 	});
 </script>
 <%@ include file="./../include/footer.jsp"%>
