@@ -17,12 +17,15 @@
 		<li class="breadcrumb-item active">렌탈하기</li>
 	</ol>
 <%
-	for(int i = 0; i < list.size(); i++){
-		if((i+1)%4==0||i==0){
-			%>
-			<div class = "row">
-			<%
-		}
+	int w = 0; //루프형변수
+	int d = list.size()/3;
+	for(int i = 0; i < d; i++){
+		for(int j=0; j< 3; j++){
+			if((j+1)%4==0||j==0){	// 4번째 이미지일때 row생성 + 
+				%>
+				<div class = "row">
+				<%
+			}
 %>
 <div class ="col-lg-4">
 	<div class = "bs-component">
@@ -31,18 +34,21 @@
       
    			<%--  <a href ="./client_view/rental/rentalDetail.jsp?seq=<%=list.get(i).getPrd_index() %>"> modelDetail --%>
    			<input type="hidden" name="command" value="detail">
-   			<a href ="<%=request.getContextPath()%>/modelDetail?seq=<%=list.get(i).getPrd_index() %>&command=detail"> 
-   			<img src="<%=request.getContextPath()%>/client_view/model/prd_img/<%=list.get(i).getPrd_model_name()%>.png" width="300"></a>
+   			<a href ="<%=request.getContextPath()%>/modelDetail?seq=<%=list.get(w).getPrd_index() %>&command=detail"> 
+   			<img src="<%=request.getContextPath()%>/client_view/model/prd_img/<%=list.get(w).getPrd_model_name()%>.png" width="300"></a>
 		</div>
 	</div>
 </div>
-<%
-		if((i+1)%3==0){
+			<%
+			if((j+1)%3==0){
 			%>
 			</div>
 			<%
-		}
-	}
+			}//.if
+			w++;
+		}//.for j
+		if(w==list.size()) break;
+	}//.for i
 %>
 </div>
 <!--  -->
