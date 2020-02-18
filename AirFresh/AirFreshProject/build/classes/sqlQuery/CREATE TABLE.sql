@@ -96,6 +96,7 @@ NOCYCLE;
 -- 날짜 : 2020-02-17
 -- 수정자 : 이지예 
 -- MEM_IN_DATE, MEM_OUT_DATE 컬럼 추가 : DATE
+-- MEM_DELETE 컬럼추가 : NUMBER(1)
 
 CREATE TABLE members
 (
@@ -110,6 +111,7 @@ CREATE TABLE members
     mem_in_date	 DATE			  NULL,
     mem_out_date DATE			  NULL,
     mem_auth     NUMBER(1)        NULL, 
+    mem_delete 	 NUMBER(1)		  NULL,
     CONSTRAINT MEMBERS_PK PRIMARY KEY (mem_id)
 );
  

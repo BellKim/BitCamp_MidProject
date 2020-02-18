@@ -98,7 +98,7 @@ $(document).ready(function () {
 	});
 	
 	$("#_btnSignout").click(function () {					
-		location.href = "<%=request.getContextPath() %>/delmem?command=signout&id=<%=mem.getMem_id() %>&pw=<%=mem.getMem_pw() %>";							
+		location.href = "<%=request.getContextPath() %>/delmem?command=signout&id=<%=mem.getMem_id() %>&pw=<%=mem.getMem_pw() %>";
 	});
 	
 });
