@@ -26,7 +26,7 @@
 
 <%@ include file="./../include/header.jsp" %>
 <div class="container-fluid">
-	<h1 class="mt-4 mb-3" >공지사항</h1>
+	<h1 class="mt-4 mb-3" ">공지사항</h1>
 	<form id = "noticelistForm" method="post">
 		<input type = "hidden" name = "command" value ="multiDelete">
 		<div style="float: right">
@@ -96,14 +96,15 @@
 						for (int i = 0; i < list.size(); i++) {
 							NoticeBbsDto notice = list.get(i);
 				%>
-				<tr align="center">
+				<tr align="center" >
+				
 				<%
 			if (mrgMem.getMgr_auth() == 0) { // 왕관리자일 경우 
 				%>
 					<td><input type = "checkbox" name = "delck" value = "<%=notice.getNoti_index()%>"></td>
 					<%} %>
-					<th><%=i + 1%></th>
-					<td align="left">
+					<th><%=notice.getNoti_index()%></th>
+					<td align="left" onclick = "location.href='<%=request.getContextPath()%>/noticedetail?command=admin&noti_index=<%=notice.getNoti_index()%>'"  style="cursor:pointer;">
 						<%
 							if (notice.getNoti_catagory() == 1) {
 						%> 

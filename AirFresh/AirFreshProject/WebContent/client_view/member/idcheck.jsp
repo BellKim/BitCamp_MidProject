@@ -27,6 +27,7 @@ if(str1.equals("true")){
 %>
 	<script type="text/javascript">	
 	alert("사용 중인 id입니다");
+	return;
 	//location.href = "./client_view/member/register.jsp?isS" + str1;
 	</script>	
 <%
@@ -34,6 +35,7 @@ if(str1.equals("true")){
 %>
 	<script type="text/javascript">	
 	alert("사용할 수 있는 id입니다");	
+	return;
 	//location.href = "./client_view/member/register.jsp?isS" + str1;
 	</script>
 <% 

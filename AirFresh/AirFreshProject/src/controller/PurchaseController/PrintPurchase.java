@@ -42,7 +42,6 @@ public class PrintPurchase extends HttpServlet {
 		
 			HttpSession session = req.getSession();
 			MemberDto mem = (MemberDto)session.getAttribute("login");
-			//String mem_id = req.getParameter("id");
 			String mem_id = mem.getMem_id();
 			System.out.println(" PrintPurchase id: "+mem_id);
 			//System.out.println("prd_index: "+prd_index);

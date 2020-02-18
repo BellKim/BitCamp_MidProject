@@ -98,6 +98,11 @@ NOCYCLE;
 -- 날짜 : 2020-02-17
 -- 수정자 : 이지예 
 -- MEM_IN_DATE, MEM_OUT_DATE 컬럼 추가 : DATE
+-- MEM_DELETE 컬럼추가 : NUMBER(1)
+
+-- 날짜 : 2020-02-18
+-- 수정자 : 이지예 
+-- MEM_ADDR1 컬럼 타입 변경 : NUMBER -> VARCHAR2(20)
 
 CREATE TABLE members
 (
@@ -106,12 +111,13 @@ CREATE TABLE members
     mem_name     VARCHAR2(20)     NULL, 
     mem_cell     VARCHAR2(12)       NULL, 
     mem_birth    VARCHAR2(20)     NULL, 
-    mem_addr1    NUMBER(5)      NULL, 
+    mem_addr1    VARCHAR2(20)      NULL, 
     mem_addr2    VARCHAR2(100)    NULL, 
     mem_addr3    VARCHAR2(50)     NULL, 
     mem_in_date	 DATE			  NULL,
     mem_out_date DATE			  NULL,
     mem_auth     NUMBER(1)        NULL, 
+    mem_delete 	 NUMBER(1)		  NULL,
     CONSTRAINT MEMBERS_PK PRIMARY KEY (mem_id)
 );
  
@@ -183,11 +189,16 @@ CREATE TABLE purchase
 
 -- members Table Create SQL
 
+--작성자: 박지훈
+--날짜 : 2020- 02 - 18
+-- ins_index 추가  FK부여
+
 CREATE TABLE orderReview
 (
     re_index             NUMBER(6)         NOT NULL, 
-    mem_id               VARCHAR2(50)        NULL, 
-    pur_index            NUMBER(6)       NULL, 
+    mem_id           	 VARCHAR2(50)        NOT NULL, 
+    pur_index            NUMBER(6)         NULL,
+    ins_index			 NUMBER(6)		   NULL,
     wdate                DATE              NULL, 
     order_re_title       VARCHAR2(200)     NULL, 
     order_re_content     VARCHAR2(4000)    NULL, 
@@ -346,15 +357,17 @@ ALTER TABLE asReview
 
 
 ALTER TABLE orderReview
-    ADD CONSTRAINT FK_orderReview_pur_index_asApp FOREIGN KEY (pur_index)
-        REFERENCES asApplication (as_index);
+    ADD CONSTRAINT FK_orderReview_pur_index_pur FOREIGN KEY (pur_index)
+        REFERENCES purchase (pur_index);
  
 
 ALTER TABLE orderReview
-    ADD CONSTRAINT FK_orderReview_mem_id_members_ FOREIGN KEY (mem_id)
+    ADD CONSTRAINT FK_orderReview_mem_id_members FOREIGN KEY (mem_id)
         REFERENCES members (mem_id);
         
-
+ALTER TABLE orderReview
+    ADD CONSTRAINT FK_orderReview_ins_index_ins FOREIGN KEY (ins_index)
+        REFERENCES install (ins_index);
 
 
 ALTER TABLE qnaBbs

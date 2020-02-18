@@ -50,7 +50,7 @@ public class AddMem extends HttpServlet {
 			String _name = req.getParameter("mem_name");		
 			String _cell = req.getParameter("mem_cell"); 
 			String _birth = req.getParameter("mem_birth"); 
-			int _addr1 = Integer.parseInt(req.getParameter("mem_addr1"));
+			String _addr1 = req.getParameter("mem_addr1");
 			String _addr2 = req.getParameter("mem_addr2");
 			String _addr3 = req.getParameter("mem_addr3");			
 					

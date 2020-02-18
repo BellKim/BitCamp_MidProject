@@ -52,7 +52,7 @@
 				id="sidenavAccordion">
 				<div class="sb-sidenav-menu">
 				
-				<% if(mrgMem.getMgr_auth() == 0){ %>
+				<% if(mrgMem.getMgr_auth() == 0 || mrgMem.getMgr_auth() == 1){ %>
 					<div class="nav">
 						<a class="nav-link" href="<%=request.getContextPath()%>/noticelist?command=admin">
 								<i class="fas fa-chart-area"></i>
@@ -77,7 +77,7 @@
 								<i class="fas fa-table"></i>
 							 문의게시판</a>
 					</div>
-					<%}  else if( mrgMem.getMgr_auth() == 1){%>
+					<%}  else if( mrgMem.getMgr_auth() == 2){%>
 					<div class="nav">
 						<a class="nav-link" href="<%=request.getContextPath()%>/noticelist?command=admin">
 								<i class="fas fa-chart-area"></i>
@@ -97,7 +97,7 @@
 							 나의 완료 AS리스트</a>
 					</div>
 					
-					<%} else if (mrgMem.getMgr_auth() == 2){ %>
+					<%} else if (mrgMem.getMgr_auth() == 3){ %>
 					
 					<div class="nav">
 						<a class="nav-link" href="<%=request.getContextPath()%>/noticelist?command=admin">
