@@ -1,5 +1,7 @@
 package Dao;
 
+import java.util.List;
+
 import Dto.MemberDto;
 
 public interface MemberDaoInterface {
@@ -19,4 +21,6 @@ public interface MemberDaoInterface {
 	public String findPW(String mem_id, String mem_name);
 	
 	public MemberDto getMem(String id);
+	
+	public List<MemberDto> getMemberList(String opt, String keyword, int page);
 }

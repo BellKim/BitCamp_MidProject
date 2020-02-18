@@ -4,10 +4,10 @@
 
 <%
 
-	ManagerMemberDto mrgMem = (ManagerMemberDto) session.getAttribute("managerLogin");
+	//ManagerMemberDto mrgMem = (ManagerMemberDto) session.getAttribute("managerLogin");
 %>
 <%@ include file="./../include/header.jsp"%>
-<div class="container">
+<div class="container-fluid">
 	<h1 class="mt-4 mb-3" >공지사항</h1>
 		<hr>
 		<form
@@ -17,14 +17,14 @@
 				<div class="form-group">
 					<label class="col-form-label" for="inputDefault">제목</label>
 					<div>
-						<div style="width: 100px; float: left; margin-right: 5px;">
+						<div style="width: 10%; float: left; margin-right: 5px;">
 
 							<select class="form-control" id="exampleSelect1" name="catagory">
 								<option value="1">고객</option>
 								<option value="2">매니저</option>
 							</select>
 						</div>
-						<div style="width: 500px; float: left;">
+						<div style="width : 89%; float: left;">
 							<input type="text" class="form-control" id="inputDefault"
 								name="title">
 						</div>
@@ -41,8 +41,9 @@
 					<input type="file" class="form-control-file" id="exampleInputFile"
 						aria-describedby="fileHelp" name="fileload">
 				</div>
-				<div align="center">
+				<div align="center" style="padding-bottom : 10px;">
 					<button type="submit" class="btn btn-primary">글쓰기</button>
+					<button type="button" class="btn btn-primary" onclick="location.href='<%=request.getContextPath() %>/noticelist?command=admin'">취소</button>
 				</div>
 			</fieldset>
 		</form>

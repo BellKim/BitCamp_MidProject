@@ -1,5 +1,13 @@
+<%@page import="Dto.ManagerMemberDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+    <% 
+	    ManagerMemberDto mrgMem = session.getAttribute("managerLogin")==null?null:(ManagerMemberDto) session.getAttribute("managerLogin");   
+    	
+    %>
+    
+    <!-- 직원들 마이페이지 안되어있음!!  2020/02/17 -->
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,7 +26,7 @@
 </head>
 <body class="sb-nav-fixed">
 	<nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
-		<a class="navbar-brand" href="<%=request.getContextPath()%>/admin_view/main.jsp">AirFresh Admin</a>
+		<a class="navbar-brand" href="<%=request.getContextPath()%>/adminmain">AirFresh Admin</a>
 		<button class="btn btn-link btn-sm order-1 order-lg-0"
 			id="sidebarToggle" href="#">
 			<i class="fas fa-bars"></i>
@@ -34,7 +42,7 @@
 					<a class="dropdown-item" href="#">Settings</a><a
 						class="dropdown-item" href="#">Activity Log</a>
 					<div class="dropdown-divider"></div>
-					<a class="dropdown-item" href="login.html">Logout</a>
+					<a class="dropdown-item" id ="logoutBtn">Logout</a>
 				</div></li>
 		</ul>
 	</nav>
@@ -43,6 +51,8 @@
 			<nav class="sb-sidenav accordion sb-sidenav-dark"
 				id="sidenavAccordion">
 				<div class="sb-sidenav-menu">
+				
+				<% if(mrgMem.getMgr_auth() == 0){ %>
 					<div class="nav">
 						<a class="nav-link" href="<%=request.getContextPath()%>/noticelist?command=admin">
 								<i class="fas fa-chart-area"></i>
@@ -51,12 +61,15 @@
 						<a class="nav-link" href="<%=request.getContextPath()%>/showMrgMember">
 								<i class="fas fa-table"></i>
 							직원리스트</a>
-						<a class="nav-link" href="tables.html">
+						<a class="nav-link" href="<%=request.getContextPath()%>/memberlist">
 								<i class="fas fa-table"></i>
 							회원리스트</a>
-						<a class="nav-link" href="<%=request.getContextPath()%>/InstallController?command=install">
+						<a class="nav-link" href="<%=request.getContextPath()%>/rentallist">
 								<i class="fas fa-table"></i>
 							 렌탈리스트</a>
+						<a class="nav-link" href="<%=request.getContextPath()%>/InstallController?command=install">
+								<i class="fas fa-table"></i>
+							 설치리스트</a>
 						<a class="nav-link" href="<%=request.getContextPath()%>/InstallController">
 								<i class="fas fa-table"></i>
 							 AS리스트</a>
@@ -64,6 +77,47 @@
 								<i class="fas fa-table"></i>
 							 문의게시판</a>
 					</div>
+					<%}  else if( mrgMem.getMgr_auth() == 1){%>
+					<div class="nav">
+						<a class="nav-link" href="<%=request.getContextPath()%>/noticelist?command=admin">
+								<i class="fas fa-chart-area"></i>
+							공지사항
+						</a> 
+						<a class="nav-link" href="<%=request.getContextPath()%>/mgrMyPage?command=home">
+								<i class="fas fa-table"></i>
+							 마이페이지</a>
+						<a class="nav-link" href="<%=request.getContextPath()%>/InstallController?command=install">
+								<i class="fas fa-table"></i>
+							 AS리스트 선택하기</a>
+						<a class="nav-link" href="<%=request.getContextPath()%>/installConfirm?command=home">
+								<i class="fas fa-table"></i>
+							 나의 AS리스트</a>
+						<a class="nav-link" href="<%=request.getContextPath()%>/installcompController?command=home">
+								<i class="fas fa-table"></i>
+							 나의 완료 AS리스트</a>
+					</div>
+					
+					<%} else if (mrgMem.getMgr_auth() == 2){ %>
+					
+					<div class="nav">
+						<a class="nav-link" href="<%=request.getContextPath()%>/noticelist?command=admin">
+								<i class="fas fa-chart-area"></i>
+							공지사항
+						</a> 
+						<a class="nav-link" href="<%=request.getContextPath()%>/mgrMyPage?command=home">
+								<i class="fas fa-table"></i>
+							마이페이지</a>
+						<a class="nav-link" href="<%=request.getContextPath()%>/InstallController?command=install">
+								<i class="fas fa-table"></i>
+							 설치 리스트 선택하기</a>
+						<a class="nav-link" href="<%=request.getContextPath()%>/installConfirm?command=home">
+								<i class="fas fa-table"></i>
+							 나의 설치 리스트</a>
+						<a class="nav-link" href="<%=request.getContextPath()%>/installcompController?command=home">
+								<i class="fas fa-table"></i>
+							 나의 완료 설치 리스트</a>	 
+					</div>
+					<%} %>
 				</div>
 				<div class="sb-sidenav-footer">
 					<div class="small">Air Fresh</div>
@@ -72,3 +126,15 @@
 		</div>
             <div id="layoutSidenav_content">
                 <main>
+                
+         <%
+			/* 세션 만료시에 로그인 단으로 날려주는 처리  */         
+         	if(mrgMem == null){
+         		%>
+    			<script type="text/javascript">
+    				alert("로그인을 해주세요");
+    				location.href="로그인단으로 이동!!!!!!!!!!";
+    			</script>     		
+         		<%
+         	}
+         %>

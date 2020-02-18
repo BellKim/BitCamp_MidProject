@@ -46,7 +46,7 @@
 			%>
 			<p class="card-text">
 				<img
-					src="http://localhost:8090/AirFreshProject/upload/<%=notice.getTempfile()%>.<%=str%>">
+					src="http://localhost:8090/AirFreshProject/upload/<%=notice.getTempfile()%>.<%=str%>" width="100%">
 			</p>
 			<%
 				}
@@ -55,7 +55,7 @@
 			%>
 	<p class="card-text">
 
-				<%=notice.getNoti_title()%></p>
+				<pre><%=notice.getNoti_title()%></pre></p>
 	</div>
 </div>
 		<div align="center" style="padding :10px;">

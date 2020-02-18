@@ -147,6 +147,30 @@
 	<%
 		}
 	%>
+	
+	<%
+		} else if(command.equals("multiDelete")){
+	%>
+	<%
+		if (str.equals("true")) {
+	%>
+	<script type="text/javascript">
+		alert("성공적으로 삭제되었습니다.");
+		location.href = "<%=request.getContextPath()%>/noticelist?command=admin"; //컨트롤러 거쳐야함
+	</script>
+
+	<%
+		} else {
+			
+	%>
+	<script type="text/javascript">
+		alert("삭제 되지 않았습니다.");
+		location.href = "<%=request.getContextPath()%>/noticelist?command=admin"; 
+	</script>
+	<%
+		}
+	%>
+	
 	<%
 	
 	}

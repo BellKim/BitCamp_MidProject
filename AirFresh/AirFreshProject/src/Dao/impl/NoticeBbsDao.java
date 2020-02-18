@@ -20,9 +20,18 @@ public class NoticeBbsDao implements NoticeBbsDaoInterface {
 
 	@Override
 	public List<NoticeBbsDto> getNoticeList() {
-		String sql = " SELECT NOTI_INDEX, NOTI_TITLE, NOTI_CONTENT, NOTI_CATAGORY, "
-				+ " NOTI_WRITER, NOTI_WDATE, FILENAME, TEMPFILE, READCOUNT, NOTI_DEL " + " FROM NOTICEBBS "
-				+ " ORDER BY NOTI_WDATE DESC ";
+		String sql =" SELECT NOTI_INDEX, NOTI_TITLE, NOTI_CONTENT, NOTI_CATAGORY, " + 
+				" NOTI_WRITER, NOTI_WDATE, FILENAME, TEMPFILE, READCOUNT, NOTI_DEL " + 
+				" FROM ";
+		
+		sql += " (select ROWNUM AS RNUM, NOTI_INDEX, NOTI_TITLE, NOTI_CONTENT, NOTI_CATAGORY, " + 
+				"			NOTI_WRITER, NOTI_WDATE, FILENAME, TEMPFILE, READCOUNT, NOTI_DEL " + 
+				"			FROM (SELECT * FROM NOTICEBBS " + 
+				"			WHERE NOTI_DEL = 0 AND NOTI_CATAGORY = 2 ";
+		
+		sql	+= "ORDER BY NOTI_WDATE DESC)) ";
+		sql += " WHERE RNUM >= 1 AND RNUM <= 5 ";
+		
 
 		Connection conn = null;
 		PreparedStatement psmt = null;
@@ -517,6 +526,69 @@ public class NoticeBbsDao implements NoticeBbsDaoInterface {
 			DBClose.close(psmt, conn, rs);			
 		}
 		return len;	
+	}
+
+	@Override
+	public boolean multiDelNotice(String[] noticeIndex) {
+		String sql = " UPDATE NOTICEBBS "
+				+ " SET NOTI_DEL = 1 "
+				+ " WHERE NOTI_INDEX = ? ";
+		
+		Connection conn = null;
+		PreparedStatement psmt = null;
+		int count[] = new int[noticeIndex.length];
+		
+		
+		try {
+			conn = DBConnection.getConnection();
+			conn.setAutoCommit(false);
+			System.out.println("1/6 S multiDelNotice");
+			
+			psmt = conn.prepareStatement(sql);
+			System.out.println(noticeIndex.length);
+			
+			for(int i = 0; i < noticeIndex.length; i++) {
+				System.out.println(Integer.parseInt(noticeIndex[i]));
+				psmt.setInt(1, Integer.parseInt(noticeIndex[i]));
+				psmt.addBatch();
+				System.out.println("2/6 S multiDelNotice");
+				}
+			count = psmt.executeBatch();
+			System.out.println("3/6 S multiDelNotice");
+			conn.commit();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+			
+			try {
+				conn.rollback();
+				System.out.println(" rollback multiDelNotice");
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		} finally {
+			try {
+				conn.setAutoCommit(true);
+				System.out.println(" 성공 multiDelNotice");
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			DBClose.close(psmt, conn, null);
+		}
+		boolean isS = true;
+		System.out.println("count : " + count.length);
+		for (int i = 0; i < count.length; i++) {
+			System.out.println("count : " + count);
+			if(count[i]!=-2) { // -2 정상 종료
+				isS = false;
+				break;
+			}
+		}
+		
+		return isS;
 	}
 
 }
