@@ -9,7 +9,7 @@
 	    
 <%@ include file="./../include/header.jsp" %>
 
-<div class = "container">
+<div class = "container" style="margin-bottom: 30px;">
 	<h1 class="mt-4 mb-3">공기청정기</h1>
 
 	<ol class="breadcrumb">
@@ -30,7 +30,7 @@
 <div class ="col-lg-4">
 	<div class = "bs-component">
 		<div class="card mb-3">
- 			<h3 class="card-header"><%=list.get(i).getPrd_name()%></h3>
+ 			<h3 class="card-header"><%=list.get(w).getPrd_name()%></h3>
    			<%--  <a href ="./client_view/rental/rentalDetail.jsp?seq=<%=list.get(i).getPrd_index() %>"> modelDetail --%>
    			<input type="hidden" name="command" value="detail">
    			<a href ="<%=request.getContextPath()%>/modelDetail?seq=<%=list.get(w).getPrd_index() %>&command=detail"> 
@@ -46,13 +46,13 @@
 			}//.if
 			w++;
 		}//.for j
-		if(w==6) break;	
+		if(w==list.size()) break;	
 	}//.for i
 %>
-		<div align="center" style="margin: 50px auto;">
+		<!-- <div align="center" style="margin: 50px auto;">
 		<button type="button" class="btn btn-primary" style="padding: 10px 100px;"
 			onclick="moreItem()">더보기</button>
-		</div>
+		</div> -->
 </div>
 
 
