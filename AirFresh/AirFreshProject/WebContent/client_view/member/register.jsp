@@ -50,12 +50,12 @@
 			<tr>
 				<td>주소</td>
 				<td><input type="text" id="mem_addr1" name="mem_addr1"
-					placeholder="우편번호"> <input type="button"
+					placeholder="우편번호" readonly="readonly" onclick="sample6_execDaumPostcode();"> <input type="button"
 					onclick="sample6_execDaumPostcode()" value="우편번호 찾기"><br>
-					<input type="text" id="mem_addr2" name="mem_addr2" placeholder="주소"><br>
+					<input type="text" id="mem_addr2" name="mem_addr2" placeholder="주소" readonly="readonly"><br>
 					<input type="text" id="mem_addr3" name="mem_addr3"
 					placeholder="상세주소"> <input type="text"
-					id="sample6_extraAddress" placeholder="참고항목"></td>
+					id="sample6_extraAddress" placeholder="참고항목" readonly="readonly"></td>
 			</tr>
 			<tr>
 				<td colspan="2" align="center"><input type="button"
@@ -94,8 +94,8 @@ $(document).ready(function () {
 	 
 	 
 	$("#_btnid").click(function () {	
-		location.href='<%=request.getContextPath() %>/idcheck?_id=';
-		/* $.ajax({
+		location.href='<%=request.getContextPath() %>/idcheck?_id=frm.mem_id.value';
+		 <%-- $.ajax({	"location.href='<%=request.getContextPath() %>/findidpw?command=searchidpw'"
 			type:"post",	
 			url:"${pageContext.request.contextPath}/idcheck",	// idcheck / ./idcheck.jsp
 			data:{ "_id":$("#mem_id").val() },
@@ -113,7 +113,7 @@ $(document).ready(function () {
 			error:function(){
 				alert("error");
 			}		
-		}); */
+		});  --%>
 	});
 	
 	
