@@ -119,6 +119,7 @@ CREATE TABLE members
     mem_auth     NUMBER(1)        NULL, 
     mem_delete 	 NUMBER(1)		  NULL,
     CONSTRAINT MEMBERS_PK PRIMARY KEY (mem_id)
+    
 );
  
 

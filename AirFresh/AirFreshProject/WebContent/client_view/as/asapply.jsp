@@ -12,9 +12,7 @@
  
  
  <div class="container" style="margin-bottom: 100px;">
-	 <h1 class="mt-4 mb-3">A/S신청
-      <small>----</small>
-    </h1>
+	 <h1 class="mt-4 mb-3">A/S신청<small>----</small></h1>
 
     <ol class="breadcrumb">
       <li class="breadcrumb-item">
