@@ -42,10 +42,10 @@ ManagerMemberDto managerSelectOneDTO = (ManagerMemberDto)request.getAttribute("m
 		     	<label for="Mgr_id" class="width50">매니저 아아디 : </label>
 		    	<input type="text" id="Mgr_id" name="Mgr_id" value="<%=managerSelectOneDTO.getMgr_id() %>" readonly>
 		    </li>
-		    <li class="list-group-item">
+<%-- 		<li class="list-group-item">
 		    	<label for="Mgr_pw" class="width50">매니저 비밀번호 : </label>
-		    	<input type="text" id="Mgr_pw" name="Mgr_pw" value="<%--<%=managerSelectOneDTO.getMgr_pw() %>--%>" readonly> 
-		    </li>
+		    	<input type="text" id="Mgr_pw" name="Mgr_pw" value="<%=managerSelectOneDTO.getMgr_pw() %>" readonly> 
+		    </li> --%>
 		    <li class="list-group-item">
 		    <label for="Mgr_name" class="width50">매니저 이름 : </label>	
 		    	<input type="text" id="Mgr_name" name="Mgr_name" value="<%=managerSelectOneDTO.getMgr_name() %>" readonly>
