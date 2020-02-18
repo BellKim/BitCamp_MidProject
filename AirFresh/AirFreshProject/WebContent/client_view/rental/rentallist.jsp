@@ -62,7 +62,7 @@
 			<tr align="center" >
 				<td><%=dto.getPur_date()%></td>
 				<td><%=dto.getIns_date()%></td>
-				<td onclick="location.href='<%=request.getContextPath()%>/detailPur?seq=<%=dto.getPur_index() %>'" style="cursor: pointer;"
+				<td onclick="location.href='<%=request.getContextPath()%>/detailPur?command=user&seq=<%=dto.getPur_index() %>'" style="cursor: pointer;"
 				title="클릭하면 상세내역을 보실 수 있습니다."><img
 					src="<%=request.getContextPath()%>/client_view/model/prd_detail_img/<%=dto.getPrd_model_name()%>_m1.png"
 					alt="" style="width: 40px; height: 40px;"> <b><%=dto.getPrd_name()%></b>
