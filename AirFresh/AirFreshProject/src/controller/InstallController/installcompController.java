@@ -35,8 +35,10 @@ public class installcompController extends HttpServlet {
 			String command = request.getParameter("command");
 			
 			if(command.equals("home")) {
+				
 				ManagerMemberDto dto = (ManagerMemberDto)request.getSession().getAttribute("managerLogin");
 				List<InstallDto> list = s.is.getCompMyList(dto.getMgr_index());
+				
 				request.setAttribute("compList", list);
 				forward("./admin_view/InstallList/installComp.jsp", request, response);
 			}

@@ -6,6 +6,7 @@ import Service.ManageMemberInterface;
 import Service.MemberServiceInterface;
 import Service.ModelServiceInterface;
 import Service.NoticeBbsServiceInterface;
+import Service.OrderReviewServiceInterface;
 import Service.PurchaseServiceInterface;
 import Service.QnaBbsServiceInterface;
 import Service.impl.AsService;
@@ -14,6 +15,8 @@ import Service.impl.ManageMemberService;
 import Service.impl.MemberService;
 import Service.impl.ModelService;
 import Service.impl.NoticeBbsService;
+import Service.impl.OrderRevService;
+import Service.impl.OrderReviewService;
 import Service.impl.PurchaseService;
 import Service.impl.QnaBbsService;
 
@@ -28,7 +31,7 @@ public class singleton {
 	public ManageMemberInterface managerMember = null;
 	public InstallServiceInterface is = null;
 	public QnaBbsServiceInterface qbs = null;
-	
+	public OrderReviewServiceInterface orsi = null;
 	
 	
 
@@ -41,6 +44,7 @@ public class singleton {
 		managerMember = new ManageMemberService();
 		is = new InstallService();
 		qbs = new QnaBbsService();
+		orsi = new OrderReviewService();
 		
 	}
 	

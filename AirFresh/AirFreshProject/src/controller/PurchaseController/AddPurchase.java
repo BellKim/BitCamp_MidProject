@@ -49,6 +49,7 @@ public class AddPurchase  extends HttpServlet {
 		singleton s = singleton.getInstance();
 		
 		boolean command = s.ps.purchaseInsert(mem.getMem_id(), model.getPrd_index(), ins_date);
+		
 		//Install 생성 부분
 		if(command) {
 			//pur 생성 성공시 

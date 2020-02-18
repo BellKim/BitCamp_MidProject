@@ -33,4 +33,8 @@ public interface InstallServiceInterface {
 	//완료된 MyList
 	public List<InstallDto> getCompMyList(int mgr_index);
 	
+	//디테일 정보를 가져오는 메소드
+	public InstallDto getDetailDto(int index);
+	//설치기사가 완료처리를 하는 메소드
+	public boolean compInstall(int index);
 }

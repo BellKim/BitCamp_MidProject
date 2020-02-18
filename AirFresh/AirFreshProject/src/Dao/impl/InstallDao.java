@@ -10,6 +10,7 @@ import java.util.List;
 
 import Dao.InstallDaoInterface;
 import Dto.InstallDto;
+import Utill.Jutill;
 import db.DBClose;
 import db.DBConnection;
 
@@ -26,7 +27,7 @@ public class InstallDao implements InstallDaoInterface, Serializable {
 		
 		String sql = " SELECT  i.ins_index, i.pur_index, i.ins_date, "
 						+ "	i.comp_date, i.mgr_index, i.ins_state, "
-						+ " m1.prd_model_name, m2.mem_id, m2.mem_name, m2.mem_addr1, m2.mem_addr2, m2.mem_addr3, "
+						+ " m1.prd_model_name, m2.mem_id, m2.mem_name, m2.mem_addr1, m2.mem_addr2, m2.mem_addr3, m2.mem_cell, "
 						+ " p.pur_date "
 				+ " FROM INSTALL i, PURCHASE p, MODELLIST m1, MEMBERS m2"
 				+ " WHERE i.pur_index = p.pur_index  AND "
@@ -65,7 +66,8 @@ public class InstallDao implements InstallDaoInterface, Serializable {
 												rs.getString("pur_date"), //구매일
 												rs.getInt("mem_addr1"), // 회원 주소1 (우편번호)
 												rs.getString("mem_addr2"), //회원 주소2 (xx도 xx시)
-												rs.getString("mem_addr3")); //회원 주소3(xx구  xx동)
+												rs.getString("mem_addr3"), //회원 주소3(xx구  xx동)
+												rs.getString("mem_cell")); 
 				list.add(dto);
 				
 			}
@@ -85,7 +87,7 @@ public class InstallDao implements InstallDaoInterface, Serializable {
 		
 		String sql = " SELECT  i.ins_index, i.pur_index, i.ins_date, "
 				+ "	i.comp_date, i.mgr_index, i.ins_state, "
-				+ " m1.prd_model_name, m2.mem_id, m2.mem_name, m2.mem_addr1, m2.mem_addr2, m2.mem_addr3, "
+				+ " m1.prd_model_name, m2.mem_id, m2.mem_name, m2.mem_addr1, m2.mem_addr2, m2.mem_addr3, m2.mem_cell,"
 				+ " p.pur_date "
 		+ " FROM INSTALL i, PURCHASE p, MODELLIST m1, MEMBERS m2"
 		+ " WHERE i.pur_index = p.pur_index  AND "
@@ -126,7 +128,8 @@ public class InstallDao implements InstallDaoInterface, Serializable {
 												rs.getString("pur_date"), //구매일
 												rs.getInt("mem_addr1"), // 회원 주소1 (우편번호)
 												rs.getString("mem_addr2"), //회원 주소2 (xx도 xx시)
-												rs.getString("mem_addr3")); //회원 주소3(xx구  xx동)
+												rs.getString("mem_addr3"), //회원 주소3(xx구  xx동)
+												rs.getString("mem_cell")); 
 				list.add(dto);
 				
 			}
@@ -260,7 +263,7 @@ public class InstallDao implements InstallDaoInterface, Serializable {
 		
 		String sql = " SELECT  i.ins_index, i.pur_index, i.ins_date, "
 				+ "	i.comp_date, i.mgr_index, i.ins_state, "
-				+ " m1.prd_model_name, m2.mem_id, m2.mem_name, m2.mem_addr1, m2.mem_addr2, m2.mem_addr3, "
+				+ " m1.prd_model_name, m2.mem_id, m2.mem_name, m2.mem_addr1, m2.mem_addr2, m2.mem_addr3, m2.mem_cell,"
 				+ " p.pur_date "
 				+ " FROM INSTALL i, PURCHASE p, MODELLIST m1, MEMBERS m2"
 				+ " WHERE i.pur_index = p.pur_index  AND "
@@ -307,7 +310,8 @@ public class InstallDao implements InstallDaoInterface, Serializable {
 												rs.getString("pur_date"), //구매일
 												rs.getInt("mem_addr1"), // 회원 주소1 (우편번호)
 												rs.getString("mem_addr2"), //회원 주소2 (xx도 xx시)
-												rs.getString("mem_addr3")); //회원 주소3(xx구  xx동)
+												rs.getString("mem_addr3"),//회원 주소3(xx구  xx동)
+												rs.getString("mem_cell")); 
 					list.add(dto);	
 			}
 			
@@ -326,7 +330,7 @@ public class InstallDao implements InstallDaoInterface, Serializable {
 		
 		String sql = " SELECT  i.ins_index, i.pur_index, i.ins_date, "
 				+ "	i.comp_date, i.mgr_index, i.ins_state, "
-				+ " m1.prd_model_name, m2.mem_id, m2.mem_name, m2.mem_addr1, m2.mem_addr2, m2.mem_addr3, "
+				+ " m1.prd_model_name, m2.mem_id, m2.mem_name, m2.mem_addr1, m2.mem_addr2, m2.mem_addr3, m2.mem_cell, "
 				+ " p.pur_date "
 				+ " FROM INSTALL i, PURCHASE p, MODELLIST m1, MEMBERS m2"
 				+ " WHERE i.pur_index = p.pur_index  AND "
@@ -365,7 +369,8 @@ public class InstallDao implements InstallDaoInterface, Serializable {
 												rs.getString("pur_date"), //구매일
 												rs.getInt("mem_addr1"), // 회원 주소1 (우편번호)
 												rs.getString("mem_addr2"), //회원 주소2 (xx도 xx시)
-												rs.getString("mem_addr3")); //회원 주소3(xx구  xx동)
+												rs.getString("mem_addr3"),
+												rs.getString("mem_cell")); //회원 주소3(xx구  xx동)
 				list.add(dto);	
 				
 				
@@ -383,10 +388,10 @@ public class InstallDao implements InstallDaoInterface, Serializable {
 	
 	
 	public List<InstallDto> getNoCompMyList(int mgr_index){
-		
+		Jutill ju = new Jutill();
 		String sql =  " SELECT  i.ins_index, i.pur_index, i.ins_date, "
 				+ "	i.comp_date, i.mgr_index, i.ins_state, "
-				+ " m1.prd_model_name, m2.mem_id, m2.mem_name, m2.mem_addr1, m2.mem_addr2, m2.mem_addr3, "
+				+ " m1.prd_model_name, m2.mem_id, m2.mem_name, m2.mem_addr1, m2.mem_addr2, m2.mem_addr3, m2.mem_cell, "
 				+ " p.pur_date "
 				+ " FROM INSTALL i, PURCHASE p, MODELLIST m1, MEMBERS m2"
 				+ " WHERE i.pur_index = p.pur_index  AND "
@@ -418,20 +423,18 @@ public class InstallDao implements InstallDaoInterface, Serializable {
 				//list에 추가 
 				InstallDto dto = new InstallDto(rs.getInt("ins_index"),
 												rs.getInt("pur_index"),
-												rs.getString("ins_date"),
+												ju.ChangeDate(rs.getString("ins_date")),
 												rs.getString("comp_date"),
 												rs.getInt("mgr_index"),
-												rs.getInt("getins_state"),
+												rs.getInt("ins_state"),
 												rs.getString("prd_model_name"),
 												rs.getString("mem_id"),
 												rs.getString("mem_name"),
 												rs.getString("pur_date"),
-												rs.getString("mgr_name"),
-												rs.getInt("mgr_loc"),
-												Integer.parseInt(rs.getString("mgr_cell")),
 												rs.getInt("mem_addr1"),
 												rs.getString("mem_addr2"),
-												rs.getString("mem_addr3"));
+												rs.getString("mem_addr3"),
+												rs.getString("mem_cell"));
 				
 				list.add(dto);
 				
@@ -447,15 +450,16 @@ public class InstallDao implements InstallDaoInterface, Serializable {
 	}
 	
 	public List<InstallDto> getCompMyList(int mgr_index){
-		
+		Jutill ju = new Jutill();
 		String sql =  " SELECT  i.ins_index, i.pur_index, i.ins_date, "
 				+ "	i.comp_date, i.mgr_index, i.ins_state, "
-				+ " m1.prd_model_name, m2.mem_id, m2.mem_name, m2.mem_addr1, m2.mem_addr2, m2.mem_addr3, "
-				+ " p.pur_date "
-				+ " FROM INSTALL i, PURCHASE p, MODELLIST m1, MEMBERS m2"
+				+ " m1.prd_model_name, m2.mem_id, m2.mem_name, m2.mem_addr1, m2.mem_addr2, m2.mem_addr3, m2.mem_cell, "
+				+ " p.pur_date , o.rating "
+				+ " FROM INSTALL i, PURCHASE p, MODELLIST m1, MEMBERS m2, orderReview o"
 				+ " WHERE i.pur_index = p.pur_index  AND "
 				+ " p.prd_index = m1.prd_index  AND "
 				+ " p.mem_id = m2.mem_id AND "
+				+ " i.ins_index = o.ins_index AND "
 				+ " i.mgr_index =? " 
 				+ " AND comp_date IS NOT NULL "
 				+ " ORDER BY i.ins_index DESC ";
@@ -465,7 +469,7 @@ public class InstallDao implements InstallDaoInterface, Serializable {
 		PreparedStatement psmt = null;
 		ResultSet rs = null;
 		
-		System.out.println("[getNoCompMyList] sql = " + sql);
+		System.out.println("[getCompMyList] sql = " + sql);
 		
 		List<InstallDto> list = new ArrayList<InstallDto>();
 		
@@ -482,27 +486,26 @@ public class InstallDao implements InstallDaoInterface, Serializable {
 				//list에 추가 
 				InstallDto dto = new InstallDto(rs.getInt("ins_index"),
 												rs.getInt("pur_index"),
-												rs.getString("ins_date"),
+												ju.ChangeDate(rs.getString("ins_date")),
 												rs.getString("comp_date"),
 												rs.getInt("mgr_index"),
-												rs.getInt("getins_state"),
+												rs.getInt("ins_state"),
 												rs.getString("prd_model_name"),
 												rs.getString("mem_id"),
 												rs.getString("mem_name"),
 												rs.getString("pur_date"),
-												rs.getString("mgr_name"),
-												rs.getInt("mgr_loc"),
-												Integer.parseInt(rs.getString("mgr_cell")),
 												rs.getInt("mem_addr1"),
 												rs.getString("mem_addr2"),
-												rs.getString("mem_addr3"));
+												rs.getString("mem_addr3"),
+												rs.getString("mem_cell"),
+												rs.getString("rating"));
 				
 				list.add(dto);
 				
 			}
 			
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+			System.out.println("[getCompMyList] fail");
 			e.printStackTrace();
 		}finally {
 			DBClose.close(psmt, conn, rs);
@@ -510,6 +513,91 @@ public class InstallDao implements InstallDaoInterface, Serializable {
 		return list;
 	}
 	
+	public InstallDto getDetailDto(int index) {
+		Jutill ju = new Jutill();
+		
+		String sql =  " SELECT  i.ins_index, i.pur_index, i.ins_date, "
+				+ "	i.comp_date, i.mgr_index, i.ins_state, "
+				+ " m1.prd_model_name, m2.mem_id, m2.mem_name, m2.mem_addr1, m2.mem_addr2, m2.mem_addr3, m2.mem_cell, "
+				+ " p.pur_date "
+				+ " FROM INSTALL i, PURCHASE p, MODELLIST m1, MEMBERS m2"
+				+ " WHERE i.pur_index = p.pur_index  AND "
+				+ " p.prd_index = m1.prd_index  AND "
+				+ " p.mem_id = m2.mem_id AND "
+				+ " i.ins_index = " + index ;
+		
+		
+		Connection conn = null;
+		PreparedStatement psmt = null;
+		ResultSet rs = null;
+		
+		System.out.println("[getDetailDto] sql = " + sql);
+		InstallDto dto = null;
+		
+		try {
+			conn = DBConnection.getConnection();
+			psmt = conn.prepareStatement(sql);
+			
+			rs = psmt.executeQuery();
+			
+			if(rs.next()) {
+				dto = new InstallDto(rs.getInt("ins_index"),
+						rs.getInt("pur_index"),
+						ju.ChangeDate(rs.getString("ins_date")),
+						rs.getString("comp_date"),
+						rs.getInt("mgr_index"),
+						rs.getInt("ins_state"),
+						rs.getString("prd_model_name"),
+						rs.getString("mem_id"),
+						rs.getString("mem_name"),
+						rs.getString("pur_date"),
+						rs.getInt("mem_addr1"),
+						rs.getString("mem_addr2"),
+						rs.getString("mem_addr3"),
+						rs.getString("mem_cell"));
+
+			}
+		} catch (SQLException e) {
+			System.out.println("[getDetailDto] fail");
+			e.printStackTrace();
+		}finally {
+			DBClose.close(psmt, conn, rs);
+		}
+		
+		return dto;
+	}
 	
+	
+	public boolean compInstall(int index) {
+		
+		String sql = " UPDATE install "
+				+ " SET ins_state = 1,  comp_date = sysdate "
+				+ " WHERE ins_index =? ";
+		
+		Connection conn = null;
+		PreparedStatement psmt = null;
+		int count = 0;
+		
+		System.out.println("[compInstall] sql = " + sql);
+		
+		
+		try {
+			conn = DBConnection.getConnection();
+			psmt = conn.prepareStatement(sql);
+			psmt.setInt(1, index);
+			
+			count = psmt.executeUpdate();
+			
+			
+		} catch (SQLException e) {
+			System.out.println("[compInstall] fail");
+			e.printStackTrace();
+		}finally {
+			DBClose.close(psmt, conn, null);
+		}
+		
+		return count>0?true:false;
+		
+	}
 	
 }
