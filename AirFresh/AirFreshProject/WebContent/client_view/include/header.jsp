@@ -2,14 +2,6 @@
 <%@page import="Dto.ManagerMemberDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
-<%
-HttpSession adminlogincheck = request.getSession();
-ManagerMemberDto managerMem = (ManagerMemberDto)session.getAttribute("managerLogin");
-System.out.println(managerMem);
-
-%>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -46,7 +38,8 @@ System.out.println(managerMem);
           <ul class="clearfix">
              <li><a href="<%=request.getContextPath() %>/login?command=login" id="loginBtn">로그인</a></li>
              <li><a href="<%=request.getContextPath() %>/login?command=logout" id="logoutBtn">로그아웃</a></li>
-             <li><a href="<%=request.getContextPath()%>/addmem?command=regi">회원가입</a></li>
+             <li><a href="<%=request.getContextPath()%>/addmem?command=regi" id ="regiBtn">회원가입</a></li>
+
           </ul>
         </div>
         <ul class="navbar-nav ml-auto">
@@ -54,17 +47,7 @@ System.out.println(managerMem);
             <a class="nav-link" href="<%=request.getContextPath()%>/modelist">렌탈하기</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="<%=request.getContextPath()%>/asApply" id="asdiv">AS신청</a>
-            <%-- <%=request.getContextPath()%>/asApply --%>
-          </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownPortfolio" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              	후기게시판
-            </a>
-            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownPortfolio">
-              <a class="dropdown-item" href="#">설치후기</a>
-              <a class="dropdown-item" href="#">AS후기</a>
-            </div>
+            <a class="nav-link" href="#">렌탈후기</a>
           </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownBlog" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -73,7 +56,7 @@ System.out.println(managerMem);
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
               <a class="dropdown-item" href="<%=request.getContextPath()%>/noticelist?command=user">공지사항</a>
               <a class="dropdown-item" href="<%=request.getContextPath()%>/qnalist?command=user">QNA</a>
-              <a class="dropdown-item" href="#">FAQ</a>
+              <a class="dropdown-item" href="<%=request.getContextPath()%>/faqList">FAQ</a>
             </div>
           </li>
 
@@ -84,9 +67,7 @@ System.out.println(managerMem);
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
               <a class="dropdown-item" href="<%=request.getContextPath()%>/printPurchase">렌탈 내역</a>
-              <a class="dropdown-item" href="<%=request.getContextPath()%>/printAsApp">AS 내역</a>
                <a class="dropdown-item" href="<%=request.getContextPath()%>/login?command=login">내 정보</a>
-
             </div>
           </li>
         </ul>

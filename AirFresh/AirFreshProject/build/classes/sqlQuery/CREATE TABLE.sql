@@ -100,6 +100,10 @@ NOCYCLE;
 -- MEM_IN_DATE, MEM_OUT_DATE 컬럼 추가 : DATE
 -- MEM_DELETE 컬럼추가 : NUMBER(1)
 
+-- 날짜 : 2020-02-18
+-- 수정자 : 이지예 
+-- MEM_ADDR1 컬럼 타입 변경 : NUMBER -> VARCHAR2(20)
+
 CREATE TABLE members
 (
     mem_id       VARCHAR2(50)     NOT NULL, 
@@ -107,7 +111,7 @@ CREATE TABLE members
     mem_name     VARCHAR2(20)     NULL, 
     mem_cell     VARCHAR2(12)       NULL, 
     mem_birth    VARCHAR2(20)     NULL, 
-    mem_addr1    NUMBER(5)      NULL, 
+    mem_addr1    VARCHAR2(20)      NULL, 
     mem_addr2    VARCHAR2(100)    NULL, 
     mem_addr3    VARCHAR2(50)     NULL, 
     mem_in_date	 DATE			  NULL,

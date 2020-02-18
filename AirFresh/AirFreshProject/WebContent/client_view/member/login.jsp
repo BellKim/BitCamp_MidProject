@@ -32,7 +32,7 @@
 							<a class="small"
 								href="<%=request.getContextPath() %>/findidpw?command=searchidpw">아이디·패스워드
 								찾기</a>
-							<button type="button" class="btn btn-primary" id="btnlogin">로그인</button>
+							<button type="button" class="btn btn-primary" id="btnlogin" onclick="login()">로그인</button>
 						</div>
 
 					</form>
@@ -48,49 +48,62 @@
 </div>
 
 <script type="text/javascript">
-
-var user_id = $.cookie("user_id");
-
-if(user_id != null){			
-	//alert("쿠키있음");
-	$("#mem_id").val( user_id );
-	$("#chk_save_id").attr("checked", "checked"); 
-} 
-
-
-$("#chk_save_id").click(function() {
-	
-	if( $("#chk_save_id").is(":checked") ){			
-		if( $("#mem_id").val().trim() == "" ){
-			alert("ID를 입력해 주십시오");
-			$("#chk_save_id").prop("checked", false);			
-		}else{					
-			$.cookie("user_id", $("#mem_id").val().trim(), {expires:7, path:'./'});
-		}
-	}
-	else{			
-		$.removeCookie("user_id", {path:'./'});
-	} 
-	
+//저장된 쿠키 가져오기 
+$(function(){
+    var userId = getCookie("Cookie_userid");
+    $("#mem_id").val(userId);
+    
+    if($("#mem_id").val() != "")
+        $("#chk_save_id").attr("checked", true);
 });
 
-$(document).ready(function() {
-	
-	$("#btnlogin").click(function () {
-		if( $("#mem_id").val().trim() == "" ){
-			alert("id를 입력해 주십시오");
-			$("#mem_id").focus();
-		}
-		else if( $("#mem_pw").val().trim() == "" ){
-			alert("password를 입력해 주십시오");
-			$("#mem_pw").focus();
-		}
-		else{
-			$("#loginInfo").submit();
-		}
-	});
+function login(){
+	 //alert("확인");
+	var id = $("#mem_id").val();
+	var pw = $("#mem_pw").val();
+	if(id == "" || pw == ""){
+		alert("아이디 또는 비밀번호를 입력해주세요");
+	}else{
 
-	$("#chk_save_id").click(function() {
+		
+	    if($("#chk_save_id").is(":checked")){
+	        var userId = $("#mem_id").val();
+	        setCookie("Cookie_userid", userId, 30);
+	    }else{
+	        deleteCookie("Cookie_userid");
+	    }
+	    
+		$("#loginInfo").submit();
+	}
+}
+
+//쿠키 셋팅 함수 
+function setCookie(cookieName, value, exdays){
+    var exdate = new Date();
+    exdate.setDate(exdate.getDate() + exdays);
+    var cookieValue = escape(value) + ((exdays==null) ? "" : "; expires=" + exdate.toGMTString());
+    document.cookie = cookieName + "=" + cookieValue;
+}
+ // 쿠키 삭제 함수 
+function deleteCookie(cookieName){
+    var expireDate = new Date();
+    expireDate.setDate(expireDate.getDate() - 1);
+    document.cookie = cookieName + "= " + "; expires=" + expireDate.toGMTString();
+}
+ // 쿠키 가져오는 함수  
+function getCookie(cookieName) {
+    cookieName = cookieName + '=';
+    var cookieData = document.cookie;
+    var start = cookieData.indexOf(cookieName);
+    var cookieValue = '';
+    if(start != -1){
+        start += cookieName.length;
+        var end = cookieData.indexOf(';', start);
+        if(end == -1)end = cookieData.length;
+        cookieValue = cookieData.substring(start, end);
+    }
+    return unescape(cookieValue);
+}
 
 		if ($("#chk_save_id").is(":checked")) {
 			if ($("#mem_id").val().trim() == "") {
@@ -108,6 +121,6 @@ $(document).ready(function() {
 			});
 		}
 
-	});
+
 </script>
 <%@ include file="./../include/footer.jsp"%>

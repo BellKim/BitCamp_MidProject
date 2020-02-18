@@ -22,7 +22,7 @@
 %>
 <%@ include file="./../include/header.jsp"%>
 <div class="container">
-	<h1 class="mt-4 mb-3" >공지사항</h1>
+	<h1 class="mt-4 mb-3">공지사항</h1>
 
 	<ol class="breadcrumb">
 		<li class="breadcrumb-item"><a href="index.html">Home</a></li>
