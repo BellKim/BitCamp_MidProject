@@ -14,13 +14,6 @@ public class ProjectUtil {
 		dispatch.forward(req, resp);		
 	}
 	
-	public static void forward11(String link, HttpServletRequest req, HttpServletResponse resp)throws ServletException, IOException {
-		RequestDispatcher dispatch = req.getRequestDispatcher(link);
-		dispatch.forward(req, resp);		
-	}
-	
-	
-	
 
 	
 	//근무지 숫자를 넣으면 그에 해당하는 주소로 변환해주는 함수

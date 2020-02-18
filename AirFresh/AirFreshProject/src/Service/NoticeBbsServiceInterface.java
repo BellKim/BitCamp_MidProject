@@ -15,5 +15,6 @@ public interface NoticeBbsServiceInterface {
 	public int getAllBbsLength(String opt, String keyword);
 	public int getUserLength(String opt, String keyword);  //공지사항 사용자 전체 갯수 
 	public boolean deleteNotice(int noti_index);
+	public boolean multiDelNotice(String[] noticeIndex);
 	public boolean updateNotice(int noti_index, NoticeBbsDto notice);
 }

@@ -382,4 +382,134 @@ public class InstallDao implements InstallDaoInterface, Serializable {
 	}
 	
 	
+	public List<InstallDto> getNoCompMyList(int mgr_index){
+		
+		String sql =  " SELECT  i.ins_index, i.pur_index, i.ins_date, "
+				+ "	i.comp_date, i.mgr_index, i.ins_state, "
+				+ " m1.prd_model_name, m2.mem_id, m2.mem_name, m2.mem_addr1, m2.mem_addr2, m2.mem_addr3, "
+				+ " p.pur_date "
+				+ " FROM INSTALL i, PURCHASE p, MODELLIST m1, MEMBERS m2"
+				+ " WHERE i.pur_index = p.pur_index  AND "
+				+ " p.prd_index = m1.prd_index  AND "
+				+ " p.mem_id = m2.mem_id AND "
+				+ " i.mgr_index =? " 
+				+ " AND comp_date IS NULL "
+				+ " ORDER BY i.ins_index DESC ";
+		
+		
+		Connection conn = null;
+		PreparedStatement psmt = null;
+		ResultSet rs = null;
+		
+		System.out.println("[getNoCompMyList] sql = " + sql);
+		
+		List<InstallDto> list = new ArrayList<InstallDto>();
+		
+		
+		try {
+			conn = DBConnection.getConnection();
+			psmt = conn.prepareStatement(sql);
+			psmt.setInt(1, mgr_index);
+			
+			rs = psmt.executeQuery();
+			
+			while(rs.next()) {
+				int ind = 0 ;
+				//list에 추가 
+				InstallDto dto = new InstallDto(rs.getInt("ins_index"),
+												rs.getInt("pur_index"),
+												rs.getString("ins_date"),
+												rs.getString("comp_date"),
+												rs.getInt("mgr_index"),
+												rs.getInt("getins_state"),
+												rs.getString("prd_model_name"),
+												rs.getString("mem_id"),
+												rs.getString("mem_name"),
+												rs.getString("pur_date"),
+												rs.getString("mgr_name"),
+												rs.getInt("mgr_loc"),
+												Integer.parseInt(rs.getString("mgr_cell")),
+												rs.getInt("mem_addr1"),
+												rs.getString("mem_addr2"),
+												rs.getString("mem_addr3"));
+				
+				list.add(dto);
+				
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			DBClose.close(psmt, conn, rs);
+		}
+		return list;
+	}
+	
+	public List<InstallDto> getCompMyList(int mgr_index){
+		
+		String sql =  " SELECT  i.ins_index, i.pur_index, i.ins_date, "
+				+ "	i.comp_date, i.mgr_index, i.ins_state, "
+				+ " m1.prd_model_name, m2.mem_id, m2.mem_name, m2.mem_addr1, m2.mem_addr2, m2.mem_addr3, "
+				+ " p.pur_date "
+				+ " FROM INSTALL i, PURCHASE p, MODELLIST m1, MEMBERS m2"
+				+ " WHERE i.pur_index = p.pur_index  AND "
+				+ " p.prd_index = m1.prd_index  AND "
+				+ " p.mem_id = m2.mem_id AND "
+				+ " i.mgr_index =? " 
+				+ " AND comp_date IS NOT NULL "
+				+ " ORDER BY i.ins_index DESC ";
+		
+		
+		Connection conn = null;
+		PreparedStatement psmt = null;
+		ResultSet rs = null;
+		
+		System.out.println("[getNoCompMyList] sql = " + sql);
+		
+		List<InstallDto> list = new ArrayList<InstallDto>();
+		
+		
+		try {
+			conn = DBConnection.getConnection();
+			psmt = conn.prepareStatement(sql);
+			psmt.setInt(1, mgr_index);
+			
+			rs = psmt.executeQuery();
+			
+			while(rs.next()) {
+				
+				//list에 추가 
+				InstallDto dto = new InstallDto(rs.getInt("ins_index"),
+												rs.getInt("pur_index"),
+												rs.getString("ins_date"),
+												rs.getString("comp_date"),
+												rs.getInt("mgr_index"),
+												rs.getInt("getins_state"),
+												rs.getString("prd_model_name"),
+												rs.getString("mem_id"),
+												rs.getString("mem_name"),
+												rs.getString("pur_date"),
+												rs.getString("mgr_name"),
+												rs.getInt("mgr_loc"),
+												Integer.parseInt(rs.getString("mgr_cell")),
+												rs.getInt("mem_addr1"),
+												rs.getString("mem_addr2"),
+												rs.getString("mem_addr3"));
+				
+				list.add(dto);
+				
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			DBClose.close(psmt, conn, rs);
+		}
+		return list;
+	}
+	
+	
+	
 }

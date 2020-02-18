@@ -12,17 +12,20 @@
       </ol>
       <div class="carousel-inner" role="listbox">
         <!-- Slide One - Set the background image for this slide in the line below -->
-        <div class="carousel-item active" style="background-image: url('<%=request.getContextPath()%>/client_view/img/slide01.jpg')">
+       <div class="carousel-item active" style="background-image: url('<%=request.getContextPath()%>/client_view/img/slide01.jpg'); cursor: pointer;"
+       onclick="location.href='http://localhost:8090/AirFreshProject/noticedetail?command=user&noti_index=2'">
           <div class="carousel-caption d-none d-md-block">
           </div>
         </div>
         <!-- Slide Two - Set the background image for this slide in the line below -->
-        <div class="carousel-item" style="background-image: url('<%=request.getContextPath()%>/client_view/img/slide02.jpg')">
+        <div class="carousel-item" style="background-image: url('<%=request.getContextPath()%>/client_view/img/slide02.jpg'); cursor: pointer;" 
+        onclick="location.href='http://localhost:8090/AirFreshProject/noticedetail?command=user&noti_index=2'">
           <div class="carousel-caption d-none d-md-block">
           </div>
         </div>
         <!-- Slide Three - Set the background image for this slide in the line below -->
-        <div class="carousel-item" style="background-image: url('<%=request.getContextPath()%>/client_view/img/slide03.jpg'">
+        <div class="carousel-item" style="background-image: url('<%=request.getContextPath()%>/client_view/img/slide03.jpg'); cursor: pointer;"
+        onclick="location.href='http://localhost:8090/AirFreshProject/noticedetail?command=user&noti_index=2'">
           <div class="carousel-caption d-none d-md-block">
           </div>
         </div>
@@ -40,41 +43,40 @@
 
   <!-- Page Content -->
   <div class="container">
-
-   
     <!-- Portfolio Section -->
     <h1 class="my-4">Best Product</h1>
     <div class="row">
       <div class="col-lg-4 col-sm-6 portfolio-item">
         <div class="card h-100">
-          <a href="#"><img class="card-img-top" src="<%=request.getContextPath()%>/client_view/model/prd_img/ACL120UASKCG.png" alt=""></a>
+          <a href="<%=request.getContextPath()%>/modelDetail?seq=10003&command=detail"><img class="card-img-top" src="<%=request.getContextPath()%>/client_view/model/prd_img/ACL120UASKCG.png" alt=""></a>
           <div class="card-body">
             <h4 class="card-title">
-              <a href="#">공기청정기 블라</a>
+              <a href="<%=request.getContextPath()%>/modelDetail?seq=10003&command=detail">U필터 공기청정기</a>
             </h4>
-            <p class="card-text">1번 공청</p>
+            <p class="card-text">월 <span style ="font-size : 2em;font-weight: 500;">32,900</span>원</p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="col-lg-4 col-sm-6 portfolio-item">
+        <div class="card h-100">
+          <a href="<%=request.getContextPath()%>/modelDetail?seq=10004&command=detail"><img class="card-img-top" src="<%=request.getContextPath()%>/client_view/model/prd_img/ACL121CZSKYL.png" alt=""></a>
+          <div class="card-body">
+            <h4 class="card-title">
+              <a href="<%=request.getContextPath()%>/modelDetail?seq=10004&command=detail">미니언즈 공기청정기</a>
+            </h4>
+            <p class="card-text">월 <span style ="font-size : 2em;font-weight: 500; ">25,900</span>원</p>
           </div>
         </div>
       </div>
       <div class="col-lg-4 col-sm-6 portfolio-item">
-        <div class="card h-100">
-          <a href="#"><img class="card-img-top" src="<%=request.getContextPath()%>/client_view/model/prd_img/ACL121CZSKYL.png" alt=""></a>
+		<div class="card h-100">	
+          <a href="<%=request.getContextPath()%>/modelDetail?seq=10000&command=detail"><img class="card-img-top" src="<%=request.getContextPath()%>/client_view/model/prd_img/ACL141MASKWH.png" alt=""></a>
           <div class="card-body">
             <h4 class="card-title">
-              <a href="#">공기청정기 블라</a>
+              <a href="<%=request.getContextPath()%>/modelDetail?seq=10000&command=detail">모션공기청정기</a>
             </h4>
-            <p class="card-text">2번 공청</p>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-4 col-sm-6 portfolio-item">
-        <div class="card h-100">
-          <a href="#"><img class="card-img-top" src="<%=request.getContextPath()%>/client_view/model/prd_img/ACL141MASKWH.png" alt=""></a>
-          <div class="card-body">
-            <h4 class="card-title">
-              <a href="#">공기청정기 블라</a>
-            </h4>
-            <p class="card-text">3번 공청</p>
+            <p class="card-text">월 <span style ="font-size : 2em; font-weight: 500;">29,900</span>원</p>
           </div>
         </div>
       </div>      

@@ -3,6 +3,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 	
+<<<<<<< HEAD
 	
 <%
 HttpSession adminlogincheck = request.getSession();
@@ -10,6 +11,8 @@ ManagerMemberDto managerMem = (ManagerMemberDto)session.getAttribute("managerLog
 System.out.println(managerMem);
 
 %>
+=======
+>>>>>>> subMaster
 <!DOCTYPE html>
 <html>
 <head>
@@ -98,9 +101,11 @@ System.out.println(managerMem);
   		if('<%=request.getSession().getAttribute("login") %>' != 'null'){
 			$("#loginBtn").hide();
 			$("#logoutBtn").show();
+			$("#regiBtn").hide();
 		}else if('<%=request.getSession().getAttribute("login") %>' == 'null'){
 			$("#loginBtn").show();
 			$("#logoutBtn").hide();
+			$("#regiBtn").show();
 		}
   		
   		
