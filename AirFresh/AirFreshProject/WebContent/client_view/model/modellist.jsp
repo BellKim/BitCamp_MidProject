@@ -31,7 +31,6 @@
 	<div class = "bs-component">
 		<div class="card mb-3">
  			<h3 class="card-header"><%=list.get(i).getPrd_name()%></h3>
-      
    			<%--  <a href ="./client_view/rental/rentalDetail.jsp?seq=<%=list.get(i).getPrd_index() %>"> modelDetail --%>
    			<input type="hidden" name="command" value="detail">
    			<a href ="<%=request.getContextPath()%>/modelDetail?seq=<%=list.get(w).getPrd_index() %>&command=detail"> 
@@ -47,10 +46,16 @@
 			}//.if
 			w++;
 		}//.for j
-		if(w==list.size()) break;
+		if(w==6) break;	
 	}//.for i
 %>
+		<div align="center" style="margin: 50px auto;">
+		<button type="button" class="btn btn-primary" style="padding: 10px 100px;"
+			onclick="moreItem()">더보기</button>
+		</div>
 </div>
+
+
 <!--  -->
 <%	
 	//as버튼을 눌렀는데 구매내역이 없을때 이동했을때 창을 띄우기 위한 변수
