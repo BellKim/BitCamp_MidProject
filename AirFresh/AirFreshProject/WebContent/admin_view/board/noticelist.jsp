@@ -103,7 +103,7 @@
 				%>
 					<td><input type = "checkbox" name = "delck" value = "<%=notice.getNoti_index()%>"></td>
 					<%} %>
-					<th><%=i + 1%></th>
+					<th><%=notice.getNoti_index()%></th>
 					<td align="left" onclick = "location.href='<%=request.getContextPath()%>/noticedetail?command=admin&noti_index=<%=notice.getNoti_index()%>'"  style="cursor:pointer;">
 						<%
 							if (notice.getNoti_catagory() == 1) {
