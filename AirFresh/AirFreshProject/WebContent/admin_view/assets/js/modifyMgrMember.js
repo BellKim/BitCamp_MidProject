@@ -1,12 +1,12 @@
 
 
 	$(document).ready(function(){
-		//$('input[id="loc"]')[0].value	//벨류 셀렉트
-		//$('input[id="loc"]').attr("value");	//요소값 (강남구)
-		//var inputdata = $('input[id="mgr_del"]').attr("value");	//요소값 받아오기.
-		//$('input[id="mgr_del"]').attr("value", inputdata);	//요소값 적용하기
-		//var selected = $("#mgr_del").children();
-		
+		//receive ContextPath FROM linked modifyManager.jsp
+		function getContextPath(){
+			return sessionStorage.getItem("contextpath");
+		}
+		var ctxPath = getContextPath();
+		console.log("context path = "+ctxPath);
 
 		
 		//매니저 지역구 selectBox 자동선택 로직
@@ -41,13 +41,6 @@
 				$("#mgr_del").val(k).prop("selected", true);
 			}
 		}
-		
-		
-
-
-		
-
-
 		
 
 		
@@ -116,35 +109,33 @@
 	    $(".modify_btn_finish").click(function(){
 	    	console.log("hello ");
 	    	//$("#SelectForm").submit();
-	    	
-	    	mgr_index1	=$("input[name='mgr_index']").val();
-	    	mgr_id1		=$("input[name='mgr_id']").val();
-	    	mgr_pw1		=$("input[name='mgr_pw']").val();
-	    	mgr_name1	=$("input[name='mgr_name']").val();
-	    	mgr_loc1	=$("select[name='mgr_loc']").val();//
-	    	mgr_cell1	=$("input[name='mgr_cell']").val();
-	    	mgr_auth1	=$("select[name='mgr_auth']").val();//
-	    	mgr_del1	=$("select[name='mgr_del']").val();//
-	    	
+	    	////////////
+	    	var mgr_index1	=$("input[name='mgr_index']").val();
+	    	var mgr_id1		=$("input[name='mgr_id']").val();
+	    	var mgr_pw1		=$("input[name='mgr_pw']").val();
+	    	var mgr_name1	=$("input[name='mgr_name']").val();
+	    	var mgr_loc1	=$("select[name='mgr_loc']").val();//
+	    	var mgr_cell1	=$("input[name='mgr_cell']").val();
+	    	var mgr_auth1	=$("select[name='mgr_auth']").val();//
+	    	var mgr_del1	=$("select[name='mgr_del']").val();//
 	    	console.log(mgr_index1, mgr_id1, mgr_name1, mgr_loc1, mgr_cell1, mgr_auth1, mgr_del1   );
 	    	alert(mgr_index1, mgr_id1, mgr_name1, mgr_loc1, mgr_cell1, mgr_auth1, mgr_del1   );
-	    	
 	    	//$("#SelectForm").submit();
-	    	
+	    	var sendPath = ctxPath+"/modifyMgrMember?command=submit";
 	    	$.ajax({
-				url:'<%=request.getContextPath() %>/showMgrMemberDetail?command=submit',
-				type:"post",
+				url: sendPath,
+				type:"get",
 				datatype:"json",
 				data:{
-					mgr_index=mgr_index1,
-					mgr_id=mgr_id1,
-					mgr_name=mgr_name1,
-					mgr_loc=mgr_loc1,
-					mgr_cell=mgr_cell1,
-					mgr_auth=mgr_auth1,
-					mgr_del=mgr_del1,
+					mgr_index:mgr_index1,
+					mgr_id:mgr_id1,
+					mgr_name:mgr_name1,
+					mgr_loc:mgr_loc1,
+					mgr_cell:mgr_cell1,
+					mgr_auth:mgr_auth1,
+					mgr_del:mgr_del1,
 				},
-				datatype:"text",
+				datatype:"json",
 				success: function ( data ) {
 					console.log("통신성공");
 					console.log(data);
@@ -161,9 +152,6 @@
 					alert("통신 실패");
 				}
 	    	});//end ajax
-	    	
-	    	
-	    	
 	    });
 	    
 	    

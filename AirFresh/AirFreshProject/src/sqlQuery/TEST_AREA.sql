@@ -23,3 +23,27 @@ update managerMember set mgr_del=1 where mgr_index=60005;
 
      
      
+
+
+
+
+
+--update 
+
+UPDATE managerMember
+SET
+-- 입력될 데이터 60000 k_admin 최고관리자 1 1012341234 0 0
+--mgr_index=60000
+mgr_auth=1,
+mgr_id='k_admin',
+mgr_pw='123123',
+mgr_name='나는정말최고야'
+mgr_loc=1
+mgr_cell='01012341234',
+--mgr_joinDate=SYSDATE
+mgr_delDate=TO_DATE('2020-01-01','YYYY-MM-DD'),
+mgr_del=1
+WHERE
+mgr_index=60000;
+
+SELECT * FROM managerMember;

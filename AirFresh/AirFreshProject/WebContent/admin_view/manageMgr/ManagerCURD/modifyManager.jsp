@@ -105,6 +105,17 @@ ManagerMemberDto managerSelectOneDTO = (ManagerMemberDto)request.getAttribute("m
 			권한변경 		auth를 0, 1, 2  로 변경한다. 
 			아이디 삭제하기 => del=0 에서 1로 변경 
 		--%>
+	<script type="text/javascript" charset="UTF-8">
+	
+	
+	
+	console.log("${pageContext.request.contextPath}"+'${pageContext.request.contextPath}');
+	sessionStorage.setItem("contextpath", "${pageContext.request.contextPath}");
+	
+	
+	
+	
+    </script>
 	
 	<script src="./admin_view/assets/js/modifyMgrMember.js?v=<%=System.currentTimeMillis() %>"></script>
 	

@@ -174,7 +174,7 @@ System.out.println(mem);
 						$.cookie("user_id", $("#manager_id").val().trim(), {expires:7, path:'./'});
 					}
 				}
-				else{			
+				else{
 					$.removeCookie("user_id", {path:'./'});
 				}
 			});
