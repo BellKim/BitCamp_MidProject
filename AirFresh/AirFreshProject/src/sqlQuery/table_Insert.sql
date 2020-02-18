@@ -1,7 +1,10 @@
 INSERT INTO MEMBERS(mem_id, mem_pw, mem_name, mem_cell, mem_birth,
 mem_addr1, mem_addr2, mem_addr3, mem_auth)
-VALUES('test@www', '123','테스트5','01011232123','19120102',12345,'서울특별시 강동구','1층',0);
+VALUES('test@ww', '123','테스트3','01011232123','19120102',12345,'서울특별시 강남구','1층',0);
 
+INSERT INTO MEMBERS(mem_id, mem_pw, mem_name, mem_cell, mem_birth,
+mem_addr1, mem_addr2, mem_addr3, mem_auth)
+VALUES('test@w', '123','테스트1','01011232123','19120102',12345,'서울특별시 중랑구','1층',0);
 
 select * from MEMBERS
 

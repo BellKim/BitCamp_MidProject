@@ -15,7 +15,7 @@ import db.DBConnection;
 public class MemberDao implements MemberDaoInterface{	
 	
 	public MemberDao() {
-		DBConnection.initConnection();
+		//DBConnection.initConnection();
 	}
 	
 	@Override
@@ -45,12 +45,15 @@ public class MemberDao implements MemberDaoInterface{
 				findid = true;
 			}		
 			
+			System.out.println("findid: "+findid);
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 			System.out.println("idCheck fail");
 		} finally {
 			DBClose.close(psmt, conn, rs);			
 		}		
+		
 		return findid;		
 		
 	}

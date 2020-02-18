@@ -22,10 +22,8 @@
 		//여기 servlet으로 어떻게 보내고 받을것인지 확인 
 		str += String.format("&nbsp;<span sdate='" + date + "'>");
 		
-		str += String.format("%2d", day);  // <a href="">날짜</a>
-		
+		str += String.format("%2d", day);  // <a href="">날짜</a>		
 		str += "</span>";
-		
 		return str;
 	}
 	
@@ -65,7 +63,7 @@
 
 <%@ include file="./../include/header.jsp" %>
 
-<%
+<%	
 	ManagerMemberDto loginDto = null;
 	if(request.getSession().getAttribute("managerLogin") != null){
 		loginDto = (ManagerMemberDto)request.getSession().getAttribute("managerLogin");
@@ -274,7 +272,7 @@
 					//alert("크크크크클릭");
 					//디테일로 넘어가기 
 					var index = $(".plus").val();
-					alert(list[0].ins_index);
+					alert(list[index].ins_index);
 					$("#popup").css("display","block");
 					
 				});
@@ -430,6 +428,11 @@
 							alert("통신 실패");
 						}
 					});
+				});
+				
+				$(document).on("click", "#declose", function () {
+					//alert("close 클릭");
+					$("#popup").css("display","none");
 				});
 				
 			});//ready

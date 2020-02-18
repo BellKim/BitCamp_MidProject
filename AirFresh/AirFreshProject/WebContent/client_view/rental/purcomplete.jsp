@@ -1,4 +1,7 @@
 
+<%@page import="com.sun.org.apache.regexp.internal.RE"%>
+<%@page import="Dto.RentalDetailDto"%>
+<%@page import="Dto.PurchaseNameDto"%>
 <%@page import="java.util.List"%>
 <%@page import="java.text.DecimalFormat"%>
 <%@page import="Dto.PurchaseDto"%>
@@ -8,21 +11,21 @@
 	pageEncoding="UTF-8"%>
 <%@ include file="./../include/header.jsp"%>
 <%
+
+
 	MemberDto mem = (MemberDto) session.getAttribute("login");
-	ModelDto model = (ModelDto) session.getAttribute("model");
 
 	String command = request.getParameter("command");
 
-	String addr = mem.getMem_addr1() + " " + mem.getMem_addr2() + " " + mem.getMem_addr3();
 
-	int price = model.getPrd_price();
+	//상세내역 뽑아내기위한 dto
+	RentalDetailDto dto = (RentalDetailDto) request.getAttribute("dto");
+	int price = dto.getPrd_price();
 
+	String addr = dto.getMem_addr1() + " " + dto.getMem_addr2() + " " + dto.getMem_addr3();
 	DecimalFormat formatter = new DecimalFormat("###,###");
 	String sprice = formatter.format(price);
 
-	//상세내역 뽑아내기위한 dto
-	 PurchaseDto dto = (PurchaseDto)request.getAttribute("dto");
-	String pur_date = dto.getPur_date().substring(0,10);
 %>
 
 <!-- Page Content -->
@@ -63,17 +66,17 @@
 							<td colspan="3">
 								<div style="width: 80px; float: left">
 									<img
-										src="<%=request.getContextPath()%>/client_view/model/prd_img/<%=model.getPrd_model_name()%>.png"
+										src="<%=request.getContextPath()%>/client_view/model/prd_img/<%=dto.getPrd_model_name()%>.png"
 										width='60px' alt="xx">
 								</div>
-								<div style="width: 560px; float: left; font-size: 16pt"><%=model.getPrd_name()%>
-									<%=model.getPrd_model_name()%>24개월약정 등록비0원 <br> 월 요금 : <span style="color: #ff0000"> <strong> <%=sprice%></strong></span> 원
+								<div style="width: 560px; float: left; font-size: 16pt"><%=dto.getPrd_name()%>
+									<%=dto.getPrd_model_name()%>24개월약정 등록비0원 <br> 월 요금 : <span style="color: #ff0000"> <strong> <%=sprice%></strong></span> 원
 								</div>
 							</td>
 						</tr>
 						<tr>
 							<th scope="row">신청일</th>
-							<td><%= pur_date %></td>
+							<td><%= dto.getIns_date() %></td>
 						</tr>
 						<tr>
 							<th scope="row">설치희망일</th>

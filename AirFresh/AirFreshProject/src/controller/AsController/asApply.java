@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import Dto.MemberDto;
 import Dto.ModelDto;
 import Dto.PurchaseDto;
+import Dto.PurchaseNameDto;
 import singleton.singleton;
 
 /**
@@ -47,7 +48,14 @@ public class asApply extends HttpServlet implements Serializable{
 			
 			if(isS) {
 				//구매내역이 있을 때
-				response.sendRedirect(request.getContextPath() + "/client_view/as/asapply.jsp");
+				//response.sendRedirect(request.getContextPath() + "/client_view/as/asapply.jsp");
+				
+				
+				/* List<PurchaseNameDto> list = s.ps.getModelName(mdto.getMem_id()); */
+				List<PurchaseNameDto> list = s.ps.memPurchaseList(mdto.getMem_id());
+				
+				request.setAttribute("list", list);
+				request.getRequestDispatcher("./client_view/rental/rentallist.jsp").forward(request, response);
 			}else {
 				//구매내역이 없을 때
 				//리스트도 같이 보내줘야됨 (제품리스트)

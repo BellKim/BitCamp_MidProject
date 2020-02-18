@@ -13,15 +13,7 @@
 	
 	ModelDto model = (ModelDto)request.getAttribute("model");
 	//System.out.println("model :"+model.toString());
-/* 	
-	String cell = "0101234567";
-	
-	mem.setMem_id("bbb");
-	mem.setMem_name("홍길동");
-	mem.setMem_cell(cell);
-	mem.setMem_addr1(15402);
-	mem.setMem_addr2("서울특별시어쩌구");
-	mem.setMem_addr3("모모아파트 101동101호");*/
+
 	MemberDto mem = (MemberDto)session.getAttribute("login"); 
 	
 	//model session
@@ -43,7 +35,7 @@
 
     <ol class="breadcrumb">
       <li class="breadcrumb-item">
-        <a href="javascript:window.history.back();">상품목록</a>
+        <a href="<%=request.getContextPath()%>/modelist">상품목록</a>
       </li>
       <li class="breadcrumb-item active">공기청정기</li>
     </ol>
@@ -60,12 +52,9 @@
       <div class="col-md-4">
         <h3 class="my-3"><%= model.getPrd_name() %> <%=model.getPrd_model_name() %></h3>
          <h3 class="my-3">24개월약정/ 등록비 0원</h3>
-        <!-- <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-        Nam viverra euismod odio, gravida pellentesque urna varius vitae. 
-        Sed dui lorem, adipiscing in adipiscing et, interdum nec metus. 
-        Mauris ultricies, justo eu convallis placerat, felis enim.</p> -->
+
        
-<!--         <h3 class="my-3">Project Details</h3> -->
+
         <ul >
           <li style="display: block;">렌탈가격 : <%= sprice %> 원</li>
           <li style="display: block;">렌탈시스템 : 24개월이후 소유권이전</li>
@@ -91,7 +80,7 @@
 		<input type="hidden" name="command" value="purcha">
 		<ul class="shop_btns" style="margin-top: 15px;">
 			<li class="order"><a href="./modelDetail?seq=<%=model.getPrd_index() %>&command=purcha">렌탈신청하기</a></li>
-			<li class="qna"><a href="#">Q&A게시판</a></li>
+			<li class="qna"><a href="<%=request.getContextPath()%>/qnalist?command=user">Q&A게시판</a></li>
 		</ul>
 		<style>
 		
@@ -185,9 +174,5 @@
   </div>
   <!-- /.container -->
 
-  <!-- Bootstrap core JavaScript -->
-  <!-- 합치면 복구하기
-  <script src="vendor/jquery/jquery.min.js"></script>
-  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script> -->
 
 <%@ include file="./../include/footer.jsp" %>

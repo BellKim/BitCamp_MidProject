@@ -15,10 +15,10 @@
 		
 		for(i=0; i<option_size1; i++){
 			if(compaire_value1 == $("#loc_loc").children()[i].text){
-			    console.log("내용이 같다");
+			    //console.log("내용이 같다");
 			    $("#loc_loc").val(i+1).prop("selected", true);
 			}else{
-			    console.log("내용이 다르다");
+			    //console.log("내용이 다르다");
 			}
 		}
 		
@@ -115,5 +115,61 @@
             }
         });
     });
+    
+    
+    $(".modify_btn_finish").click(function(){
+    	console.log("hello ");
+    	//$("#SelectForm").submit();
+    	
+    	mgr_index1	=$("input[name='mgr_index']").val();
+    	mgr_id1		=$("input[name='mgr_id']").val();
+    	mgr_name1	=$("input[name='mgr_name']").val();
+    	mgr_loc1	=$("input[name='loc_loc']").val();//
+    	mgr_cell1	=$("input[name='mgr_cell']").val();
+    	mgr_auth1	=$("input[name='mgr_auth']").val();//
+    	mgr_del1	=$("input[name='mgr_del']").val();
+    	
+    	console.log(mgr_index1, mgr_id1,mgr_name1, mgr_loc1, mgr_cell1, mgr_auth1, mgr_del1   );
+    	
+    	
+    /*	
+    	$.ajax({
+			url:'<%=request.getContextPath() %>/showMgrMemberDetail?command=submit',
+			type:"post",
+			datatype:"json",
+			data:{
+				mgr_index=mgr_index1,
+				mgr_id=mgr_id1,
+				mgr_name=mgr_name1,
+				mgr_loc=mgr_loc1,
+				mgr_cell=mgr_cell1,
+				mgr_auth=mgr_auth1,
+				mgr_del=mgr_del1,
+			},
+			datatype:"text",
+			success: function ( data ) {
+				console.log("통신성공");
+				console.log(data);
+				//location.replace("<%=request.getContextPath() %>"+data);
+				if(data == "true"){
+					alert("로그인성공");
+					location.href="<%=request.getContextPath() %>/managerLogin?command=success";
+				}else{
+					alert("로그인실패");
+				}
+				//location.href(data);
+			},
+			error: function () {
+				alert("통신 실패");
+			}
+		});//end ajax
+*/    	
+    	
+    	
+    	
+    });
+    
+    
+    
 
 	

@@ -15,6 +15,8 @@ import Dto.InstallDto;
 import Dto.MemberDto;
 import Dto.ModelDto;
 import Dto.PurchaseDto;
+import Dto.PurchaseNameDto;
+import Dto.RentalDetailDto;
 import singleton.singleton;
 
 @WebServlet("/addPurchase")
@@ -49,6 +51,7 @@ public class AddPurchase  extends HttpServlet {
 		singleton s = singleton.getInstance();
 		
 		boolean command = s.ps.purchaseInsert(mem.getMem_id(), model.getPrd_index(), ins_date);
+		
 		//Install 생성 부분
 		if(command) {
 			//pur 생성 성공시 
@@ -65,7 +68,9 @@ public class AddPurchase  extends HttpServlet {
 			}
 			
 			//결제 후 상세내역 dto
-			PurchaseDto dto = s.ps.getPurchaseOne(purDto.getPur_index());
+			//PurchaseDto dto = s.ps.getPurchaseOne(purDto.getPur_index());
+			//PurchaseNameDto dto = s.ps.getPurchaseOne(purDto.getPur_index());
+			RentalDetailDto dto = s.ps.getDetailDto(purDto.getPur_index());
 			req.setAttribute("dto", dto);
 			req.getRequestDispatcher("./client_view/rental/purcomplete.jsp?command="+command).forward(req, resp);
 			

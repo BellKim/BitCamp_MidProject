@@ -1,7 +1,7 @@
+<%@page import="Dto.MemberDto"%>
 <%@page import="Dto.ManagerMemberDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-	
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,7 +15,11 @@
 
 <!-- Custom styles for this template -->
   <link href="<%=request.getContextPath()%>/css/modern-business.css" rel="stylesheet">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> 
+  
+  <!-- 쿠키저장 -->
+<!--  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script> -->
+<script src="http://lab.alexcican.com/set_cookies/cookie.js" type="text/javascript" ></script>
 </head>
 <body>
 	<!-- Header -->
@@ -33,14 +37,9 @@
         <div class="topSec clearfix">
           <ul class="clearfix">
              <li><a href="<%=request.getContextPath() %>/login?command=login" id="loginBtn">로그인</a></li>
-<<<<<<< HEAD
              <li><a href="<%=request.getContextPath() %>/login?command=logout" id="logoutBtn">로그아웃</a></li>
-             <li><a href="<%=request.getContextPath()%>/addmem?command=regi">회원가입</a></li>
-=======
-             
-             <li><a href="#" id="logoutBtn">로그아웃</a></li>
              <li><a href="<%=request.getContextPath()%>/addmem?command=regi" id ="regiBtn">회원가입</a></li>
->>>>>>> origin/subMaster
+
           </ul>
         </div>
         <ul class="navbar-nav ml-auto">
@@ -48,17 +47,7 @@
             <a class="nav-link" href="<%=request.getContextPath()%>/modelist">렌탈하기</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="<%=request.getContextPath()%>/asApply" id="asdiv">AS신청</a>
-            <%-- <%=request.getContextPath()%>/asApply --%>
-          </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownPortfolio" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              	후기게시판
-            </a>
-            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownPortfolio">
-              <a class="dropdown-item" href="#">설치후기</a>
-              <a class="dropdown-item" href="#">AS후기</a>
-            </div>
+            <a class="nav-link" href="#">렌탈후기</a>
           </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownBlog" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -67,7 +56,7 @@
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
               <a class="dropdown-item" href="<%=request.getContextPath()%>/noticelist?command=user">공지사항</a>
               <a class="dropdown-item" href="<%=request.getContextPath()%>/qnalist?command=user">QNA</a>
-              <a class="dropdown-item" href="#">FAQ</a>
+              <a class="dropdown-item" href="<%=request.getContextPath()%>/faqList">FAQ</a>
             </div>
           </li>
 
@@ -77,9 +66,8 @@
               마이페이지
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
-<!--  -->     <a class="dropdown-item" href="<%=request.getContextPath()%>/login?command=login">내 정보</a>
-              <a class="dropdown-item" href="<%=request.getContextPath()%>/printPurchase?id=bbb">렌탈 내역</a>
-              <a class="dropdown-item" href="#">AS 내역</a>
+              <a class="dropdown-item" href="<%=request.getContextPath()%>/printPurchase">렌탈 내역</a>
+               <a class="dropdown-item" href="<%=request.getContextPath()%>/login?command=login">내 정보</a>
             </div>
           </li>
         </ul>

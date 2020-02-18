@@ -1,4 +1,6 @@
-﻿DROP TABLE orderReview 
+
+
+DROP TABLE orderReview 
 CASCADE CONSTRAINTS;
 DROP TABLE purchase 
 CASCADE CONSTRAINTS;
@@ -17,7 +19,7 @@ CASCADE CONSTRAINTS;
 DROP TABLE managerMember 
 CASCADE CONSTRAINTS;
 DROP TABLE INSTALL
-CASCADE CONSTRAINT;
+CASCADE CONSTRAINTS;
 
 
 
@@ -187,11 +189,16 @@ CREATE TABLE purchase
 
 -- members Table Create SQL
 
+--작성자: 박지훈
+--날짜 : 2020- 02 - 18
+-- ins_index 추가  FK부여
+
 CREATE TABLE orderReview
 (
     re_index             NUMBER(6)         NOT NULL, 
-    mem_id               VARCHAR2(50)        NULL, 
-    pur_index            NUMBER(6)       NULL, 
+    mem_id           	 VARCHAR2(50)        NOT NULL, 
+    pur_index            NUMBER(6)         NULL,
+    ins_index			 NUMBER(6)		   NULL,
     wdate                DATE              NULL, 
     order_re_title       VARCHAR2(200)     NULL, 
     order_re_content     VARCHAR2(4000)    NULL, 
@@ -253,6 +260,10 @@ CREATE TABLE noticeBbs
 
 
 -- members Table Create SQL
+--  2020-02-18
+--	김종현
+--  mgr_delDate 맴버의 삭제 날짜를 남기기 위해서 칼럼추가. 
+--  mgr_joinDate 맴버 입사일 추가.
 CREATE TABLE managerMember
 (
     mgr_index    NUMBER(6)       NOT NULL, 
@@ -261,7 +272,9 @@ CREATE TABLE managerMember
     mgr_pw       VARCHAR2(20)    NULL, 
     mgr_name     VARCHAR2(20)    NULL, 
     mgr_loc      NUMBER(3)       NULL, 
-    mgr_cell     VARCHAR2(12)      NULL, 
+    mgr_cell     VARCHAR2(12)      NULL,
+    mgr_joinDate DATE			NULL,
+    mgr_delDate	 DATE			NULL,
     mgr_del      NUMBER(1)       NULL, 
     CONSTRAINT MANAGERMEMBER_PK PRIMARY KEY (mgr_index)
 );
@@ -291,10 +304,6 @@ CREATE TABLE asReview
 --작성자: 박지훈
 --날짜 : 2020- 02 - 07
 --기능 : 설치신청을 저장하는 테이블
-
-
-
-
 
 CREATE TABLE INSTALL(
 	--제품설치 인덱스(PK)
@@ -348,15 +357,17 @@ ALTER TABLE asReview
 
 
 ALTER TABLE orderReview
-    ADD CONSTRAINT FK_orderReview_pur_index_asApp FOREIGN KEY (pur_index)
-        REFERENCES asApplication (as_index);
+    ADD CONSTRAINT FK_orderReview_pur_index_pur FOREIGN KEY (pur_index)
+        REFERENCES purchase (pur_index);
  
 
 ALTER TABLE orderReview
-    ADD CONSTRAINT FK_orderReview_mem_id_members_ FOREIGN KEY (mem_id)
+    ADD CONSTRAINT FK_orderReview_mem_id_members FOREIGN KEY (mem_id)
         REFERENCES members (mem_id);
         
-
+ALTER TABLE orderReview
+    ADD CONSTRAINT FK_orderReview_ins_index_ins FOREIGN KEY (ins_index)
+        REFERENCES install (ins_index);
 
 
 ALTER TABLE qnaBbs

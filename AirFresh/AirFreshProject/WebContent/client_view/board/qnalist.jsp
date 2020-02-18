@@ -6,7 +6,7 @@
     
     <%
     	List<QnaBbsDto> list = (List<QnaBbsDto>)request.getAttribute("qnalist");
-    	MemberDto mem = (MemberDto)session.getAttribute("login");
+    	
     	
 		int len = (int) request.getAttribute("len");
 
@@ -21,6 +21,7 @@
 		if (spageNumber != null && !spageNumber.equals("")) {
 			pageNumber = Integer.parseInt(spageNumber);
 		}
+		MemberDto mem = (MemberDto)session.getAttribute("login");
     %>
 <%@ include file="./../include/header.jsp"%>
 <div class="container">
@@ -112,7 +113,7 @@
 	<div>
 	<%if(mem==null){ %>
 		<button type="button" class="btn btn-primary"
-			onclick="location.href='<%=request.getContextPath()%>/addQna?command=add'">로그인보내기</button>
+			onclick="login()">글쓰기</button>
 	<%} else {%>
 		<button type="button" class="btn btn-primary"
 			onclick="location.href='<%=request.getContextPath()%>/addQna?command=add'">글쓰기</button>	
@@ -166,12 +167,23 @@
 	}
 	
 	function usercheck(id, qna_index) {
-		if(id=="<%=mem.getMem_id()%>"){
-			location.href="<%=request.getContextPath()%>/qnadetail?command=user&qna_index="+qna_index;
-		} else {
-			alert("작성자 외에 열람하실 수 없습니다.");
-			return;
-		}
+		<%if(mem!=null){%>
+			if(id=="<%=mem.getMem_id()%>"){
+				location.href="<%=request.getContextPath()%>/qnadetail?command=user&qna_index="+qna_index;
+			} else {
+				alert("작성자 외에 열람하실 수 없습니다.");
+				return;
+			}
+		<%} else {%>
+		alert("로그인이 필요합니다.");
+
+		location.href="<%=request.getContextPath()%>/login?command=login";
+		<%}%>
+	}
+	
+	function login() {
+		alert("로그인이 필요합니다.");
+		location.href="<%=request.getContextPath()%>/login?command=login";
 	}
 
 	</script>

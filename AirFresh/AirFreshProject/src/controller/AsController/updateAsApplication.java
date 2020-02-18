@@ -137,12 +137,16 @@ public class updateAsApplication extends HttpServlet {
 
 				if(isS) {
 					System.out.println("수정 성공");
+					List<AsAppDto> list = s.asi.memAsAppList(mem_id);
+					System.out.println("list size: "+list.size());
+					
+					req.setAttribute("list", list);
+					req.getRequestDispatcher("./client_view/as/asapplist.jsp").forward(req, resp);
 				}else {
 					System.out.println("수정 실패");
 				}
 				
-				req.setAttribute("dto", dto);
-				resp.sendRedirect("./client_view/as/asappcomplete.jsp?isS="+isS);
+				//resp.sendRedirect("./client_view/as/asappcomplete.jsp?command="+isS);
 				
 			}
 

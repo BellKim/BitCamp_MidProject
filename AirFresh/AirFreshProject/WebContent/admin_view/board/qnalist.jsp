@@ -54,7 +54,7 @@
 							for (int i = 0; i < list.size(); i++) {
 								QnaBbsDto qna = list.get(i);
 					%>
-					<tr align="center">
+					<tr align="center" onclick = "location.href='<%=request.getContextPath()%>/qnadetail?command=admin&qna_index=<%=qna.getQna_index()%>'" style="cursor:pointer;">
 						<th><%=i + 1%></th>
 						<td align="left">
 						<%if(qna.getQna_secret()==1){ //비밀글일경우 id 체크 하기 위해%>
