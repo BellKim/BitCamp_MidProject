@@ -20,15 +20,15 @@ public class ManagerMemberDto implements Serializable {
 	*/
 	
 	private int mgr_index;
-	private int mgr_auth;
-	private String mgr_id;
-	private String mgr_pw; 
-	private String mgr_name; 
-	private int mgr_loc; 
-	private int mgr_cell;
+	private int mgr_auth;	//
+	private String mgr_id;	//
+	private String mgr_pw; 	//
+	private String mgr_name; //
+	private int mgr_loc; 	//
+	private String mgr_cell;	//
 	private String mgr_joinDate;
-	private String mgr_delDate;
-	private int mgr_del;
+	private String mgr_delDate;	//
+	private int mgr_del;	//
 	
 	
 	
@@ -37,13 +37,16 @@ public class ManagerMemberDto implements Serializable {
 		super();
 	}
 
+	
+
+
 	public ManagerMemberDto(String mgr_id, String mgr_pw) {
 		super();
 		this.mgr_id = mgr_id;
 		this.mgr_pw = mgr_pw;
 	}
 	
-	public ManagerMemberDto(int mgr_auth, String mgr_id, String mgr_pw, String mgr_name, int mgr_loc, int mgr_cell,
+	public ManagerMemberDto(int mgr_auth, String mgr_id, String mgr_pw, String mgr_name, int mgr_loc, String mgr_cell,
 			String mgr_joinDate, String mgr_delDate, int mgr_del) {
 		super();
 		this.mgr_auth = mgr_auth;
@@ -60,7 +63,7 @@ public class ManagerMemberDto implements Serializable {
 
 
 	public ManagerMemberDto(int mgr_index, int mgr_auth, String mgr_id, String mgr_pw, String mgr_name, int mgr_loc,
-			int mgr_cell, String  mgr_joinDate) {
+			String mgr_cell, String  mgr_joinDate) {
 		super();
 		this.mgr_index = mgr_index;
 		this.mgr_auth = mgr_auth;
@@ -73,7 +76,7 @@ public class ManagerMemberDto implements Serializable {
 	}
 
 	public ManagerMemberDto(int mgr_index, int mgr_auth, String mgr_id, String mgr_pw, String mgr_name, int mgr_loc,
-			int mgr_cell, String mgr_joinDate, String mgr_delDate, int mgr_del) {
+			String mgr_cell, String mgr_joinDate, String mgr_delDate, int mgr_del) {
 		super();
 		this.mgr_index = mgr_index;
 		this.mgr_auth = mgr_auth;
@@ -87,8 +90,7 @@ public class ManagerMemberDto implements Serializable {
 		this.mgr_del = mgr_del;
 	}
 	
-	
-	
+
 	
 
 
@@ -140,11 +142,11 @@ public class ManagerMemberDto implements Serializable {
 		this.mgr_loc = mgr_loc;
 	}
 
-	public int getMgr_cell() {
+	public String getMgr_cell() {
 		return mgr_cell;
 	}
 
-	public void setMgr_cell(int mgr_cell) {
+	public void setMgr_cell(String mgr_cell) {
 		this.mgr_cell = mgr_cell;
 	}
 	
