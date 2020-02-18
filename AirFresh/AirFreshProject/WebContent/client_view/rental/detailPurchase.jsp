@@ -93,19 +93,18 @@
 								<li class="mainhome" style="background-color: #d80546;">
 									<a href="<%=request.getContextPath()%>/printPurchase">돌아가기</a>
 								</li>
-								<li class="reviewWrite">
+								<li class="btnli">
 									<% if(dto.getComp_date() != null){ %>
-										<a href="#">리뷰작성</a>
-									<% } else { %>
-										<a href="#" onclick="alert('설치진행 중일때 리뷰를 작성하실 수 없습니다.'); return">리뷰작성</a>
+										<a href="#">리뷰작성</a>										
+									<% } else { 
+										// 설치 완료되지않았을때
+									%>
+										<a href="<%=request.getContextPath()%>/delPur?seq=<%= dto.getPur_index()%>&del=detail" 
+										onclick="del()">취소하기</a>
 									<%
 										}
 									%>
-								</li>
-									<li class="delpur">
-									<a href="<%=request.getContextPath()%>/delPur?seq=<%= dto.getPur_index()%>&del=detail" 
-										onclick="del()">취소하기</a>
-								</li>
+								
 							</ul>
 						</div>
 				</div>
@@ -136,7 +135,7 @@
 			} 
 			
 			.shop_btns li {
-				width: 33%;
+				width: 48%;
 				display: inline-block;
 				margin: 0 auto;
 				border: 1px solid #fff;
