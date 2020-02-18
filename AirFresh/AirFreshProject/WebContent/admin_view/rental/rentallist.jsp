@@ -2,8 +2,23 @@
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%@ include file="./../include/header.jsp"%>
 <%
 	List<PurchaseNameDto> list = (List<PurchaseNameDto>) request.getAttribute("rentalList");
+
+	int len = (int) request.getAttribute("rentallen");
+	
+	int bbsPage = len / 10;
+	if (len % 10 > 0) {
+		bbsPage = bbsPage + 1;
+	}
+
+	String spageNumber = request.getParameter("pageNumber");
+	int pageNumber = 0;
+
+	if (spageNumber != null && !spageNumber.equals("")) {
+		pageNumber = Integer.parseInt(spageNumber);
+	}
 %>
 
 <%!
@@ -18,7 +33,8 @@
 	}
 
 %>
-<%@ include file="./../include/header.jsp"%>
+
+
 <div class="container-fluid">
 	<h1 class="mt-4 mb-3">렌탈 리스트</h1>
 	<hr>
@@ -64,6 +80,25 @@
 			</tbody>
 		</table>
 	</form>
+			<div align = "center">
+			<ul class="pagination" style = "display : inline-flex;">
+			
+				<%
+					for (int i = 0; i < bbsPage; i++) { // [1] 2 [3]
+						if (pageNumber == i) { // 현재 페이지
+				%>
+				<li class="page-item active"><a class="page-link" href ="#"><%=i + 1%></a></li>
+				<%
+					} else { // 그 외의 페이지
+				%>
+				<li class="page-item"><a href="#none" class="page-link"
+					title="<%=i + 1%>페이지" onclick="goPage(<%=i%>)"><%=i + 1%></a></li>
+				<%
+					}
+				}
+				%>
+			</ul>
+		</div>
 </div>
 
 <script type="text/javascript">
@@ -75,7 +110,11 @@
 		}
 	}
 
-	
+	function goPage( pageNum ) {
+
+
+		location.href = "<%=request.getContextPath()%>/rentallist?pageNumber=" + pageNum;
+	}
 	$(function(){
 		$("#delBtn").click(function(){
 			var arrCheck = $("input[name='delck']:checked").length;

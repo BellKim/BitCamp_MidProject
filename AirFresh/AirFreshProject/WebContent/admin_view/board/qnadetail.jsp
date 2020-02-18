@@ -6,12 +6,7 @@
 <%@ include file="./../include/header.jsp"%>
 <%
 QnaBbsDto qna = (QnaBbsDto) request.getAttribute("qnadto");
-<<<<<<< HEAD
-//ManagerMemberDto mrgMem = (ManagerMemberDto) session.getAttribute("managerLogin");
-=======
-//ManagerMemberDto mrgMem = (ManagerMemberDto) request.getSession().getAttribute("managerLogin");
-//위에  헤더 파일에서 ManagerMemberDto 객체의 이름을 'mrgMem'으로 사용하고 있어서 이름때문에 에러남 
->>>>>>> origin/jihyeon
+
 String sdate = qna.getWdate().substring(0, 10);
 %>
 <div class="container">
