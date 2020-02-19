@@ -49,7 +49,10 @@
 		</ul>
 		
 		<div style="width: 100%; text-align: end;">
-			<h5 style="color:white;"><%=mrgMem.getMgr_name() %>님 계정으로 로그인 되었습니다.</h5>
+			<div style="display: inline-flex;">
+				<h5 style="color:white;display: block;float: left;"><%=mrgMem.getMgr_name() %></h5>
+				<h6 style="color:white;display: block;margin: 8px 0 0px 0px;float: left;font-size: 11px;">님 계정으로 로그인 되었습니다.</h6>
+			</div>
 		</div>
 	</nav>
 	
@@ -68,13 +71,13 @@
 				} else{ //cancle
 					console.log("로그아웃 취소");
 				}
-
-				
 			});
 			
 			$("#SettingsBtn").click(function(){
 				//alert(" clicked SettingsBtn button! ");
-				console.log(" clicked SettingsBtn button! ");
+				console.log(" clicked SettingsBtn button!");
+				location.href="<%=request.getContextPath()%>/modifyMgrMember?command=ModifyProfile";
+				modifyMgrMember
 				
 				
 				
