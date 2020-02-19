@@ -45,7 +45,7 @@ public class AsAppPage  extends HttpServlet  {
 		System.out.println("제품명: "+prd_name);
 				
 		req.getRequestDispatcher("./client_view/as/asapply.jsp?prd="+prd_name+"&seq="+seq).forward(req, resp);
-
+		
 	}
 	
 }
