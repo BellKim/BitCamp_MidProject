@@ -58,7 +58,7 @@ public class InstallDao implements InstallDaoInterface, Serializable {
 						rs.getString("mem_id"), // 회원아이디
 						rs.getString("mem_name"), // 회원이름
 						rs.getString("pur_date"), // 구매일
-						rs.getInt("mem_addr1"), // 회원 주소1 (우편번호)
+						rs.getString("mem_addr1"), // 회원 주소1 (우편번호)
 						rs.getString("mem_addr2"), // 회원 주소2 (xx도 xx시)
 						rs.getString("mem_addr3"), // 회원 주소3(xx구 xx동)
 						rs.getString("mem_cell"));
@@ -115,7 +115,7 @@ public class InstallDao implements InstallDaoInterface, Serializable {
 						rs.getString("mem_id"), // 회원아이디
 						rs.getString("mem_name"), // 회원이름
 						rs.getString("pur_date"), // 구매일
-						rs.getInt("mem_addr1"), // 회원 주소1 (우편번호)
+						rs.getString("mem_addr1"), // 회원 주소1 (우편번호)
 						rs.getString("mem_addr2"), // 회원 주소2 (xx도 xx시)
 						rs.getString("mem_addr3"), // 회원 주소3(xx구 xx동)
 						rs.getString("mem_cell"));
@@ -276,7 +276,7 @@ public class InstallDao implements InstallDaoInterface, Serializable {
 						rs.getString("mem_id"), // 회원아이디
 						rs.getString("mem_name"), // 회원이름
 						rs.getString("pur_date"), // 구매일
-						rs.getInt("mem_addr1"), // 회원 주소1 (우편번호)
+						rs.getString("mem_addr1"), // 회원 주소1 (우편번호)
 						rs.getString("mem_addr2"), // 회원 주소2 (xx도 xx시)
 						rs.getString("mem_addr3"), // 회원 주소3(xx구 xx동)
 						rs.getString("mem_cell"));
@@ -328,7 +328,7 @@ public class InstallDao implements InstallDaoInterface, Serializable {
 						rs.getString("mem_id"), // 회원아이디
 						rs.getString("mem_name"), // 회원이름
 						rs.getString("pur_date"), // 구매일
-						rs.getInt("mem_addr1"), // 회원 주소1 (우편번호)
+						rs.getString("mem_addr1"), // 회원 주소1 (우편번호)
 						rs.getString("mem_addr2"), // 회원 주소2 (xx도 xx시)
 						rs.getString("mem_addr3"), rs.getString("mem_cell")); // 회원 주소3(xx구 xx동)
 				list.add(dto);
@@ -375,7 +375,7 @@ public class InstallDao implements InstallDaoInterface, Serializable {
 				InstallDto dto = new InstallDto(rs.getInt("ins_index"), rs.getInt("pur_index"),
 						ju.ChangeDate(rs.getString("ins_date")), rs.getString("comp_date"), rs.getInt("mgr_index"),
 						rs.getInt("ins_state"), rs.getString("prd_model_name"), rs.getString("mem_id"),
-						rs.getString("mem_name"), rs.getString("pur_date"), rs.getInt("mem_addr1"),
+						rs.getString("mem_name"), rs.getString("pur_date"), rs.getString("mem_addr1"),
 						rs.getString("mem_addr2"), rs.getString("mem_addr3"), rs.getString("mem_cell"));
 
 				list.add(dto);
@@ -421,7 +421,7 @@ public class InstallDao implements InstallDaoInterface, Serializable {
 				InstallDto dto = new InstallDto(rs.getInt("ins_index"), rs.getInt("pur_index"),
 						ju.ChangeDate(rs.getString("ins_date")), rs.getString("comp_date"), rs.getInt("mgr_index"),
 						rs.getInt("ins_state"), rs.getString("prd_model_name"), rs.getString("mem_id"),
-						rs.getString("mem_name"), rs.getString("pur_date"), rs.getInt("mem_addr1"),
+						rs.getString("mem_name"), rs.getString("pur_date"), rs.getString("mem_addr1"),
 						rs.getString("mem_addr2"), rs.getString("mem_addr3"), rs.getString("mem_cell"),
 						rs.getString("rating"));
 
@@ -464,7 +464,7 @@ public class InstallDao implements InstallDaoInterface, Serializable {
 				dto = new InstallDto(rs.getInt("ins_index"), rs.getInt("pur_index"),
 						ju.ChangeDate(rs.getString("ins_date")), rs.getString("comp_date"), rs.getInt("mgr_index"),
 						rs.getInt("ins_state"), rs.getString("prd_model_name"), rs.getString("mem_id"),
-						rs.getString("mem_name"), rs.getString("pur_date"), rs.getInt("mem_addr1"),
+						rs.getString("mem_name"), rs.getString("pur_date"), rs.getString("mem_addr1"),
 						rs.getString("mem_addr2"), rs.getString("mem_addr3"), rs.getString("mem_cell"));
 
 			}
@@ -508,11 +508,12 @@ public class InstallDao implements InstallDaoInterface, Serializable {
 
 	@Override
 	public List<InstallDto> getCompInstallList() {
-		String sql = " SELECT  i.ins_index, i.pur_index, i.ins_date, " + "	i.comp_date, i.mgr_index, i.ins_state, "
-				+ " m1.prd_model_name, m2.mem_id, m2.mem_name, m2.mem_addr1, m2.mem_addr2, m2.mem_addr3, m2.mem_cell, "
-				+ " p.pur_date " + " FROM INSTALL i, PURCHASE p, MODELLIST m1, MEMBERS m2"
-				+ " WHERE i.pur_index = p.pur_index  AND " + " p.prd_index = m1.prd_index  AND "
-				+ " p.mem_id = m2.mem_id AND " + " i.ins_state= 1";
+		String sql = " SELECT  i.ins_index, i.pur_index, i.ins_date, i.comp_date, i.mgr_index, i.ins_state, " + 
+				" m1.prd_model_name, m2.mem_id, m2.mem_name, m2.mem_cell, p.pur_date, m3.mgr_name, " + 
+				" m3.mgr_loc, m3.mgr_cell, m2.mem_addr1, m2.mem_addr2, m2.mem_addr3 " + 
+				" FROM INSTALL i, PURCHASE p, MODELLIST m1, MEMBERS m2, managerMember m3 " + 
+				" WHERE i.pur_index = p.pur_index  AND  p.prd_index = m1.prd_index  AND  p.mem_id = m2.mem_id  "
+				+ " AND m3.mgr_index= i.mgr_index AND  i.ins_state= 1 ";
 
 		Connection conn = null;
 		PreparedStatement psmt = null;
@@ -532,21 +533,27 @@ public class InstallDao implements InstallDaoInterface, Serializable {
 			System.out.println("[getCompInstallList]  3/6");
 
 			while (rs.next()) {
+					int i = 1;
 
-				InstallDto dto = new InstallDto(rs.getInt("ins_index"), // 제품설치(install) 인덱스
-						rs.getInt("pur_index"), // 렌탈(purchase) 인덱스
-						rs.getString("ins_date"), // 설치 희망일
-						rs.getString("comp_date"), // 설치 완료일
-						rs.getInt("mgr_index"), // 매니저(직원) 인덱스
-						rs.getInt("ins_state"), // 설치 상태
-						rs.getString("prd_model_name"), // 제품명
-						rs.getString("mem_id"), // 회원아이디
-						rs.getString("mem_name"), // 회원이름
-						rs.getString("pur_date"), // 구매일
-						rs.getInt("mem_addr1"), // 회원 주소1 (우편번호)
-						rs.getString("mem_addr2"), // 회원 주소2 (xx도 xx시)
-						rs.getString("mem_addr3"), // 회원 주소3(xx구 xx동)
-						rs.getString("mem_cell"));
+				InstallDto dto = new InstallDto(
+						rs.getInt(i++), // ins_index
+						rs.getInt(i++), // pur_index
+						rs.getString(i++), // ins_date
+						rs.getString(i++), // comp_date
+						rs.getInt(i++), // mgr_index
+						rs.getInt(i++), // ins_state
+						rs.getString(i++), // prd_model_name
+						rs.getString(i++), // mem_id
+						rs.getString(i++), // mem_name
+						rs.getString(i++), // mem_cell
+						rs.getString(i++), // pur_date
+						rs.getString(i++), // mgr_name
+						rs.getInt(i++), // mgr_loc
+						rs.getString(i++), //mgr_cell
+						rs.getString(i++), //mem_addr1
+						rs.getString(i++), //mem_addr2
+						rs.getString(i++)); //mem_addr3
+					
 				list.add(dto);
 
 			}
@@ -598,7 +605,7 @@ public class InstallDao implements InstallDaoInterface, Serializable {
 						rs.getString("mem_id"), // 회원아이디
 						rs.getString("mem_name"), // 회원이름
 						rs.getString("pur_date"), // 구매일
-						rs.getInt("mem_addr1"), // 회원 주소1 (우편번호)
+						rs.getString("mem_addr1"), // 회원 주소1 (우편번호)
 						rs.getString("mem_addr2"), // 회원 주소2 (xx도 xx시)
 						rs.getString("mem_addr3"), // 회원 주소3(xx구 xx동)
 						rs.getString("mem_cell"));
