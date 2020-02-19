@@ -61,18 +61,18 @@
 						<a class="nav-link" href="<%=request.getContextPath()%>/showMrgMember">
 								<i class="fas fa-table"></i>
 							직원리스트</a>
-						<a class="nav-link" href="<%=request.getContextPath()%>/memberlist">
+						<a class="nav-link" href="<%=request.getContextPath()%>/adminMemList">
 								<i class="fas fa-table"></i>
-							회원리스트</a>
+							고객리스트</a>
 						<a class="nav-link" href="<%=request.getContextPath()%>/rentallist">
 								<i class="fas fa-table"></i>
 							 렌탈리스트</a>
-						<a class="nav-link" href="<%=request.getContextPath()%>/InstallController?command=install">
+						<a class="nav-link" href="<%=request.getContextPath()%>/InstallController?command=installk">
 								<i class="fas fa-table"></i>
 							 설치리스트</a>
-						<a class="nav-link" href="<%=request.getContextPath()%>/InstallController">
+						<%-- a class="nav-link" href="<%=request.getContextPath()%>/InstallController">
 								<i class="fas fa-table"></i>
-							 AS리스트</a>
+							 AS리스트</a--%>
 					<a class="nav-link" href="<%=request.getContextPath()%>/qnalist?command=admin">
 								<i class="fas fa-table"></i>
 							 문의게시판</a>

@@ -34,6 +34,7 @@
 		<col width="300">
 		<col width="100">
 		<col width="100">
+		<col width="120">
 		<thead>
 			<tr align="center">
 				<th scope="col">구매일</th>
@@ -41,51 +42,72 @@
 				<th scope="col">상품명</th>
 				<th scope="col">구매취소</th>
 				<th scope="col">A/S신청</th>
+				<th scope="col">렌탈후기작성</th>
 			</tr>
 		</thead>
 		<tbody>
 
 			<%
-				if (list.size() == 0 || list == null) {
-			%>
-			<tr align="center">
-				<th colspan="5">구매내역이 없습니다.</th>
-			</tr>
-
-			<%
+				if (list.size() == 0 || list == null) {	
+				%>
+				<tr align="center">
+					<th colspan="5">구매내역이 없습니다.</th>
+				</tr>
+				<%
 				} else {
 					for (int i = 0; i < list.size(); i++) {
 						PurchaseNameDto dto = list.get(i);
 
 						if (dto.getOrder_auth() == 0) {
-			%>
-			<tr align="center" >
-				<td><%=dto.getPur_date()%></td>
-				<td><%=dto.getIns_date()%></td>
-				<td onclick="location.href='<%=request.getContextPath()%>/detailPur?command=user&seq=<%=dto.getPur_index() %>'" style="cursor: pointer;"
-				title="클릭하면 상세내역을 보실 수 있습니다."><img
-					src="<%=request.getContextPath()%>/client_view/model/prd_detail_img/<%=dto.getPrd_model_name()%>_m1.png"
-					alt="" style="width: 40px; height: 40px;"> <b><%=dto.getPrd_name()%></b>
-					(<%=dto.getPrd_model_name()%>)</td>
-				<td><a href="#" class="delPer" aaa="<%=dto.getPur_index()%>">구매취소</a></td>
-				<td><a
-					href="asAppPage?seq=<%=dto.getPur_index()%>&prd_name=<%=dto.getPrd_name()%>">A/S신청</a></td>
-			</tr>
-			<%
-				} else if (dto.getOrder_auth() == 1) { //구매취소된 주문일때
-			%>
-			<tr align="center">
-				<td><%=dto.getPur_date()%></td>
-				<td>구매취소</td>
-				<td style="cursor: pointer;" ><img
-					src="<%=request.getContextPath()%>/client_view/model/prd_detail_img/<%=dto.getPrd_model_name()%>_m1.png"
-					alt="" style="width: 40px; height: 40px;"> <b><%=dto.getPrd_name()%></b>
-					(<%=dto.getPrd_model_name()%>)</td>
-				<td>취소완료</td>
-				<td></td>
-			</tr>
-			<%
-				} //else if문종료
+						%>
+						<tr align="center" >
+							<td><%=dto.getPur_date()%></td>
+							<td><%=dto.getIns_date()%></td>
+							<td onclick="location.href='<%=request.getContextPath()%>/detailPur?command=user&seq=<%=dto.getPur_index() %>'" style="cursor: pointer;"
+							title="클릭하면 상세내역을 보실 수 있습니다."><img
+								src="<%=request.getContextPath()%>/client_view/model/prd_detail_img/<%=dto.getPrd_model_name()%>_m1.png"
+								alt="" style="width: 40px; height: 40px;"> <b><%=dto.getPrd_name()%></b>
+								(<%=dto.getPrd_model_name()%>)</td>
+							<td><a href="#" class="delPer" aaa="<%=dto.getPur_index()%>">구매취소</a></td>
+							<td><a href="asAppPage?seq=<%=dto.getPur_index()%>&prd_name=<%=dto.getPrd_name()%>">A/S신청</a></td>
+							<%
+								if(dto.getReview() == 0){
+									%>
+									<td><a href="asAppPage?seq=<%=dto.getPur_index()%>&prd_name=<%=dto.getPrd_name()%>">작성하기</a></td>		
+									<%
+								}else{
+									%>
+									<td><a href="asAppPage?seq=<%=dto.getPur_index()%>&prd_name=<%=dto.getPrd_name()%>">작성완료</a></td>
+									<%
+								}
+							%>	
+						</tr>
+						<%
+						} else if (dto.getOrder_auth() == 1) { //구매취소된 주문일때
+						%>
+						<tr align="center">
+							<td><%=dto.getPur_date()%></td>
+							<td>구매취소</td>
+							<td style="cursor: pointer;" ><img
+								src="<%=request.getContextPath()%>/client_view/model/prd_detail_img/<%=dto.getPrd_model_name()%>_m1.png"
+								alt="" style="width: 40px; height: 40px;"> <b><%=dto.getPrd_name()%></b>
+								(<%=dto.getPrd_model_name()%>)</td>
+							<td>취소완료</td>
+							<td></td>
+							<%
+								if(dto.getReview() == 0){
+									%>
+									<td><a href="asAppPage?seq=<%=dto.getPur_index()%>&prd_name=<%=dto.getPrd_name()%>">작성하기</a></td>		
+									<%
+								}else{
+									%>
+									<td><a href="asAppPage?seq=<%=dto.getPur_index()%>&prd_name=<%=dto.getPrd_name()%>">작성완료</a></td>
+									<%
+								}
+							%>	
+						</tr>
+						<%
+						} //else if문종료
 					} //for문종료
 				} //else문 종료
 			%>
