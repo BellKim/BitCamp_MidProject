@@ -80,4 +80,12 @@ public class InstallService implements InstallServiceInterface,Serializable {
 	public boolean compInstall(int index) {
 		return dao.compInstall(index);
 	}
+	@Override
+	public List<InstallDto> getCompInstallList() {
+		return dao.getCompInstallList();
+	}
+	@Override
+	public List<InstallDto> getWaitInstallList() {
+		return dao.getWaitInstallList();
+	}
 }

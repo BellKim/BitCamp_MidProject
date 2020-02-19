@@ -51,8 +51,11 @@ public class InstallController extends HttpServlet implements Serializable{
 			
 			if(command.equals("installk")) {
 				
-				List<InstallDto> list = s.is.getNullInstallList();
+				List<InstallDto> list = s.is.getWaitInstallList();
+				List<InstallDto> comflist = s.is.getCompInstallList();
+				
 				req.setAttribute("installList", list);
+				req.setAttribute("comfllList", comflist);
 				ProjectUtil.forward("./admin_view/InstallList/installList_k.jsp", req, resp);
 				
 			}
