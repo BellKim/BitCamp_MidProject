@@ -49,6 +49,15 @@ public class InstallController extends HttpServlet implements Serializable{
 				resp.sendRedirect("./admin_view/InstallList/InstallList.jsp");
 			}
 			
+			if(command.equals("installk")) {
+				
+				List<InstallDto> list = s.is.getNullInstallList();
+				req.setAttribute("installList", list);
+				ProjectUtil.forward("./admin_view/InstallList/installList_k.jsp", req, resp);
+				
+			}
+			
+			
 			
 			if(command.equals("getDayList")) {
 				//선택한 날짜의 리스트를 가져오는 명령

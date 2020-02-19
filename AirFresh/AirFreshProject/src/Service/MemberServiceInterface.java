@@ -1,5 +1,7 @@
 package Service;
 
+import java.util.List;
+
 import Dto.MemberDto;
 
 public interface MemberServiceInterface {
@@ -19,4 +21,8 @@ public interface MemberServiceInterface {
 	public String findPW(String mem_id, String mem_name);
 	
 	public MemberDto getMem(String id);
+	
+	public List<MemberDto> getAdminMemList(int pageNumber);
+	
+	public int getMemLength();
 }
