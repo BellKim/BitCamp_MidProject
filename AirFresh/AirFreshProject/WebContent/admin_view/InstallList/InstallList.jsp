@@ -6,6 +6,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
+<%@ include file="./../include/header.jsp"%>
 <%!//nvl 함수 
 	public boolean nvl(String msg) {
 		return msg == null || msg.trim().equals("") ? true : false;
@@ -55,7 +56,6 @@
 		return str;
 	}%>
 
-<%@ include file="./../include/header.jsp"%>
 
 <%
 	ManagerMemberDto loginDto = null;
@@ -206,13 +206,13 @@
 					<h5>신청가능 목록</h5>
 					<table style="width: 100%" id="InstallTable"
 						class="table table-hover">
-						<tr>
+						<!-- tr>
 							<th><span class="IS_list_head">관리번호</span></th>
 							<th><span class="IS_list_head">모델명</span></th>
 							<th><span class="IS_list_head">설치희망일</span></th>
 							<th><span class="IS_list_head">주소</span></th>
 							<th><span class="IS_list_head">추가</span></th>
-						</tr>
+						</tr-->
 					</table>
 				</div>
 			</div>
@@ -222,44 +222,44 @@
 			<div class="card h-100">
 				<div class="card-body">
 					<h5>예약 신청 목록</h5>
-					<hr>
 					<table style="width: 100%;" id="basketList"
 						class="table table-hover">
-						<col width="15">
-						<col width="15">
-						<col width="20">
-						<col width="16">
-						<col width="16">
-						<col width="10">
-						<col width="8">
+
 					</table>
 				</div>
 			</div>
 		</div>
 	</div>
 
-	<div align="center" style="margin:20px;">
+	<div align="center" style="margin: 20px;">
 		<button type="button" class="btn btn-primary" id="save">예약
 			저장하기</button>
 	</div>
 
 </div>
-<div id="popup"
-	style="width: 300px; height: 400px; background-color: gray; position: absolute; top: 200px; left: 500px; text-align: center; border: 2px solid #000; display: none">
-	<div id="detail" style="width: 300px; height: 370px;">
-		<span>선택한 신청리스트의 상세정보</span>
-		<ul id="detail_List">
+
+<div class="modal" id="popup">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="detail_name"></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" id="declose">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <ul id="detail_List">
 		</ul>
-	</div>
-	<div id="declose" style="width: 100px; margin: auto;">close</div>
+      </div>
+    </div>
+  </div>
 </div>
+
 
 
 <script type="text/javascript">
 			
-		
 			$(document).ready(function () {
-				
 				
 				//장바구니에 뿌려주기 위한 변수 
 				var list = null;
@@ -272,14 +272,26 @@
 				
 				$(document.body).delegate('.getList', 'click', function() {
 					//alert("크크크크클릭");
-					//디테일로 넘어가기 
-					var index = $(".plus").val();
-					alert(list[index].ins_index);
+					//디테일로 넘어가기
+					var tr = $(this).parent();
+					var td = tr.children();
+					var index = td.eq(3).children().val();
+					var detail = list[index].mem_name+"님 설치 정보"
+					var liList = "<li>설치번호 : "+list[index].ins_index+"</li>";
+					liList += "<li>구매일 : "+list[index].pur_date+"</li>";
+					liList += "<li>설치 희망일 : "+list[index].ins_date+"</li>";
+					liList += "<li>회원 명 : "+list[index].mem_name+"</li>";
+					liList += "<li>전화번호 : "+list[index].mem_cell+"</li>";
+					liList += "<li>주소 : ("+list[index].mem_addr1+")<br>"+list[index].mem_addr2+list[index].mem_addr3+"</li>";
+
+					$("#detail_List").append(liList); 
+					$("#detail_name").append(detail);
+					
+					
 					$("#popup").css("display","block");
 					
 				});
-				
-				
+	
 				
 				$("#cal span").click(function () {
 					//alert("날짜 클릭");
@@ -306,7 +318,6 @@
 								$("#InstallTable").empty();
 								var str = "<th><span class='IS_list_head'>관리번호</span></th>"
 								+"<th><span class='IS_list_head'>모델명</span></th>"
-								+"<th><span class='IS_list_head'>설치희망일</span></th>"
 								+"<th><span class='IS_list_head'>주소</span></th>"
 								+"<th><span class='IS_list_head'>추가</span></th>";
 								
@@ -320,7 +331,6 @@
 									$("#InstallTable").empty();
 									var str ="<th><span class='IS_list_head'>관리번호</span></th>"
 										+"<th><span class='IS_list_head'>모델명</span></th>"
-										+"<th><span class='IS_list_head'>설치희망일</span></th>"
 										+"<th><span class='IS_list_head'>주소</span></th>"
 										+"<th><span class='IS_list_head'>추가</span></th>";;
 										 
@@ -328,10 +338,9 @@
 									for(i = 0; i < data.length; i++){
 			 
 										var str = "<tr id='intr" + i + "'>" ;				//list.get(0).getIns_index()
-											str += "<td class='getList' align='center' >" + data[i].ins_index  + "</td>";
-											str += "<td class='getList' align='center' style='font-size: 10px;'>" + data[i].prd_model_name + "</td>";
-											str += "<td class='getList' align='center'>" + data[i].ins_date.substr(0,10) + "</td>";
-											str += "<td class='getList' align='center'>" + data[i].mem_addr1 + "</td>";
+											str += "<td class='getList'  >" + data[i].ins_index  + "</td>";
+											str += "<td class='getList' >" + data[i].prd_model_name + "</td>";
+											str += "<td class='getList' >" + data[i].mem_addr2 + "</td>";
 											str += "<td align='center'>" + "<button class='plus' type='button' value='" + i + "'>+</button>" + "</td></tr>";
 											$("#InstallTable").append(str);
 									}
@@ -358,10 +367,7 @@
 					var str = "<tr id='bastr" + (listCount - 1) + "'>" ;
 					str += "<td class='getList' align='center' style='font-size: 14px;'>" + list[parseInt(addr)].ins_index  + "</td>";
 					str += "<td class='getList' align='center' style='font-size: 14px;'>" + list[parseInt(addr)].prd_model_name + "</td>";
-					str += "<td class='getList' align='center' style='font-size: 14px;'>" + list[parseInt(addr)].mem_id + "</td>";
-					str += "<td class='getList' align='center' style='font-size: 14px;'>" + list[parseInt(addr)].pur_date.substr(0,10) + "</td>";
-					str += "<td class='getList' align='center' style='font-size: 14px;'>" + list[parseInt(addr)].ins_date.substr(0,10) + "</td>";
-					str += "<td class='getList' align='center' style='font-size: 14px;'>" + list[parseInt(addr)].mem_addr1 + "</td>";
+					str += "<td class='getList' align='center' style='font-size: 14px;'>" + list[parseInt(addr)].mem_addr2 + "</td>";
 					str += "<td align='center' style='font-size: 14px;'>" + "<button class='minus' type='button' value='" + (listCount - 1) + "'  intr='"+ addr + "'>-</button>" + "</td></tr>";
 					$("#basketList").append(str);
 					
@@ -421,8 +427,7 @@
 							alert(result);
 							if(result=="True"){
 								//alert("저장성공");
-								location.href="<%=request.getContextPath()%>
-	/InstallController?command=savet";
+								location.href="<%=request.getContextPath()%>/InstallController?command=savet";
 															} else {
 																alert("저장실패");
 															}
@@ -435,6 +440,9 @@
 
 						$(document).on("click", "#declose", function() {
 							//alert("close 클릭");
+							$("#detail_List").empty(); 
+							$("#detail_name").empty();
+					
 							$("#popup").css("display", "none");
 						});
 
