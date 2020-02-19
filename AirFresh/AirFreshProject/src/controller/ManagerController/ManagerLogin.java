@@ -69,12 +69,16 @@ public class ManagerLogin extends HttpServlet {
 				forward("./admin_view/main.jsp", req, resp);
 				//resp.sendRedirect("주소");
 			
-		}else { 
+		}else if(req.getParameter("command").equals("logout")) {
+			session.removeAttribute("managerLogin"); 
+			System.out.println("session logout");
+			forward("./admin_view/manageMgr/login/adminlogin.jsp", req, resp);
 			
+			
+			
+			
+		}else {
 			System.out.println(" 다시  확인해봐라  잘못적었다  진짜 다시봐라 ");
-			
-			
-			
 		}
 		
 
