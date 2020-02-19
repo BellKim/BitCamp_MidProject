@@ -93,9 +93,6 @@ public class OrderReviewDao implements OrderReviewDaoInterface {
 		}
 		return list;
 	}
-	
-	public boolean writeOrderReview() {
-		
-	}
+
 	
 }
