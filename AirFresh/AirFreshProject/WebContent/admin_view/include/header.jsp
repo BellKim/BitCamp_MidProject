@@ -6,6 +6,7 @@
 	    ManagerMemberDto mrgMem = session.getAttribute("managerLogin")==null?null:(ManagerMemberDto) session.getAttribute("managerLogin");   
     	
     %>
+   
     
     <!-- 직원들 마이페이지 안되어있음!!  2020/02/17 -->
 <!DOCTYPE html>
@@ -39,20 +40,54 @@
 				aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
 				<div class="dropdown-menu dropdown-menu-right"
 					aria-labelledby="userDropdown">
-					<a class="dropdown-item" href="#">Settings</a><a
+					<a class="dropdown-item" href="#" id="SettingsBtn">Settings</a><a
 						class="dropdown-item" href="#">Activity Log</a>
 					<div class="dropdown-divider"></div>
 					<a class="dropdown-item" id ="logoutBtn">Logout</a>
 				</div></li>
 		</ul>
 	</nav>
+	
+	<script type="text/javascript">
+		//session 정보 확인. 
+		$(document).ready(function(){
+			$("#logoutBtn").click(function(){
+				//alert(" clicked logout button! ");
+				console.log(" clicked logout button! ");
+				
+				if(confirm("정말 로그아웃 하시겠습니까?") == true){	//confirm
+					<% session.removeAttribute("managerLogin");  %>
+					//location.reload();
+					location.href="<%=request.getContextPath()%>/managerLogin?command=logout";
+					console.log("로그아웃됨");
+				} else{ //cancle
+					console.log("로그아웃 취소");
+				}
+
+				
+			});
+			
+			$("#SettingsBtn").click(function(){
+				//alert(" clicked SettingsBtn button! ");
+				console.log(" clicked SettingsBtn button! ");
+				
+				
+				
+			});
+			
+			
+			
+		});//end of $(document).ready(function(){}
+		
+	
+	</script>
 	<div id="layoutSidenav">
 		<div id="layoutSidenav_nav">
 			<nav class="sb-sidenav accordion sb-sidenav-dark"
 				id="sidenavAccordion">
 				<div class="sb-sidenav-menu">
 				
-				<% if(mrgMem.getMgr_auth() == 0 || mrgMem.getMgr_auth() == 1){ %>
+				<% if(mrgMem.getMgr_auth() == 0 || mrgMem.getMgr_auth() == 1){ %><%--왕관리자, 관리자 --%>
 					<div class="nav">
 						<a class="nav-link" href="<%=request.getContextPath()%>/noticelist?command=admin">
 								<i class="fas fa-chart-area"></i>
@@ -77,7 +112,7 @@
 								<i class="fas fa-table"></i>
 							 문의게시판</a>
 					</div>
-					<%}  else if( mrgMem.getMgr_auth() == 2){%>
+					<%}  else if( mrgMem.getMgr_auth() == 2){%>	<%-- 코디 (매니저) --%>
 					<div class="nav">
 						<a class="nav-link" href="<%=request.getContextPath()%>/noticelist?command=admin">
 								<i class="fas fa-chart-area"></i>
@@ -97,7 +132,7 @@
 							 나의 완료 AS리스트</a>
 					</div>
 					
-					<%} else if (mrgMem.getMgr_auth() == 3){ %>
+					<%} else if (mrgMem.getMgr_auth() == 3){ %>	<%-- 설치기사  --%>
 					
 					<div class="nav">
 						<a class="nav-link" href="<%=request.getContextPath()%>/noticelist?command=admin">
