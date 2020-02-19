@@ -99,6 +99,7 @@
 					<td><%=install.getIns_index() %></td>
 					<td><%=install.getPrd_model_name()%></td>
 					<td><%=install.getMem_name() %></td>
+					<td><%=install.getPur_date().substring(0, 10) %></td>
 					<td><%=install.getIns_date().substring(0, 10) %></td>
 					<td><%=install.getComp_date().substring(0, 10) %></td>
 					<td><%=install.getMgr_name() %></td>

@@ -36,6 +36,31 @@ public class InstallDto implements Serializable{
 	}
 
 	public InstallDto(int ins_index, int pur_index, String ins_date, String comp_date, int mgr_index, int ins_state,
+			String prd_model_name, String mem_id, String mem_name, String mem_cell, String pur_date, String mgr_name,
+			int mgr_loc, int mgr_cell, int mem_addr1, String mem_addr2, String mem_addr3, String rating) {
+		super();
+		this.ins_index = ins_index;
+		this.pur_index = pur_index;
+		this.ins_date = ins_date;
+		this.comp_date = comp_date;
+		this.mgr_index = mgr_index;
+		this.ins_state = ins_state;
+		this.prd_model_name = prd_model_name;
+		this.mem_id = mem_id;
+		this.mem_name = mem_name;
+		this.mem_cell = mem_cell;
+		this.pur_date = pur_date;
+		this.mgr_name = mgr_name;
+		this.mgr_loc = mgr_loc;
+		this.mgr_cell = mgr_cell;
+		this.mem_addr1 = mem_addr1;
+		this.mem_addr2 = mem_addr2;
+		this.mem_addr3 = mem_addr3;
+		this.rating = rating;
+	}
+
+
+	public InstallDto(int ins_index, int pur_index, String ins_date, String comp_date, int mgr_index, int ins_state,
 			String prd_model_name, String mem_id, String mem_name, String pur_date, String mgr_name, int mgr_loc,
 			int mgr_cell, int mem_addr1, String mem_addr2, String mem_addr3, String mem_cell) {
 		super();
