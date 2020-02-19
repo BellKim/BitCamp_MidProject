@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import Dto.ManagerMemberDto;
 import singleton.singleton;
@@ -54,6 +55,15 @@ public class ModifyMgrMember extends HttpServlet {
 			System.out.println("success 진입함. "  );
 
 		}else if(command.equals("ModifyProfile")) {
+			singleton si = singleton.getInstance();
+			HttpSession session = req.getSession();
+			
+			
+			 ManagerMemberDto managerMemberSession = (ManagerMemberDto) session.getAttribute("adminLogin");
+//			 System.out.println("메니저 맴버 :::: managerMemberSession = " + managerMemberSession);
+			String index = Integer.toString(managerMemberSession.getMgr_index());
+			
+			req.setAttribute("receiveFromIndex", si.managerMember.receiveManagerMemberSelect(index)); 
 			
 			forward("./admin_view/manageMgr/managerProfileChange.jsp", req, resp);
 		}
