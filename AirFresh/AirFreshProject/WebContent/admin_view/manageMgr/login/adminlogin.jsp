@@ -50,9 +50,11 @@ System.out.println(mem);
                                             </div>
                                         </form>
                                     </div>
+                                    <%--
                                     <div class="card-footer text-center">
                                         <div class="small"><a href="<%=request.getContextPath() %>/addMrgMember?status=enter">회원가입</a></div>
                                     </div>
+                                     --%>
                                 </div>
                             </div>
                         </div>
