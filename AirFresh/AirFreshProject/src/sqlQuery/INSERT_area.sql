@@ -120,23 +120,23 @@ select * from PURCHASE;
 
 INSERT INTO install(ins_index, pur_index, ins_date, comp_date, mgr_index, ins_state)
 VALUES( INSTALL_SEQ.nextval, 20000, TO_DATE('2020/02/18','YYYY/MM/DD'), NULL,
-        null, 0)
+        null, 0);
 
 INSERT INTO install(ins_index, pur_index, ins_date, comp_date, mgr_index, ins_state)
 VALUES( INSTALL_SEQ.nextval, 20001, TO_DATE('2020/02/18','YYYY/MM/DD'), NULL,
-        null, 0)
+        null, 0);
 
 INSERT INTO install(ins_index, pur_index, ins_date, comp_date, mgr_index, ins_state)
 VALUES( INSTALL_SEQ.nextval, 20002, TO_DATE('2020/02/18','YYYY/MM/DD'), NULL,
-        null, 0)
+        null, 0);
 
 INSERT INTO install(ins_index, pur_index, ins_date, comp_date, mgr_index, ins_state)
-VALUES( INSTALL_SEQ.nextval, 20003, TO_DATE('2020/02/18','YYYY/MM/DD'), NULL, NULL, 0)        
+VALUES( INSTALL_SEQ.nextval, 20003, TO_DATE('2020/02/18','YYYY/MM/DD'), NULL, NULL, 0);        
 
 INSERT INTO install(ins_index, pur_index, ins_date, comp_date, mgr_index, ins_state)
-VALUES( INSTALL_SEQ.nextval, 20004, TO_DATE('2020/02/18','YYYY/MM/DD'), NULL, NULL, 0)           
-        
-select * from install   
+VALUES( INSTALL_SEQ.nextval, 20004, TO_DATE('2020/02/18','YYYY/MM/DD'), NULL, NULL, 0);          
+
+select * from install;
 
 
 

@@ -67,7 +67,7 @@ ManagerMemberDto managerSelectOneDTO = (ManagerMemberDto)request.getAttribute("m
 		   </li>
 		   <li class="list-group-item">
 		   	<label for="mgr_auth" class="width50">매니저 권한:</label>
-		   	<input type="text" id="mgr_authRead" value="<%=ProjectUtil.managerLevel(managerSelectOneDTO.getMgr_auth()) %>"  readonly>
+		   	<input type="text" id="mgr_auth_show" value="<%=ProjectUtil.managerLevel(managerSelectOneDTO.getMgr_auth()) %>"  readonly>
 		   	<label for="mgr_auth" class="width50">에서</label>
 		   	<label>
 				<select id="mgr_auth" name="mgr_auth">
@@ -105,6 +105,17 @@ ManagerMemberDto managerSelectOneDTO = (ManagerMemberDto)request.getAttribute("m
 			권한변경 		auth를 0, 1, 2  로 변경한다. 
 			아이디 삭제하기 => del=0 에서 1로 변경 
 		--%>
+	<script type="text/javascript" charset="UTF-8">
+	
+	
+	
+	console.log("${pageContext.request.contextPath}"+'${pageContext.request.contextPath}');
+	sessionStorage.setItem("contextpath", "${pageContext.request.contextPath}");
+	
+	
+	
+	
+    </script>
 	
 	<script src="./admin_view/assets/js/modifyMgrMember.js?v=<%=System.currentTimeMillis() %>"></script>
 	
