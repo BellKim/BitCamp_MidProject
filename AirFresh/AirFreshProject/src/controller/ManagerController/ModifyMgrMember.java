@@ -37,6 +37,8 @@ public class ModifyMgrMember extends HttpServlet {
 */
 			
 			
+			
+			
 		}
 		
 		
@@ -59,7 +61,8 @@ public class ModifyMgrMember extends HttpServlet {
 		int mgr_loc 		= 	Integer.parseInt(mgr_loc_s);
 		
 		String mgr_cell		=	req.getParameter("mgr_cell");
-		String mgr_delDate	=	req.getParameter("mgr_delDate");
+		String mgr_delDate	=	null;
+//		String mgr_delDate	=	req.getParameter("mgr_delDate");
 		
 		String mgr_del_s	=	req.getParameter("mgr_del");
 		int mgr_del			= 	Integer.parseInt(mgr_del_s);
@@ -75,19 +78,13 @@ public class ModifyMgrMember extends HttpServlet {
 		if(mgr_del == beforedto.getMgr_del()) {
 			System.out.println("변동없음.");
 		}else if(mgr_del > beforedto.getMgr_del()) {
-		
+			//기존:변화 0->1 일때  mgr_delDate에  getMgr_delDate에 날짜가 입력 되어야함.  
+			mgr_delDate="-";
 			
 		}else if(mgr_del < beforedto.getMgr_del()) {
-			
-			
-			
+			//기존:변화 1->0 일때  mgr_delDate "_"로 입력되어야함.
+			mgr_delDate="SYSDATE";
 		}
-		
-		
-		
-		
-		
-		
 		
 		
 		ManagerMemberDto managerMemDto = new ManagerMemberDto();
@@ -100,17 +97,12 @@ public class ModifyMgrMember extends HttpServlet {
 		managerMemDto.setMgr_delDate(mgr_delDate);
 		managerMemDto.setMgr_del(mgr_del);
 		
-		
+		System.out.println("managerMemDto" + managerMemDto);
 		
 		
 		return managerMemDto;
 	
 	}//end of collectParameter
-	
-	
-	
-	
-	
 	
 	
 	
