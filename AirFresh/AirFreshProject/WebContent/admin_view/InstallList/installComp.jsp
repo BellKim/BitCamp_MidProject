@@ -30,14 +30,6 @@
 
 <%
 	List<InstallDto> list = request.getAttribute("compList")==null?null:(List<InstallDto>)request.getAttribute("compList");
-	
-	if(list != null && list.size() > 0){
-		for(int i = 0; i < list.size(); i++	){
-			out.println(list.get(i).toString());	
-		}
-	}else{
-		out.println("Null");
-	}
 %>
 
 	<div class="container-fluid">
