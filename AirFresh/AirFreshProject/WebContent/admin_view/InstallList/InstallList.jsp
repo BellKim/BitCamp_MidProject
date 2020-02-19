@@ -397,14 +397,14 @@
 					//장바구니 List table 안의 모든 tr을 가져온다
 					var tr = $("#basketList").children();			
 					
-					for(i = 1; i < tr.length; i++){
+					for(i = 0; i < tr.length; i++){
 						// 0번지는  <col>태그 이기 때문에 값이 없어서 1번지부터 시작
 						//가져온 첫번째 tr의 모든 td를 담는다
 						var td = tr.eq(i).children();
 						
 						//그 중 seq를 담은 td의 값만 빼온다
 						var seq = td.eq(0).text();
-						//alert(seq);
+						alert(seq);
 						
 						//0번지부터 값을 넣기  위함
 						insArr.push(seq);
@@ -419,25 +419,26 @@
 								seqArr: insArr,
 								/* 로그인 회원 index 추가  <-- 안해도 됨 controller 가서 session으로 뺴면 됨  */
 						},
-						datatype:"text",
+						datatype:"json",
+						
 						success: function ( result ) {
 							alert("통신성공");
 							//배열 초기화 
 							insArr = [];
 							alert(result);
-							if(result=="True"){
+							
+							if( result == true){
 								//alert("저장성공");
 								location.href="<%=request.getContextPath()%>/InstallController?command=savet";
-															} else {
-																alert("저장실패");
-															}
-														},
-														error : function() {
-															alert("통신 실패");
-														}
-													});
-										});
-
+							} else {
+								alert("저장실패");
+							}
+						},
+						error: function() {
+							alert("통신 실패");
+						}
+						});
+					});
 						$(document).on("click", "#declose", function() {
 							//alert("close 클릭");
 							$("#detail_List").empty(); 
@@ -445,7 +446,7 @@
 					
 							$("#popup").css("display", "none");
 						});
-
+					
 					});//ready
 </script>
 
