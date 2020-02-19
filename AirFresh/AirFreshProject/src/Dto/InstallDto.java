@@ -24,6 +24,14 @@ public class InstallDto implements Serializable{
 	private String rating; // 별점
 	
 	
+	public InstallDto(int ins_index, String comp_date, String prd_model_name) {
+		super();
+		this.ins_index = ins_index;
+		this.comp_date = comp_date;
+		this.prd_model_name = prd_model_name;
+	}
+
+
 	public InstallDto() {
 		
 	}

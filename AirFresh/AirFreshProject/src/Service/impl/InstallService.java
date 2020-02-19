@@ -88,4 +88,8 @@ public class InstallService implements InstallServiceInterface,Serializable {
 	public List<InstallDto> getWaitInstallList() {
 		return dao.getWaitInstallList();
 	}
+	@Override
+	public List<InstallDto> getMainInstallList() {
+		return dao.getMainInstallList();
+	}
 }

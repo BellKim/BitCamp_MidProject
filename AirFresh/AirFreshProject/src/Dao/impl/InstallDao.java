@@ -630,9 +630,49 @@ public class InstallDao implements InstallDaoInterface, Serializable {
 
 
 	@Override
-	public List<InstallDto> getgetMainInstallList() {
-		// TODO Auto-generated method stub
-		return null;
+	public List<InstallDto> getMainInstallList() {
+		String sql = " select rownum, i.ins_index, i.comp_date, m1.prd_model_name from " + 
+				" INSTALL i, PURCHASE p, MODELLIST m1 " + 
+				" WHERE i.pur_index = p.pur_index  AND p.prd_index = m1.prd_index " + 
+				" AND i.ins_state=1 AND ROWNUM >=1 AND ROWNUM<=5 " + 
+				" ORDER BY i.comp_date desc ";
+
+		Connection conn = null;
+		PreparedStatement psmt = null;
+		ResultSet rs = null;
+
+		List<InstallDto> list = new ArrayList<InstallDto>();
+		System.out.println("[getgetMainInstallList] sql = " + sql);
+
+		try {
+
+			conn = DBConnection.getConnection();
+			System.out.println("[getgetMainInstallList]  1/6");
+			psmt = conn.prepareStatement(sql);
+			System.out.println("[getgetMainInstallList]  2/6");
+
+			rs = psmt.executeQuery();
+			System.out.println("[getNullInstallList(Date)]  3/6");
+
+			while (rs.next()) {
+				int i = 2;
+				InstallDto dto = new InstallDto(
+						rs.getInt(i++), 
+						rs.getString(i++), 
+						rs.getString(i++) 
+						);
+						list.add(dto);
+
+			}
+			System.out.println("[getgetMainInstallList]  4/6");
+		} catch (SQLException e) {
+			System.out.println("[getgetMainInstallList] fail");
+			e.printStackTrace();
+		} finally {
+			DBClose.close(psmt, conn, rs);
+		}
+
+		return list;
 	}
 
 }

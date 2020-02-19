@@ -43,4 +43,6 @@ public interface InstallServiceInterface {
 		
 	//왕어드민에서 현재 대기중 설치신청 리스트를 받아오는 메소드 
 	public List<InstallDto> getWaitInstallList();
+	
+	public List<InstallDto> getMainInstallList();
 }

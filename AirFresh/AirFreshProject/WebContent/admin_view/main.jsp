@@ -1,3 +1,4 @@
+<%@page import="Dto.InstallDto"%>
 <%@page import="Dto.PurchaseNameDto"%>
 <%@page import="Dto.NoticeBbsDto"%>
 <%@page import="java.util.List"%>
@@ -11,6 +12,7 @@
 	
 	List<NoticeBbsDto> list = request.getAttribute("mainList")==null?null:(List<NoticeBbsDto>) request.getAttribute("mainList");
 	List<PurchaseNameDto> plist = request.getAttribute("mainPList")==null?null:(List<PurchaseNameDto>) request.getAttribute("mainPList");
+	List<InstallDto> ilist = request.getAttribute("mainIList")==null?null:(List<InstallDto>) request.getAttribute("mainIList");
 %>
 
 <div class="container-fluid">
@@ -53,7 +55,8 @@
 			<div class="card mb-4">
 				<div class="card-header">
 					렌탈 리스트
-					<div style="float: right">>more</div>
+					<div style="float: right">
+					<a href="<%=request.getContextPath()%>/rentallist">>more</a></div>
 				</div>
 				<div class="card-body">
 				<ul style="list-style-type: decimal;">
@@ -81,9 +84,30 @@
 				<div class="card mb-4">
 					<div class="card-header">
 						설치 리스트
-						<div style="float: right">>more</div>
+						<div style="float: right">
+						<a href="<%=request.getContextPath()%>/InstallController?command=installk">>more</a>
+						</div>
 					</div>
-					<div class="card-body"></div>
+					<div class="card-body">
+					
+					<ul style="list-style-type: decimal;">
+						<%
+							if(ilist != null && ilist.size() > 0 ){
+								for (int i = 0; i < ilist.size(); i++) {
+						%>
+						<li>
+								<%=ilist.get(i).getPrd_model_name()%>&nbsp;&nbsp;&nbsp;<%=ilist.get(i).getComp_date()%></li>
+						<%
+								}
+							}else{
+								%>
+								<li><span>데이터가 없습니다</span></li>
+								<%
+							}
+						%>
+					</ul>
+					
+					</div>
 				</div>
 		</div>
 

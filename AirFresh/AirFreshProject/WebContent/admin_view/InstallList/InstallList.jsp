@@ -429,7 +429,7 @@
 							
 							if( result == true){
 								//alert("저장성공");
-								location.href="<%=request.getContextPath()%>/InstallController?command=savet";
+								location.href="<%=request.getContextPath()%>/installConfirm?command=home";
 							} else {
 								alert("저장실패");
 							}
