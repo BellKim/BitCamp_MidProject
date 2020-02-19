@@ -2,6 +2,7 @@ package controller.ManagerController;
 
 import java.io.IOException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -51,10 +52,10 @@ public class ModifyMgrMember extends HttpServlet {
 			//end command
 		}else if(command.equals("success")) {
 			System.out.println("success 진입함. "  );
+
+		}else if(command.equals("ModifyProfile")) {
 			
-			
-			
-			
+			forward("./admin_view/manageMgr/managerProfileChange.jsp", req, resp);
 		}
 		
 		
@@ -128,6 +129,11 @@ public class ModifyMgrMember extends HttpServlet {
 	
 	}//end of collectParameter
 	
+	public static void forward(String link, HttpServletRequest req, HttpServletResponse resp)throws ServletException, IOException {
+		RequestDispatcher dispatch = req.getRequestDispatcher(link);
+		dispatch.forward(req, resp);		
+	}
+
 	
 	
 

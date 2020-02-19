@@ -16,8 +16,7 @@ import singleton.singleton;
 public class MgrInfoModify extends HttpServlet{
 
 	@Override
-	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		System.out.println("mgrInfoModify service 진입.");
+	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {		System.out.println("mgrInfoModify service 진입.");
 		singleton si = singleton.getInstance();
 		
 		String status = req.getParameter("status");
