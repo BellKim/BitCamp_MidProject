@@ -52,7 +52,7 @@
 				</thead>
 				<tbody>
 					<%
-						if (list.size() == 0 || list == null) {
+						if (list == null || list.size() == 0) {
 					%>
 					<tr align="center">
 						<th colspan="5">QnA가 없습니다.</th>

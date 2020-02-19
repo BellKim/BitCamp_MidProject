@@ -35,58 +35,57 @@
     <!-- Content Row -->
     <div class="row">
       <!-- Sidebar Column -->
-      <div class="col-lg-3 mb-4">
-        <div class="list-group">											
-          <a href="<%=request.getContextPath() %>/updatemem?command=update" class="list-group-item" id="update">회원정보수정</a>          
+      <div class="col-lg-3 mb-4">	<!-- updatemem?command=update -->
+        <div class="list-group">		<!-- <%=request.getContextPath() %>/client_view/member/update.jsp -->				
+          <a href="#" target="self" class="list-group-item" id="update">회원정보수정</a>          
           <a href="#" target="self" class="list-group-item" id="review">리뷰내역</a>
-          <a href="#" target="self" class="list-group-item" id="rental">렌탈내역</a>
-          <%-- <a href="<%=request.getContextPath() %>/rentallist">렌탈내역</a> --%>          
+          <a href="#" target="self" class="list-group-item" id="rental">렌탈내역</a>                
           <a href="#" target="self" class="list-group-item" id="qna">문의내역</a>          
         </div>	<%-- "<%=request.getContextPath() %>/qnalist?command=user" --%>
-      </div>      
+      </div>    <%-- <a href="<%=request.getContextPath() %>/rentallist">렌탈내역</a> --%>    
     <div class="col-lg-9 mb-4" id="content"> 
-	    <%-- <jsp:include page="/client_view/rental/rentallist.jsp"/> --%>  	<!-- "update.jsp" -->
+	    <%-- <jsp:include page="/client_view/rental/rentallist.jsp"/> --%>
 	     <%-- <%@ include file="/client_view/rental/rentallist.jsp" %> --%>
-	     <%-- <jsp:include page="<%=request.getContextPath() %>/client_view/rental/rentallist.jsp" flush="false"></jsp:include> --%>	     
-	    <%-- <jsp:include page="./../board/qnalist.jsp"/> --%>	<!-- 오류남 -->
-	    <%-- <jsp:include page="<%=request.getContextPath() %>/rentallist.jsp"/> --%>
-	    <%-- <jsp:include page="<%=request.getContextPath() %>/qnalist.jsp"/> --%>
-    <div id="include"><p></p></div>
-    <div id="include1"><p></p></div>
-    <div id="include2"><p></p></div>	
+	     <%-- <jsp:include page="<%=request.getContextPath() %>/client_view/rental/rentallist.jsp" flush="false"></jsp:include> --%>		   
+	    <%-- <jsp:include page="<%=request.getContextPath() %>/rentallist.jsp"/> --%>	   
     </div>
     </div>
 </div>    
     <!-- /.row -->
 
 <script type="text/javascript">
-$(document).ready(function(){
-	/* $("#include").load(""); */	
-	$("#include1").load("rentallist.jsp");
-	$("#include2").load("qnalist.jsp");
+$(document).ready(function(){	
+	$("#content").load(getContextPath() + "/client_view/review/install/orderReviewList.jsp");
+	$("#content").load(getContextPath() + "/client_view/rental/rentallist.jsp");
+	$("#content").load(getContextPath() + "/client_view/board/qnalist.jsp");
 	
-	
-	$("#update").on("click", function(){
-		$("#content").load("update.jsp");	
-		<%-- location.href = "<%=request.getContextPath() %>/updatemem?command=update"; --%>
+	$("#update").on("click", function(){		
+		//$("#content").load(getContextPath() + "/client_view/member/update.jsp");
+		location.href = "<%=request.getContextPath() %>/updatemem?command=update"; // servlet
 	});
 	
-	$("#review").on("click", function(){
-		//$("#content").load("");	// review
-		location.href = "<%=request.getContextPath() %>/updatemem?command=update";
-	});
+	$("#review").on("click", function(){			
+		//$("#content").load(getContextPath() + "/client_view/review/.jsp");
+		location.href = "<%=request.getContextPath() %>/OrderReviewController?command=home"; // servlet
+	});														// home은 모든 후기를 보여주는 게시판, 수정 요망
 	
 	$("#rental").on("click", function(){
-		//$("#content").load("rentallist.jsp");
-		location.href = "<%=request.getContextPath() %>/?command=";
+		//alert(getContextPath());		
+		//$("#content").load(getContextPath() + "/client_view/rental/rentallist.jsp");
+		location.href = "<%=request.getContextPath() %>/printPurchase";	// servlet / rentallist
 	});
 	
-	$("#qna").on("click", function(){
-		//$("#content").load("qnalist.jsp");	
-		location.href = "<%=request.getContextPath() %>/qnalist?command=user";
+	$("#qna").on("click", function(){			
+		//$("#content").load(getContextPath() + "/client_view/board/qnalist.jsp");
+		location.href = "<%=request.getContextPath() %>/qnalist?command=user"; // servlet
 	});
 
 });	
+
+function getContextPath() {
+	var hostIndex = location.href.indexOf( location.host ) + location.host.length;
+	return location.href.substring( hostIndex, location.href.indexOf('/', hostIndex + 1) );
+}
  
 </script>
 		
