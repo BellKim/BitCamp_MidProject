@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import Dto.MemberDto;
-import projectutil.ProjectUtil;
 import singleton.singleton;
 
 @WebServlet("/updatemem")
@@ -41,7 +40,9 @@ public class UpdateMem extends HttpServlet{
 			req.getSession().setAttribute("login", mem);			
 			forward("./client_view/member/update.jsp", req, resp);			
 		}		
-		else if(command.equals("updateAf")) {
+		else if(command.equals("upview")) {
+			resp.sendRedirect(req.getContextPath() + "/client_view/member/update.jsp");
+		}else if(command.equals("updateAf")) {
 			String _id = req.getParameter("mem_id");
 			String _pw = req.getParameter("mem_pw");				
 			String _cell = req.getParameter("mem_cell"); 		

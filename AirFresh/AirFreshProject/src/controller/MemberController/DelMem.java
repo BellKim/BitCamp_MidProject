@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import Dto.MemberDto;
-import projectutil.ProjectUtil;
 import singleton.singleton;
 
 @WebServlet("/delmem")

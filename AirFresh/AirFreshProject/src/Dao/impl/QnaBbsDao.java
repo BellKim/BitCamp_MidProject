@@ -225,7 +225,41 @@ public class QnaBbsDao implements QnaBbsDaoInterface {
 
 		return count > 0 ? true : false;
 	}
-
+	
+	// TODO 본인작성 후기 게시판
+	/*
+	 * public QnaBbsDto getPersonalQna(String mem_id) { String sql =
+	 * " SELECT QNA_INDEX, QNA_TITLE, MEM_ID, WDATE " + " FROM MEMBERS " +
+	 * " WHERE MEM_ID = ? ";
+	 * 
+	 * Connection conn = null; PreparedStatement psmt = null; ResultSet rs = null;
+	 * 
+	 * QnaBbsDto dto = null; try { conn = DBConnection.getConnection();
+	 * System.out.println("1/4 getPersonalQna s"); psmt =
+	 * conn.prepareStatement(sql); psmt.setString(1, mem_id);
+	 * System.out.println("2/4 getPersonalQna s");
+	 * 
+	 * rs = psmt.executeQuery(); System.out.println("3/4 getPersonalQna s");
+	 * 
+	 * if(rs.next()) { int i = 1;
+	 * 
+	 * dto= new QnaBbsDto(rs.getInt(i++), rs.getString(i++), rs.getString(i++),
+	 * rs.getString(i++), rs.getString(i++), rs.getInt(i++), rs.getInt(i++),
+	 * rs.getString(i++), rs.getString(i++), rs.getInt(i++), rs.getInt(i++)); }
+	 * 
+	 * System.out.println("4/4 getPersonalQna s"); } catch (SQLException e) {
+	 * 
+	 * System.out.println("getPersonalQna f"); e.printStackTrace();
+	 * 
+	 * } finally { DBClose.close(psmt, conn, rs);
+	 * 
+	 * }
+	 * 
+	 * return dto; }
+	 */
+					
+				
+	
 	@Override
 	public QnaBbsDto getQnaBbs(int qna_index) {
 		
