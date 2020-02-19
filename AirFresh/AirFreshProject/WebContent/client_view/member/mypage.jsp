@@ -1,19 +1,17 @@
 
+<%@page import="Dto.PurchaseNameDto"%>
+<%@page import="java.util.List"%>
+<%@page import="Dto.QnaBbsDto"%>
+<%@page import="Dto.MemberDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <%
 	MemberDto mem = (MemberDto) session.getAttribute("login");
+	List<PurchaseNameDto> list = (List<PurchaseNameDto>) request.getAttribute("list");
+	List<QnaBbsDto> list1 = (List<QnaBbsDto>)request.getAttribute("qnalist");
 %>
-
-<%-- <jsp:include page="./../rental/rentalDetail.jsp" flush="false"></jsp:include> -->
-	<%@ include file="./../rental/rentalDetail.jsp" %>
-	<jsp:include page="./../rental/rentalDetail.jsp" flush="false"></jsp:include>
-	<jsp:include page="./updatemem?command=update&id=<%=mem.getMem_id() %>"></jsp:include>
-	<!-- ./update.jsp -->
-	<jsp:include page="<%=request.getContextPath()%>/updatemem?command=update&id=<%=mem.getMem_id() %>" flush="true"/> --%>
-	
 	
 <%@ include file="./../include/header.jsp"%>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/page.css" />
@@ -37,67 +35,58 @@
     <!-- Content Row -->
     <div class="row">
       <!-- Sidebar Column -->
-      <div class="col-lg-3 mb-4">
-        <div class="list-group">											<!-- "openCity(event, 'London')" -->
-          <a href="#content" target="self" class="list-group-item" onclick="showpage(event, update);">회원정보수정</a>          
-          <%-- <a href="<%=request.getContextPath() %>/updatemem?command=update&id=<%=mem.getMem_id() %>" class="list-group-item">회원정보수정</a> --%>
-          <a href="#content" target="self" class="list-group-item" onclick="showpage(event, review);">리뷰내역</a>
-          <a href="#content" target="self" class="list-group-item" onclick="showpage(event, rental);">렌탈내역</a>
-          <%-- <a href="<%=request.getContextPath() %>/rentallist" class="list-group-item">렌탈내역</a> --%>          
-          <a href="#content" target="self" class="list-group-item" onclick="showpage(event, qna);">문의내역</a>          
+      <div class="col-lg-3 mb-4">	<!-- updatemem?command=update -->
+        <div class="list-group">		<!-- <%=request.getContextPath() %>/client_view/member/update.jsp -->				
+          <a href="#" target="self" class="list-group-item" id="update">회원정보수정</a>          
+          <a href="#" target="self" class="list-group-item" id="review">리뷰내역</a>
+          <a href="#" target="self" class="list-group-item" id="rental">렌탈내역</a>                
+          <a href="#" target="self" class="list-group-item" id="qna">문의내역</a>          
         </div>	<%-- "<%=request.getContextPath() %>/qnalist?command=user" --%>
-      </div>      
-    <div class="col-lg-9 mb-4">
-        <!-- <h2>Section Heading</h2> -->
-        <p id="content"></p>
+      </div>    <%-- <a href="<%=request.getContextPath() %>/rentallist">렌탈내역</a> --%>    
+    <div class="col-lg-9 mb-4" id="content"> 
+	    <%-- <jsp:include page="/client_view/rental/rentallist.jsp"/> --%>
+	     <%-- <%@ include file="/client_view/rental/rentallist.jsp" %> --%>
+	     <%-- <jsp:include page="<%=request.getContextPath() %>/client_view/rental/rentallist.jsp" flush="false"></jsp:include> --%>		   
+	    <%-- <jsp:include page="<%=request.getContextPath() %>/rentallist.jsp"/> --%>	   
     </div>
     </div>
+</div>    
     <!-- /.row -->
 
-
-
-<div class="tab">
-  <button class="tablinks" onmouseover="openCity(event, 'London')">London</button>
-  <button class="tablinks" onmouseover="openCity(event, 'Paris')">Paris</button>
-  <button class="tablinks" onmouseover="openCity(event, 'Tokyo')">Tokyo</button>
-</div>
-
-<div id="London" class="tabcontent">
-  <h3>London</h3>
-  <p>London is the capital city of England.</p>
-</div>
-
-<div id="Paris" class="tabcontent">
-  <h3>Paris</h3>
-  <p>Paris is the capital of France.</p>
-</div>
-
-<div id="Tokyo" class="tabcontent">
-  <h3>Tokyo</h3>
-  <p>Tokyo is the capital of Japan.</p>
-</div>
-
-<div class="clearfix"></div>
-</div>
-
 <script type="text/javascript">
-function showpage( index ) {
-	<%-- if(index == 1){
-		$("#content").html = <jsp:include page="update.jsp" flush="false"><jsp:param name="id" value="<%=mem.getMem_id() %>" /></jsp:include>
-	}else if(index == 2){		
-		$("#content").html = <jsp:include page="update.jsp" flush="false"><jsp:param name="id" value="<%=mem.getMem_id() %>" /></jsp:include>
-	} --%>
-}
+$(document).ready(function(){	
+	$("#content").load(getContextPath() + "/client_view/review/install/orderReviewList.jsp");
+	$("#content").load(getContextPath() + "/client_view/rental/rentallist.jsp");
+	$("#content").load(getContextPath() + "/client_view/board/qnalist.jsp");
+	
+	$("#update").on("click", function(){		
+		//$("#content").load(getContextPath() + "/client_view/member/update.jsp");
+		location.href = "<%=request.getContextPath() %>/updatemem?command=update"; // servlet
+	});
+	
+	$("#review").on("click", function(){			
+		//$("#content").load(getContextPath() + "/client_view/review/.jsp");
+		location.href = "<%=request.getContextPath() %>/OrderReviewController?command=home"; // servlet
+	});														// home은 모든 후기를 보여주는 게시판, 수정 요망
+	
+	$("#rental").on("click", function(){
+		//alert(getContextPath());		
+		//$("#content").load(getContextPath() + "/client_view/rental/rentallist.jsp");
+		location.href = "<%=request.getContextPath() %>/printPurchase";	// servlet / rentallist
+	});
+	
+	$("#qna").on("click", function(){			
+		//$("#content").load(getContextPath() + "/client_view/board/qnalist.jsp");
+		location.href = "<%=request.getContextPath() %>/qnalist?command=user"; // servlet
+	});
 
-function showpage(evt, cityName) {
-  var i, tabcontent, tablinks;
-  tabcontent = document.getElementsByClassName("col-lg-9 mb-4");
-  for (i = 0; i < tabcontent.length; i++) {
-    tabcontent[i].style.display = "none";
-  }  
-  document.getElementById(cityName).style.display = "block";
-  evt.currentTarget.className += " active";
+});	
+
+function getContextPath() {
+	var hostIndex = location.href.indexOf( location.host ) + location.host.length;
+	return location.href.substring( hostIndex, location.href.indexOf('/', hostIndex + 1) );
 }
+ 
 </script>
 		
 <%@ include file="./../include/footer.jsp"%>

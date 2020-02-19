@@ -1,4 +1,3 @@
-
 <%@page import="Dto.PurchaseNameDto"%>
 <%@page import="Dto.ModelDto"%>
 <%@page import="java.util.List"%>
@@ -11,12 +10,15 @@
 <%@ include file="./../include/header.jsp"%>
 
 <%
-	MemberDto mem = (MemberDto) session.getAttribute("login");
+	MemberDto mem = (MemberDto)session.getAttribute("login");
 
-	//List<PurchaseDto> list = (List<PurchaseDto>) request.getAttribute("list");
-	List<PurchaseNameDto> list = (List<PurchaseNameDto>) request.getAttribute("list");
-	System.out.println("list 갯수: " + list.size());
+	//List<PurchaseDto> list = (List<PurchaseDto>) request.getAttribute("list");	
+	List<PurchaseNameDto> list = (List<PurchaseNameDto>)request.getAttribute("list");
+	// System.out.println("list 갯수: " + list.size());
+	
 %>
+
+
 <div class="container" style="margin-bottom: 100px;">
 	<h1 class="mt-4 mb-3">
 		구매내역 <small>Rental List</small>
@@ -48,12 +50,13 @@
 		<tbody>
 
 			<%
-				if (list.size() == 0 || list == null) {	
-				%>
-				<tr align="center">
-					<th colspan="5">구매내역이 없습니다.</th>
-				</tr>
-				<%
+				if (list == null || list.size() == 0) {
+			%>
+			<tr align="center">
+				<th colspan="5">구매내역이 없습니다.</th>
+			</tr>
+
+			<%
 				} else {
 					for (int i = 0; i < list.size(); i++) {
 						PurchaseNameDto dto = list.get(i);
@@ -170,4 +173,4 @@
 	});//document
 </script>
 
-<%@ include file="./../include/footer.jsp"%>
+<%@ include file="./../include/footer.jsp"%> 

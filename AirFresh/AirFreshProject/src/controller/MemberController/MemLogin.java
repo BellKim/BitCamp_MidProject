@@ -40,6 +40,7 @@ public class MemLogin extends HttpServlet{
 				
 		MemberDto mem = s.ms.memLogin(mem_id, mem_pw);		
 		req.getSession().setAttribute("login", mem);
+		req.getSession().setMaxInactiveInterval(60*60*356);
 		System.out.println("memlogin 도착2");		// ok!
 		forward("./client_view/member/loginAf.jsp", req, resp);
 	
