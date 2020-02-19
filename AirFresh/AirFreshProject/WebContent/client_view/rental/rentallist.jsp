@@ -71,16 +71,22 @@
 								src="<%=request.getContextPath()%>/client_view/model/prd_detail_img/<%=dto.getPrd_model_name()%>_m1.png"
 								alt="" style="width: 40px; height: 40px;"> <b><%=dto.getPrd_name()%></b>
 								(<%=dto.getPrd_model_name()%>)</td>
+								<% if(dto.getReview()==0 ){ %>
 							<td><a href="#" class="delPer" aaa="<%=dto.getPur_index()%>">구매취소</a></td>
+							<% } else { %>
+								<td>구매확정</td>
+							<%
+							}
+							%>
 							<td><a href="asAppPage?seq=<%=dto.getPur_index()%>&prd_name=<%=dto.getPrd_name()%>">A/S신청</a></td>
 							<%
 								if(dto.getReview() == 0){
 									%>
-									<td><a href="<%=request.getContextPath() %>/OrderReviewController?command=update&index=<%=dto.getPur_index() %>">작성하기</a></td>		
+									<td><a href="<%=request.getContextPath() %>/reviewWrite?pur=<%=dto.getPur_index() %>">작성하기</a></td>		
 									<%
 								}else{
 									%>
-									<td><a href="#">작성완료</a></td>
+									<td><a href="#">리뷰보기</a></td>
 									<%
 								}
 							%>	
@@ -95,19 +101,20 @@
 								src="<%=request.getContextPath()%>/client_view/model/prd_detail_img/<%=dto.getPrd_model_name()%>_m1.png"
 								alt="" style="width: 40px; height: 40px;"> <b><%=dto.getPrd_name()%></b>
 								(<%=dto.getPrd_model_name()%>)</td>
-							<td>취소완료</td>
+							<td>구매취소</td>
 							<td></td>
-							<%
+							<td>구매취소</td>
+							<%--
 								if(dto.getReview() == 0){
-									%>
-									<td><a href="<%=request.getContextPath() %>/OrderReviewController?command=update&index=<%=dto.getPur_index() %>">작성하기</a></td>		
+									
+									<td><a href="<%=request.getContextPath() %>/reviewWrite/pur=<%=dto.getPur_index() %>">작성하기</a></td>		
 									<%
 								}else{
 									%>
-									<td><a href="#">작성완료</a></td>
+									<td><a href="#">작성리뷰보기</a></td>
 									<%
 								}
-							%>	
+							--%>	
 						</tr>
 						<%
 						} //else if문종료
@@ -154,6 +161,7 @@
 							td.eq(3).children().removeAttr('href');
 							td.eq(3).children().text("취소완료"); 
 							td.eq(4).children().text(" "); 
+							td.eq(5).children().text(" "); 
 							
 							alert("정상적으로 취소되었습니다.");
 							console.log("클릭한 row의데이터:"+tr.text());

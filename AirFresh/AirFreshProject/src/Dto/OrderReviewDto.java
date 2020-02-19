@@ -43,6 +43,20 @@ public class OrderReviewDto implements Serializable {
 		this.rating = rating;
 	}
 
+	
+	
+	
+	public OrderReviewDto(String mem_id, int pur_index, String order_title, String order_content, String order_img_path,
+			int rating) {
+		super();
+		this.mem_id = mem_id;
+		this.pur_index = pur_index;
+		this.order_title = order_title;
+		this.order_content = order_content;
+		this.order_img_path = order_img_path;
+		this.rating = rating;
+	}
+
 	public int getRe_index() {
 		return re_index;
 	}
