@@ -7,10 +7,7 @@
     pageEncoding="UTF-8"%>
     
 <%
-	//제품 index get
-	/* String seq = request.getParameter("seq");
-	System.out.println("seq: "+seq); */
-	
+
 	ModelDto model = (ModelDto)request.getAttribute("model");
 	//System.out.println("model :"+model.toString());
 
@@ -24,7 +21,33 @@
 	String sprice = formatter.format(price);
 
 %>
+<style>
+      a.top {
+        position: fixed;
+        bottom:10px;
+        right:10px;
+        display: none;
+      }
+</style>
 
+<!-- <a href="#" class="top">Top</a> -->
+<a href="#" class="top" title=”맨위로"><img src="<%= request.getContextPath()%>/client_view/img/btn_top.png" style="width: 80px;"></a>
+<script>
+$( document ).ready( function() {
+    $( window ).scroll( function() {
+      if ( $( this ).scrollTop() > 200 ) {
+        $( '.top' ).fadeIn();
+      } else {
+        $( '.top' ).fadeOut();
+      }
+    } );
+    $( '.top' ).click( function() {
+      $( 'html, body' ).animate( { scrollTop : 0 }, 600 );
+      return false;
+    } );
+  } );
+</script>
+</script>
   <!-- Page Content -->
   <div class="container">
 
