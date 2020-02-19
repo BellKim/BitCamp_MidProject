@@ -8,10 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-
 import Dto.MemberDto;
-import projectutil.ProjectUtil;
 import singleton.singleton;
 
 @WebServlet("/memlogin")
@@ -40,6 +37,7 @@ public class MemLogin extends HttpServlet{
 				
 		MemberDto mem = s.ms.memLogin(mem_id, mem_pw);		
 		req.getSession().setAttribute("login", mem);
+		req.getSession().setMaxInactiveInterval(60*60*356);
 		System.out.println("memlogin 도착2");		// ok!
 		forward("./client_view/member/loginAf.jsp", req, resp);
 	

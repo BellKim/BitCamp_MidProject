@@ -70,7 +70,7 @@
 						 <img src="<%=request.getContextPath()%>/client_view/img/lock.png">
 						 <a href="#" onclick="usercheck('<%=qna.getMem_id()%>', <%=qna.getQna_index()%>)"> <%=qna.getQna_title()%></a>
 						<% } else if(qna.getQna_secret() ==0) { %>
-						<a href="<%=request.getContextPath()%>/qnadetail?command=user&qna_index=<%=qna.getQna_index()%>"><%=qna.getQna_title()%></a>
+						<a href="<%=request.getContextPath()%>/qnadetail?command=personal&mem_id=<%=qna.getQna_index()%>"><%=qna.getQna_title()%></a>
 						<%} %>
 						</td>
 						<td><%=qna.getMem_id()%></td>
