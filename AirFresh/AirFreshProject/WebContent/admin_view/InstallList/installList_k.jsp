@@ -7,22 +7,6 @@
 	List<InstallDto> list = (List<InstallDto>) request.getAttribute("installList");
 	List<InstallDto> comflist = (List<InstallDto>) request.getAttribute("comfllList");
 
-	/*
-	int len = (int) request.getAttribute("installlen");
-	
-	int bbsPage = len / 10;
-	if (len % 10 > 0) {
-		bbsPage = bbsPage + 1;
-	}
-
-	String spageNumber = request.getParameter("pageNumber");
-	int pageNumber = 0;
-
-	if (spageNumber != null && !spageNumber.equals("")) {
-		pageNumber = Integer.parseInt(spageNumber);
-	}
-	
-	*/
 %>
 
 <div class="container-fluid">
@@ -108,7 +92,7 @@
 				<%
 					} else {
 						for(int i = 0; i < comflist.size(); i++){
-							InstallDto install = list.get(i);
+							InstallDto install = comflist.get(i);
 				%>
 				<tr  onclick="location.href='<%=request.getContextPath()%>/installdetail?&ins_index=<%=install.getIns_index() %>'" style="cursor: pointer;"
 				title="클릭하면 상세내역을 보실 수 있습니다.">
