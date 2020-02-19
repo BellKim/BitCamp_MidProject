@@ -45,8 +45,7 @@
 						for(int i = 0; i < list.size(); i++){
 							InstallDto install = list.get(i);
 				%>
-				<tr  onclick="location.href='<%=request.getContextPath()%>/installdetail?&ins_index=<%=install.getIns_index() %>'" style="cursor: pointer;"
-				title="클릭하면 상세내역을 보실 수 있습니다.">
+				<tr>
 					<td><%=install.getIns_index() %></td>
 					<td><%=install.getPrd_model_name()%></td>
 					<td><%=install.getMem_name() %></td>
@@ -81,7 +80,6 @@
 					<th>설치희망일</th>
 					<th>설치완료일</th>
 					<th>직원이름</th>
-					<th>별점</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -94,15 +92,14 @@
 						for(int i = 0; i < comflist.size(); i++){
 							InstallDto install = comflist.get(i);
 				%>
-				<tr  onclick="location.href='<%=request.getContextPath()%>/installdetail?&ins_index=<%=install.getIns_index() %>'" style="cursor: pointer;"
-				title="클릭하면 상세내역을 보실 수 있습니다.">
+				<tr>
 					<td><%=install.getIns_index() %></td>
 					<td><%=install.getPrd_model_name()%></td>
 					<td><%=install.getMem_name() %></td>
+					<td><%=install.getPur_date().substring(0, 10) %></td>
 					<td><%=install.getIns_date().substring(0, 10) %></td>
 					<td><%=install.getComp_date().substring(0, 10) %></td>
 					<td><%=install.getMgr_name() %></td>
-					<td><%=install.getRating() %></td>
 				</tr>
 				<%	}
 				}%>

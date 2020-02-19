@@ -10,7 +10,7 @@
 	
 		String addr = addr2 + addr3;
 		
-		addr = addr.substring(1, 8);
+		addr = addr.substring(0, 9);
 		
 		addr += "...";
 		return addr;	
