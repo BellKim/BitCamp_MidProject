@@ -65,15 +65,7 @@
 					<div class="card-body"></div>
 				</div>
 		</div>
-		<div class="col-xl-6">
-				<div class="card mb-4">
-					<div class="card-header">
-						AS 리스트
-						<div style="float: right">>more</div>
-					</div>
-					<div class="card-body"></div>
-				</div>
-		</div>
+
 	</div>
 </div>
 
