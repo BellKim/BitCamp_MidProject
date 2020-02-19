@@ -56,7 +56,7 @@
 				console.log(" clicked logout button! ");
 				
 				if(confirm("정말 로그아웃 하시겠습니까?") == true){	//confirm
-					<% session.removeAttribute("managerLogin");  %>
+					<%-- <% session.removeAttribute("managerLogin");  %> --%>
 					//location.reload();
 					location.href="<%=request.getContextPath()%>/managerLogin?command=logout";
 					console.log("로그아웃됨");
