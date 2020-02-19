@@ -44,8 +44,7 @@ List<ManagerMemberDto> managerMemberlist =
 %>
 
 <div class="container-fluid">
-  <h1 class="mt-4 mb-3" ">직원리스트</h1>
-  <hr>
+  <h1 class="mt-4 mb-3" >직원리스트</h1>
  <div style="margin:10px;" align = "right">
 <a href="<%=request.getContextPath() %>/addMrgMember?status=enter" class="btn btn-primary">
  매니저 및 관리자 추가하기 </a>

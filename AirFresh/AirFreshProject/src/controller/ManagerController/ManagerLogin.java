@@ -66,7 +66,7 @@ public class ManagerLogin extends HttpServlet {
 			
 				
 		}else if(req.getParameter("command").equals("success")) {
-				forward("./admin_view/main.jsp", req, resp);
+				forward("./adminmain", req, resp);
 				//resp.sendRedirect("주소");
 			
 		}else if(req.getParameter("command").equals("logout")) {

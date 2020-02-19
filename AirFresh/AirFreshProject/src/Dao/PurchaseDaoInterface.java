@@ -39,4 +39,7 @@ public interface PurchaseDaoInterface {
     
     //회원이 렌탈(구매)를 했는지 안했는지 판단하는 메소드 
     public boolean userPurConfirm(String userID);
+    
+    //관리자 페이지 메인 5개
+    public List<PurchaseNameDto> getMainPurchaseList();
 }

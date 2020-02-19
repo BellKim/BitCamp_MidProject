@@ -11,7 +11,6 @@
 
 <div class="container-fluid">
 	<h1 class="mt-4 mb-3">설치 리스트</h1>
-	<hr>
 	<ul class="nav nav-tabs">
   <li class="nav-item">
     <a class="nav-link active" data-toggle="tab" href="#wait">설치 대기</a>

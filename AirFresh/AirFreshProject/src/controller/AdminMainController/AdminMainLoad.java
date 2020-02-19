@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import Dto.NoticeBbsDto;
+import Dto.PurchaseNameDto;
 import projectutil.ProjectUtil;
 import singleton.singleton;
 @WebServlet("/adminmain")
@@ -28,7 +29,9 @@ public class AdminMainLoad extends HttpServlet {
 
 		singleton s = singleton.getInstance();
 		List<NoticeBbsDto> list = s.nbsi.getNoticeList();
+		List<PurchaseNameDto> plist = s.ps.getMainPurchaseList();
 		req.setAttribute("mainList", list);
+		req.setAttribute("mainPList", plist);
 		ProjectUtil.forward("./admin_view/main.jsp", req, resp);
 	}
 }

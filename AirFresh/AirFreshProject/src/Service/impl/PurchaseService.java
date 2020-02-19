@@ -57,6 +57,10 @@ public class PurchaseService implements PurchaseServiceInterface {
 	public int getlength() {
 		return dao.getlength();
 	}
+	@Override
+	public List<PurchaseNameDto> getMainPurchaseList() {
+		return dao.getMainPurchaseList();
+	}
 
 	
 }

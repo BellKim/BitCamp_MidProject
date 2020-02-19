@@ -628,4 +628,11 @@ public class InstallDao implements InstallDaoInterface, Serializable {
 		return list;
 	}
 
+
+	@Override
+	public List<InstallDto> getgetMainInstallList() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
