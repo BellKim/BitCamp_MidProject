@@ -129,6 +129,7 @@
 				data:{
 					mgr_index:mgr_index1,
 					mgr_id:mgr_id1,
+					mgr_pw:mgr_pw1,
 					mgr_name:mgr_name1,
 					mgr_loc:mgr_loc1,
 					mgr_cell:mgr_cell1,
@@ -142,7 +143,7 @@
 					//location.replace("<%=request.getContextPath() %>"+data);
 					if(data == "true"){
 						alert("로그인성공");
-						location.href="<%=request.getContextPath() %>/managerLogin?command=success";
+						location.href = ctxPath+"/showMgrMemberDetail?command=success&mgr_index="+mgr_index1;
 					}else{
 						alert("로그인실패");
 					}

@@ -284,6 +284,80 @@ public class ManageMemberDao implements ManageMemberDaoInterface {
 		
 		return count>0?true:false;
 	}
+
+	@Override
+	public boolean managerMemberUpdate(ManagerMemberDto ManagerMemberDto) {
+		System.out.println("managerMemberUpdate 내의 파라미터값 : " + ManagerMemberDto);
+//		String sql = " SELECT * FROM MANAGERMEMBER " + 
+//					" WHERE mgr_index=? ";
+		
+		String sql = " UPDATE managerMember " + 
+				" SET " + 
+				//"-- 입력될 데이터 60000 k_admin 최고관리자 1 1012341234 0 0 " + 
+				" mgr_auth=?, " + 
+				" mgr_id=?, " + 
+				" mgr_pw=?, " + 
+				" mgr_name=?, " + 
+				" mgr_loc=?, " + 
+				" mgr_cell=?, "; 
+				
+		System.out.println("ManagerMemberDto.getMgr_delDate() : " +ManagerMemberDto.getMgr_delDate() + "\n");
+		System.out.println("ManagerMemberDto : " +ManagerMemberDto);
+		
+				if((ManagerMemberDto.getMgr_delDate())!=null && (ManagerMemberDto.getMgr_delDate()).equals("SYSDATE")) {
+					sql +=" mgr_delDate=SYSDATE, ";
+					System.out.println(" 0/6  의 sysdate");
+				}else {
+					sql +=" mgr_delDate=null, ";
+					System.out.println(" 0/6  null 입력 ");
+				}
+				
+			sql+=" mgr_del=? " + 
+				" WHERE " + 
+				" mgr_index=? ";
+
+		
+		
+		System.out.println(" 1/6 managerMemberUpdate success ");
+		Connection conn = null;
+		PreparedStatement psmt = null;
+		System.out.println( " managerMemberUpdate sql = " + sql );
+		System.out.println(" 2/6 managerMemberUpdate success ");
+		int count = 0;
+
+		
+		try {
+			System.out.println(" 3/6 managerMemberUpdate success ");
+			conn = DBConnection.getConnection();
+			psmt = conn.prepareStatement(sql);
+			System.out.println(" 4/6 managerMemberUpdate success ");
+			
+			psmt.setInt(1, ManagerMemberDto.getMgr_auth());
+			psmt.setString(2, ManagerMemberDto.getMgr_id());
+			psmt.setString(3, ManagerMemberDto.getMgr_pw());
+			psmt.setString(4, ManagerMemberDto.getMgr_name());
+			psmt.setInt(5, ManagerMemberDto.getMgr_loc());
+			psmt.setString(6, ManagerMemberDto.getMgr_cell());
+//			psmt.setString(7, ManagerMemberDto.getMgr_delDate());
+			psmt.setInt(7, ManagerMemberDto.getMgr_del());
+			psmt.setInt(8, ManagerMemberDto.getMgr_index());
+			
+
+			System.out.println(" 5/6 managerMemberUpdate success ");
+			
+			count = psmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			System.out.println(" managerMemberUpdate  DB FAIL ");
+			e.printStackTrace();
+		}finally {
+			System.out.println(" 6/6 managerMemberUpdate DBCLOSE ");
+			DBClose.close(psmt, conn, null);
+		}
+		
+		
+		return count>0?true:false;
+	}//end of managerMemberUpdate
 	
 	
 	

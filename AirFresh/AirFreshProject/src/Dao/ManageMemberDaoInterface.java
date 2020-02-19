@@ -16,5 +16,7 @@ public interface ManageMemberDaoInterface {
 
 	public boolean setSelectedIndexChange(int number);
 	
+	public boolean managerMemberUpdate(ManagerMemberDto ManagerMemberDto);
+	
 
 }//end ManageMemberDaoInterface class;

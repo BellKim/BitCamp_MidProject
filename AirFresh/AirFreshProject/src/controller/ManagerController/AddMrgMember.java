@@ -50,8 +50,7 @@ public class AddMrgMember extends HttpServlet {
 		String Str_mgr_auth = req.getParameter("authLevel");
 		int mgr_auth = Integer.parseInt(Str_mgr_auth);
 		
-		String Str_mgr_cell= req.getParameter("manager_phNum");
-		int mgr_cell = Integer.parseInt(Str_mgr_cell);
+		String mgr_cell= req.getParameter("manager_phNum");
 		String mgr_joinDate =  "SYSDATE";
 		
 		System.out.println("test1 = " + mgr_id + " " +
@@ -63,7 +62,7 @@ public class AddMrgMember extends HttpServlet {
 		int mgr_index = 0;
 		int mgr_del = 0;  
 		ManagerMemberDto managermem =
-				new ManagerMemberDto(mgr_index, mgr_auth, mgr_id, mgr_pw, mgr_name, mgr_loc, mgr_cell,  mgr_joinDate);
+				new ManagerMemberDto(mgr_index, mgr_auth, mgr_id, mgr_pw, mgr_name, mgr_loc, mgr_cell, mgr_joinDate);
 		System.out.println(managermem);
 		singleton si = singleton.getInstance();
 		boolean res = si.managerMember.insertManagerMember(managermem);

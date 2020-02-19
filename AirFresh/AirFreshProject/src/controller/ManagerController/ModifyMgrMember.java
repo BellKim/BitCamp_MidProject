@@ -23,18 +23,34 @@ public class ModifyMgrMember extends HttpServlet {
  
  */
 		//들어온 파라미터를 수집하여 dto 에 넣는다.  
-		ManagerMemberDto managermemdto = collectParameterToDto(req, resp);
-		
 		
 		
 		
 		if(command.equals("submit")) {
+			ManagerMemberDto managermemdto = collectParameterToDto(req, resp);
+			System.out.println("콜랙터 파라미터 이후 " +managermemdto);
 /*
 			1. dao 에서 데이더 업데이트가 이루어지고 난 뒤에 true가 들어오면 ajax 에서 true를 전다. 
 			2. ajax 에서는 true 신호를 받아서 CONTROLLER로 comment=updatesuccess 를 보내서 상세정보 페이지로 이동한다.
 					(mgrMemberDetail.jsp와 mgrindex를 같이 전달한다.)
 			3. 
 */
+			//singleton 통해서 update 시작.
+			singleton si = singleton.getInstance();
+			
+			boolean isS = si.managerMember.managerMemberUpdate(managermemdto);
+			System.out.println(" 업데이트 결과 : " + isS);
+			if(isS == true) {
+				resp.getWriter().write("true");
+			}else {
+				resp.getWriter().write("false");
+			}
+			
+			
+			
+			//end command
+		}else if(command.equals("success")) {
+			System.out.println("success 진입함. "  );
 			
 			
 			
@@ -56,6 +72,7 @@ public class ModifyMgrMember extends HttpServlet {
 		int mgr_auth		= 	Integer.parseInt(mgr_auth_s);
 		
 		String mgr_id		=	req.getParameter("mgr_id");
+		String mgr_pw		=	req.getParameter("mgr_pw");
 		String mgr_name		=	req.getParameter("mgr_name");
 		String mgr_loc_s	=	req.getParameter("mgr_loc");
 		int mgr_loc 		= 	Integer.parseInt(mgr_loc_s);
@@ -74,20 +91,27 @@ public class ModifyMgrMember extends HttpServlet {
 		
 		//조건1 //mgr_del의 이전과 이후를 비교하기 위해서 정보를 가져온다.
 		ManagerMemberDto beforedto = si.managerMember.receiveManagerMemberSelect(mgr_index_s);
+		ManagerMemberDto managerMemDto = new ManagerMemberDto();
+		
 		
 		if(mgr_del == beforedto.getMgr_del()) {
 			System.out.println("변동없음.");
 		}else if(mgr_del > beforedto.getMgr_del()) {
-			//기존:변화 0->1 일때  mgr_delDate에  getMgr_delDate에 날짜가 입력 되어야함.  
-			mgr_delDate="-";
-			
+			//기존:변화 0->1 일때  mgr_delDate에  getMgr_delDate에 날짜가 입력 되어야함.
+			mgr_delDate="SYSDATE";
 		}else if(mgr_del < beforedto.getMgr_del()) {
 			//기존:변화 1->0 일때  mgr_delDate "_"로 입력되어야함.
-			mgr_delDate="SYSDATE";
+			mgr_delDate=null;
 		}
 		
 		
-		ManagerMemberDto managerMemDto = new ManagerMemberDto();
+		
+		
+		if(mgr_pw == null) {
+			managerMemDto.setMgr_pw(beforedto.getMgr_pw());
+		}else {
+			managerMemDto.setMgr_pw(mgr_pw);
+		}
 		managerMemDto.setMgr_index(mgr_index);
 		managerMemDto.setMgr_auth(mgr_auth);
 		managerMemDto.setMgr_id(mgr_id);
@@ -97,7 +121,7 @@ public class ModifyMgrMember extends HttpServlet {
 		managerMemDto.setMgr_delDate(mgr_delDate);
 		managerMemDto.setMgr_del(mgr_del);
 		
-		System.out.println("managerMemDto" + managerMemDto);
+		System.out.println("최종 managerMemDto 결과 ::::::: \n" + managerMemDto);
 		
 		
 		return managerMemDto;

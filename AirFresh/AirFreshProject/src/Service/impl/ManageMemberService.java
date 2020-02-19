@@ -40,9 +40,18 @@ public class ManageMemberService implements ManageMemberInterface{
 	public boolean setSelectedIndexChange(int number) {
 		return mmdao.setSelectedIndexChange(number);
 	}
+
+
+	@Override
+	public boolean managerMemberUpdate(ManagerMemberDto managermemdto) {
+		
+		return mmdao.managerMemberUpdate(managermemdto);
+	}
 	
 	
 	
+	
+
 	
 	
 
