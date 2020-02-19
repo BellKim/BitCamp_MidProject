@@ -134,7 +134,7 @@
 				</div>
 				<div class="form-group" style="float: left">
 					<button type="button" class="btn btn-primary"
-						onclick="searchNotice()">검색</button>
+						onclick="searchqna()">검색</button>
 				</div>
 			</div>
 			<div style="clear: left"></div>
@@ -142,14 +142,14 @@
 	</div>
 	
 <script type="text/javascript">
-	function searchNotice(){
-		var opt = document.getElementById("opt").value;
-		var keyword = $("#keyword").val();
-		if(keyword == ""){
-			document.getElementById("opt").value = "sel";
-		}
-		location.href="<%=request.getContextPath()%>/qnalist?opt=" + opt + "&keyword=" + keyword;
-		}
+function searchqna(){
+	var opt = document.getElementById("opt").value;
+	var keyword = $("#keyword").val();
+	if(keyword == ""){
+		document.getElementById("opt").value = "sel";
+	}
+	location.href="<%=request.getContextPath()%>/qnalist?command=user&opt=" + opt + "&keyword=" + keyword;
+	}
 	
 	function goPage( pageNum ) {
 		var opt = document.getElementById("opt").value;
