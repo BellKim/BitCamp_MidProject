@@ -10,6 +10,13 @@
 %>
 <div class="container" style="margin-bottom: 100px;">
 	 <h1 class="mt-4 mb-3">제품설치 리뷰 작성페이지<small>----</small></h1>
+	 
+	 <ol class="breadcrumb">
+		<li class="breadcrumb-item"><a href="index.jsp">Home</a></li>
+		<li class="breadcrumb-item active">고객센터</li>
+		<li class="breadcrumb-item active">공지사항</li>
+	</ol>
+	 
 	 <table class="table table-hover" border="1">
 	 <col width="50"><col width="200"><col width="80"><col width="100">
 	 <col width="60"><col width="70">

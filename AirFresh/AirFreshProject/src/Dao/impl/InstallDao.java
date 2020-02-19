@@ -19,16 +19,21 @@ public class InstallDao implements InstallDaoInterface, Serializable {
 	public InstallDao() {
 		DBConnection.initConnection();
 	}
-
-	// 관리자용 메소드 ( 담당자가 없는 모든 install 리스트를 가져온다)
-	public List<InstallDto> getNullInstallList() {
-
-		String sql = " SELECT  i.ins_index, i.pur_index, i.ins_date, " + "	i.comp_date, i.mgr_index, i.ins_state, "
-				+ " m1.prd_model_name, m2.mem_id, m2.mem_name, m2.mem_addr1, m2.mem_addr2, m2.mem_addr3, m2.mem_cell, "
-				+ " p.pur_date " + " FROM INSTALL i, PURCHASE p, MODELLIST m1, MEMBERS m2"
-				+ " WHERE i.pur_index = p.pur_index  AND " + " p.prd_index = m1.prd_index  AND "
-				+ " p.mem_id = m2.mem_id AND " + " i.mgr_index IS NULL ";
-
+	
+	
+	//관리자용 메소드 ( 담당자가 없는 모든 install 리스트를 가져온다)
+	public List<InstallDto> getNullInstallList(){
+		
+		String sql = " SELECT  i.ins_index, i.pur_index, i.ins_date, "
+						+ "	i.comp_date, i.mgr_index, i.ins_state, "
+						+ " m1.prd_model_name, m2.mem_id, m2.mem_name, m2.mem_addr1, m2.mem_addr2, m2.mem_addr3, m2.mem_cell, "
+						+ " p.pur_date ,"
+				+ " FROM INSTALL i, PURCHASE p, MODELLIST m1, MEMBERS m2 "
+				+ " WHERE i.pur_index = p.pur_index  AND "
+				+ " p.prd_index = m1.prd_index  AND "
+				+ " p.mem_id = m2.mem_id AND "
+				+ " i.mgr_index IS NULL ";
+		
 		Connection conn = null;
 		PreparedStatement psmt = null;
 		ResultSet rs = null;
