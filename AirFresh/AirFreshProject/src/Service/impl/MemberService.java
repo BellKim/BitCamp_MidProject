@@ -1,5 +1,7 @@
 package Service.impl;
 
+import java.util.List;
+
 import Dao.MemberDaoInterface;
 import Dao.impl.MemberDao;
 import Dto.MemberDto;
@@ -49,14 +51,17 @@ public class MemberService implements MemberServiceInterface{
 		public MemberDto getMem(String id) {			
 			return dao.getMem(id);
 		}
-		
-	
-	/*
-	@Override
-	public String hello() {
-		return dao.hello();
-	}
-	*/
-	
+
+		//admin memlist
+		@Override
+		public List<MemberDto> getAdminMemList(int pageNumber) {
+			return dao.getAdminMemList(pageNumber);
+		}
+
+		//전체 멤버
+		@Override
+		public int getMemLength() {
+			return dao.getMemLength();
+		}
 
 }
