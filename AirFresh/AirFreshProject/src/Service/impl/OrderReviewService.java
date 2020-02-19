@@ -1,8 +1,11 @@
 package Service.impl;
 
 
+import java.util.List;
+
 import Dao.OrderReviewDaoInterface;
 import Dao.impl.OrderReviewDao;
+import Dto.OrderReviewDto;
 import Service.OrderReviewServiceInterface;
 
 public class OrderReviewService implements OrderReviewServiceInterface {
@@ -13,5 +16,10 @@ public class OrderReviewService implements OrderReviewServiceInterface {
 		
 		return dao.createOrderReview(mem_id, pur_index, ins_index);
 	}
-
+	
+	
+	public List<OrderReviewDto> getOrderReviewList(){
+		
+		return dao.getOrderReviewList();
+	}
 }

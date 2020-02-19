@@ -42,9 +42,7 @@ public class installcompController extends HttpServlet {
 				request.setAttribute("compList", list);
 				forward("./admin_view/InstallList/installComp.jsp", request, response);
 			}
-			if(command.equals("getcompList")) {
-				
-			}
+			
 		}
 	}
 	

@@ -13,13 +13,13 @@ public class OrderReviewDto implements Serializable {
 	private String order_content;
 	private String order_img_path;
 	private int readcount;
-	private String rating;
+	private int rating;
 	private int re_auth;
 	
 	
 	
 	public OrderReviewDto(int re_index, String mem_id, int pur_index, int ins_index, String wdate, String order_title,
-			String order_content, String order_img_path, int readcount, String rating, int re_auth) {
+			String order_content, String order_img_path, int readcount, int rating, int re_auth) {
 		super();
 		this.re_index = re_index;
 		this.mem_id = mem_id;
@@ -33,6 +33,16 @@ public class OrderReviewDto implements Serializable {
 		this.rating = rating;
 		this.re_auth = re_auth;
 	}
+	
+	public OrderReviewDto(int re_index, String order_title, String order_content, String order_img_path, int rating) {
+		super();
+		this.re_index = re_index;
+		this.order_title = order_title;
+		this.order_content = order_content;
+		this.order_img_path = order_img_path;
+		this.rating = rating;
+	}
+
 	public int getRe_index() {
 		return re_index;
 	}
@@ -87,10 +97,10 @@ public class OrderReviewDto implements Serializable {
 	public void setReadcount(int readcount) {
 		this.readcount = readcount;
 	}
-	public String getRating() {
+	public int getRating() {
 		return rating;
 	}
-	public void setRating(String rating) {
+	public void setRating(int rating) {
 		this.rating = rating;
 	}
 	public int getRe_auth() {

@@ -73,11 +73,11 @@
 							<%
 								if(dto.getReview() == 0){
 									%>
-									<td><a href="asAppPage?seq=<%=dto.getPur_index()%>&prd_name=<%=dto.getPrd_name()%>">작성하기</a></td>		
+									<td><a href="<%=request.getContextPath() %>/OrderReviewController?command=update&index=<%=dto.getPur_index() %>">작성하기</a></td>		
 									<%
 								}else{
 									%>
-									<td><a href="asAppPage?seq=<%=dto.getPur_index()%>&prd_name=<%=dto.getPrd_name()%>">작성완료</a></td>
+									<td><a href="#">작성완료</a></td>
 									<%
 								}
 							%>	
@@ -97,11 +97,11 @@
 							<%
 								if(dto.getReview() == 0){
 									%>
-									<td><a href="asAppPage?seq=<%=dto.getPur_index()%>&prd_name=<%=dto.getPrd_name()%>">작성하기</a></td>		
+									<td><a href="<%=request.getContextPath() %>/OrderReviewController?command=update&index=<%=dto.getPur_index() %>">작성하기</a></td>		
 									<%
 								}else{
 									%>
-									<td><a href="asAppPage?seq=<%=dto.getPur_index()%>&prd_name=<%=dto.getPrd_name()%>">작성완료</a></td>
+									<td><a href="#">작성완료</a></td>
 									<%
 								}
 							%>	
