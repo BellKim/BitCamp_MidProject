@@ -23,7 +23,7 @@ public class ManageMemberDao implements ManageMemberDaoInterface {
 	public boolean insertManagerMember(ManagerMemberDto dto) {
 		String sql = " INSERT INTO managerMember(mgr_index, mgr_auth, mgr_id, "
 				+ " mgr_pw, mgr_name, mgr_loc, mgr_cell, mgr_joindate, mgr_delDate, mgr_del) "
-				+ " VALUES(managerMember_SEQ.NEXTVAL, ?, ?, ?, ?, ?, ?, ?, ? ) ";
+				+ " VALUES(managerMember_SEQ.NEXTVAL, ?, ?, ?, ?, ?, ?, ?, ?, ?) ";
 		System.out.println(" 1/6 ManageMemberDao success ");
 		Connection conn = null;
 		PreparedStatement psmt = null;

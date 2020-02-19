@@ -26,9 +26,20 @@ List<ManagerMemberDto> managerMemberDto =
 %>
 
 <style>
-.showMemberInfo:hover {
-    background-color: green;
+.list-group-item:hover {
+    background-color: #ccffe6;
     border-radius: 18px;
+}
+.mgr_show_detail_btn{
+	background-color:transparent;
+}
+
+.showMemberInfo{
+	list-style-type: none;
+}
+
+ul li{
+	float:left;
 }
 
 </style>
