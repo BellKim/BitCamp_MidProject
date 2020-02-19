@@ -44,7 +44,7 @@ public class FindIDPW extends HttpServlet {
 			//req.getSession().setAttribute("foundid", id);
 			System.out.println("FindIDPW 도착2");
 			//ProjectUtil.forward("./client_view/member/findid.jsp", req, resp);
-			resp.sendRedirect(req.getContextPath() + "/client_view/member/finding.jsp?command=find&id=" + id);	
+			resp.sendRedirect(req.getContextPath() + "/client_view/member/finding.jsp?command=findi&id=" + id);	
 			//req.getContextPath() + 
 		}
 		else if(command.equals("FPW")) {				
@@ -53,7 +53,7 @@ public class FindIDPW extends HttpServlet {
 			//req.getSession().setAttribute("foundpw", pw);
 			System.out.println("FindIDPW 도착2");
 			//ProjectUtil.forward("./client_view/member/findpw.jsp", req, resp);			
-			resp.sendRedirect(req.getContextPath() + "/client_view/member/finding.jsp?command=find&pw=" + pw);			
+			resp.sendRedirect(req.getContextPath() + "/client_view/member/finding.jsp?command=findp&pw=" + pw);			
 			//req.getContextPath() +
 		}		
 	}		

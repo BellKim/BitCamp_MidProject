@@ -251,8 +251,13 @@ function validate() {
 	var pw = $("#mem_pw").val();	// 특수문자 / 문자 / 숫자 포함 형태의 6~20자리 이내의 암호 정규식
 	var pwReg = /^.*(?=^.{6,20}$)(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$/;
 		
-	var cell= $("#mem_cell").val();	// 핸드폰번호 정규식
-	var cellReg = /^01([0|1|6|7|8|9]?)?([0-9]{3,4})?([0-9]{4})$/;
+	var cell = $("#mem_cell").val();	// 핸드폰번호 정규식
+	var cellReg = /^01[0179][0-9]{7,8}$/;
+						
+	var birth = $("mem_birth").val();	// (19[7-9]\d|20[0-1][0-5])
+	var birthReg = /^(19|20)[0-9]{2}(0[1-9]|1[1-2])(0[1-9]|[1-2][0-9]|3[0-1])$/;
+				// /^[1-2]{1}[0-9]{3}[0-1]{1}[0-9]{1}[0-3]{1}[0-9]{1}$/;		
+	// ex) 19801012  /  2006년생 이상
 	
 	if(idReg.test(id)==false){
 		alert("적합하지 않은 이메일 형식입니다.");
@@ -268,6 +273,11 @@ function validate() {
 		alert("적합하지 않은 휴대폰번호 형식입니다.");
 		cell = "";
 		$("#mem_cell").focus();
+		return false;
+	}else if(birthReg.test(birth)==false){
+		alert("적합하지 않은 생년월일 형식입니다.");
+		bitrh = "";
+		$("#mem_birth").focus();
 		return false;
 	}
 	return true;	

@@ -17,8 +17,6 @@ String str2 = request.getParameter("pw");	// Find(ID)PW
 <body>
 <%
 if(command.equals("register")){
-%>
-	<%
 	if(str.equals("true")) {
 	%>
 		<script type="text/javascript">
@@ -39,8 +37,6 @@ if(command.equals("register")){
 
 <%
 if(command.equals("update")){
-%>
-	<%
 	if(str.equals("true")){
 	%>
 		<script type="text/javascript">	
@@ -61,8 +57,6 @@ if(command.equals("update")){
 
 <%
 if(command.equals("delete")){
-%>
-	<%
 	if(str.equals("true")){
 	%>	
 		<script type="text/javascript">
@@ -80,11 +74,9 @@ if(command.equals("delete")){
 	}
 }
 %>	
-
+				<!-- ↓ 수정요망 -->
 <%
-if(command.equals("find")){
-%>	
-	<%
+if(command.equals("findi")){
 	if(str1 != null && !str1.equals("")){	
 	%>
 		<script type="text/javascript">
@@ -92,7 +84,7 @@ if(command.equals("find")){
 		location.href = "<%=request.getContextPath() %>/login?command=login";
 		</script>		
 	<%
-	}else if(str1 == null || str1.equals("")){		// ok!
+	}else{		//  if(str1 == null || str1.equals(""))
 	%>
 		<script type="text/javascript">
 		alert("찾으시는 아이디가 없습니다.");
@@ -100,8 +92,11 @@ if(command.equals("find")){
 		</script>
 	<% 
 	}
+}	
 	%>
-	<%
+	
+<%
+if(command.equals("findp")){
 	if(str2 != null && !str2.equals("")){	
 	%>
 		<script type="text/javascript">
@@ -109,7 +104,7 @@ if(command.equals("find")){
 		location.href = "<%=request.getContextPath() %>/login?command=login";
 		</script>
 	<%
-	}else if(str2 == null || str2.equals("")){
+	}else{		//  if(str2 == null || str2.equals(""))
 	%>
 		<script type="text/javascript">
 		alert("가입하신 내역이 없거나 잘못 입력하셨습니다");
