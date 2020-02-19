@@ -141,10 +141,11 @@ public class InstallController extends HttpServlet implements Serializable{
 		//DB에 업데이트
 		singleton s = singleton.getInstance();
 		
-		String[] insArr = req.getParameterValues("seqArr");
-		int size = insArr.length;
-		System.out.println("insArr 사이즈 = " + size);
-		
+		String[] insArr = req.getParameterValues("seqArr")==null?null:req.getParameterValues("seqArr");
+		if(insArr != null) {
+			int size = insArr.length;
+			System.out.println("insArr 사이즈 = " + size);
+		}
 		/*
 		for(int i = 0; i < size; i++) {
 			System.out.println("insArr[" + i + "] = " + insArr[i]);
@@ -152,8 +153,8 @@ public class InstallController extends HttpServlet implements Serializable{
 		*/
 		
 		boolean isS = true;
-		if(insArr != null && size > 0) {
-			for(int i = 0; i < size; i++) {
+		if(insArr != null && insArr.length > 0) {
+			for(int i = 0; i < insArr.length; i++) {
 				//System.out.println(insArr[i]);
 				System.out.println("installDao 출발" + (i + 1));
 				isS = s.is.insertMgrID(Integer.parseInt(insArr[i]), mgr_index);
@@ -164,22 +165,20 @@ public class InstallController extends HttpServlet implements Serializable{
 			if(isS) {
 				//모든 update가 성공하면 true반환
 				//리턴값 타입 json 으로 지정 
-				resp.setContentType("application/text");
+				resp.setContentType("application/json");
 				resp.setCharacterEncoding("UTF-8");
 				
-				String res = "{ isS: 'true'}";
-			
-				
+				String gson = new Gson().toJson(isS);
 				//변환한 json형식을 리턴 
-				resp.getWriter().write(res);
+				resp.getWriter().write(gson);
 			}else {
 				//하나라도 실패시 false 반환
-				resp.setContentType("application/text");
+				resp.setContentType("application/json");
 				resp.setCharacterEncoding("UTF-8");
 				
-				String res = "False";
+				String gson = new Gson().toJson(isS);
 				//변환한 json형식을 리턴 
-				resp.getWriter().write(res);
+				resp.getWriter().write(gson);
 			}
 		}
 		

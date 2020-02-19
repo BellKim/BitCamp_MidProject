@@ -12,7 +12,7 @@ public class PurchaseNameDto implements Serializable {
 	private String prd_model_name;
 	private String pur_date;
 	private String ins_date;
-	private int order_num;
+	private int order_num; // 수량
 	private int review;
 	private int order_auth;
 	
