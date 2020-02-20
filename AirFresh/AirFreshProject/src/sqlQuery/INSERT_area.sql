@@ -9,11 +9,6 @@ values (managerMember_SEQ.NEXTVAL, 0, 'k_admin', '1234', '최고관리자', 3, 0
 insert into managerMember (mgr_index, mgr_auth, mgr_id, mgr_pw, mgr_name, mgr_loc, mgr_cell, MGR_JOINDATE, mgr_delDate, mgr_del)
 values (managerMember_SEQ.NEXTVAL, 0, 'qwe', 'qwe', '최고관리자', 3, 01012341234, SYSDATE, null, 0);
 
-update managerMember set
-mgr_pw='qwe'
-where mgr_index=60001
-
-
 insert into managerMember (mgr_index, mgr_auth, mgr_id, mgr_pw, mgr_name, mgr_loc, mgr_cell, MGR_JOINDATE, mgr_delDate, mgr_del)
 values (managerMember_SEQ.NEXTVAL, 1, 'J_admin', '1234', '부메니저', 1, 01012341234, TO_DATE('2015-10-20','YYYY-MM-DD'), null, 0);
 
@@ -28,6 +23,28 @@ values (managerMember_SEQ.NEXTVAL, 3, '456', '456', '김공사', 1, 01012341234,
 SELECT * FROM managerMember;
 
 
+UPDATE managerMember
+SET
+mgr_id='qwe',
+mgr_pw='qwe'
+WHERE
+mgr_index=60000;
+
+
+
+
+UPDATE managerMember
+SET
+mgr_id='k_admin',
+mgr_pw='1234'
+WHERE
+mgr_index=60001;
+
+
+UPDATE managerMember  
+SET mgr_name=?, 
+mgr_cell=?, 
+WHERE mgr_index=?;
 
 
 ----------------------------------------------------------------------------------------------------------------------

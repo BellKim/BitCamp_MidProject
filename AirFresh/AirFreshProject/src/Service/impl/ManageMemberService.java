@@ -45,7 +45,7 @@ public class ManageMemberService implements ManageMemberInterface{
 	@Override
 	public boolean managerMemberUpdate(ManagerMemberDto managermemdto) {
 		
-		return mmdao.managerMemberUpdate(managermemdto);
+		return mmdao.privateMemberInfoChange(managermemdto);
 	}
 	
 	

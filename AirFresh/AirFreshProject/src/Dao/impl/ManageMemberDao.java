@@ -361,20 +361,24 @@ public class ManageMemberDao implements ManageMemberDaoInterface {
 
 	@Override
 	public boolean privateMemberInfoChange(ManagerMemberDto ManagerMemberdto) {
-		String sql = "UPDATE managerMember " + 
-					"SET ";
+		
+		System.out.println("ManagerMemberdto 의 값 들어온거 확인 + = " + ManagerMemberdto);
+		
+		
+		String sql = " UPDATE managerMember " + 
+					" SET ";
 				
-					if(ManagerMemberdto.getMgr_pw()==null) {
+					if((ManagerMemberdto.getMgr_pw()==null) || (ManagerMemberdto.getMgr_pw().equals(""))){
 					
 					}else {
 						sql +="mgr_pw=?, ";
 					}
-					sql+="mgr_name=?, "+  
-					"mgr_cell=?, " + 
-					"WHERE " + 
-					"mgr_index=?;";
+					sql+=" mgr_name=?, "+  
+					" mgr_cell=? " + 
+					" WHERE " + 
+					" mgr_index=? ";
 	
-		
+		System.out.println( sql);
 		
 		System.out.println(" 1/6 privateMemberInfoChange success ");
 		Connection conn = null;
@@ -389,15 +393,15 @@ public class ManageMemberDao implements ManageMemberDaoInterface {
 			conn = DBConnection.getConnection();
 			psmt = conn.prepareStatement(sql);
 			System.out.println(" 4/6 privateMemberInfoChange success ");
-			
-			if(ManagerMemberdto.getMgr_pw()==null) {
-				psmt.setString(1, ManagerMemberdto.getMgr_id());
-				psmt.setString(2, ManagerMemberdto.getMgr_name());
+			System.out.println("맴버디티오 네임 값" + ManagerMemberdto.getMgr_name());
+			if((ManagerMemberdto.getMgr_pw()==null) || (ManagerMemberdto.getMgr_pw().equals(""))){
+				psmt.setString(1, ManagerMemberdto.getMgr_name());
+				psmt.setString(2, ManagerMemberdto.getMgr_cell());
 				psmt.setInt(3, ManagerMemberdto.getMgr_index());
 			}else {
-				psmt.setString(1, ManagerMemberdto.getMgr_id());
-				psmt.setString(2, ManagerMemberdto.getMgr_pw());
-				psmt.setString(3, ManagerMemberdto.getMgr_name());
+				psmt.setString(1, ManagerMemberdto.getMgr_pw());
+				psmt.setString(2, ManagerMemberdto.getMgr_name());
+				psmt.setString(3, ManagerMemberdto.getMgr_cell());
 				psmt.setInt(4, ManagerMemberdto.getMgr_index());
 			}
 			
