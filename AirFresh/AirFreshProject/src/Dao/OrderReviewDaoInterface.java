@@ -36,4 +36,13 @@ public interface OrderReviewDaoInterface {
 
 	//리뷰삭제
 	boolean delReivew(int re_index);
+	
+	//구매내역에서 작성한 review detail
+	ModelReviewPurDto rentalListReview(String mem_id, int pur_index);
+	
+	//해당 상품 리뷰 페이징
+	List<ModelReviewPurDto> getPrdReviewList(int prd_index);
+	
+	//해당 상품 리뷰 전체게시글수
+	int prdRevewLen(int prd_index);
 }

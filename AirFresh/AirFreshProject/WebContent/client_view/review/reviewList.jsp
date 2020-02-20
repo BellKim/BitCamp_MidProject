@@ -4,7 +4,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="./../include/header.jsp"%>
-
+<%!
+public String dot3(String msg){
+	String str = "";
+	if(msg.length() >= 12){
+		str = msg.substring(0, 12);
+		str += "..."; 
+	}else{
+		str = msg.trim();	
+	}
+	return str;
+}
+%>
 <%
 	List<ModelReviewPurDto> list = (List<ModelReviewPurDto>) request.getAttribute("list");
 	int nowPage = (Integer)request.getAttribute("nowPage");
@@ -60,9 +71,9 @@
 						<th><%= i+1 %></th>
 						<td><%= dto.getPrd_name() %></td>
 						<td align="left">
-						<a href="#"><%=dto.getOrder_re_title()%></a>
+						<a href="#"><%= dot3(dto.getOrder_re_title())%></a>
 						</td>
-						<td><%=dto.getWdate().substring(0, 10) %></td>
+						<td><%=dto.getWdate().substring(0,10) %></td>
 						<td><%=dto.getMem_id()%></td>
 						<td><%=dto.getRating() %></td>
 						<td><%=dto.getReadcount() %></td>
