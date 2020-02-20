@@ -7,18 +7,7 @@
 <%@page import="Dto.ModelDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%!
-public String dot3(String msg){
-	String str = "";
-	if(msg.length() >= 12){
-		str = msg.substring(0, 12);
-		str += "..."; 
-	}else{
-		str = msg.trim();	
-	}
-	return str;
-}
-%>
+
 <%
 
 	ModelDto model = (ModelDto)request.getAttribute("model");
@@ -236,9 +225,9 @@ $( document ).ready( function() {
 					<tr align="center" title="클릭하면 전체보기로 이동합니다." 
 						onclick="location.href='<%= request.getContextPath() %>/reviewDetail?seq=<%=dto.getRe_index() %>'"  style="cursor:pointer;">
 						<th><%= i+1 %></th>
-						<td><%= dot3(dto.getOrder_re_title()) %></td>
+						<td><%= dto.getOrder_re_title()%></td>
 						<td align="left">
-						<%= dot3(dto.getOrder_re_content()) %>
+						<%= dto.getOrder_re_content() %>
 						</td>
 						<td><%=dto.getWdate().substring(0,10) %></td>
 						<td><%=dto.getMem_id()%></td>

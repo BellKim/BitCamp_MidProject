@@ -212,17 +212,18 @@ CREATE TABLE orderReview
  
 
 
---작성자: 박지훈
---날짜 : 2020- 02 - 12
+--작성자: 박수진
+--날짜 : 2020- 02 - 17
 --기능 : qnabbs 비밀글 기능을 위한 qna_secret추가
 --del -> qna_del로 컬럼명 변경
+-- qnatitle 200으로 변경
 
 -- qnaBbs Table Create SQL
 CREATE TABLE qnaBbs
 (
     qna_index      NUMBER(6)         NOT NULL, 
     mem_id        VARCHAR2(50)            NULL, 
-    qna_title      VARCHAR2(20)      NULL, 
+    qna_title      VARCHAR2(200)      NULL, 
     qna_content    VARCHAR2(4000)      NULL, 
     wdate          DATE              NULL, 
     qna_secret	   NUMBER(1)		 NULL,
