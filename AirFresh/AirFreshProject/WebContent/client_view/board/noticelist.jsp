@@ -128,7 +128,7 @@
 		if(keyword == ""){
 			document.getElementById("opt").value = "sel";
 		}
-		location.href="<%=request.getContextPath()%>/noticelist?opt=" + opt + "&keyword=" + keyword;
+		location.href="<%=request.getContextPath()%>/noticelist?command=user&opt=" + opt + "&keyword=" + keyword;
 		}
 	
 	function goPage( pageNum ) {
