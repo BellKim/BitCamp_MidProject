@@ -12,6 +12,8 @@
 	ModelReviewPurDto dto = (ModelReviewPurDto) request.getAttribute("dto");
 	String pur_date = dto.getPur_date().substring(0, 10);
 	
+	String rating = dto.getRating()+"";
+	
 	System.out.println(dto.toString());
 	String savePath = request.getServletContext().getRealPath("/reviewupload");
 %>
@@ -62,12 +64,15 @@
 					style="margin-left: 50px; width: 20%; float: left">
 					<select id="_rating" name="rating"
 						style="width: 150px; height: 40px;">
-						<option value="0" selected>별점선택</option>
-						<option value="1">1점</option>
-						<option value="2">2점</option>
-						<option value="3">3점</option>
-						<option value="4">4점</option>
-						<option value="5">5점</option>
+						<option value="0">별점선택</option>
+						<%
+						for(int i = 1;i < 6; i++){
+							%>
+							<option <%= rating.equals(i + "")?"selected='selected'":"" %> 
+								value="<%=i %>"><%=i %>점</option>		
+							<%	
+						}	
+						%>	
 					</select>
 					<!-- <a href="#">★</a>
 							<a href="#">★</a>

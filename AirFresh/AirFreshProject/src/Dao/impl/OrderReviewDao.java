@@ -150,7 +150,8 @@ public class OrderReviewDao implements OrderReviewDaoInterface {
 		 		+ " FROM ( select ROWNUM AS RNUM,re_index, wdate, p.prd_index,p.pur_index, o.mem_id, m.prd_name, p.pur_date, "
 		 		+ " order_re_title, order_re_content, order_re_img_path, rating , re_auth,readcount "
 		 		+ " FROM modellist m, orderreview o, purchase p "
-		 		+ " where m.prd_index = p.prd_index and p.pur_index = o.pur_index )"
+		 		+ " where m.prd_index = p.prd_index and p.pur_index = o.pur_index "
+		 		+ " ORDER BY WDATE DESC )"
 		 		+ " WHERE RNUM>=? AND RNUM<=? ";
 		 
 		 Connection conn = null;
@@ -233,56 +234,39 @@ public class OrderReviewDao implements OrderReviewDaoInterface {
 	 
 	 
 	 
-	 public List<ModelReviewPurDto> reviewAllList(){
-		 String sql = " select re_index,wdate, p.prd_index, o.pur_index, o.mem_id, m.prd_name, p.pur_date,"
-		 		+ " order_re_title, order_re_content, order_re_img_path, rating, re_auth, readcount "
-		 		+ " from modellist m, orderreview o, purchase p "
-		 		+ " where m.prd_index = p.prd_index AND o.pur_index=p.pur_index "
-		 		+ " ORDER BY wdate DESC ";
-		 
-		 Connection conn = null;
-		 PreparedStatement psmt = null;
-		 ResultSet rs = null;
-		 
-		 List<ModelReviewPurDto> list = new ArrayList<ModelReviewPurDto>();
-		 
-		 try {
-			 conn = DBConnection.getConnection();
-			 System.out.println("1/6 reviewAllList success");
-			psmt = conn.prepareStatement(sql);
-			 System.out.println("2/6 reviewAllList success");
-			 
-			 rs = psmt.executeQuery();
-			 while(rs.next()) {
-				 int i = 1;
-				 ModelReviewPurDto dto = new ModelReviewPurDto(rs.getInt(i++),//re_index
-						 										rs.getString(i++),//wdate
-						 										rs.getInt(i++),//prdindex
-						 										rs.getInt(i++),//pur_index,
-						 										rs.getString(i++),//	mem_id, 
-						 										rs.getString(i++),//prd_name, 
-						 										rs.getString(i++),//pur_date, 
-						 										rs.getString(i++),//order_re_title, 
-						 										rs.getString(i++),//order_re_content, 
-						 										rs.getString(i++),//order_re_img_path, 
-						 										rs.getInt(i++),//rating, 
-						 										rs.getInt(i++),//re_auth
-						 										rs.getInt(i++));//readcount)
-				 
-				 list.add(dto);
-				 
-			 }
-			 System.out.println("3/6 reviewAllList success");
-		} catch (SQLException e) {
-			System.out.println("reviewAllList fail");
-			e.printStackTrace();
-		} finally {
-			DBClose.close(psmt, conn, rs);
-		}
-		 
-		return list;
-	 }
-	 
+	/*
+	 * public List<ModelReviewPurDto> reviewAllList(){ String sql =
+	 * " select re_index,wdate, p.prd_index, o.pur_index, o.mem_id, m.prd_name, p.pur_date,"
+	 * +
+	 * " order_re_title, order_re_content, order_re_img_path, rating, re_auth, readcount "
+	 * + " from modellist m, orderreview o, purchase p " +
+	 * " where m.prd_index = p.prd_index AND o.pur_index=p.pur_index " +
+	 * " ORDER BY wdate DESC ";
+	 * 
+	 * Connection conn = null; PreparedStatement psmt = null; ResultSet rs = null;
+	 * 
+	 * List<ModelReviewPurDto> list = new ArrayList<ModelReviewPurDto>();
+	 * 
+	 * try { conn = DBConnection.getConnection();
+	 * System.out.println("1/6 reviewAllList success"); psmt =
+	 * conn.prepareStatement(sql); System.out.println("2/6 reviewAllList success");
+	 * 
+	 * rs = psmt.executeQuery(); while(rs.next()) { int i = 1; ModelReviewPurDto dto
+	 * = new ModelReviewPurDto(rs.getInt(i++),//re_index rs.getString(i++),//wdate
+	 * rs.getInt(i++),//prdindex rs.getInt(i++),//pur_index, rs.getString(i++),//
+	 * mem_id, rs.getString(i++),//prd_name, rs.getString(i++),//pur_date,
+	 * rs.getString(i++),//order_re_title, rs.getString(i++),//order_re_content,
+	 * rs.getString(i++),//order_re_img_path, rs.getInt(i++),//rating,
+	 * rs.getInt(i++),//re_auth rs.getInt(i++));//readcount)
+	 * 
+	 * list.add(dto);
+	 * 
+	 * } System.out.println("3/6 reviewAllList success"); } catch (SQLException e) {
+	 * System.out.println("reviewAllList fail"); e.printStackTrace(); } finally {
+	 * DBClose.close(psmt, conn, rs); }
+	 * 
+	 * return list; }
+	 */
 	 public ModelReviewPurDto getDetailReview(int re_index) {
 		String sql = " select re_index,wdate, p.prd_index, o.pur_index, o.mem_id, m.prd_name, p.pur_date,"
 		 		+ " order_re_title, order_re_content, order_re_img_path, rating, re_auth, readcount "
@@ -330,6 +314,58 @@ public class OrderReviewDao implements OrderReviewDaoInterface {
 		
 		return dto;
 	}
+	 
+	public ModelReviewPurDto rentalListReview(String mem_id, int pur_index) {
+		String sql = " select re_index,wdate, p.prd_index, o.pur_index, o.mem_id, m.prd_name, p.pur_date, "
+				+ " order_re_title, order_re_content, order_re_img_path, rating, re_auth, readcount "
+				+ " from modellist m, orderreview o, purchase p "
+				+ " where m.prd_index = p.prd_index AND o.pur_index=p.pur_index "
+				+ " and p.mem_id=? and p.pur_index=? ";
+		
+		Connection conn = null;
+		PreparedStatement psmt = null;
+		ResultSet rs = null;
+		 
+		ModelReviewPurDto dto = null;
+		try {
+			 conn = DBConnection.getConnection();
+			 System.out.println("1/6 rentalListReview success");
+			psmt = conn.prepareStatement(sql);
+			System.out.println("2/6 rentalListReview success");
+			
+			psmt.setString(1, mem_id);
+			psmt.setInt(2, pur_index);
+			
+			rs = psmt.executeQuery();
+			if(rs.next()) {
+				 int i = 1;
+				 dto = new ModelReviewPurDto(rs.getInt(i++),//re_index
+							rs.getString(i++),//wdate
+							rs.getInt(i++),//prdindex
+							rs.getInt(i++),//pur_index,
+							rs.getString(i++),//	mem_id, 
+							rs.getString(i++),//prd_name, 
+							rs.getString(i++),//pur_date, 
+							rs.getString(i++),//order_re_title, 
+							rs.getString(i++),//order_re_content, 
+							rs.getString(i++),//order_re_img_path, 
+							rs.getInt(i++),//rating, 
+							rs.getInt(i++),//re_auth
+							rs.getInt(i++));//readcount)
+			}
+			System.out.println("3/6 rentalListReview success");
+		} catch (SQLException e) {
+			System.out.println(" rentalListReview fail");
+			e.printStackTrace();
+		} finally {
+			DBClose.close(psmt, conn, rs);
+		}
+		
+		return dto;
+		
+	}
+	
+	
 	 
 	public boolean updateReadCount(int re_index) {
 		String sql = " UPDATE orderReview "
@@ -422,6 +458,105 @@ public class OrderReviewDao implements OrderReviewDaoInterface {
 		}
 		
 		return count>0?true:false;
+	}
+	
+	public List<ModelReviewPurDto> getPrdReviewList(int prd_index) {
+		String sql = "select re_index,wdate, prd_index, pur_index, mem_id, prd_name, pur_date, " 
+					+ " order_re_title, order_re_content, order_re_img_path, rating, review,re_auth, readcount " 
+				    + " FROM ( select ROWNUM AS RNUM,re_index, wdate, p.prd_index,p.pur_index, o.mem_id, m.prd_name, "
+				    + " p.pur_date, order_re_title, order_re_content, order_re_img_path, rating ,"
+				    + " review, re_auth,readcount "
+				    + " FROM modellist m, orderreview o, purchase p " 
+				    + " where o.pur_index=p.pur_index and m.prd_index=p.prd_index and "
+				    + " p.review=1 and p.prd_index=? " 
+				    + " ORDER BY WDATE DESC ) " 
+				    + " WHERE RNUM>=1 AND RNUM<=5";
+		
+		 Connection conn = null;
+		 PreparedStatement psmt = null;
+		 ResultSet rs = null;
+		 
+		/*
+		 * int start, end; start = 1 + 5 * page; end = 5 + 5 * page;
+		 */
+		 
+		 
+		 List<ModelReviewPurDto> list = new ArrayList<ModelReviewPurDto>();
+		 
+		 try {
+			 conn = DBConnection.getConnection();
+			 System.out.println("1/6 getPrdReviewList success");
+		     psmt = conn.prepareStatement(sql);
+		     psmt.setInt(1, prd_index);
+			/*
+			 * psmt.setInt(2, start); psmt.setInt(3, end);
+			 */
+		     
+		     System.out.println("getPrdReviewList sql : "+sql);
+		     rs= psmt.executeQuery();
+		     System.out.println("2/6 getPrdReviewList success");
+		     
+		     while(rs.next()) {
+		    	 int i = 1;
+		    	 ModelReviewPurDto dto = 
+		    			 new ModelReviewPurDto(
+		    					 rs.getInt(i++),//re_index, 
+		    					 rs.getString(i++),//wdate, 
+		    					 rs.getInt(i++),//prd_index, 
+		    					 rs.getInt(i++),//pur_index, 
+		    					 rs.getString(i++),//mem_id, 
+		    					 rs.getString(i++),//prd_name, 
+		    					 rs.getString(i++),//pur_date, 
+		    					 rs.getString(i++),//order_re_title, 
+		    					 rs.getString(i++),//order_re_content, 
+		    					 rs.getString(i++),//order_re_img_path, 
+		    					 rs.getInt(i++),//rating, 
+		    					 rs.getInt(i++),//readcount, 
+		    					 rs.getInt(i++),//re_auth, 
+		    					 rs.getInt(i++));//review)
+
+		    	 list.add(dto);
+		     }
+		     System.out.println("3/6 getPrdReviewList success");
+		} catch (SQLException e) {
+			System.out.println(" getPrdReviewList fail");
+			e.printStackTrace();
+		} finally {
+			DBClose.close(psmt, conn, rs);
+		}
+		 
+		 return list;
+		
+	}
+	
+	public int prdRevewLen(int prd_index) {
+		//해당 상품 리뷰 게시물 수 구하는함수
+		String sql =  " select count(*) from orderreview o, modellist m, purchase p " 
+					+ " where o.pur_index= p.pur_index and m.prd_index=p.prd_index "
+					+ " and p.review=1 and p.prd_index=? ";
+		
+		Connection conn = null;
+		PreparedStatement psmt = null;
+		ResultSet rs = null;
+		int len = 0;
+		
+		try {
+			conn = DBConnection.getConnection();
+			psmt = conn.prepareStatement(sql);
+			psmt.setInt(1, prd_index);
+			rs = psmt.executeQuery();
+			
+			if(rs.next()) {
+				len = rs.getInt(1);
+			}
+		} catch (SQLException e) {
+			System.out.println("prdRevewLen fail");
+			e.printStackTrace();
+		} finally {
+			DBClose.close(psmt, conn, rs);
+		}
+		
+		return len;
 	}
 	 
 }
