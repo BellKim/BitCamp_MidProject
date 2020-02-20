@@ -517,7 +517,7 @@ public class PurchaseDao implements PurchaseDaoInterface {
 	public RentalDetailDto getDetail(int pur_index) {
 		String sql = " select p.pur_index, m.prd_price, m.prd_index, p.mem_id, s.mem_name, s.mem_cell, s.mem_addr1, "
 				+ " s.mem_addr2, s.mem_addr3, m.prd_name, m.prd_model_name, "
-				+ " p.pur_date, p.ins_date, i.comp_date "
+				+ " p.pur_date, p.ins_date, i.comp_date , p.review "
 				+ " from modellist m, purchase p, members s, install i "
 				+ " where m.prd_index = p.prd_index and p.mem_id = s.mem_id and p.pur_index = i.pur_index " 
 				+ "and p.pur_index = ? ";
@@ -553,7 +553,8 @@ public class PurchaseDao implements PurchaseDaoInterface {
 										  rs.getString(i++),//prd_model_name, 
 										  rs.getString(i++),//pur_date, 
 										  rs.getString(i++),//	ins_date, 
-										  rs.getString(i++));//	comp_date)
+										  rs.getString(i++),//	comp_date)
+										  rs.getInt(i++));//review
 				
 			}
 			

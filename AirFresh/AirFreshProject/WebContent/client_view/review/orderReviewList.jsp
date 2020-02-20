@@ -3,7 +3,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
-<%@ include file="./../../include/header.jsp" %>
+<%@ include file="./../include/header.jsp" %>
 <%
 	List<OrderReviewDto> list = request.getAttribute("Orderlist")==null? null:(List<OrderReviewDto>)request.getAttribute("Orderlist");
 	
@@ -33,4 +33,4 @@
 </div>	
 
 
-<%@ include file="./../../include/footer.jsp" %>
+<%@ include file="./../include/footer.jsp" %>
