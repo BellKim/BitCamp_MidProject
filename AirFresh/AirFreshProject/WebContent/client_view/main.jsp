@@ -13,19 +13,19 @@
       <div class="carousel-inner" role="listbox">
         <!-- Slide One - Set the background image for this slide in the line below -->
        <div class="carousel-item active" style="background-image: url('<%=request.getContextPath()%>/client_view/img/slide01.jpg'); cursor: pointer;"
-       onclick="location.href='http://localhost:8090/AirFreshProject/noticedetail?command=user&noti_index=2'">
+       onclick="location.href='http://localhost:8090/AirFreshProject/modelDetail?seq=10004&command=detail'">
           <div class="carousel-caption d-none d-md-block">
           </div>
         </div>
         <!-- Slide Two - Set the background image for this slide in the line below -->
         <div class="carousel-item" style="background-image: url('<%=request.getContextPath()%>/client_view/img/slide02.jpg'); cursor: pointer;" 
-        onclick="location.href='http://localhost:8090/AirFreshProject/noticedetail?command=user&noti_index=2'">
+        onclick="location.href='http://localhost:8090/AirFreshProject/modelDetail?seq=10010&command=detail'">
           <div class="carousel-caption d-none d-md-block">
           </div>
         </div>
         <!-- Slide Three - Set the background image for this slide in the line below -->
         <div class="carousel-item" style="background-image: url('<%=request.getContextPath()%>/client_view/img/slide03.jpg'); cursor: pointer;"
-        onclick="location.href='http://localhost:8090/AirFreshProject/noticedetail?command=user&noti_index=2'">
+        onclick="location.href='http://localhost:8090/AirFreshProject/noticedetail?command=user&noti_index=1'">
           <div class="carousel-caption d-none d-md-block">
           </div>
         </div>

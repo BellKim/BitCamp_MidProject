@@ -25,7 +25,6 @@
 
 <div class="container-fluid">
 	<h1 class="mt-4 mb-3">고객 리스트</h1>
-	<hr>
 	<form id="noticelistForm" method="post">
 		<input type="hidden" name="command" value="multiDelete">
 		<table class="table table-hover" width="100%" cellspacing="0">
@@ -53,11 +52,11 @@
 						for(int i = 0; i < list.size(); i++){
 							MemberDto mem = list.get(i);
 				%>
-				<tr>
+				<tr onclick="location.href='<%=request.getContextPath()%>/adminMemDetail?mem_id=<%=mem.getMem_id() %>'" style="cursor: pointer;"
+				title="클릭하면 회원정보를 보실 수 있습니다.">
 					<td><input type = "checkbox" name = "delck" value = "<%=mem.getMem_id()%>"></td>
 					<th><%=i+1 %></th>
-					<td onclick="location.href='<%=request.getContextPath()%>/adminMemDetail?mem_id=<%=mem.getMem_id() %>'" style="cursor: pointer;"
-				title="클릭하면 회원정보를 보실 수 있습니다."><%=mem.getMem_id() %></td>
+					<td><%=mem.getMem_id() %></td>
 					<td><%=mem.getMem_name() %></td>
 					<td><%=mem.getMem_birth() %></td>
 					<td><%=mem.getMem_addr2() %></td>

@@ -38,4 +38,12 @@ public interface InstallDaoInterface {
 	//설치기사가 완료처리를 하는 메소드
 	public boolean compInstall(int index);
 	
+	//왕어드민에서 현재 완료된  설치신청 리스트를 받아오는 메소드 
+	public List<InstallDto> getCompInstallList();
+	
+	//왕어드민에서 현재 대기중 설치신청 리스트를 받아오는 메소드 
+	public List<InstallDto> getWaitInstallList();
+	
+	//main 5개
+	public List<InstallDto> getMainInstallList();
 }

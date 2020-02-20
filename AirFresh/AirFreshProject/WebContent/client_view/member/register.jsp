@@ -1,8 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="./../include/header.jsp"%>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <div class="container" style = "margin-bottom : 40px">
 	<h1 class="mt-4 mb-3">Air Fresh 회원가입</h1>
 <hr>

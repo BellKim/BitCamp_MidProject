@@ -10,9 +10,10 @@
   <meta name="description" content="">
   <meta name="author" content="">
 <title>Air Fresh</title>
+
 <link rel="stylesheet" href="<%=request.getContextPath()%>/css/bootstrap.css" />
 <script src="<%=request.getContextPath()%>/js/jquery.min.js"></script>
-
+<link href="<%=request.getContextPath()%>/css/Jstyles.css" />
 <!-- Custom styles for this template -->
   <link href="<%=request.getContextPath()%>/css/modern-business.css" rel="stylesheet">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> 
@@ -47,7 +48,8 @@
             <a class="nav-link" href="<%=request.getContextPath()%>/modelist">렌탈하기</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="<%=request.getContextPath() %>/OrderReviewController?command=home">렌탈후기</a>
+           <%--  <a class="nav-link" href="<%=request.getContextPath() %>/OrderReviewController?command=home">렌탈후기</a> --%>
+           <a class="nav-link" href="<%=request.getContextPath() %>/reviewList?command=user">렌탈후기</a>
           </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownBlog" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

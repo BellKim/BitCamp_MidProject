@@ -11,99 +11,72 @@ HttpSession adminlogincheck = request.getSession();
 ManagerMemberDto managerMem = (ManagerMemberDto)session.getAttribute("managerLogin");
 System.out.println(managerMem);
 %>
+<%!
+	public String Leave(int leave){
+		String str = "";
+		if (leave == 0){
+			str = "재직중";
+		} else if(leave ==1){
+			str = "퇴사";
+		}
+		return str;
+	}
+	
+	public String location(int loc){
+		String str = "";
+		if(loc ==1){
+			str ="강남구";
+		} else if(loc==2){
+			str ="성동구";
+		} else if(loc==3){
+			str ="중랑구";
+		} else if(loc==4){
+			str ="기타";
+		}
+		return str;
+	}
 
-
-<%--
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
---%>
+%>
 <%
 request.setCharacterEncoding("utf-8");
-List<ManagerMemberDto> managerMemberDto =
+List<ManagerMemberDto> managerMemberlist =
 		(List<ManagerMemberDto>)request.getAttribute("managerMemberList");
 %>
 
-<style>
-.showMemberInfo:hover {
-    background-color: green;
-    border-radius: 18px;
-}
-
-</style>
-
-
-<div class="container">
-
-  <h2>직원리스트</h2>
-  <!-- 
-
-    <li class="list-group-item">
-    	<div class="container-fluid">
-    		<ul class="nav navbar-nav">0</ul>
-			<ul class="nav navbar-nav">1</ul>
-			<ul class="nav navbar-nav">2</ul>
-			<ul class="nav navbar-nav">3</ul>
-    	</div>
-    </li>
-     -->
-    <ul class="list-group">   
-    <li class="list-group-item">
-	    <div style="
-				    border: 1px solid black;
-				    width: 210px;
-				    height: 39px;
-				    background-color: black; 
-				    border-radius: 200px;
-				    text-align:center;
-				    
-				    ">
-			<div style="display:inline-block;
-						height:100%;
-						vertical-align: sub;
-						">
-		    	<!-- <a href="./admin_view/manageMgr/addManager.jsp" style="color:red;"> -->
-		    	<a href="<%=request.getContextPath() %>/addMrgMember?status=enter" style="color:white;">
-		    	
-		    	
-		    		 매니저 및 관리자 추가하기 
-		    	</a>
-	    	</div>
-	    </div>
-    	
-    </li>
+<div class="container-fluid">
+  <h1 class="mt-4 mb-3" >직원리스트</h1>
+ <div style="margin:10px;" align = "right">
+<a href="<%=request.getContextPath() %>/addMrgMember?status=enter" class="btn btn-primary">
+ 매니저 및 관리자 추가하기 </a>
+ </div>
+ <table class="table table-hover">
+ 	<thead>
+	 	<tr>
+			<th scope="col">사원번호</th>
+	 		<th scope="col">아이디</th>
+			<th scope="col">이름</th>
+			<th scope="col">담당구역</th>
+			<th scope="col">재직여부</th>
+	 	</tr>
+ 	</thead>
+	<tbody>
     <%
-    for(ManagerMemberDto memberdto : managerMemberDto){
+    for(ManagerMemberDto memberdto : managerMemberlist){
     %>	
-	    <li class="list-group-item">
-		    	<ul class="showMemberInfo">
-		    		<li>
-			    	<span>  아이디 : <%=memberdto.getMgr_id() %></span>
-			    	</li>
-			    	<li>
-			    	<span>  이름 : <%=memberdto.getMgr_name() %> </span>
-			    	</li>
-			    	<li>
-			    	<span>  담당구역 : <%=memberdto.getMgr_loc() %> </span>
-			    	</li>
-			    	</li>
-			    	<li>
-			    	<span>  퇴사여부 : <%=memberdto.getMgr_del() %> </span>
-			    	</li>
-			    	<li>
-				    	<form action="<%=request.getContextPath() %>/showMgrMemberDetail" id="go_showdetail" method="get">
-				    		<input type="hidden" class="mgr_index_btn" name="mgr_index" value="<%=memberdto.getMgr_index() %>">
-				    		<input type="button" class="mgr_show_detail_btn" id="mgr_show_detail_btn" value="자세히보기">
-					    	<span><%=memberdto.getMgr_index() %></span>
-				    	</form>
-			    	</li>
-		    	</ul>
-	    </li>
+    <tr onclick="location.href='<%=request.getContextPath() %>/showMgrMemberDetail?mgr_index=<%=memberdto.getMgr_index() %>'">
+		<td><%=memberdto.getMgr_index() %></td>
+		<td><%=memberdto.getMgr_id() %></td>
+		<td><%=memberdto.getMgr_name() %></td>
+		<td><%=location(memberdto.getMgr_loc()) %> </td>
+		<td><%=Leave(memberdto.getMgr_del()) %> </td>
+
+	</tr>
    <%
     }
     %>
-    
+    </tbody>
+   </table>
+</div>
     <script type="text/javascript">
     
 		$(document).ready(function(){
@@ -119,20 +92,5 @@ List<ManagerMemberDto> managerMemberDto =
 			
 		});
     			
-    		
-    		
-    		
-    		
-    	
     </script>
-    
-    
-    <li class="list-group-item">
-    	Third item
-    </li>
-    
-  </ul>
-</div>
-
-<%-- body  ======================================================== --%>
 <%@ include file="./../include/footer.jsp" %>

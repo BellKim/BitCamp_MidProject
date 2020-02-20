@@ -19,6 +19,7 @@ public class RentalDetailDto implements Serializable {
 	private String pur_date;				//구매일
 	private String ins_date;				//설치희망일
 	private String comp_date;				//설치완료일
+	private int review;						//리뷰상태
 	
 	public RentalDetailDto() {
 		
@@ -26,9 +27,12 @@ public class RentalDetailDto implements Serializable {
 
 	
 
+
+
+
 	public RentalDetailDto(int pur_index, int prd_price, int prd_index, String mem_id, String mem_name, String mem_cell,
 			int mem_addr1, String mem_addr2, String mem_addr3, String prd_name, String prd_model_name, String pur_date,
-			String ins_date, String comp_date) {
+			String ins_date, String comp_date, int review) {
 		super();
 		this.pur_index = pur_index;
 		this.prd_price = prd_price;
@@ -44,7 +48,11 @@ public class RentalDetailDto implements Serializable {
 		this.pur_date = pur_date;
 		this.ins_date = ins_date;
 		this.comp_date = comp_date;
+		this.review = review;
 	}
+
+
+
 
 
 
@@ -180,13 +188,28 @@ public class RentalDetailDto implements Serializable {
 
 
 
+	public int getReview() {
+		return review;
+	}
+
+
+
+	public void setReview(int review) {
+		this.review = review;
+	}
+
+
+
 	@Override
 	public String toString() {
-		return "RentalDetailDto [pur_index=" + pur_index + ", mem_id=" + mem_id + ", mem_name=" + mem_name
-				+ ", mem_cell=" + mem_cell + ", mem_addr1=" + mem_addr1 + ", mem_addr2=" + mem_addr2 + ", mem_addr3="
-				+ mem_addr3 + ", prd_name=" + prd_name + ", prd_model_name=" + prd_model_name + ", pur_date=" + pur_date
-				+ ", ins_date=" + ins_date + ", comp_date=" + comp_date + "]";
+		return "RentalDetailDto [pur_index=" + pur_index + ", prd_price=" + prd_price + ", prd_index=" + prd_index
+				+ ", mem_id=" + mem_id + ", mem_name=" + mem_name + ", mem_cell=" + mem_cell + ", mem_addr1="
+				+ mem_addr1 + ", mem_addr2=" + mem_addr2 + ", mem_addr3=" + mem_addr3 + ", prd_name=" + prd_name
+				+ ", prd_model_name=" + prd_model_name + ", pur_date=" + pur_date + ", ins_date=" + ins_date
+				+ ", comp_date=" + comp_date + ", review=" + review + "]";
 	}
+
+
 
 
 	

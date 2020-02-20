@@ -23,7 +23,7 @@ public class ManageMemberDao implements ManageMemberDaoInterface {
 	public boolean insertManagerMember(ManagerMemberDto dto) {
 		String sql = " INSERT INTO managerMember(mgr_index, mgr_auth, mgr_id, "
 				+ " mgr_pw, mgr_name, mgr_loc, mgr_cell, mgr_joindate, mgr_delDate, mgr_del) "
-				+ " VALUES(managerMember_SEQ.NEXTVAL, ?, ?, ?, ?, ?, ?, ?, ? ) ";
+				+ " VALUES(managerMember_SEQ.NEXTVAL, ?, ?, ?, ?, ?, ?, ?, ?, ?) ";
 		System.out.println(" 1/6 ManageMemberDao success ");
 		Connection conn = null;
 		PreparedStatement psmt = null;
@@ -43,7 +43,7 @@ public class ManageMemberDao implements ManageMemberDaoInterface {
 			psmt.setString(3, dto.getMgr_pw());
 			psmt.setString(4, dto.getMgr_name());
 			psmt.setInt(5, dto.getMgr_loc());
-			psmt.setInt(6, dto.getMgr_cell());
+			psmt.setString(6, dto.getMgr_cell());
 			psmt.setString(7, null);
 			psmt.setString(8, null);
 			psmt.setInt(9, 0);
@@ -97,7 +97,7 @@ public class ManageMemberDao implements ManageMemberDaoInterface {
 				  String mgr_pw = rs.getString("mgr_pw");
 				  String mgr_name = rs.getString("mgr_name"); 
 				  int mgr_loc = rs.getInt("mgr_loc");
-				  int mgr_cell = rs.getInt("mgr_cell");
+				  String mgr_cell = rs.getString("mgr_cell");
 				  String  mgr_joinDate = rs.getString("mgr_joinDate");
 				  String mgr_delDate = rs.getString("mgr_delDate");
 				  int mgr_del = rs.getInt("mgr_del");
@@ -157,7 +157,7 @@ public class ManageMemberDao implements ManageMemberDaoInterface {
 				  String mgr_pw = null;
 				  String mgr_name = rs.getString("mgr_name"); 
 				  int mgr_loc = rs.getInt("mgr_loc");
-				  int mgr_cell = rs.getInt("mgr_cell");
+				  String mgr_cell = rs.getString("mgr_cell");
 				  String mgr_joinDate = rs.getString("mgr_joindate");
 				  String mgr_delDate = rs.getString("mgr_deldate");
 				  int mgr_del = rs.getInt("mgr_del");
@@ -218,11 +218,12 @@ public class ManageMemberDao implements ManageMemberDaoInterface {
 			  String mgr_pw = null;
 			  String mgr_name = rs.getString("mgr_name"); 
 			  int mgr_loc = rs.getInt("mgr_loc");
-			  int mgr_cell = rs.getInt("mgr_cell");
+			  String mgr_cell = rs.getString("mgr_cell");
 			  String mgr_joinDate = rs.getString("mgr_joinDate");
 			  String mgr_delDate = rs.getString("mgr_delDate");
 			  int mgr_del = rs.getInt("mgr_del");
-			  System.out.println("!!!receiveManagerMemberSelect!!!"+mgr_index+" "+mgr_auth+" "+mgr_id+" "+mgr_pw+" "+mgr_name+" "+mgr_loc+" "+mgr_cell+" "+mgr_del);
+			  System.out.println("!!!receiveManagerMemberSelect!!!"+
+			  mgr_index+" "+mgr_auth+" "+mgr_id+" "+mgr_pw+" "+mgr_name+" "+mgr_loc+" "+mgr_cell+" "+mgr_joinDate+" "+mgr_delDate+" "+mgr_del);
 			  
 			  dto = new ManagerMemberDto(mgr_index, mgr_auth, mgr_id, mgr_pw, mgr_name, mgr_loc, mgr_cell, mgr_joinDate,  mgr_delDate, mgr_del);
 			  
@@ -248,9 +249,7 @@ public class ManageMemberDao implements ManageMemberDaoInterface {
 		
 		String sql = "update managerMember "
 				+ " set mgr_del=1 where mgr_index=? ";
-		
-		
-		
+
 		
 		
 		System.out.println(" 1/6 ManageMemberDao success ");
@@ -285,6 +284,80 @@ public class ManageMemberDao implements ManageMemberDaoInterface {
 		
 		return count>0?true:false;
 	}
+
+	@Override
+	public boolean managerMemberUpdate(ManagerMemberDto ManagerMemberDto) {
+		System.out.println("managerMemberUpdate 내의 파라미터값 : " + ManagerMemberDto);
+//		String sql = " SELECT * FROM MANAGERMEMBER " + 
+//					" WHERE mgr_index=? ";
+		
+		String sql = " UPDATE managerMember " + 
+				" SET " + 
+				//"-- 입력될 데이터 60000 k_admin 최고관리자 1 1012341234 0 0 " + 
+				" mgr_auth=?, " + 
+				" mgr_id=?, " + 
+				" mgr_pw=?, " + 
+				" mgr_name=?, " + 
+				" mgr_loc=?, " + 
+				" mgr_cell=?, "; 
+				
+		System.out.println("ManagerMemberDto.getMgr_delDate() : " +ManagerMemberDto.getMgr_delDate() + "\n");
+		System.out.println("ManagerMemberDto : " +ManagerMemberDto);
+		
+				if((ManagerMemberDto.getMgr_delDate())!=null && (ManagerMemberDto.getMgr_delDate()).equals("SYSDATE")) {
+					sql +=" mgr_delDate=SYSDATE, ";
+					System.out.println(" 0/6  의 sysdate");
+				}else {
+					sql +=" mgr_delDate=null, ";
+					System.out.println(" 0/6  null 입력 ");
+				}
+				
+			sql+=" mgr_del=? " + 
+				" WHERE " + 
+				" mgr_index=? ";
+
+		
+		
+		System.out.println(" 1/6 managerMemberUpdate success ");
+		Connection conn = null;
+		PreparedStatement psmt = null;
+		System.out.println( " managerMemberUpdate sql = " + sql );
+		System.out.println(" 2/6 managerMemberUpdate success ");
+		int count = 0;
+
+		
+		try {
+			System.out.println(" 3/6 managerMemberUpdate success ");
+			conn = DBConnection.getConnection();
+			psmt = conn.prepareStatement(sql);
+			System.out.println(" 4/6 managerMemberUpdate success ");
+			
+			psmt.setInt(1, ManagerMemberDto.getMgr_auth());
+			psmt.setString(2, ManagerMemberDto.getMgr_id());
+			psmt.setString(3, ManagerMemberDto.getMgr_pw());
+			psmt.setString(4, ManagerMemberDto.getMgr_name());
+			psmt.setInt(5, ManagerMemberDto.getMgr_loc());
+			psmt.setString(6, ManagerMemberDto.getMgr_cell());
+//			psmt.setString(7, ManagerMemberDto.getMgr_delDate());
+			psmt.setInt(7, ManagerMemberDto.getMgr_del());
+			psmt.setInt(8, ManagerMemberDto.getMgr_index());
+			
+
+			System.out.println(" 5/6 managerMemberUpdate success ");
+			
+			count = psmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			System.out.println(" managerMemberUpdate  DB FAIL ");
+			e.printStackTrace();
+		}finally {
+			System.out.println(" 6/6 managerMemberUpdate DBCLOSE ");
+			DBClose.close(psmt, conn, null);
+		}
+		
+		
+		return count>0?true:false;
+	}//end of managerMemberUpdate
 	
 	
 	

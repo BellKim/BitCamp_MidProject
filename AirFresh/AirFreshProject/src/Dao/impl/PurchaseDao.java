@@ -517,7 +517,7 @@ public class PurchaseDao implements PurchaseDaoInterface {
 	public RentalDetailDto getDetail(int pur_index) {
 		String sql = " select p.pur_index, m.prd_price, m.prd_index, p.mem_id, s.mem_name, s.mem_cell, s.mem_addr1, "
 				+ " s.mem_addr2, s.mem_addr3, m.prd_name, m.prd_model_name, "
-				+ " p.pur_date, p.ins_date, i.comp_date "
+				+ " p.pur_date, p.ins_date, i.comp_date , p.review "
 				+ " from modellist m, purchase p, members s, install i "
 				+ " where m.prd_index = p.prd_index and p.mem_id = s.mem_id and p.pur_index = i.pur_index " 
 				+ "and p.pur_index = ? ";
@@ -553,7 +553,8 @@ public class PurchaseDao implements PurchaseDaoInterface {
 										  rs.getString(i++),//prd_model_name, 
 										  rs.getString(i++),//pur_date, 
 										  rs.getString(i++),//	ins_date, 
-										  rs.getString(i++));//	comp_date)
+										  rs.getString(i++),//	comp_date)
+										  rs.getInt(i++));//review
 				
 			}
 			
@@ -650,6 +651,55 @@ public class PurchaseDao implements PurchaseDaoInterface {
 			DBClose.close(psmt, conn, rs);			
 		}
 		return len;	
+	}
+
+	@Override
+	public List<PurchaseNameDto> getMainPurchaseList() {
+		String sql = " SELECT ROWNUM, pur_index, mem_id, p.prd_index, m.prd_name, m.prd_model_name,pur_date,ins_date, order_num, review, order_auth "
+				+ " FROM  purchase p, modellist m "
+				+ " where p.prd_index = m.prd_index "
+				+ " AND ROWNUM >=1 AND ROWNUM <=5 AND ORDER_AUTH = 0 "
+				+ " ORDER BY PUR_DATE DESC ";
+		
+		Connection conn = null;
+		PreparedStatement psmt = null;
+		ResultSet rs = null;
+		
+		List<PurchaseNameDto> list = new ArrayList<PurchaseNameDto>();
+		
+		try {
+			conn = DBConnection.getConnection();
+			System.out.println("1/6 getMainPurchaseList success");
+			psmt = conn.prepareStatement(sql);
+			System.out.println("2/6 getMainPurchaseList success");
+			
+			rs = psmt.executeQuery();
+			while(rs.next()) {
+				int i = 2;
+				PurchaseNameDto dto = new PurchaseNameDto(
+						rs.getInt(i++),//pur_index, 
+						rs.getString(i++),//mem_id, 
+						rs.getInt(i++),//prd_index, 
+						rs.getString(i++),//prd_name, 
+						rs.getString(i++),//prd_model_name, 
+						rs.getString(i++),//pur_date, 
+						rs.getString(i++),//ins_date, 
+						rs.getInt(i++),//order_num,
+						rs.getInt(i++),//review, 
+						rs.getInt(i++));//order_auth)
+				
+				
+				list.add(dto);
+			}
+			System.out.println("3/6 getMainPurchaseList success");
+		} catch (SQLException e) {
+			System.out.println("getMainPurchaseList fail");
+			e.printStackTrace();
+		} finally {
+			DBClose.close(psmt, conn, rs);
+		}
+		
+		return list;
 	}
 
 	
