@@ -43,6 +43,8 @@ public class UpdateMem extends HttpServlet{
 		else if(command.equals("upview")) {
 			resp.sendRedirect(req.getContextPath() + "/client_view/member/update.jsp");
 		}else if(command.equals("updateAf")) {
+			
+			
 			String _id = req.getParameter("mem_id");
 			String _pw = req.getParameter("mem_pw");				
 			String _cell = req.getParameter("mem_cell"); 		
@@ -52,8 +54,7 @@ public class UpdateMem extends HttpServlet{
 			
 			System.out.println(_id + " " + _pw + " " + _cell + " " +  
 					_addr1 + " " + _addr2 + " " + _addr3 + " ");
-			
-			
+						
 			MemberDto dto = new MemberDto(_id, _pw, _cell, _addr1, _addr2, _addr3);
 			
 			boolean isS = s.ms.updateMem(_id, dto);

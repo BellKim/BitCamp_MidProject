@@ -276,6 +276,7 @@ public class MemberDao implements MemberDaoInterface{
 		int count = 0;
 		
 		System.out.println("sql:" + sql);
+		System.out.println(dto.toString());
 		
 		try {
 			conn = DBConnection.getConnection();

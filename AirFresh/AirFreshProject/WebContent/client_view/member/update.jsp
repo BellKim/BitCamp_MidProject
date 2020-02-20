@@ -34,7 +34,7 @@ MemberDto mem = (MemberDto)session.getAttribute("login");
 				<tr>
 					<td>패스워드</td>
 					<td>
-						<input type="password" id="mem_pw" name="mem_pw" size="20" placeholder="비밀번호를 입력해주세요"maxlength="20">	<!-- value="<%=mem.getMem_pw() %>" -->
+						<input type="password" id="mem_pw" size="20" placeholder="비밀번호를 입력해주세요"maxlength="20">	<!-- value="<%=mem.getMem_pw() %>" -->
 						<p style="font-size: 8px; color: gray;">영문,숫자,특수문자 3가지를 조합한 6자리 이상으로 입력해주세요.</p>												
 						<input type="password" id="mem_pw1" name="mem_pw" placeholder="비밀번호 재확인" maxlength="20"><div style="height:30px;"><font id="chkNotice" size="2"></font></div>
 					</td>
