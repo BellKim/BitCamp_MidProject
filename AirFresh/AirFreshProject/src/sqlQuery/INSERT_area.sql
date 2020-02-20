@@ -189,10 +189,30 @@ select * from ORDERREVIEW;
 --		noticebbs insert
 ----------------------------------------------------------------------------------------------------------------------
 
---INSERT INTO noticebbs(noti_index, noti_title, noti_content, noti_catagory, noti_writer, noti_wdate,
---filename, tempfile, readcount, noti_del)
---VALUES(NOTICEBBS_SEQ.nextval,)
-
+INSERT INTO noticebbs(noti_index, noti_title, noti_content, noti_catagory, noti_writer, noti_wdate,
+filename, tempfile, readcount, noti_del)
+VALUES(NOTICEBBS_SEQ.nextval, '렌탈', '냉무',2, '관리자', sysdate, null, null, 0, 0);
+INSERT INTO noticebbs(noti_index, noti_title, noti_content, noti_catagory, noti_writer, noti_wdate,
+filename, tempfile, readcount, noti_del)
+VALUES(NOTICEBBS_SEQ.nextval, '렌탈', '냉무',1, '관리자', sysdate, null, null, 0, 0);
+INSERT INTO noticebbs(noti_index, noti_title, noti_content, noti_catagory, noti_writer, noti_wdate,
+filename, tempfile, readcount, noti_del)
+VALUES(NOTICEBBS_SEQ.nextval, '렌탈', '냉무',2, '관리자', sysdate, null, null, 0, 0);
+INSERT INTO noticebbs(noti_index, noti_title, noti_content, noti_catagory, noti_writer, noti_wdate,
+filename, tempfile, readcount, noti_del)
+VALUES(NOTICEBBS_SEQ.nextval, '렌탈', '냉무',1, '관리자', sysdate, null, null, 0, 0);
+INSERT INTO noticebbs(noti_index, noti_title, noti_content, noti_catagory, noti_writer, noti_wdate,
+filename, tempfile, readcount, noti_del)
+VALUES(NOTICEBBS_SEQ.nextval, '렌탈', '냉무',2, '관리자', sysdate, null, null, 0, 0);
+INSERT INTO noticebbs(noti_index, noti_title, noti_content, noti_catagory, noti_writer, noti_wdate,
+filename, tempfile, readcount, noti_del)
+VALUES(NOTICEBBS_SEQ.nextval, '렌탈', '냉무',1, '관리자', sysdate, null, null, 0, 0);
+INSERT INTO noticebbs(noti_index, noti_title, noti_content, noti_catagory, noti_writer, noti_wdate,
+filename, tempfile, readcount, noti_del)
+VALUES(NOTICEBBS_SEQ.nextval, '렌탈', '냉무',2, '관리자', sysdate, null, null, 0, 0);
+INSERT INTO noticebbs(noti_index, noti_title, noti_content, noti_catagory, noti_writer, noti_wdate,
+filename, tempfile, readcount, noti_del)
+VALUES(NOTICEBBS_SEQ.nextval, '렌탈', '냉무',1, '관리자', sysdate, null, null, 0, 0);
 
 select * from noticebbs;
 
