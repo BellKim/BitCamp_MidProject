@@ -48,7 +48,7 @@
 					},
 					datatype:"json",
 					success: function (data) {
-						alert("통신성공");
+						//alert("통신성공");
 						//alert(data);
 						if(data=="true"){
 							//alert("true");

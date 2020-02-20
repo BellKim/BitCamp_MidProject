@@ -78,7 +78,7 @@
 			//디테일로 이동
 			var td = $(this).children();
 			var seq = td.eq(0).text();
-			alert(seq);
+			//alert(seq);
 			location.href="<%=request.getContextPath() %>/installConfirm?command=detail&ins=" + seq;
 		});
 	</script>

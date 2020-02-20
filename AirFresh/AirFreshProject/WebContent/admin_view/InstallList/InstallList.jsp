@@ -295,7 +295,7 @@
 				
 				$("#cal span").click(function () {
 					//alert("날짜 클릭");
-					alert($(this).attr("sdate"));
+					//alert($(this).attr("sdate"));
 					var sdate = $(this).attr("sdate");
 					
 					$.ajax({
@@ -308,8 +308,8 @@
 						datatype: "json",
 						success: function (data) {
 							//alert("통신성공");
-							alert(data);
-							alert("data length = " + data.length);
+						//	alert(data);
+						//	alert("data length = " + data.length);
 							
 							list = data;
 							
@@ -404,7 +404,7 @@
 						
 						//그 중 seq를 담은 td의 값만 빼온다
 						var seq = td.eq(0).text();
-						alert(seq);
+						//alert(seq);
 						
 						//0번지부터 값을 넣기  위함
 						insArr.push(seq);
@@ -422,10 +422,10 @@
 						datatype:"json",
 						
 						success: function ( result ) {
-							alert("통신성공");
+							//alert("통신성공");
 							//배열 초기화 
 							insArr = [];
-							alert(result);
+							//alert(result);
 							
 							if( result == true){
 								//alert("저장성공");
