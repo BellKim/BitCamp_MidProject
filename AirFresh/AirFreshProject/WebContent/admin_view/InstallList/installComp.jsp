@@ -41,7 +41,7 @@
 				<col width="10"><col width="10"><col width="10">
 				<tr>
 					<th>설치신청번호</th><th>제품명</th><th>회원아이디</th><th>설치완료일</th><th>전화번호</th>
-					<th>상세주소</th><th>처리상태</th><th>별점</th>
+					<th>상세주소</th>
 				</tr>
 				<%
 					if(list != null && list.size() > 0 ){
@@ -55,14 +55,12 @@
 								<td><%=dto.getComp_date() %></td>
 								<td><%=dto.getMem_cell() %></td>
 								<td><%=subAddr(dto.getMem_addr2(), dto.getMem_addr3()) %></td>
-								<td><%=NowState(dto.getIns_state()) %></td>
-								<td>별점</td>
 							</tr>	
 							<%
 						}
 					}else{
 						%>
-						<tr><td colspan="7">설치를 한번도 안하셨네요.</td></tr>
+						<tr><td colspan="6">설치를 한번도 안하셨네요.</td></tr>
 						<%
 					}
 				%>

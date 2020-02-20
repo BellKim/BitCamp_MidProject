@@ -75,4 +75,19 @@ public class OrderReviewService implements OrderReviewServiceInterface {
 	public int getAllReveiw() {
 		return dao.getAllReveiw();
 	}
+
+	@Override
+	public ModelReviewPurDto rentalListReview(String mem_id, int pur_index) {
+		return dao.rentalListReview(mem_id, pur_index);
+	}
+
+	@Override
+	public List<ModelReviewPurDto> getPrdReviewList(int prd_index) {
+		return dao.getPrdReviewList(prd_index);
+	}
+
+	@Override
+	public int prdRevewLen(int prd_index) {
+		return dao.prdRevewLen(prd_index);
+	}
 }

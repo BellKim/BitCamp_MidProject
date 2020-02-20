@@ -18,7 +18,7 @@ public class ModelReviewPurDto implements Serializable {
 	private int rating;
 	private int readcount;
 	private int re_auth;
-	
+	private int review;
 	
 	public ModelReviewPurDto() {
 		
@@ -26,6 +26,26 @@ public class ModelReviewPurDto implements Serializable {
 
 
 
+
+	public ModelReviewPurDto(int re_index, String wdate, int prd_index, int pur_index, String mem_id, String prd_name,
+			String pur_date, String order_re_title, String order_re_content, String order_re_img_path, int rating,
+			int readcount, int re_auth, int review) {
+		super();
+		this.re_index = re_index;
+		this.wdate = wdate;
+		this.prd_index = prd_index;
+		this.pur_index = pur_index;
+		this.mem_id = mem_id;
+		this.prd_name = prd_name;
+		this.pur_date = pur_date;
+		this.order_re_title = order_re_title;
+		this.order_re_content = order_re_content;
+		this.order_re_img_path = order_re_img_path;
+		this.rating = rating;
+		this.readcount = readcount;
+		this.re_auth = re_auth;
+		this.review = review;
+	}
 
 
 
@@ -91,7 +111,14 @@ public class ModelReviewPurDto implements Serializable {
 	}
 
 
+	public int getReview() {
+		return review;
+	}
 
+
+	public void setReview(int review) {
+		this.review = review;
+	}
 
 	public int getPrd_index() {
 		return prd_index;

@@ -17,9 +17,7 @@
 <link href="<%=request.getContextPath()%>/css/styles.css" rel="stylesheet" />
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
-<!-- <link -->
-	href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css"
-	rel="stylesheet" crossorigin="anonymous" />
+<!-- link -->
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/js/all.min.js"
 	crossorigin="anonymous"></script>
@@ -126,9 +124,6 @@
 								<i class="fas fa-chart-area"></i>
 							공지사항
 						</a> 
-						<a class="nav-link" href="<%=request.getContextPath()%>/mgrMyPage?command=home">
-								<i class="fas fa-table"></i>
-							 마이페이지</a>
 						<a class="nav-link" href="<%=request.getContextPath()%>/InstallController?command=install">
 								<i class="fas fa-table"></i>
 							 AS리스트 선택하기</a>
@@ -147,9 +142,6 @@
 								<i class="fas fa-chart-area"></i>
 							공지사항
 						</a> 
-						<a class="nav-link" href="<%=request.getContextPath()%>/mgrMyPage?command=home">
-								<i class="fas fa-table"></i>
-							마이페이지</a>
 						<a class="nav-link" href="<%=request.getContextPath()%>/InstallController?command=install">
 								<i class="fas fa-table"></i>
 							 설치 리스트 선택하기</a>
@@ -170,14 +162,3 @@
             <div id="layoutSidenav_content">
                 <main>
                 
-         <%
-			/* 세션 만료시에 로그인 단으로 날려주는 처리  */         
-         	if(mrgMem == null){
-         		%>
-    			<script type="text/javascript">
-    				alert("로그인을 해주세요");
-    				location.href="로그인단으로 이동!!!!!!!!!!";
-    			</script>     		
-         		<%
-         	}
-         %>
