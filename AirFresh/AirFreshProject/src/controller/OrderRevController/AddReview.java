@@ -122,11 +122,13 @@ public class AddReview extends HttpServlet {
 			// 리뷰작성하면 purchase테이블 review auth 수정
 			s.orsi.updatePurReview(pur_index);
 			
-			// 작성한 리뷰 detail 보는 곳으로 이동 (임시)
-			List<ModelReviewPurDto> list = s.orsi.reviewAllList();
-			System.out.println("listsize: "+list.size());
-			req.setAttribute("list", list);
-			ProjectUtil.forward("./client_view/review/reviewList.jsp", req, resp);
+			// 리뷰 작성후 finding으로 이동
+			resp.sendRedirect(req.getContextPath() + "/client_view/review/finding.jsp?command=write&isS="+isS);
+			/*
+			 * List<ModelReviewPurDto> list = s.orsi.reviewAllList();
+			 * System.out.println("listsize: "+list.size()); req.setAttribute("list", list);
+			 * ProjectUtil.forward("./client_view/review/reviewList.jsp", req, resp);
+			 */
 		} else {
 			System.out.println("파일업로드 실패");
 		}

@@ -7,7 +7,8 @@
 
 <%
 	List<ModelReviewPurDto> list = (List<ModelReviewPurDto>) request.getAttribute("list");
-	
+	int nowPage = (Integer)request.getAttribute("nowPage");
+	int totalPage = (Integer)request.getAttribute("totalPage");
 %>
 
 <div class="container" style="margin-bottom: 100px;">
@@ -72,9 +73,25 @@
 						}//.if문
 					%>
 				</tbody>
-
 			</table>
 	
+		<div class="paging" align="center" style="margin: 50px auto;">
+			<%
+				for(int i=0; i < totalPage; i++){
+					if(nowPage == i){ //현재페이지
+			%>
+					<span style="font-size: 26px;margin: 0 10px;border-bottom: 1px solid #000;"><%=i + 1 %></span>
+			<%
+				} else {
+			%>
+					<a href="<%=request.getContextPath()%>/reviewList?command=user&nowPage=<%=i %>" title="<%=i+1%>페이지" style="font-size: 20px;">
+					
+					<%= i+1 %></a>
+			<%
+				}//.else
+			}//.for
+			%>
+		</div> 
 	</div>
 
 <%@ include file="./../include/footer.jsp"%>

@@ -19,7 +19,10 @@ public interface OrderReviewServiceInterface extends Serializable {
 	boolean updatePurReview(int pur_index);
 
 	// 전체 리뷰 list
-	List<ModelReviewPurDto> reviewAllList();
+	//List<ModelReviewPurDto> reviewAllList();
+	List<ModelReviewPurDto> pagingAllList(int page);
+		
+	int getAllReveiw();
 
 	// review detail
 	ModelReviewPurDto getDetailReview(int re_index);

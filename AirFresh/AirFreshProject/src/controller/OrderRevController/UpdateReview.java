@@ -139,12 +139,14 @@ public class UpdateReview extends HttpServlet {
 		if(isS) {
 			System.out.println("수정 성공");
 			
-			// 수정후 list로이동
+			// 리뷰 작성후 finding으로 이동
+			resp.sendRedirect(req.getContextPath() + "/client_view/review/finding.jsp?command=update&isS="+isS);
 			
-			List<ModelReviewPurDto> list = s.orsi.reviewAllList();
-			System.out.println("listsize: "+list.size());
-			req.setAttribute("list", list);
-			ProjectUtil.forward("/client_view/review/reviewList.jsp", req, resp);
+			/*
+			 * List<ModelReviewPurDto> list = s.orsi.reviewAllList();
+			 * System.out.println("listsize: "+list.size()); req.setAttribute("list", list);
+			 * ProjectUtil.forward("/client_view/review/reviewList.jsp", req, resp);
+			 */
 			 
 		} else {
 			System.out.println("수정 실패");

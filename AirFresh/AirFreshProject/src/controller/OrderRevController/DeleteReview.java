@@ -35,13 +35,17 @@ public class DeleteReview extends HttpServlet {
 		int re_index = Integer.parseInt(seq);
 		
 		singleton s = singleton.getInstance();
-		boolean is = s.orsi.delReivew(re_index);
+		boolean isS = s.orsi.delReivew(re_index);
 		
-		if(is) {
-			List<ModelReviewPurDto> list = s.orsi.reviewAllList();
-			System.out.println("listsize: "+list.size());
-			req.setAttribute("list", list);
-			ProjectUtil.forward("/client_view/review/reviewList.jsp", req, resp);
+		if(isS) {
+			
+		// 리뷰 삭제후 finding으로 이동
+		resp.sendRedirect(req.getContextPath() + "/client_view/review/finding.jsp?command=del&isS="+isS);
+			/*
+			 * List<ModelReviewPurDto> list = s.orsi.reviewAllList();
+			 * System.out.println("listsize: "+list.size()); req.setAttribute("list", list);
+			 * ProjectUtil.forward("/client_view/review/reviewList.jsp", req, resp);
+			 */
 		}
 	}
 }

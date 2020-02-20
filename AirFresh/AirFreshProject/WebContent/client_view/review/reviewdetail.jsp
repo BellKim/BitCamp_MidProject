@@ -66,7 +66,7 @@
 			</div>
 		</div>
 		<div align="center" style="padding :10px;">
-			<a href="<%=request.getContextPath()%>/reviewList" class="btn btn-primary">목록</a>
+			<a href="<%=request.getContextPath()%>/reviewList?command=user" class="btn btn-primary">목록</a>
 			<% if(mem.getMem_id().equals(dto.getMem_id())){ %>
 				<a href="<%=request.getContextPath()%>/updateReviewPage?seq=<%=dto.getRe_index() %>" class="btn btn-primary">수정</a>
 				<a href="<%=request.getContextPath()%>/deleteReview?seq=<%=dto.getRe_index() %>" class="btn btn-primary" 

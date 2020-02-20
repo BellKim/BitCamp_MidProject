@@ -37,10 +37,10 @@ public class OrderReviewService implements OrderReviewServiceInterface {
 	}
 
 
-	@Override
-	public List<ModelReviewPurDto> reviewAllList() {
-		return dao.reviewAllList();
-	}
+	/*
+	 * @Override public List<ModelReviewPurDto> reviewAllList() { return
+	 * dao.reviewAllList(); }
+	 */
 
 
 	@Override
@@ -64,5 +64,15 @@ public class OrderReviewService implements OrderReviewServiceInterface {
 	@Override
 	public boolean delReivew(int re_index) {
 		return dao.delReivew(re_index);
+	}
+
+	@Override
+	public List<ModelReviewPurDto> pagingAllList(int page) {
+		return dao.pagingAllList(page);
+	}
+
+	@Override
+	public int getAllReveiw() {
+		return dao.getAllReveiw();
 	}
 }

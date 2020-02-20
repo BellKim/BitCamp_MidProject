@@ -144,6 +144,95 @@ public class OrderReviewDao implements OrderReviewDaoInterface {
 		 return count>0?true:false;
 	 }
 	 
+	 public List<ModelReviewPurDto> pagingAllList(int page){
+		 String sql = " select re_index, wdate, prd_index, pur_index, mem_id, prd_name, pur_date, "
+		 		+ " order_re_title, order_re_content, order_re_img_path, rating , re_auth,readcount "
+		 		+ " FROM ( select ROWNUM AS RNUM,re_index, wdate, p.prd_index,p.pur_index, o.mem_id, m.prd_name, p.pur_date, "
+		 		+ " order_re_title, order_re_content, order_re_img_path, rating , re_auth,readcount "
+		 		+ " FROM modellist m, orderreview o, purchase p "
+		 		+ " where m.prd_index = p.prd_index and p.pur_index = o.pur_index )"
+		 		+ " WHERE RNUM>=? AND RNUM<=? ";
+		 
+		 Connection conn = null;
+		 PreparedStatement psmt = null;
+		 ResultSet rs = null;
+		 
+		 int start, end;
+		 start = 1 + 10 * page;
+		 end = 10 + 10 * page;
+		 
+		 
+		 List<ModelReviewPurDto> list = new ArrayList<ModelReviewPurDto>();
+		 
+		 try {
+			 conn = DBConnection.getConnection();
+			 System.out.println("1/6 pagingAllList success");
+			 psmt = conn.prepareStatement(sql);
+			 psmt.setInt(1, start);
+			 psmt.setInt(2, end);
+			 System.out.println("2/6 pagingAllList success");
+			 
+			 rs = psmt.executeQuery();
+			 while(rs.next()) {
+				 int i = 1;
+				 ModelReviewPurDto dto = new ModelReviewPurDto(rs.getInt(i++),//re_index
+						 										rs.getString(i++),//wdate
+						 										rs.getInt(i++),//prdindex
+						 										rs.getInt(i++),//pur_index,
+						 										rs.getString(i++),//	mem_id, 
+						 										rs.getString(i++),//prd_name, 
+						 										rs.getString(i++),//pur_date, 
+						 										rs.getString(i++),//order_re_title, 
+						 										rs.getString(i++),//order_re_content, 
+						 										rs.getString(i++),//order_re_img_path, 
+						 										rs.getInt(i++),//rating, 
+						 										rs.getInt(i++),//re_auth
+						 										rs.getInt(i++));//readcount)
+				 
+				 list.add(dto);
+				 
+			 }
+			 System.out.println("3/6 pagingAllList success");
+		} catch (SQLException e) {
+			System.out.println("pagingAllList fail");
+			e.printStackTrace();
+		} finally {
+			DBClose.close(psmt, conn, rs);
+		}
+		 
+		return list;
+		 
+	 }
+	 
+	 public int getAllReveiw() {
+			//전체 리뷰 게시물 수 구하는함수
+			String sql =  " SELECT COUNT(*) FROM orderreview ";
+			
+			Connection conn = null;
+			PreparedStatement psmt = null;
+			ResultSet rs = null;
+			int len = 0;
+			
+			try {
+				conn = DBConnection.getConnection();
+				psmt = conn.prepareStatement(sql);
+				rs = psmt.executeQuery();
+				
+				if(rs.next()) {
+					len = rs.getInt(1);
+				}
+			} catch (SQLException e) {
+				System.out.println("getAllReveiw fail");
+				e.printStackTrace();
+			} finally {
+				DBClose.close(psmt, conn, rs);
+			}
+			
+			return len;
+		}
+	 
+	 
+	 
 	 public List<ModelReviewPurDto> reviewAllList(){
 		 String sql = " select re_index,wdate, p.prd_index, o.pur_index, o.mem_id, m.prd_name, p.pur_date,"
 		 		+ " order_re_title, order_re_content, order_re_img_path, rating, re_auth, readcount "
