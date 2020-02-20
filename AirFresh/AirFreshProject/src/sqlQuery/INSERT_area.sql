@@ -9,6 +9,11 @@ values (managerMember_SEQ.NEXTVAL, 0, 'k_admin', '1234', '최고관리자', 3, 0
 insert into managerMember (mgr_index, mgr_auth, mgr_id, mgr_pw, mgr_name, mgr_loc, mgr_cell, MGR_JOINDATE, mgr_delDate, mgr_del)
 values (managerMember_SEQ.NEXTVAL, 0, 'qwe', 'qwe', '최고관리자', 3, 01012341234, SYSDATE, null, 0);
 
+update managerMember set
+mgr_pw='qwe'
+where mgr_index=60001
+
+
 insert into managerMember (mgr_index, mgr_auth, mgr_id, mgr_pw, mgr_name, mgr_loc, mgr_cell, MGR_JOINDATE, mgr_delDate, mgr_del)
 values (managerMember_SEQ.NEXTVAL, 1, 'J_admin', '1234', '부메니저', 1, 01012341234, TO_DATE('2015-10-20','YYYY-MM-DD'), null, 0);
 

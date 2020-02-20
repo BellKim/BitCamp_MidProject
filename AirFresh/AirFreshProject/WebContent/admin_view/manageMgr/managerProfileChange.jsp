@@ -60,7 +60,7 @@ ManagerMemberDto managerSelectOneDTO = (ManagerMemberDto)request.getAttribute("r
 		   	</li>
 		    <li class="list-group-item">
 		    <label for="mgr_name" class="width50">매니저 이름 : </label>	
-		    	<input type="text" id="mgr_name" name="mgr_name" value="<%=managerSelectOneDTO.getMgr_name() %>" readonly>
+		    	<input type="text" id="mgr_name" name="mgr_name" value="<%=managerSelectOneDTO.getMgr_name() %>">
 		    </li>
 		    <li class="list-group-item">
 		    	<label for="mgr_loc" class="width50">매니저 지역구:</label>
@@ -113,31 +113,34 @@ ManagerMemberDto managerSelectOneDTO = (ManagerMemberDto)request.getAttribute("r
 				
 				
 				//입력된 값을 셋팅한다.
-				var mgr_index1		= $(".mgr_index").vla();
-				var mgr_id1			= $(".mgr_id").vla();
-				var mgr_name1		= $(".mgr_name").vla();
-				var mgr_loc1		= $(".mgr_loc").vla();
-				var mgr_cell1		= $(".mgr_cell").vla();
-				var mgr_auth1		= $(".mgr_auth").vla();
-				var mgr_joindate1	= $(".mgr_joindate").vla();
+				var mgr_index1		= $("#mgr_index").attr("value");
+				var mgr_id1			= $("#mgr_id").attr("value");
+				var mgr_pw1			= $("#mgr_pw").attr("value");
+				var mgr_name1		= $("#mgr_name").attr("value");
+				var mgr_loc1		= $("#mgr_loc").attr("value");
+				var mgr_cell1		= $("#mgr_cell").attr("value");
+				var mgr_auth1		= $("#mgr_auth").attr("value");
+				var mgr_joindate1	= $("#mgr_joindate").attr("value");
 
 				console.log(mgr_index1);
 				console.log(mgr_id1);
+				console.log(mgr_pw1);
 				console.log(mgr_name1);
 				console.log(mgr_loc1);
 				console.log(mgr_cell1);
 				console.log(mgr_auth1);
 				console.log(mgr_joindate1);
-				
+				alert("데이터전송");
 				
 				//입력된 값들을 바탕으로 ajax를 실행한다. 
-				$.ajax({
-					url:'<%=request.getContextPath() %>managerProfileChange?ManageProfileCommnd=modify',
+			 $.ajax({
+					url:'<%=request.getContextPath() %>/managerProfileChange?ManageProfileCommnd=modify',
 					type:"post",
 					datatype:"json",
 					data:{
 						mgr_index:mgr_index1,
 						mgr_id:mgr_id1,
+						mgr_pw:mgr_pw1,
 						mgr_name:mgr_name1,
 						mgr_loc:mgr_loc1,
 						mgr_cell:mgr_cell1,
@@ -161,13 +164,13 @@ ManagerMemberDto managerSelectOneDTO = (ManagerMemberDto)request.getAttribute("r
 						alert("통신 실패");
 					}
 				});//end ajax
-				
+				 
 				
 			});
 			
 			$(".redirMain_btn").click(function(){
 				alert("메인페이지로 이동 버튼 ");
-				$("#SelectForm").attr("action", "<%=request.getContextPath() %>/managerProfileChange?ManageProfileCommnd=main");
+				$("#SelectForm").attr("action", "<%=request.getContextPath() %>/managerProfileChange?ManageProfile&Commnd=main");
 				//("#mgr_index").removeAttr("readonly");
 				$("#mgr_pw")
 				if($("#mgr_pw").val()=="" || $("#mgr_pw_confirm").val()=="" ){

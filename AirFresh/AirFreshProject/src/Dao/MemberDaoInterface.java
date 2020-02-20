@@ -25,6 +25,7 @@ public interface MemberDaoInterface {
 	public List<MemberDto> getMemberList(String opt, String keyword, int page);
 	
 	public List<MemberDto> getAdminMemList(int pageNumber);
-	
+
 	public int getMemLength();
+
 }

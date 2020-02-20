@@ -12,6 +12,20 @@ public class Jutill implements Serializable {
 		return sloc[loc];
 	}
 	
+	public int locationStrToInt(String location) {
+		
+		
+		String[] sloc = {"error","강남구","성동구","중랑구"};
+		int resInt = 0;
+		
+		for(int i=0; i<sloc.length; i++) {
+			if(sloc[i].equals(location)) {
+				resInt = i;
+			}
+		}
+		return resInt;
+	}
+	
 	//DB에서 받아온 Date타입의 String을 2020/02/13 형식으로 바꾸어 변환해주는 함수 
 	public String ChangeDate(String date) {
 		

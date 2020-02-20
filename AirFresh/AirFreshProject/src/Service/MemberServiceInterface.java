@@ -2,6 +2,7 @@ package Service;
 
 import java.util.List;
 
+import Dto.ManagerMemberDto;
 import Dto.MemberDto;
 
 public interface MemberServiceInterface {
@@ -25,4 +26,7 @@ public interface MemberServiceInterface {
 	public List<MemberDto> getAdminMemList(int pageNumber);
 	
 	public int getMemLength();
+	
+	
+	
 }
