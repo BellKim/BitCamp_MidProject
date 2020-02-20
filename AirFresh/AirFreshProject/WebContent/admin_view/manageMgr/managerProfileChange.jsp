@@ -33,74 +33,63 @@ ManagerMemberDto managerSelectOneDTO = (ManagerMemberDto)request.getAttribute("r
 	  <h2> <%=managerSelectOneDTO.getMgr_name() %> 님의 정보수정 페이지</h2>
 	  
 	  <div class="addClass">
+	  	<form action="" id="SelectForm" method="get">
 		  <ul class="list-group">
 		    <li class="list-group-item">
 		    </li>
 			<li class="list-group-item">
-		     	<label for="Mgr_id" class="width50">매니저 인덱스 : </label>
-		    	<input type="text" id="Mgr_index" class="nonborder" name="Mgr_index" value="<%=managerSelectOneDTO.getMgr_index() %>" readonly>
+		     	<label for="mgr_id" class="width50">매니저 인덱스 : </label>
+		    	<input type="text" id="mgr_index" class="nonborder" name="mgr_index" value="<%=managerSelectOneDTO.getMgr_index() %>" readonly>
 		    </li>
 		    <li class="list-group-item">
-		     	<label for="Mgr_id" class="width50">매니저 아아디 : </label>
-		    	<input type="text" id="Mgr_id" name="Mgr_id" class="nonborder" value="<%=managerSelectOneDTO.getMgr_id() %>" readonly>
+		     	<label for="mgr_id" class="width50">매니저 아아디 : </label>
+		    	<input type="text" id="mgr_id" name="mgr_id" class="nonborder" value="<%=managerSelectOneDTO.getMgr_id() %>" readonly>
 		    </li>
 		   	<li class="list-group-item">
 			   	<%-- 비밀번호와 비밀번호 확인이 구현되었을때 mgr_pw에 name 테그가 부여됨.  --%>
 			   	<label for="mgr_pw" class="width50">매니저 비밀번호 : </label>
-			   	<input type="password" id="mgr_pw"> 
+			   	<input type="password" id="mgr_pw">
+			   	 
 			   	<label for="mgr_pw_confirm" class="width50">비밀번호 확인 : </label>
-			   	<input type="password" id="mgr_pw_confirm" > 
+			   	<input type="password" id="mgr_pw_confirm" >
+			   	 
 			   	<label for="message" class="width50"> 확인 체크 </label>
-			   	<label for="mgr_pw_confirm" class="width50">
+			   	<label for="mgr_pw_confirm" class="">
 			   		<span id='message'></span>
 			   	</label>
 		   	</li>
 		    <li class="list-group-item">
-		    <label for="Mgr_name" class="width50">매니저 이름 : </label>	
-		    	<input type="text" id="Mgr_name" name="Mgr_name" value="<%=managerSelectOneDTO.getMgr_name() %>" readonly>
+		    <label for="mgr_name" class="width50">매니저 이름 : </label>	
+		    	<input type="text" id="mgr_name" name="mgr_name" value="<%=managerSelectOneDTO.getMgr_name() %>" readonly>
 		    </li>
 		    <li class="list-group-item">
-		    	<label for="Mgr_loc" class="width50">매니저 지역구:</label>
-		    	<input type="text" id="Mgr_loc" name="Mgr_loc" class="nonborder" value="<%=ProjectUtil.locationChange(managerSelectOneDTO.getMgr_loc()) %>" readonly >
+		    	<label for="mgr_loc" class="width50">매니저 지역구:</label>
+		    	<input type="text" id="mgr_loc" name="mgr_loc" class="nonborder" value="<%=ProjectUtil.locationChange(managerSelectOneDTO.getMgr_loc()) %>" readonly >
 		    </li>
 		    <li class="list-group-item">
-		    	<label for="Mgr_cell" class="width50">매니저 휴대전화번호:</label>
-		    	<input type="text" id="Mgr_cell" name="Mgr_cell"  value="<%=managerSelectOneDTO.getMgr_cell()%>" >
+		    	<label for="mgr_cell" class="width50">매니저 휴대전화번호:</label>
+		    	<input type="text" id="mgr_cell" name="mgr_cell"  value="<%=managerSelectOneDTO.getMgr_cell()%>" >
 		    </li>
 		    <li class="list-group-item">
-		    	<label for="Mgr_auth" class="width50">매니저 권한:</label>
-		    	<input type="text" id="Mgr_auth" name="Mgr_auth" class="nonborder" value="<%=ProjectUtil.managerLevel(managerSelectOneDTO.getMgr_auth()) %>" readonly>
+		    	<label for="mgr_auth" class="width50">매니저 권한:</label>
+		    	<input type="text" id="mgr_auth" name="mgr_auth" class="nonborder" value="<%=ProjectUtil.managerLevel(managerSelectOneDTO.getMgr_auth()) %>" readonly>
 		    </li>
 		    <li class="list-group-item">
-		    	<label for="Mgr_del" class="width50">입사일자:</label>
-		    	<input type="text" id="Mgr_del" name="Mgr_del" class="nonborder" value="<%=ProjectUtil.outputdataValue(managerSelectOneDTO.getMgr_joinDate()) %>" readonly>
-	  			<input type="hidden" name="index" value="<%=managerSelectOneDTO.getMgr_joinDate()%>">
-		    </li>
-		    <%-- <li class="list-group-item">
-		    	<label for="Mgr_del" class="width50">퇴사일자:</label>
-		    	<input type="text" id="Mgr_del" name="MGR_DELDATE" value="<%=ProjectUtil.outputdataValue(managerSelectOneDTO.getMgr_delDate()) %>" readonly>
-	  			<input type="hidden" name="index" value="<%=managerSelectOneDTO.getMgr_delDate() %>">
+		    	<label for="mgr_del" class="width50">입사일자:</label>
+		    	<input type="text" id="mgr_joindate" name="mgr_joindate" class="nonborder" value="<%=ProjectUtil.outputdataValue(managerSelectOneDTO.getMgr_joinDate()) %>" readonly>
 		    </li>
 		    <li class="list-group-item">
-		    	<label for="Mgr_del" class="width50">탈퇴여부:</label>
-		    	<input type="text" id="Mgr_del" name="Mgr_del" value="<%=ProjectUtil.managerStatus(managerSelectOneDTO.getMgr_del())%>" readonly>
-	  			<input type="hidden" name="index" value="<%=managerSelectOneDTO.getMgr_index() %>">
-		    </li> --%>
-		    <li class="list-group-item">
-		    	<button type="button" class="modify_btn">modify 수정완료 </button>
-		    	<button type="button" class="manageMemberList_btn">직원관리 리스트로 이동  </button>
+		    	<button type="button" class="modify_btn"> modify 수정완료 </button>
+		    	<button type="button" class="redirMain_btn"> 메인페이지로 이동  </button>
 		    </li>
 		  </ul>
+		</form>
 	  </div>
 	  
 	</div><!-- container  -->
 
 	<div>
-		<form action="<%=request.getContextPath() %>/showMgrMemberDetail" id="SelectForm" method="get">
-			<input type="hidden"  id="Status_Selector" name="status" value=""><%-- 스테이터스가  jquery에 의해서 입력이 된다. --%>
-			<input type="hidden"  id="mgr_indxe_dto" name="index" value="">
-			<%--<input type="hidden"  id="st3" name="mrg_id" value=""> --%>
-		</form>
+	
 	
 	</div>
 		<%--
@@ -110,34 +99,80 @@ ManagerMemberDto managerSelectOneDTO = (ManagerMemberDto)request.getAttribute("r
 	
 	<script type="text/javascript">
 		$(document).ready(function(){
+			
+			
 
-
+			
 			$(".modify_btn").click(function(){
-				$("#Status_Selector").attr("value","modify");
-				$("#mgr_indxe_dto").attr("value", "<%=managerSelectOneDTO.getMgr_index() %>");
 				
-				//console.log($("#Status_Selector").attr("value"));
-				//console.log($("#mgr_indxe_dto").attr("value"));
-				$("#SelectForm").attr("action", "<%=request.getContextPath() %>/mgrInfoModify");
+				alert("수정 버튼 클릭됨.  ");
+
 				
-				//("#Mgr_index").removeAttr("readonly");
+					// $("#SelectForm").attr("action", "<%=request.getContextPath() %>/managerProfileChange?commend=modify");
+					// $("#SelectForm").submit(); 
 				
-				$("#SelectForm").submit();
+				
+				//입력된 값을 셋팅한다.
+				var mgr_index1		= $(".mgr_index").vla();
+				var mgr_id1			= $(".mgr_id").vla();
+				var mgr_name1		= $(".mgr_name").vla();
+				var mgr_loc1		= $(".mgr_loc").vla();
+				var mgr_cell1		= $(".mgr_cell").vla();
+				var mgr_auth1		= $(".mgr_auth").vla();
+				var mgr_joindate1	= $(".mgr_joindate").vla();
+
+				console.log(mgr_index1);
+				console.log(mgr_id1);
+				console.log(mgr_name1);
+				console.log(mgr_loc1);
+				console.log(mgr_cell1);
+				console.log(mgr_auth1);
+				console.log(mgr_joindate1);
+				
+				
+				//입력된 값들을 바탕으로 ajax를 실행한다. 
+				$.ajax({
+					url:'<%=request.getContextPath() %>managerProfileChange?ManageProfileCommnd=modify',
+					type:"post",
+					datatype:"json",
+					data:{
+						mgr_index:mgr_index1,
+						mgr_id:mgr_id1,
+						mgr_name:mgr_name1,
+						mgr_loc:mgr_loc1,
+						mgr_cell:mgr_cell1,
+						mgr_auth:mgr_auth1,
+						mgr_joindate:mgr_joindate1,
+					},
+					datatype:"text",
+					success: function ( data ) {
+						console.log("통신성공");
+						console.log(data);
+						//location.replace("<%=request.getContextPath() %>"+data);
+						if(data == "true"){
+							alert("수정에 성공하였습니다. ");
+							location.href="<%=request.getContextPath() %>/managerProfileChange?ManageProfileCommnd=main";
+						}else{
+							alert("로그인실패");
+						}
+						//location.href(data);
+					},
+					error: function () {
+						alert("통신 실패");
+					}
+				});//end ajax
+				
+				
 			});
 			
-			$(".manageMemberList_btn").click(function(){
-				$("#Status_Selector").attr("value","");//status NULL 을 만들고자함.
-				$("#Status_Selector").attr("name","");//status NULL 을 만들고자함.
-				$("#mgr_indxe_dto").attr("value","");	//기존에 입력된 인덱스번호 초기화.
-				$("#mgr_indxe_dto").attr("name","");	//기존에 입력된 인덱스번호 초기화.
-				
-				$("#mgr_indxe_dto").attr("value", "<%=managerSelectOneDTO.getMgr_index() %>");
-				
-				//console.log($("#Status_Selector").attr("value"));
-				//console.log($("#mgr_indxe_dto").attr("value"));
-				$("#SelectForm").attr("action", "<%=request.getContextPath() %>/showMrgMember");
-				
-				//("#Mgr_index").removeAttr("readonly");
+			$(".redirMain_btn").click(function(){
+				alert("메인페이지로 이동 버튼 ");
+				$("#SelectForm").attr("action", "<%=request.getContextPath() %>/managerProfileChange?ManageProfileCommnd=main");
+				//("#mgr_index").removeAttr("readonly");
+				$("#mgr_pw")
+				if($("#mgr_pw").val()=="" || $("#mgr_pw_confirm").val()=="" ){
+					$("mgr_pw").removeAttr("name");
+				}
 				
 				$("#SelectForm").submit();
 			});

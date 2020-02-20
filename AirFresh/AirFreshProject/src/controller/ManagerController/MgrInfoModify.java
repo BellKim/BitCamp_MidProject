@@ -16,12 +16,13 @@ import singleton.singleton;
 public class MgrInfoModify extends HttpServlet{
 
 	@Override
-	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {		System.out.println("mgrInfoModify service 진입.");
+	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {		
+		System.out.println("mgrInfoModify service 진입.");
 		singleton si = singleton.getInstance();
 		
 		String status = req.getParameter("status");
-		
-		
+
+
 		String receiveIndexNo = req.getParameter("index");
 		System.out.println("리시프 인덱스 넘버 "+receiveIndexNo);
 		ManagerMemberDto managerdto = si.managerMember.receiveManagerMemberSelect(receiveIndexNo);

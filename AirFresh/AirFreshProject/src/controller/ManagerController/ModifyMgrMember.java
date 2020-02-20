@@ -21,9 +21,7 @@ public class ModifyMgrMember extends HttpServlet {
 		System.out.println("modifymgrmember in the service now!! ");
 		String command = req.getParameter("command");
 		System.out.println("command  = " +  command);
-/*		command list  submit 회원정보를 수정한다.  
- 
- */
+/*		command list  submit 회원정보를 수정한다.  */
 		//들어온 파라미터를 수집하여 dto 에 넣는다.  
 		
 		
@@ -57,9 +55,9 @@ public class ModifyMgrMember extends HttpServlet {
 		}else if(command.equals("ModifyProfile")) {
 			singleton si = singleton.getInstance();
 			HttpSession session = req.getSession();
-			
-			
-			 ManagerMemberDto managerMemberSession = (ManagerMemberDto) session.getAttribute("adminLogin");
+
+			 ManagerMemberDto managerMemberSession = 
+					 		(ManagerMemberDto) session.getAttribute("adminLogin");
 //			 System.out.println("메니저 맴버 :::: managerMemberSession = " + managerMemberSession);
 			String index = Integer.toString(managerMemberSession.getMgr_index());
 			
