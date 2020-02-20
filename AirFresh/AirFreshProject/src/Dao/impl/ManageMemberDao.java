@@ -358,6 +358,68 @@ public class ManageMemberDao implements ManageMemberDaoInterface {
 		
 		return count>0?true:false;
 	}//end of managerMemberUpdate
+
+	@Override
+	public boolean privateMemberInfoChange(ManagerMemberDto ManagerMemberdto) {
+		
+		System.out.println("ManagerMemberdto 의 값 들어온거 확인 + = " + ManagerMemberdto);
+		
+		
+		String sql = " UPDATE managerMember " + 
+					" SET ";
+				
+					if((ManagerMemberdto.getMgr_pw()==null) || (ManagerMemberdto.getMgr_pw().equals(""))){
+					
+					}else {
+						sql +="mgr_pw=?, ";
+					}
+					sql+=" mgr_name=?, "+  
+					" mgr_cell=? " + 
+					" WHERE " + 
+					" mgr_index=? ";
+	
+		System.out.println( sql);
+		
+		System.out.println(" 1/6 privateMemberInfoChange success ");
+		Connection conn = null;
+		PreparedStatement psmt = null;
+		System.out.println( " managerMemberUpdate sql = " + sql );
+		System.out.println(" 2/6 privateMemberInfoChange success ");
+		int count = 0;
+
+		
+		try {
+			System.out.println(" 3/6 privateMemberInfoChange success ");
+			conn = DBConnection.getConnection();
+			psmt = conn.prepareStatement(sql);
+			System.out.println(" 4/6 privateMemberInfoChange success ");
+			System.out.println("맴버디티오 네임 값" + ManagerMemberdto.getMgr_name());
+			if((ManagerMemberdto.getMgr_pw()==null) || (ManagerMemberdto.getMgr_pw().equals(""))){
+				psmt.setString(1, ManagerMemberdto.getMgr_name());
+				psmt.setString(2, ManagerMemberdto.getMgr_cell());
+				psmt.setInt(3, ManagerMemberdto.getMgr_index());
+			}else {
+				psmt.setString(1, ManagerMemberdto.getMgr_pw());
+				psmt.setString(2, ManagerMemberdto.getMgr_name());
+				psmt.setString(3, ManagerMemberdto.getMgr_cell());
+				psmt.setInt(4, ManagerMemberdto.getMgr_index());
+			}
+			
+
+			System.out.println(" 5/6 privateMemberInfoChange success ");
+			
+			count = psmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			System.out.println(" privateMemberInfoChange  DB FAIL ");
+			e.printStackTrace();
+		}finally {
+			System.out.println(" 6/6 privateMemberInfoChange DBCLOSE ");
+			DBClose.close(psmt, conn, null);
+		}
+		
+		return count>0?true:false;
+	}// end of privateMemberInfoChange()
 	
 	
 	

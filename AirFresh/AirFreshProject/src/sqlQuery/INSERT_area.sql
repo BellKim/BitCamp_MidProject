@@ -23,6 +23,28 @@ values (managerMember_SEQ.NEXTVAL, 3, '456', '456', '김공사', 1, 01012341234,
 SELECT * FROM managerMember;
 
 
+UPDATE managerMember
+SET
+mgr_id='qwe',
+mgr_pw='qwe'
+WHERE
+mgr_index=60000;
+
+
+
+
+UPDATE managerMember
+SET
+mgr_id='k_admin',
+mgr_pw='1234'
+WHERE
+mgr_index=60001;
+
+
+UPDATE managerMember  
+SET mgr_name=?, 
+mgr_cell=?, 
+WHERE mgr_index=?;
 
 
 ----------------------------------------------------------------------------------------------------------------------

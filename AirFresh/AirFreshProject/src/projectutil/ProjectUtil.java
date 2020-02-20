@@ -26,6 +26,21 @@ public class ProjectUtil {
 		return sloc[loc];
 	}
 	
+	//근무지 숫자를 넣으면 그에 해당하는 주소로 변환해주는 함수
+	public static int locationChange(String loc) {
+		String[] sloc = {"error","강남구","성동구","중랑구","기타"};
+		
+		for(int i = 0 ; i < sloc.length; i++) {
+			if(loc.equals(sloc[i])) {
+				return i;
+			}
+		}
+		return -1;
+	}//end of locationchange()
+	
+	
+	
+	
 	//DB에서 받아온 Date타입의 String을 2020/02/13 형식으로 바꾸어 변환해주는 함수 
 	public static String ChangeDate(String date) {
 		date = date.replace("-", "/");

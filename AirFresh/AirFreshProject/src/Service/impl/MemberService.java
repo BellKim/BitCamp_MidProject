@@ -62,6 +62,7 @@ public class MemberService implements MemberServiceInterface{
 		@Override
 		public int getMemLength() {
 			return dao.getMemLength();
+			
 		}
 
 }

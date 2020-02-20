@@ -22,8 +22,24 @@ SELECT * FROM MANAGERMEMBER  WHERE mgr_index=60005
 update managerMember set mgr_del=1 where mgr_index=60005;
 
      
-     
+SELECT *
+FROM managerMember
 
+update
+
+
+
+비밀번호
+이름
+휴대전화
+
+UPDATE managerMember
+SET
+mgr_pw='123123',
+mgr_name='나최고',
+mgr_cell='01012341234',
+WHERE
+mgr_index=60000;
 
 
 

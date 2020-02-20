@@ -18,5 +18,7 @@ public interface ManageMemberDaoInterface {
 	
 	public boolean managerMemberUpdate(ManagerMemberDto ManagerMemberDto);
 	
+	public boolean privateMemberInfoChange(ManagerMemberDto ManagerMemberdto);
+	
 
 }//end ManageMemberDaoInterface class;
