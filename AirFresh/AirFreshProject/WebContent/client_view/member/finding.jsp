@@ -2,11 +2,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
+
 MemberDto mem = (MemberDto)session.getAttribute("login");
 String command = request.getParameter("command");
-String str = request.getParameter("isS");
-String str1 = request.getParameter("id");	// FindID(PW)
-String str2 = request.getParameter("pw");	// Find(ID)PW
+System.out.println("command:" + command);
 %>     
 <!DOCTYPE html>
 <html>
@@ -15,8 +14,10 @@ String str2 = request.getParameter("pw");	// Find(ID)PW
 <title>Insert title here</title>
 </head>
 <body>
+
 <%
 if(command.equals("register")){
+	String str = request.getParameter("isS");	
 	if(str.equals("true")) {
 	%>
 		<script type="text/javascript">
@@ -37,6 +38,7 @@ if(command.equals("register")){
 
 <%
 if(command.equals("update")){
+	String str = request.getParameter("isS");	
 	if(str.equals("true")){
 	%>
 		<script type="text/javascript">	
@@ -57,6 +59,7 @@ if(command.equals("update")){
 
 <%
 if(command.equals("delete")){
+	String str = request.getParameter("isS");	
 	if(str.equals("true")){
 	%>	
 		<script type="text/javascript">
@@ -74,37 +77,41 @@ if(command.equals("delete")){
 	}
 }
 %>	
-				<!-- ↓ 수정요망 -->
+ 				
 <%
-if(command.equals("findi")){
-	if(str1 != null && !str1.equals("")){	
+if(command.equals("findi")){	
+	String str1 = request.getParameter("id");	// FindID(PW)
+	System.out.println("str1:" + str1);
+	if(str1 != null && !str1.equals("")){
 	%>
 		<script type="text/javascript">
-		alert("가입하신 아이디는 " + str1 + "입니다.");
+		alert("가입하신 아이디는 " + '<%=str1 %>' + "입니다.");
 		location.href = "<%=request.getContextPath() %>/login?command=login";
 		</script>		
 	<%
-	}else{		//  if(str1 == null || str1.equals(""))
+	}else if(str1 == null || str1.equals("")){
 	%>
 		<script type="text/javascript">
 		alert("찾으시는 아이디가 없습니다.");
 		location.href = "<%=request.getContextPath() %>/findidpw?command=searchidpw";
 		</script>
 	<% 
-	}
+	}	
 }	
-	%>
+%>
 	
 <%
-if(command.equals("findp")){
-	if(str2 != null && !str2.equals("")){	
+if(command.equals("findp")){	
+	String str2 = request.getParameter("pw");	// Find(ID)PW
+	System.out.println("str2:" + str2);
+	if(str2 != null && !str2.equals("")){
 	%>
 		<script type="text/javascript">
-		alert("귀하의 비밀번호는 " + str2 + "입니다.");
+		alert("귀하의 비밀번호는 " + '<%=str2%>' + "입니다.");
 		location.href = "<%=request.getContextPath() %>/login?command=login";
 		</script>
 	<%
-	}else{		//  if(str2 == null || str2.equals(""))
+	}else if(str2 == null || str2.equals("")){
 	%>
 		<script type="text/javascript">
 		alert("가입하신 내역이 없거나 잘못 입력하셨습니다");
