@@ -109,9 +109,16 @@ public class OrderReviewDao implements OrderReviewDaoInterface {
 	
 	
 	 public boolean writeOrderReview(OrderReviewDto dto) { 
-		 String sql = " INSERT INTO orderReview ( RE_INDEX, MEM_ID, PUR_INDEX, INS_INDEX, WDATE, ORDER_RE_TITLE, ORDER_RE_CONTENT, "
-		 		+ "  ORDER_RE_IMG_PATH, READCOUNT, RATING, RE_AUTH ) VALUES "
-		 		+ " ( orderReview_SEQ.NEXTVAL, ?, ?, null, SYSDATE, ?, ?, ?, 0, ? , 0 ) "; 
+		/*
+		 * String sql =
+		 * " INSERT orderReview ( RE_INDEX, MEM_ID, PUR_INDEX, INS_INDEX, WDATE, ORDER_RE_TITLE, ORDER_RE_CONTENT, "
+		 * + "  ORDER_RE_IMG_PATH, READCOUNT, RATING, RE_AUTH ) VALUES " +
+		 * " ( orderReview_SEQ.NEXTVAL, ?, ?, null, SYSDATE, ?, ?, ?, 0, ? , 0 ) ";
+		 */
+		 String sql = " UPDATE orderReview "
+		 			+ " SET WDATE=SYSDATE, ORDER_RE_TITLE=?, ORDER_RE_CONTENT=?, "
+			 		+ " ORDER_RE_IMG_PATH=?, READCOUNT=0, RATING=?, RE_AUTH=0 "; 
+			 
 		 
 		 Connection conn = null;
 		 PreparedStatement psmt = null;
@@ -123,12 +130,17 @@ public class OrderReviewDao implements OrderReviewDaoInterface {
 		 	 psmt = conn.prepareStatement(sql); 
 		 	 System.out.println("2/6 writeOrderReview success");
 		 	 
-		 	 psmt.setString(1, dto.getMem_id());
-		 	 psmt.setInt(2, dto.getPur_index());
-		 	 psmt.setString(3, dto.getOrder_title()); 
-		 	 psmt.setString(4, dto.getOrder_content());
-		 	 psmt.setString(5, dto.getOrder_img_path());
-		 	 psmt.setInt(6, dto.getRating());
+		 	 psmt.setString(1, dto.getOrder_title());
+		 	 psmt.setString(2, dto.getOrder_content());
+		 	 psmt.setString(3, dto.getOrder_img_path());
+		 	 psmt.setInt(4, dto.getRating());
+		 	 
+			/*
+			 * psmt.setString(1, dto.getMem_id()); psmt.setInt(2, dto.getPur_index());
+			 * psmt.setString(3, dto.getOrder_title()); psmt.setString(4,
+			 * dto.getOrder_content()); psmt.setString(5, dto.getOrder_img_path());
+			 * psmt.setInt(6, dto.getRating());
+			 */
 		 	 
 		 	 System.out.println("sql: "+sql);
 		 	 
