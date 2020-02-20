@@ -1,3 +1,4 @@
+<%@page import="Dto.ModelReviewPurDto"%>
 <%@page import="Dto.RentalDetailDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -8,16 +9,16 @@
 
 <%
 	MemberDto mem = (MemberDto)session.getAttribute("login");
-	//String index = request.getAttribute("index")==null?"":(String)request.getAttribute("index");
-	RentalDetailDto dto = (RentalDetailDto) request.getAttribute("dto");
+	ModelReviewPurDto dto = (ModelReviewPurDto) request.getAttribute("dto");
 	String pur_date = dto.getPur_date().substring(0, 10);
 	
 	System.out.println(dto.toString());
+	String savePath = request.getServletContext().getRealPath("/reviewupload");
 %>
 
 <div class="container" style="margin-bottom: 100px;">
 	<h1 class="mt-4 mb-3">
-		설치리뷰작성<small>----</small>
+		리뷰수정<small>----</small>
 	</h1>
 
 	<ol class="breadcrumb">
@@ -26,9 +27,10 @@
 	</ol>
 
 	<hr>
-	<form action="<%=request.getContextPath()%>/addReview" id="frm" method="post" enctype="multipart/form-data">
+	<form action="<%=request.getContextPath()%>/upReview" id="frm" method="post" enctype="multipart/form-data">
+		<input type="hidden" name="re_index" value="<%= dto.getRe_index()%>">
 		<input type="hidden" name="pur_index" value="<%=dto.getPur_index()%>">
-		<input type="hidden" name="mem_id" value="<%=mem.getMem_id()%>">
+		<input type="hidden" name="mem_id" value="<%=dto.getMem_id()%>">
 		<div class="form-group">
 			<label class="col-form-label" for="inputDefault">구매상품</label>
 			<label class="col-form-label" for="inputDefault" style="margin-left: 70%;">구매일</label>
@@ -54,7 +56,7 @@
 				<div style="width: 100px; float: left; margin-right: 5px;"></div>
 				<div style="width: 70%; float: left;">
 					<input type="text" class="form-control" id="inputDefault"
-						name="title">
+						name="title" value="<%=dto.getOrder_re_title() %>">
 				</div>
 				<div id="star_rating"
 					style="margin-left: 50px; width: 20%; float: left">
@@ -79,14 +81,37 @@
 		<div class="form-group" style="clear: both;">
 			<label for="exampleTextarea">후기내용</label>
 			<textarea class="form-control" id="exampleTextarea" rows="10"
-				cols="50" name="content"></textarea>
+				cols="50" name="content"><%=dto.getOrder_re_content() %></textarea>
 		</div>
+		<div class="form-group">
+		<p class="card-text">
+			<%
+				if (dto.getOrder_re_img_path() != null) {
+					int idx = dto.getOrder_re_img_path().lastIndexOf(".");
+					String str =dto.getOrder_re_img_path().substring(idx + 1);
+
+					String m_fileFullPath = savePath + "\\" + dto.getOrder_re_img_path();
+					System.out.println(m_fileFullPath);
+					if (str.equals("png") || str.equals("PNG") || str.equals("JPG") || str.equals("jpg")
+							|| str.equals("gif") || str.equals("GIF")) {
+			%>
+				<div style="width: 100px;height: 100px;">
+				<img src="http://localhost:8090/AirFreshProject/reviewupload/<%=dto.getOrder_re_img_path()%>" width="100%">
+				<input type="hidden" name="oldfile" value="<%= dto.getOrder_re_img_path()%>">
+				</div>
+			<%
+				}
+
+				}
+			%>
+			</p>
+			</div>
 		<div class="form-group">
 			<input type="file" class="form-control-file" id="exampleInputFile"
 				aria-describedby="fileHelp" name="filePath">
 		</div>
 		<div align="center">
-			<button type="button" id="btn" class="btn btn-primary">글쓰기</button>
+			<button type="button" id="btn" class="btn btn-primary">수정하기</button>
 		</div>
 		<br>
 		<br>
@@ -121,7 +146,7 @@
 													alert("별점을 선택해주세요");
 
 												} else {
-													alert("리뷰가 작성되었습니다.");
+													alert("리뷰가 수정되었습니다.");
 													$("#frm").submit();
 												}
 											});

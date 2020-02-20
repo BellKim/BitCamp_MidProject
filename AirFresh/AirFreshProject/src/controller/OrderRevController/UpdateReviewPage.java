@@ -12,8 +12,8 @@ import Dto.ModelReviewPurDto;
 import projectutil.ProjectUtil;
 import singleton.singleton;
 
-@WebServlet("/reviewDetail")
-public class ReviewDetail extends HttpServlet {
+@WebServlet("/updateReviewPage")
+public class UpdateReviewPage extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -25,19 +25,18 @@ public class ReviewDetail extends HttpServlet {
 		this.process(req, resp);
 	}
 
-	public void process(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		System.out.println("reviewDetail 도착");
+	public void process(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException  {
+		System.out.println("updateReview 도착");
 		req.setCharacterEncoding("utf-8");
 		
 		String seq = req.getParameter("seq");
+		System.out.println("수정할 index: "+seq);
 		
 		int re_index = Integer.parseInt(seq);
-		System.out.println("넘어온 리뷰 index: "+re_index);
 		singleton s = singleton.getInstance();
-		s.orsi.updateReadCount(re_index);
+		
 		ModelReviewPurDto dto = s.orsi.getDetailReview(re_index);
-		System.out.println("review detail dto : "+dto.toString());
 		req.setAttribute("dto", dto);
-		ProjectUtil.forward("./client_view/review/reviewdetail.jsp", req, resp);
+		ProjectUtil.forward("./client_view/review/updatereview.jsp", req, resp);
 	}
 }

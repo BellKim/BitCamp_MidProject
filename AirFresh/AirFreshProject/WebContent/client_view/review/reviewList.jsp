@@ -23,16 +23,20 @@
 	
 		<table class="table table-hover">
 				<col width="70">
-				<col width="400">
+				<col width="200">
+				<col width="250">
 				<col width="120">
 				<col width="100">
+				<col width="70">
 				<col width="70">
 				<thead>
 					<tr align="center">
 						<th scope="col">번호</th>
+						<th scope="col">상품명</th>
 						<th scope="col">제목</th>
 						<th scope="col">작성일</th>
 						<th scope="col">작성자</th>
+						<th scope="col">별점</th>
 						<th scope="col">조회수</th>
 					</tr>
 				</thead>
@@ -42,25 +46,28 @@
 						if (list.size() == 0 || list == null) {
 					%>
 					<tr align="center">
-						<th colspan="5">작성된 리뷰가없습니다.</th>
+						<th colspan="7">작성된 리뷰가없습니다.</th>
 					</tr>
 
 					<%
 						} else {
 							for (int i = 0; i < list.size(); i++) {
 								ModelReviewPurDto dto = list.get(i);
-								
+								if(dto.getRe_auth()==0){
 					%>
 					<tr align="center" onclick="location.href='<%= request.getContextPath() %>/reviewDetail?seq=<%=dto.getRe_index() %>'"  style="cursor:pointer;">
 						<th><%= i+1 %></th>
+						<td><%= dto.getPrd_name() %></td>
 						<td align="left">
 						<a href="#"><%=dto.getOrder_re_title()%></a>
 						</td>
 						<td><%=dto.getWdate().substring(0, 10) %></td>
 						<td><%=dto.getMem_id()%></td>
+						<td><%=dto.getRating() %></td>
 						<td><%=dto.getReadcount() %></td>
 					</tr>
 					<%
+								}//.if
 							}//.for
 						}//.if문
 					%>

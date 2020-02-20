@@ -145,8 +145,8 @@ public class OrderReviewDao implements OrderReviewDaoInterface {
 	 }
 	 
 	 public List<ModelReviewPurDto> reviewAllList(){
-		 String sql = " select re_index,wdate, o.pur_index, o.mem_id, m.prd_name, p.pur_date,"
-		 		+ " order_re_title, order_re_content, order_re_img_path, rating, readcount "
+		 String sql = " select re_index,wdate, p.prd_index, o.pur_index, o.mem_id, m.prd_name, p.pur_date,"
+		 		+ " order_re_title, order_re_content, order_re_img_path, rating, re_auth, readcount "
 		 		+ " from modellist m, orderreview o, purchase p "
 		 		+ " where m.prd_index = p.prd_index AND o.pur_index=p.pur_index "
 		 		+ " ORDER BY wdate DESC ";
@@ -168,6 +168,7 @@ public class OrderReviewDao implements OrderReviewDaoInterface {
 				 int i = 1;
 				 ModelReviewPurDto dto = new ModelReviewPurDto(rs.getInt(i++),//re_index
 						 										rs.getString(i++),//wdate
+						 										rs.getInt(i++),//prdindex
 						 										rs.getInt(i++),//pur_index,
 						 										rs.getString(i++),//	mem_id, 
 						 										rs.getString(i++),//prd_name, 
@@ -176,6 +177,7 @@ public class OrderReviewDao implements OrderReviewDaoInterface {
 						 										rs.getString(i++),//order_re_content, 
 						 										rs.getString(i++),//order_re_img_path, 
 						 										rs.getInt(i++),//rating, 
+						 										rs.getInt(i++),//re_auth
 						 										rs.getInt(i++));//readcount)
 				 
 				 list.add(dto);
@@ -193,8 +195,8 @@ public class OrderReviewDao implements OrderReviewDaoInterface {
 	 }
 	 
 	 public ModelReviewPurDto getDetailReview(int re_index) {
-		String sql = " select re_index,wdate, o.pur_index, o.mem_id, m.prd_name, p.pur_date,"
-		 		+ " order_re_title, order_re_content, order_re_img_path, rating, readcount "
+		String sql = " select re_index,wdate, p.prd_index, o.pur_index, o.mem_id, m.prd_name, p.pur_date,"
+		 		+ " order_re_title, order_re_content, order_re_img_path, rating, re_auth, readcount "
 		 		+ " from modellist m, orderreview o, purchase p "
 		 		+ " where m.prd_index = p.prd_index AND o.pur_index=p.pur_index AND re_index=? ";
 		
@@ -217,6 +219,7 @@ public class OrderReviewDao implements OrderReviewDaoInterface {
 				 int i = 1;
 				 dto = new ModelReviewPurDto(rs.getInt(i++),//re_index
 							rs.getString(i++),//wdate
+							rs.getInt(i++),//prdindex
 							rs.getInt(i++),//pur_index,
 							rs.getString(i++),//	mem_id, 
 							rs.getString(i++),//prd_name, 
@@ -225,6 +228,7 @@ public class OrderReviewDao implements OrderReviewDaoInterface {
 							rs.getString(i++),//order_re_content, 
 							rs.getString(i++),//order_re_img_path, 
 							rs.getInt(i++),//rating, 
+							rs.getInt(i++),//re_auth
 							rs.getInt(i++));//readcount)
 			}
 			System.out.println("3/6 getDetailReview success");
@@ -269,7 +273,7 @@ public class OrderReviewDao implements OrderReviewDaoInterface {
 	
 	public boolean updateReview(int re_index, ModelReviewPurDto dto) {
 		String sql = " UPDATE orderReview "
-				+ " SET as_re_title=? , as_re_content=?, as_re_img_path=?, rating=? "
+				+ " SET order_re_title=? , order_re_content=?, order_re_img_path=?, rating=? "
 				+ " WHERE RE_INDEX=? AND MEM_ID=? ";
 		
 		Connection conn = null;

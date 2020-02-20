@@ -16,6 +16,8 @@ public class OrderReviewDto implements Serializable {
 	private int rating;
 	private int re_auth;
 	
+	public OrderReviewDto() {
+	}
 	
 	
 	public OrderReviewDto(int re_index, String mem_id, int pur_index, int ins_index, String wdate, String order_title,
@@ -34,21 +36,23 @@ public class OrderReviewDto implements Serializable {
 		this.re_auth = re_auth;
 	}
 	
-	public OrderReviewDto(int re_index, String order_title, String order_content, String order_img_path, int rating) {
+	public OrderReviewDto(String mem_id, int pur_index, String order_title, String order_content, String order_img_path,
+			int rating) {
 		super();
-		this.re_index = re_index;
+		this.mem_id = mem_id;
+		this.pur_index = pur_index;
 		this.order_title = order_title;
 		this.order_content = order_content;
 		this.order_img_path = order_img_path;
 		this.rating = rating;
 	}
 
-	
-	
-	
-	public OrderReviewDto(String mem_id, int pur_index, String order_title, String order_content, String order_img_path,
+
+
+	public OrderReviewDto(int re_index, String mem_id, int pur_index, String order_title, String order_content, String order_img_path,
 			int rating) {
 		super();
+		this.re_index=re_index;
 		this.mem_id = mem_id;
 		this.pur_index = pur_index;
 		this.order_title = order_title;
@@ -122,6 +126,15 @@ public class OrderReviewDto implements Serializable {
 	}
 	public void setRe_auth(int re_auth) {
 		this.re_auth = re_auth;
+	}
+
+
+	@Override
+	public String toString() {
+		return "OrderReviewDto [re_index=" + re_index + ", mem_id=" + mem_id + ", pur_index=" + pur_index
+				+ ", ins_index=" + ins_index + ", wdate=" + wdate + ", order_title=" + order_title + ", order_content="
+				+ order_content + ", order_img_path=" + order_img_path + ", readcount=" + readcount + ", rating="
+				+ rating + ", re_auth=" + re_auth + "]";
 	}
 	
 	

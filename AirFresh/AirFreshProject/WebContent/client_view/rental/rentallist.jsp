@@ -35,16 +35,14 @@
 		<col width="200">
 		<col width="300">
 		<col width="100">
-		<col width="100">
 		<col width="120">
 		<thead>
 			<tr align="center">
 				<th scope="col">구매일</th>
 				<th scope="col">설치희망일</th>
 				<th scope="col">상품명</th>
-				<th scope="col">구매취소</th>
-				<th scope="col">A/S신청</th>
-				<th scope="col">렌탈후기작성</th>
+				<th scope="col">구매여부</th>
+				<th scope="col">렌탈후기</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -76,13 +74,10 @@
 							<% } else { %>
 								<td>구매확정</td>
 							<%
-							}
-							%>
-							<td><a href="asAppPage?seq=<%=dto.getPur_index()%>&prd_name=<%=dto.getPrd_name()%>">A/S신청</a></td>
-							<%
+								}
 								if(dto.getReview() == 0){
 									%>
-									<td><a href="<%=request.getContextPath() %>/reviewWrite?pur=<%=dto.getPur_index() %>">작성하기</a></td>		
+									<td><a href="<%=request.getContextPath() %>/reviewWrite?pur=<%=dto.getPur_index() %>">리뷰작성</a></td>		
 									<%
 								}else{
 									%>
@@ -102,19 +97,7 @@
 								alt="" style="width: 40px; height: 40px;"> <b><%=dto.getPrd_name()%></b>
 								(<%=dto.getPrd_model_name()%>)</td>
 							<td>구매취소</td>
-							<td></td>
 							<td>구매취소</td>
-							<%--
-								if(dto.getReview() == 0){
-									
-									<td><a href="<%=request.getContextPath() %>/reviewWrite/pur=<%=dto.getPur_index() %>">작성하기</a></td>		
-									<%
-								}else{
-									%>
-									<td><a href="#">작성리뷰보기</a></td>
-									<%
-								}
-							--%>	
 						</tr>
 						<%
 						} //else if문종료
@@ -160,8 +143,7 @@
 							td.eq(2).attr('onclick','').unbind("click");
 							td.eq(3).children().removeAttr('href');
 							td.eq(3).children().text("취소완료"); 
-							td.eq(4).children().text(" "); 
-							td.eq(5).children().text(" "); 
+							td.eq(4).children().text(" ");  
 							
 							alert("정상적으로 취소되었습니다.");
 							console.log("클릭한 row의데이터:"+tr.text());

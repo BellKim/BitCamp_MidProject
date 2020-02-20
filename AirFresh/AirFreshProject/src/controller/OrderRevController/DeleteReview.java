@@ -1,6 +1,7 @@
 package controller.OrderRevController;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,32 +13,35 @@ import Dto.ModelReviewPurDto;
 import projectutil.ProjectUtil;
 import singleton.singleton;
 
-@WebServlet("/reviewDetail")
-public class ReviewDetail extends HttpServlet {
+
+@WebServlet("/deleteReview")
+public class DeleteReview extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		this.process(req, resp);
+		this.proc(req, resp);
 	}
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		this.process(req, resp);
+		this.proc(req, resp);
 	}
 
-	public void process(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		System.out.println("reviewDetail 도착");
-		req.setCharacterEncoding("utf-8");
+	public void proc(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException  {
+		System.out.println("delreview 도착");
 		
 		String seq = req.getParameter("seq");
-		
+		System.out.println("삭제할 index: "+seq);
 		int re_index = Integer.parseInt(seq);
-		System.out.println("넘어온 리뷰 index: "+re_index);
+		
 		singleton s = singleton.getInstance();
-		s.orsi.updateReadCount(re_index);
-		ModelReviewPurDto dto = s.orsi.getDetailReview(re_index);
-		System.out.println("review detail dto : "+dto.toString());
-		req.setAttribute("dto", dto);
-		ProjectUtil.forward("./client_view/review/reviewdetail.jsp", req, resp);
+		boolean is = s.orsi.delReivew(re_index);
+		
+		if(is) {
+			List<ModelReviewPurDto> list = s.orsi.reviewAllList();
+			System.out.println("listsize: "+list.size());
+			req.setAttribute("list", list);
+			ProjectUtil.forward("/client_view/review/reviewList.jsp", req, resp);
+		}
 	}
 }

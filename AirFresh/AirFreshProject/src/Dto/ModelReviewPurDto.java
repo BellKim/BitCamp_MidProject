@@ -7,6 +7,7 @@ public class ModelReviewPurDto implements Serializable {
 	
 	private int re_index;
 	private String wdate;		//리뷰작성일
+	private int prd_index;
 	private int pur_index;							
 	private String mem_id;							
 	private String prd_name;
@@ -16,6 +17,7 @@ public class ModelReviewPurDto implements Serializable {
 	private String order_re_img_path;
 	private int rating;
 	private int readcount;
+	private int re_auth;
 	
 	
 	public ModelReviewPurDto() {
@@ -23,11 +25,59 @@ public class ModelReviewPurDto implements Serializable {
 	}
 
 
-	public ModelReviewPurDto(int re_index, String wdate, int pur_index, String mem_id, String prd_name, String pur_date,
-			String order_re_title, String order_re_content, String order_re_img_path, int rating, int readcount) {
+
+
+
+
+
+	public ModelReviewPurDto(int re_index, int pur_index, String mem_id, String order_re_title, String order_re_content,
+			String order_re_img_path, int rating) {
+		super();
+		this.re_index = re_index;
+		this.pur_index = pur_index;
+		this.mem_id = mem_id;
+		this.order_re_title = order_re_title;
+		this.order_re_content = order_re_content;
+		this.order_re_img_path = order_re_img_path;
+		this.rating = rating;
+	}
+
+
+
+
+	public ModelReviewPurDto(String mem_id, String prd_name, String pur_date, String order_re_title,
+			String order_re_content, String order_re_img_path, int rating) {
+		super();
+		this.mem_id = mem_id;
+		this.prd_name = prd_name;
+		this.pur_date = pur_date;
+		this.order_re_title = order_re_title;
+		this.order_re_content = order_re_content;
+		this.order_re_img_path = order_re_img_path;
+		this.rating = rating;
+	}
+
+
+
+
+	public ModelReviewPurDto(String order_re_title, String order_re_content, String order_re_img_path, int rating) {
+		super();
+		this.order_re_title = order_re_title;
+		this.order_re_content = order_re_content;
+		this.order_re_img_path = order_re_img_path;
+		this.rating = rating;
+	}
+
+
+
+
+	public ModelReviewPurDto(int re_index, String wdate, int prd_index, int pur_index, String mem_id, String prd_name,
+			String pur_date, String order_re_title, String order_re_content, String order_re_img_path, int rating, int re_auth,
+			int readcount) {
 		super();
 		this.re_index = re_index;
 		this.wdate = wdate;
+		this.prd_index = prd_index;
 		this.pur_index = pur_index;
 		this.mem_id = mem_id;
 		this.prd_name = prd_name;
@@ -36,7 +86,22 @@ public class ModelReviewPurDto implements Serializable {
 		this.order_re_content = order_re_content;
 		this.order_re_img_path = order_re_img_path;
 		this.rating = rating;
+		this.re_auth=re_auth;
 		this.readcount = readcount;
+	}
+
+
+
+
+	public int getPrd_index() {
+		return prd_index;
+	}
+
+
+
+
+	public void setPrd_index(int prd_index) {
+		this.prd_index = prd_index;
 	}
 
 
@@ -152,13 +217,28 @@ public class ModelReviewPurDto implements Serializable {
 	}
 
 
+
+	public int getRe_auth() {
+		return re_auth;
+	}
+
+
+
+
+	public void setRe_auth(int re_auth) {
+		this.re_auth = re_auth;
+	}
+
+
+
 	@Override
 	public String toString() {
-		return "ModelReviewPurDto [re_index=" + re_index + ", wdate=" + wdate + ", pur_index=" + pur_index + ", mem_id="
-				+ mem_id + ", prd_name=" + prd_name + ", pur_date=" + pur_date + ", order_re_title=" + order_re_title
-				+ ", order_re_content=" + order_re_content + ", order_re_img_path=" + order_re_img_path + ", rating="
-				+ rating + ", readcount=" + readcount + "]";
+		return "ModelReviewPurDto [re_index=" + re_index + ", wdate=" + wdate + ", prd_index=" + prd_index
+				+ ", pur_index=" + pur_index + ", mem_id=" + mem_id + ", prd_name=" + prd_name + ", pur_date="
+				+ pur_date + ", order_re_title=" + order_re_title + ", order_re_content=" + order_re_content
+				+ ", order_re_img_path=" + order_re_img_path + ", rating=" + rating + ", readcount=" + readcount + "]";
 	}
+
 
 
 
