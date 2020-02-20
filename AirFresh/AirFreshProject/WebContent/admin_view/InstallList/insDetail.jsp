@@ -17,11 +17,10 @@
 				<li>설치인덱스: <%=dto.getIns_index() %></li>
 				<li>제품명: <%=dto.getPrd_model_name() %></li>
 				<li>설치희망일: <%=dto.getIns_date() %></li>
-				<li>회원아이디</li>
-				<li>회원이름</li>
-				<li>회원주소</li>
-				<li>회원번호</li>
-				<li>처리상태</li>
+				<li>회원아이디 : <%=dto.getMem_id() %></li>
+				<li>회원이름 : <%=dto.getMem_name() %></li>
+				<li>회원주소 : <%=dto.getMem_addr2() %></li>
+
 			</ol>
 		</div>
 		<div align="center">
