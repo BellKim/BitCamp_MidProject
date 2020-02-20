@@ -69,9 +69,9 @@
 								src="<%=request.getContextPath()%>/client_view/model/prd_detail_img/<%=dto.getPrd_model_name()%>_m1.png"
 								alt="" style="width: 40px; height: 40px;"> <b><%=dto.getPrd_name()%></b>
 								(<%=dto.getPrd_model_name()%>)</td>
-								<% if(dto.getReview()==0 ){ %>
+								<% if(dto.getIns_state()==0 ){ %>
 							<td><a href="#" class="delPer" aaa="<%=dto.getPur_index()%>">구매취소</a></td>
-							<% } else { %>
+							<% } else if(dto.getIns_state()==1){ %>
 								<td>구매확정</td>
 							<%
 								}
@@ -81,7 +81,7 @@
 									<%
 								}else{
 									%>
-									<td><a href="#">리뷰보기</a></td>
+									<td><a href="<%=request.getContextPath() %>/renReDetail?pur=<%=dto.getPur_index() %>">리뷰보기</a></td>
 									<%
 								}
 							%>	
@@ -91,13 +91,13 @@
 						%>
 						<tr align="center">
 							<td><%=dto.getPur_date()%></td>
-							<td>구매취소</td>
+							<td>취소완료</td>
 							<td style="cursor: pointer;" ><img
 								src="<%=request.getContextPath()%>/client_view/model/prd_detail_img/<%=dto.getPrd_model_name()%>_m1.png"
 								alt="" style="width: 40px; height: 40px;"> <b><%=dto.getPrd_name()%></b>
 								(<%=dto.getPrd_model_name()%>)</td>
-							<td>구매취소</td>
-							<td>구매취소</td>
+							<td>취소완료</td>
+							<td>취소완료</td>
 						</tr>
 						<%
 						} //else if문종료
@@ -139,7 +139,7 @@
 						//alert("tr:" + tr + ", td: " + td);
 
 						if(d=="true"){
-							td.eq(1).text("구매취소");
+							td.eq(1).text("취소완료");
 							td.eq(2).attr('onclick','').unbind("click");
 							td.eq(3).children().removeAttr('href');
 							td.eq(3).children().text("취소완료"); 

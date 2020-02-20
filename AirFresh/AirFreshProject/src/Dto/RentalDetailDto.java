@@ -20,12 +20,39 @@ public class RentalDetailDto implements Serializable {
 	private String ins_date;				//설치희망일
 	private String comp_date;				//설치완료일
 	private int review;						//리뷰상태
+	private int ins_state; 					//설치상태 완료1 미완료0
 	
 	public RentalDetailDto() {
 		
 	}
 
-	
+
+	public RentalDetailDto(int pur_index, int prd_price, int prd_index, String mem_id, String mem_name, String mem_cell,
+			int mem_addr1, String mem_addr2, String mem_addr3, String prd_name, String prd_model_name, String pur_date,
+			String ins_date, String comp_date, int review, int ins_state) {
+		super();
+		this.pur_index = pur_index;
+		this.prd_price = prd_price;
+		this.prd_index = prd_index;
+		this.mem_id = mem_id;
+		this.mem_name = mem_name;
+		this.mem_cell = mem_cell;
+		this.mem_addr1 = mem_addr1;
+		this.mem_addr2 = mem_addr2;
+		this.mem_addr3 = mem_addr3;
+		this.prd_name = prd_name;
+		this.prd_model_name = prd_model_name;
+		this.pur_date = pur_date;
+		this.ins_date = ins_date;
+		this.comp_date = comp_date;
+		this.review = review;
+		this.ins_state = ins_state;
+	}
+
+
+
+
+
 
 
 
@@ -53,6 +80,21 @@ public class RentalDetailDto implements Serializable {
 
 
 
+
+
+
+	public int getIns_state() {
+		return ins_state;
+	}
+
+
+
+
+
+
+	public void setIns_state(int ins_state) {
+		this.ins_state = ins_state;
+	}
 
 
 
@@ -199,15 +241,16 @@ public class RentalDetailDto implements Serializable {
 	}
 
 
-
 	@Override
 	public String toString() {
 		return "RentalDetailDto [pur_index=" + pur_index + ", prd_price=" + prd_price + ", prd_index=" + prd_index
 				+ ", mem_id=" + mem_id + ", mem_name=" + mem_name + ", mem_cell=" + mem_cell + ", mem_addr1="
 				+ mem_addr1 + ", mem_addr2=" + mem_addr2 + ", mem_addr3=" + mem_addr3 + ", prd_name=" + prd_name
 				+ ", prd_model_name=" + prd_model_name + ", pur_date=" + pur_date + ", ins_date=" + ins_date
-				+ ", comp_date=" + comp_date + ", review=" + review + "]";
+				+ ", comp_date=" + comp_date + ", review=" + review + ", ins_state=" + ins_state + "]";
 	}
+
+
 
 
 
