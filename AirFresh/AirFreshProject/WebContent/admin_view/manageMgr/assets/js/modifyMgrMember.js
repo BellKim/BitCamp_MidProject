@@ -1,11 +1,4 @@
 $(document).ready(function(){
-	//$('input[id="loc"]')[0].value	//벨류 셀렉트
-	//$('input[id="loc"]').attr("value");	//요소값 (강남구)
-	//var inputdata = $('input[id="mgr_del"]').attr("value");	//요소값 받아오기.
-	//$('input[id="mgr_del"]').attr("value", inputdata);	//요소값 적용하기
-	//var selected = $("#mgr_del").children();
-	
-
 	
 	//매니저 지역구 selectBox 자동선택 로직
 	var option_size1 = $("#loc_loc").children().length;

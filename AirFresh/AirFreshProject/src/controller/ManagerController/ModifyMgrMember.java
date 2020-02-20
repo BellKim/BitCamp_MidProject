@@ -2,11 +2,13 @@ package controller.ManagerController;
 
 import java.io.IOException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import Dto.ManagerMemberDto;
 import singleton.singleton;
@@ -19,9 +21,7 @@ public class ModifyMgrMember extends HttpServlet {
 		System.out.println("modifymgrmember in the service now!! ");
 		String command = req.getParameter("command");
 		System.out.println("command  = " +  command);
-/*		command list  submit 회원정보를 수정한다.  
- 
- */
+/*		command list  submit 회원정보를 수정한다.  */
 		//들어온 파라미터를 수집하여 dto 에 넣는다.  
 		
 		
@@ -51,10 +51,19 @@ public class ModifyMgrMember extends HttpServlet {
 			//end command
 		}else if(command.equals("success")) {
 			System.out.println("success 진입함. "  );
+
+		}else if(command.equals("ModifyProfile")) {
+			singleton si = singleton.getInstance();
+			HttpSession session = req.getSession();
+
+			 ManagerMemberDto managerMemberSession = 
+					 		(ManagerMemberDto) session.getAttribute("adminLogin");
+//			 System.out.println("메니저 맴버 :::: managerMemberSession = " + managerMemberSession);
+			String index = Integer.toString(managerMemberSession.getMgr_index());
 			
+			req.setAttribute("receiveFromIndex", si.managerMember.receiveManagerMemberSelect(index)); 
 			
-			
-			
+			forward("./admin_view/manageMgr/managerProfileChange.jsp", req, resp);
 		}
 		
 		
@@ -128,6 +137,11 @@ public class ModifyMgrMember extends HttpServlet {
 	
 	}//end of collectParameter
 	
+	public static void forward(String link, HttpServletRequest req, HttpServletResponse resp)throws ServletException, IOException {
+		RequestDispatcher dispatch = req.getRequestDispatcher(link);
+		dispatch.forward(req, resp);		
+	}
+
 	
 	
 
