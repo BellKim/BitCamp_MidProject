@@ -42,13 +42,13 @@
     	<div class="form-group">
       		<label class="col-sm-2 col-form-label">휴대폰번호</label>
       		<div class="col-sm-4">
-        		<input type="text" class="form-control" id="mem_cell" name="mem_cell" placeholder="- 없이 숫자만 입력해주세요." maxlength="12">
+        		<input type="text" class="form-control" id="mem_cell" name="mem_cell" placeholder="- 없이 숫자만 입력해주세요." maxlength="11">
      		 </div>
     	</div>
     	<div class="form-group">
       		<label class="col-sm-2 col-form-label">생년월일</label>
       		<div class="col-sm-4">
-        		<input type="text" class="form-control" id="mem_birth" name="mem_birth" placeholder="ex) 19801012">
+        		<input type="text" class="form-control" id="mem_birth" name="mem_birth" placeholder="ex) 19801012" maxlength="8">
      		 </div>
     	</div>
     	<div class="form-group">

@@ -29,7 +29,9 @@ if(command.equals("register")){
 	%>
 		<script type="text/javascript">
 		alert("가입 실패!");
-		location.href = "<%=request.getContextPath() %>/addmem?command=regi";
+		<%-- location.href = "<%=request.getContextPath() %>/addmem?command=regi"; --%>
+		history.back();
+		//history.go(-1);
 		</script>
 <%
 	}
