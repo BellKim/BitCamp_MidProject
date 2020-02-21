@@ -117,7 +117,8 @@ public class OrderReviewDao implements OrderReviewDaoInterface {
 		 */
 		 String sql = " UPDATE orderReview "
 		 			+ " SET WDATE=SYSDATE, ORDER_RE_TITLE=?, ORDER_RE_CONTENT=?, "
-			 		+ " ORDER_RE_IMG_PATH=?, READCOUNT=0, RATING=?, RE_AUTH=0 "; 
+			 		+ " ORDER_RE_IMG_PATH=?, READCOUNT=0, RATING=?, RE_AUTH=0 "
+			 		+ " WHERE re_index=? "; 
 			 
 		 
 		 Connection conn = null;
@@ -134,6 +135,7 @@ public class OrderReviewDao implements OrderReviewDaoInterface {
 		 	 psmt.setString(2, dto.getOrder_content());
 		 	 psmt.setString(3, dto.getOrder_img_path());
 		 	 psmt.setInt(4, dto.getRating());
+		 	 psmt.setInt(5, dto.getRe_index());
 		 	 
 			/*
 			 * psmt.setString(1, dto.getMem_id()); psmt.setInt(2, dto.getPur_index());
@@ -145,6 +147,8 @@ public class OrderReviewDao implements OrderReviewDaoInterface {
 		 	 System.out.println("sql: "+sql);
 		 	 
 		 	 count = psmt.executeUpdate();
+		 	 System.out.println("ordercount : "+count);
+		 	 System.out.println("ordrdto: "+dto.toString());
 		 	 System.out.println("3/6 writeOrderReview success");
 		} catch (SQLException e) {
 			 System.out.println("writeOrderReview fail");
@@ -162,7 +166,7 @@ public class OrderReviewDao implements OrderReviewDaoInterface {
 		 		+ " FROM ( select ROWNUM AS RNUM,re_index, wdate, p.prd_index,p.pur_index, o.mem_id, m.prd_name, p.pur_date, "
 		 		+ " order_re_title, order_re_content, order_re_img_path, rating , re_auth,readcount "
 		 		+ " FROM modellist m, orderreview o, purchase p "
-		 		+ " where m.prd_index = p.prd_index and p.pur_index = o.pur_index "
+		 		+ " where m.prd_index = p.prd_index and p.pur_index = o.pur_index and p.review=1 and o.re_auth=0 "
 		 		+ " ORDER BY WDATE DESC )"
 		 		+ " WHERE RNUM>=? AND RNUM<=? ";
 		 
@@ -219,7 +223,7 @@ public class OrderReviewDao implements OrderReviewDaoInterface {
 	 
 	 public int getAllReveiw() {
 			//전체 리뷰 게시물 수 구하는함수
-			String sql =  " SELECT COUNT(*) FROM orderreview ";
+			String sql =  " SELECT COUNT(*) FROM orderreview where re_auth=0 ";
 			
 			Connection conn = null;
 			PreparedStatement psmt = null;

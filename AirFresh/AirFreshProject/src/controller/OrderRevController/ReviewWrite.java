@@ -35,7 +35,7 @@ public class ReviewWrite extends HttpServlet {
 		System.out.println("purIndex = " + purIndex);
 		
 		int pur_index = Integer.parseInt(purIndex);
-		RentalDetailDto dto = s.ps.getDetailDto(pur_index);
+		RentalDetailDto dto = s.ps.getReDetail(pur_index);
 		System.out.println("넘어온 dto : "+dto.toString());
 		
 		req.setAttribute("dto", dto);

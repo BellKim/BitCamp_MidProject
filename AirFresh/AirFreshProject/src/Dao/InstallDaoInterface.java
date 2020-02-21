@@ -46,4 +46,5 @@ public interface InstallDaoInterface {
 	
 	//main 5개
 	public List<InstallDto> getMainInstallList();
+	
 }

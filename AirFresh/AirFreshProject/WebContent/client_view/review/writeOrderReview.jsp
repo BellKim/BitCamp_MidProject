@@ -27,6 +27,7 @@
 
 	<hr>
 	<form action="<%=request.getContextPath()%>/addReview" id="frm" method="post" enctype="multipart/form-data">
+		<input type="hidden" name="re_index" value="<%= dto.getRe_index()%>">
 		<input type="hidden" name="pur_index" value="<%=dto.getPur_index()%>">
 		<input type="hidden" name="mem_id" value="<%=mem.getMem_id()%>">
 		<div class="form-group">

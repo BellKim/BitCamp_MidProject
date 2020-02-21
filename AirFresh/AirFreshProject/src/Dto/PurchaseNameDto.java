@@ -3,8 +3,9 @@ package Dto;
 import java.io.Serializable;
 
 public class PurchaseNameDto implements Serializable {
-	// 구매내역 보기 Purchase + Modellist + install 합치기
+	// 구매내역 보기 Purchase + Modellist + install + orderreview합치기
 
+	private int re_index; //re_index
 	private int pur_index;
 	private String mem_id;
 	private int prd_index;
@@ -23,6 +24,27 @@ public class PurchaseNameDto implements Serializable {
 
 
 	
+
+	public PurchaseNameDto(int re_index, int pur_index, String mem_id, int prd_index, String prd_name,
+			String prd_model_name, String pur_date, String ins_date, int order_num, int review, int order_auth,
+			int ins_state) {
+		super();
+		this.re_index = re_index;
+		this.pur_index = pur_index;
+		this.mem_id = mem_id;
+		this.prd_index = prd_index;
+		this.prd_name = prd_name;
+		this.prd_model_name = prd_model_name;
+		this.pur_date = pur_date;
+		this.ins_date = ins_date;
+		this.order_num = order_num;
+		this.review = review;
+		this.order_auth = order_auth;
+		this.ins_state = ins_state;
+	}
+
+
+
 
 	public PurchaseNameDto(int pur_index, String mem_id, int prd_index, String prd_name, String prd_model_name,
 			String pur_date, String ins_date, int order_num, int review, int order_auth) {
@@ -56,6 +78,20 @@ public class PurchaseNameDto implements Serializable {
 		this.review = review;
 		this.order_auth = order_auth;
 		this.ins_state = ins_state;
+	}
+
+
+
+
+	public int getRe_index() {
+		return re_index;
+	}
+
+
+
+
+	public void setRe_index(int re_index) {
+		this.re_index = re_index;
 	}
 
 

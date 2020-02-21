@@ -61,6 +61,10 @@ public class PurchaseService implements PurchaseServiceInterface {
 	public List<PurchaseNameDto> getMainPurchaseList() {
 		return dao.getMainPurchaseList();
 	}
+	@Override
+	public RentalDetailDto getReDetail(int pur_index) {
+		return dao.getReDetail(pur_index);
+	}
 
 	
 }

@@ -28,6 +28,7 @@ public interface PurchaseServiceInterface {
 	 //구매 상세 dto 보기
 	RentalDetailDto getDetailDto(int pur_index);
 	
+	public RentalDetailDto getReDetail(int pur_index);
 	
    //model name뽑아오기
     List<PurchaseNameDto> getModelName(String mem_id);

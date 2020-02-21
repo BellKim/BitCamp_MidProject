@@ -356,7 +356,7 @@ public class InstallDao implements InstallDaoInterface, Serializable {
 				+ " m1.prd_model_name, m2.mem_id, m2.mem_name, m2.mem_addr1, m2.mem_addr2, m2.mem_addr3, m2.mem_cell, "
 				+ " p.pur_date " + " FROM INSTALL i, PURCHASE p, MODELLIST m1, MEMBERS m2"
 				+ " WHERE i.pur_index = p.pur_index  AND " + " p.prd_index = m1.prd_index  AND "
-				+ " p.mem_id = m2.mem_id AND " + " i.mgr_index =? " + " AND comp_date IS NULL "
+				+ " p.mem_id = m2.mem_id AND " + " i.mgr_index =? AND P.order_auth=0" + " AND comp_date IS NULL "
 				+ " ORDER BY i.ins_index DESC ";
 
 		Connection conn = null;
@@ -674,5 +674,7 @@ public class InstallDao implements InstallDaoInterface, Serializable {
 
 		return list;
 	}
+
+
 
 }
