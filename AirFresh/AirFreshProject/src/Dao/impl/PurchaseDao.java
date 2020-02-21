@@ -520,12 +520,12 @@ public class PurchaseDao implements PurchaseDaoInterface {
 
 	@Override
 	public RentalDetailDto getDetail(int pur_index) {
-		String sql = " select p.pur_index, m.prd_price, m.prd_index, p.mem_id, s.mem_name, s.mem_cell, s.mem_addr1, "
+		String sql = " select  r.re_index, p.pur_index, m.prd_price, m.prd_index, p.mem_id, s.mem_name, s.mem_cell, s.mem_addr1, "
 				+ " s.mem_addr2, s.mem_addr3, m.prd_name, m.prd_model_name, "
 				+ " p.pur_date, p.ins_date, i.comp_date , p.review, i.ins_state "
-				+ " from modellist m, purchase p, members s, install i "
+				+ " from modellist m, purchase p, members s, install i, orderreview r "
 				+ " where m.prd_index = p.prd_index and p.mem_id = s.mem_id and p.pur_index = i.pur_index " 
-				+ "and p.pur_index = ? ";
+				+ " and r.pur_index = p.pur_index and p.pur_index = ? ";
 		
 		Connection conn = null;
 		PreparedStatement psmt = null;
@@ -545,7 +545,8 @@ public class PurchaseDao implements PurchaseDaoInterface {
 			
 			if(rs.next()) {
 				int i = 1;
-				dto = new RentalDetailDto(rs.getInt(i++),//pur_index, 
+				dto = new RentalDetailDto(rs.getInt(i++),//re_index
+										 rs.getInt(i++),//pur_index, 
 										  rs.getInt(i++),//prd_price
 										  rs.getInt(i++),//prd_index
 										  rs.getString(i++),//mem_id, 
