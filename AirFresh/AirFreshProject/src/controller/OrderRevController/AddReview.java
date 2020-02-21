@@ -41,6 +41,7 @@ public class AddReview extends HttpServlet {
 		singleton s = singleton.getInstance();
 		
 		//form field 저장할변수
+		String sre_index="";
 		String spur_index="";
 		String prd_name="";
 		String mem_id="";
@@ -92,6 +93,8 @@ public class AddReview extends HttpServlet {
 							title = item.getString("utf-8");
 						} else if (item.getFieldName().equals("content")) {
 							content = item.getString("utf-8");
+						} else if(item.getFieldName().equals("re_index")){
+							sre_index = item.getString("utf-8");
 						}
 					}
 					else{	// fileload
@@ -111,9 +114,9 @@ public class AddReview extends HttpServlet {
 		
 		int pur_index = Integer.parseInt(spur_index);
 		int rating = Integer.parseInt(srating);
-		
+		int re_index = Integer.parseInt(sre_index);
 		OrderReviewDto dto = 
-		new OrderReviewDto(mem_id, pur_index, title, content, filePath, rating);
+		new OrderReviewDto(re_index, mem_id, pur_index, title, content, filePath, rating);
 		boolean isS = s.orsi.writeOrderReview(dto);
 
 		if(isS) {

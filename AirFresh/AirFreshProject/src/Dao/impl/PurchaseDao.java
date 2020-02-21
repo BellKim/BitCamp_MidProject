@@ -525,7 +525,7 @@ public class PurchaseDao implements PurchaseDaoInterface {
 				+ " p.pur_date, p.ins_date, i.comp_date , p.review, i.ins_state "
 				+ " from modellist m, purchase p, members s, install i "
 				+ " where m.prd_index = p.prd_index and p.mem_id = s.mem_id and p.pur_index = i.pur_index " 
-				+ "and p.pur_index = ? ";
+				+ " and p.pur_index = ? ";
 		
 		Connection conn = null;
 		PreparedStatement psmt = null;
@@ -545,7 +545,8 @@ public class PurchaseDao implements PurchaseDaoInterface {
 			
 			if(rs.next()) {
 				int i = 1;
-				dto = new RentalDetailDto(rs.getInt(i++),//pur_index, 
+				dto = new RentalDetailDto(
+										 rs.getInt(i++),//pur_index, 
 										  rs.getInt(i++),//prd_price
 										  rs.getInt(i++),//prd_index
 										  rs.getString(i++),//mem_id, 
