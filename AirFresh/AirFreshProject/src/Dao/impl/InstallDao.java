@@ -356,7 +356,7 @@ public class InstallDao implements InstallDaoInterface, Serializable {
 				+ " m1.prd_model_name, m2.mem_id, m2.mem_name, m2.mem_addr1, m2.mem_addr2, m2.mem_addr3, m2.mem_cell, "
 				+ " p.pur_date " + " FROM INSTALL i, PURCHASE p, MODELLIST m1, MEMBERS m2"
 				+ " WHERE i.pur_index = p.pur_index  AND " + " p.prd_index = m1.prd_index  AND "
-				+ " p.mem_id = m2.mem_id AND " + " i.mgr_index =? " + " AND comp_date IS NULL "
+				+ " p.mem_id = m2.mem_id AND " + " i.mgr_index =? AND P.order_auth=0" + " AND comp_date IS NULL "
 				+ " ORDER BY i.ins_index DESC ";
 
 		Connection conn = null;
@@ -676,31 +676,5 @@ public class InstallDao implements InstallDaoInterface, Serializable {
 	}
 
 
-	@Override
-	public boolean cancleUpdate(int pur_index) {
-		String sql = " DELETE FROM INSTALL "
-				+ " WHERE PUR_INDEX = ? ";
-		Connection conn = null;
-		PreparedStatement psmt = null;
-		int count = 0;
-
-		System.out.println("[cancleUpdate] sql = " + sql);
-
-		try {
-			conn = DBConnection.getConnection();
-			psmt = conn.prepareStatement(sql);
-			psmt.setInt(1, pur_index);
-
-			count = psmt.executeUpdate();
-
-		} catch (SQLException e) {
-			System.out.println("[cancleUpdate] fail");
-			e.printStackTrace();
-		} finally {
-			DBClose.close(psmt, conn, null);
-		}
-
-		return count > 0 ? true : false;
-	}
 
 }
