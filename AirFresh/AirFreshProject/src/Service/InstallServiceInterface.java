@@ -45,4 +45,6 @@ public interface InstallServiceInterface {
 	public List<InstallDto> getWaitInstallList();
 	
 	public List<InstallDto> getMainInstallList();
+	
+	public boolean cancleUpdate(int pur_index);
 }

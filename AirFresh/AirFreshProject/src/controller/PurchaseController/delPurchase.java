@@ -51,6 +51,8 @@ public class delPurchase  extends HttpServlet {
 		
 		
 		boolean command = s.ps.purchaseDelete(pur_index);
+		boolean inscommand = s.is.cancleUpdate(pur_index);
+		System.out.println("install table 삭제 : " + inscommand);
 		System.out.println("del pur command: "+command);
 		
 		if(command) {

@@ -46,4 +46,7 @@ public interface InstallDaoInterface {
 	
 	//main 5개
 	public List<InstallDto> getMainInstallList();
+	
+	//렌탈 취소시 취소 업데이트
+	public boolean cancleUpdate(int pur_index);
 }

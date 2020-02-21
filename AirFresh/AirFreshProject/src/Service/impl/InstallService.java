@@ -92,4 +92,8 @@ public class InstallService implements InstallServiceInterface,Serializable {
 	public List<InstallDto> getMainInstallList() {
 		return dao.getMainInstallList();
 	}
+	@Override
+	public boolean cancleUpdate(int pur_index) {
+		return dao.cancleUpdate(pur_index);
+	}
 }

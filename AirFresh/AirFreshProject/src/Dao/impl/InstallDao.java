@@ -675,4 +675,32 @@ public class InstallDao implements InstallDaoInterface, Serializable {
 		return list;
 	}
 
+
+	@Override
+	public boolean cancleUpdate(int pur_index) {
+		String sql = " DELETE FROM INSTALL "
+				+ " WHERE PUR_INDEX = ? ";
+		Connection conn = null;
+		PreparedStatement psmt = null;
+		int count = 0;
+
+		System.out.println("[cancleUpdate] sql = " + sql);
+
+		try {
+			conn = DBConnection.getConnection();
+			psmt = conn.prepareStatement(sql);
+			psmt.setInt(1, pur_index);
+
+			count = psmt.executeUpdate();
+
+		} catch (SQLException e) {
+			System.out.println("[cancleUpdate] fail");
+			e.printStackTrace();
+		} finally {
+			DBClose.close(psmt, conn, null);
+		}
+
+		return count > 0 ? true : false;
+	}
+
 }
