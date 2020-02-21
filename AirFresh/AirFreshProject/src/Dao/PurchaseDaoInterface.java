@@ -25,7 +25,10 @@ public interface PurchaseDaoInterface {
     
     //구매 상세 dto 보기 
 	RentalDetailDto getDetail(int pur_index);
-	    
+	
+	//리뷰 상세 dto 보기 
+	RentalDetailDto getReDetail(int pur_index);
+	
     //model name뽑아오기
     List<PurchaseNameDto> getModelName(String mem_id);
     
