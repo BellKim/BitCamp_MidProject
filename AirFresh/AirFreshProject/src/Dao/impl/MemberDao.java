@@ -210,7 +210,12 @@ public class MemberDao implements MemberDaoInterface{
 		PreparedStatement psmt = null;
 		ResultSet rs = null;
 		
-		String _id = "";
+		String _id = null;
+		
+		System.out.println("sql:" + sql);
+		
+		System.out.println("mem_name:" + mem_name);
+		System.out.println("mem_cell:" + mem_cell);
 		
 		try {
 			conn = DBConnection.getConnection();
@@ -242,6 +247,8 @@ public class MemberDao implements MemberDaoInterface{
 		ResultSet rs = null;
 		
 		String _pw = null;
+		
+		System.out.println("sql:" + sql);
 		
 		try {
 			conn = DBConnection.getConnection();
@@ -276,6 +283,7 @@ public class MemberDao implements MemberDaoInterface{
 		int count = 0;
 		
 		System.out.println("sql:" + sql);
+		System.out.println(dto.toString());
 		
 		try {
 			conn = DBConnection.getConnection();

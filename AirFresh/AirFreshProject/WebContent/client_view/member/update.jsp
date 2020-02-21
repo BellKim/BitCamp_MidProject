@@ -5,7 +5,6 @@
 <%
 MemberDto mem = (MemberDto)session.getAttribute("login");
 %> 
-<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 
 <%@ include file="./../include/header.jsp"%>
 	<div class="container" align="center">		
@@ -35,8 +34,9 @@ MemberDto mem = (MemberDto)session.getAttribute("login");
 				<tr>
 					<td>패스워드</td>
 					<td>
-						<input type="password" id="mem_pw" name="mem_pw" size="20" value="<%=mem.getMem_pw() %>" maxlength="20">
+						<input type="password" id="mem_pw" size="20" placeholder="비밀번호를 입력해주세요"maxlength="20">	<!-- value="<%=mem.getMem_pw() %>" -->
 						<p style="font-size: 8px; color: gray;">영문,숫자,특수문자 3가지를 조합한 6자리 이상으로 입력해주세요.</p>												
+						<input type="password" id="mem_pw1" name="mem_pw" placeholder="비밀번호 재확인" maxlength="20"><div style="height:30px;"><font id="chkNotice" size="2"></font></div>
 					</td>
 				</tr>				
 				<tr>
@@ -55,11 +55,11 @@ MemberDto mem = (MemberDto)session.getAttribute("login");
 				<tr>
 					<td>주소</td>
 					<td>
-						<input type="text" id="mem_addr1" name="mem_addr1" value="<%=mem.getMem_addr1() %>">
+						<input type="text" id="mem_addr1" name="mem_addr1" value="<%=mem.getMem_addr1() %>" readonly="readonly">
 						<input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"><br>
-						<input type="text" id="mem_addr2" name="mem_addr2" value="<%=mem.getMem_addr2() %>"><br>
+						<input type="text" id="mem_addr2" name="mem_addr2" value="<%=mem.getMem_addr2() %>" readonly="readonly"><br>
 						<input type="text" id="mem_addr3" name="mem_addr3" value="<%=mem.getMem_addr3() %>">
-						<input type="text" id="sample6_extraAddress" placeholder="참고항목"> <!-- dto에 만들어 불러올까열? -->
+						<input type="text" id="sample6_extraAddress" placeholder="참고항목" readonly="readonly">
 					</td>
 				</tr>
 				<tr>
@@ -78,6 +78,24 @@ MemberDto mem = (MemberDto)session.getAttribute("login");
 <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script type="text/javascript">
 $(document).ready(function () {
+	//  비번 재확인
+	$(function(){
+		$('#mem_pw').keyup(function(){
+		      $('#chkNotice').html('');
+		    });
+
+		    $('#mem_pw1').keyup(function(){
+
+		        if($('#mem_pw').val() != $('#mem_pw1').val()){
+		          $('#chkNotice').html('비밀번호 일치하지 않음<br><br>');
+		          $('#chkNotice').attr('color', '#f82a2aa3');
+		        } else{
+		          $('#chkNotice').html('비밀번호 일치함<br><br>');
+		          $('#chkNotice').attr('color', '#199894b3');
+		        }
+
+		    });
+	}); 
 		
 	$("#_btnUpdate").click(function () {
 		if( $("#mem_pw").val().trim() == "" ){
@@ -159,7 +177,7 @@ function validate() {
 	var pwReg = /^.*(?=^.{6,20}$)(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$/;
 		
 	var cell= $("#mem_cell").val();	// 핸드폰번호 정규식
-	var cellReg = /^01([0|1|6|7|8|9]?)?([0-9]{3,4})?([0-9]{4})$/;
+	var cellReg = /^01[0179][0-9]{7,8}$/;
 		
 	if(pwReg.test(pw)==false){
 		alert("패스워드는 6~20자리 이내의 영문,숫자,특수문자로만 입력해주세요.");
