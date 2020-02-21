@@ -47,7 +47,7 @@
 				%>
 				<p class="card-text">
 					<img 
-						src="http://localhost:8090/AirFreshProject/upload/<%=notice.getTempfile()%>.<%=str%>" width = "100%">
+						src="http://<%=request.getContextPath() %>:8090/AirFreshProject/upload/<%=notice.getTempfile()%>.<%=str%>" width = "100%">
 				</p>
 				<%
 					}
