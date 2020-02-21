@@ -166,7 +166,7 @@ public class OrderReviewDao implements OrderReviewDaoInterface {
 		 		+ " FROM ( select ROWNUM AS RNUM,re_index, wdate, p.prd_index,p.pur_index, o.mem_id, m.prd_name, p.pur_date, "
 		 		+ " order_re_title, order_re_content, order_re_img_path, rating , re_auth,readcount "
 		 		+ " FROM modellist m, orderreview o, purchase p "
-		 		+ " where m.prd_index = p.prd_index and p.pur_index = o.pur_index and p.review=1 "
+		 		+ " where m.prd_index = p.prd_index and p.pur_index = o.pur_index and p.review=1 and o.re_auth=0 "
 		 		+ " ORDER BY WDATE DESC )"
 		 		+ " WHERE RNUM>=? AND RNUM<=? ";
 		 
@@ -223,7 +223,7 @@ public class OrderReviewDao implements OrderReviewDaoInterface {
 	 
 	 public int getAllReveiw() {
 			//전체 리뷰 게시물 수 구하는함수
-			String sql =  " SELECT COUNT(*) FROM orderreview ";
+			String sql =  " SELECT COUNT(*) FROM orderreview where re_auth=0 ";
 			
 			Connection conn = null;
 			PreparedStatement psmt = null;

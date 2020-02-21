@@ -13,12 +13,12 @@
 
 <div class="container" style="margin-bottom: 100px;">
 	<h1 class="mt-4 mb-3">
-		제품 후기<small>----</small>
+		렌탈후기
 	</h1>
 
 	<ol class="breadcrumb">
 		<li class="breadcrumb-item"><a href="#">HOME</a></li>
-		<li class="breadcrumb-item active">마이페이지</li>
+		<li class="breadcrumb-item active">렌탈후기</li>
 	</ol>
 	<hr>
 	
