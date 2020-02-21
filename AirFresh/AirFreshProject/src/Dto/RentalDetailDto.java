@@ -5,7 +5,7 @@ import java.io.Serializable;
 public class RentalDetailDto implements Serializable {
 	// modellist, purchase, members, install , orderreivew테이블의 합친 dto
 
-	
+	private int re_index; //re_index
 	private int pur_index; // 렌탈 index
 	private int prd_price; // 제품 가격
 	private int prd_index; // 상품index
@@ -26,6 +26,32 @@ public class RentalDetailDto implements Serializable {
 	public RentalDetailDto() {
 
 	}
+
+	
+
+	public RentalDetailDto(int re_index, int pur_index, int prd_price, int prd_index, String mem_id, String mem_name,
+			String mem_cell, int mem_addr1, String mem_addr2, String mem_addr3, String prd_name, String prd_model_name,
+			String pur_date, String ins_date, String comp_date, int review, int ins_state) {
+		super();
+		this.re_index = re_index;
+		this.pur_index = pur_index;
+		this.prd_price = prd_price;
+		this.prd_index = prd_index;
+		this.mem_id = mem_id;
+		this.mem_name = mem_name;
+		this.mem_cell = mem_cell;
+		this.mem_addr1 = mem_addr1;
+		this.mem_addr2 = mem_addr2;
+		this.mem_addr3 = mem_addr3;
+		this.prd_name = prd_name;
+		this.prd_model_name = prd_model_name;
+		this.pur_date = pur_date;
+		this.ins_date = ins_date;
+		this.comp_date = comp_date;
+		this.review = review;
+		this.ins_state = ins_state;
+	}
+
 
 
 	public RentalDetailDto(int pur_index, int prd_price, int prd_index, String mem_id, String mem_name, String mem_cell,
@@ -70,6 +96,18 @@ public class RentalDetailDto implements Serializable {
 		this.comp_date = comp_date;
 		this.review = review;
 	}
+
+	
+	
+	public int getRe_index() {
+		return re_index;
+	}
+
+
+	public void setRe_index(int re_index) {
+		this.re_index = re_index;
+	}
+
 
 	public int getIns_state() {
 		return ins_state;
