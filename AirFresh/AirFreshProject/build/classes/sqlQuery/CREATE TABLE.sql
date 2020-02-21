@@ -322,7 +322,7 @@ CREATE TABLE INSTALL(
 	ins_state NUMBER(1)  NOT NULL
 
 );
-
+SELECT * FROM INSTALL;
 ALTER TABLE asApplication
     ADD CONSTRAINT FK_asApplication_mem_id_member FOREIGN KEY (mem_id)
         REFERENCES members (mem_id);

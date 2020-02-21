@@ -63,19 +63,19 @@ ManagerMemberDto managerSelectOneDTO = (ManagerMemberDto)request.getAttribute("r
 		    	<input type="text" id="mgr_name" name="mgr_name" value="<%=managerSelectOneDTO.getMgr_name() %>">
 		    </li>
 		    <li class="list-group-item">
-		    	<label for="mgr_loc" class="width50">매니저 지역구:</label>
+		    	<label for="mgr_loc" class="width50">매니저 지역구 : </label>
 		    	<input type="text" id="mgr_loc" name="mgr_loc" class="nonborder" value="<%=managerSelectOneDTO.getMgr_loc() %><%-- <%=ProjectUtil.locationChange(managerSelectOneDTO.getMgr_loc()) %> --%>" readonly >
 		    </li>
 		    <li class="list-group-item">
-		    	<label for="mgr_cell" class="width50">매니저 휴대전화번호:</label>
+		    	<label for="mgr_cell" class="width50">매니저 휴대전화번호 : </label>
 		    	<input type="text" id="mgr_cell" name="mgr_cell"  value="<%=managerSelectOneDTO.getMgr_cell()%>" >
 		    </li>
 		    <li class="list-group-item">
-		    	<label for="mgr_auth" class="width50">매니저 권한:</label>
+		    	<label for="mgr_auth" class="width50">매니저 권한 : </label>
 		    	<input type="text" id="mgr_auth" name="mgr_auth" class="nonborder" value="<%=ProjectUtil.managerLevel(managerSelectOneDTO.getMgr_auth()) %>" readonly>
 		    </li>
 		    <li class="list-group-item">
-		    	<label for="mgr_del" class="width50">입사일자:</label>
+		    	<label for="mgr_del" class="width50">입사일자 : </label>
 		    	<input type="text" id="mgr_joindate" name="mgr_joindate" class="nonborder" value="<%=ProjectUtil.outputdataValue(managerSelectOneDTO.getMgr_joinDate()) %>" readonly>
 		    </li>
 		    <li class="list-group-item">
