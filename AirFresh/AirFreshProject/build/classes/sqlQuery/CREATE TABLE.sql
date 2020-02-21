@@ -1,9 +1,7 @@
-﻿DROP TABLE orderReview 
+
+
+DROP TABLE orderReview 
 CASCADE CONSTRAINTS;
-
-SELECT * FROM managerMember;
-
-
 DROP TABLE purchase 
 CASCADE CONSTRAINTS;
 DROP TABLE modelList 
@@ -21,7 +19,7 @@ CASCADE CONSTRAINTS;
 DROP TABLE managerMember 
 CASCADE CONSTRAINTS;
 DROP TABLE INSTALL
-CASCADE CONSTRAINT;
+CASCADE CONSTRAINTS;
 
 
 
@@ -92,18 +90,36 @@ MAXVALUE 79999
 NOCYCLE;
 
 -- members Table Create SQL
+
+-- 날짜 : 2020-02-12
+-- 수정자 : 이지예 
+-- MEM_CELL 컬럼 타입 변경 : NUMBER -> VARCHAR2(12)
+
+-- 날짜 : 2020-02-17
+-- 수정자 : 이지예 
+-- MEM_IN_DATE, MEM_OUT_DATE 컬럼 추가 : DATE
+-- MEM_DELETE 컬럼추가 : NUMBER(1)
+
+-- 날짜 : 2020-02-18
+-- 수정자 : 이지예 
+-- MEM_ADDR1 컬럼 타입 변경 : NUMBER -> VARCHAR2(20)
+
 CREATE TABLE members
 (
     mem_id       VARCHAR2(50)     NOT NULL, 
     mem_pw       VARCHAR2(20)     NULL, 
     mem_name     VARCHAR2(20)     NULL, 
-    mem_cell     NUMBER(12)       NULL, 
+    mem_cell     VARCHAR2(12)       NULL, 
     mem_birth    VARCHAR2(20)     NULL, 
-    mem_addr1    NUMBER(5)      NULL, 
+    mem_addr1    VARCHAR2(20)      NULL, 
     mem_addr2    VARCHAR2(100)    NULL, 
     mem_addr3    VARCHAR2(50)     NULL, 
+    mem_in_date	 DATE			  NULL,
+    mem_out_date DATE			  NULL,
     mem_auth     NUMBER(1)        NULL, 
+    mem_delete 	 NUMBER(1)		  NULL,
     CONSTRAINT MEMBERS_PK PRIMARY KEY (mem_id)
+    
 );
  
 
@@ -145,7 +161,7 @@ CREATE TABLE modelList
 
 
 
--- members Table Create SQL
+-- purchase Table Create SQL
 
 -- 날짜 : 2020-02-07
 -- 수정자 : 박지훈 
@@ -174,11 +190,16 @@ CREATE TABLE purchase
 
 -- members Table Create SQL
 
+--작성자: 박지훈
+--날짜 : 2020- 02 - 18
+-- ins_index 추가  FK부여
+
 CREATE TABLE orderReview
 (
     re_index             NUMBER(6)         NOT NULL, 
-    mem_id               VARCHAR2(50)        NULL, 
-    pur_index            NUMBER(6)       NULL, 
+    mem_id           	 VARCHAR2(50)        NOT NULL, 
+    pur_index            NUMBER(6)         NULL,
+    ins_index			 NUMBER(6)		   NULL,
     wdate                DATE              NULL, 
     order_re_title       VARCHAR2(200)     NULL, 
     order_re_content     VARCHAR2(4000)    NULL, 
@@ -191,27 +212,26 @@ CREATE TABLE orderReview
  
 
 
+--작성자: 박수진
+--날짜 : 2020- 02 - 17
+--기능 : qnabbs 비밀글 기능을 위한 qna_secret추가
+--del -> qna_del로 컬럼명 변경
+-- qnatitle 200으로 변경
 
-
- 
-
-
- 
-
-
--- members Table Create SQL
+-- qnaBbs Table Create SQL
 CREATE TABLE qnaBbs
 (
     qna_index      NUMBER(6)         NOT NULL, 
     mem_id        VARCHAR2(50)            NULL, 
-    qna_title      VARCHAR2(20)      NULL, 
-    qna_content    VARCHAR2(20)      NULL, 
+    qna_title      VARCHAR2(200)      NULL, 
+    qna_content    VARCHAR2(4000)      NULL, 
     wdate          DATE              NULL, 
+    qna_secret	   NUMBER(1)		 NULL,
     re_content     VARCHAR2(4000)    NULL, 
     re_date        DATE              NULL, 
     readcount      NUMBER(10)        NULL, 
     depth          NUMBER(2)         NULL, 
-    del         NUMBER(1)         NULL, 
+    qna_del         NUMBER(1)         NULL, 
     CONSTRAINT QNABBS_PK PRIMARY KEY (qna_index)
 );
  
@@ -219,7 +239,11 @@ CREATE TABLE qnaBbs
 
 
 
--- members Table Create SQL
+-- noticeBbs Table Create SQL
+
+-- 날짜 : 2020-02-10
+-- 수정자 : 박수진
+-- tempfile 컬럼 추가 : VARCHAR2(100) 
 CREATE TABLE noticeBbs
 (
     noti_index       NUMBER(6)         NOT NULL, 
@@ -228,7 +252,8 @@ CREATE TABLE noticeBbs
     noti_catagory    NUMBER(1)         NULL, 
     noti_writer      VARCHAR2(20)      NULL, 
     noti_wdate       DATE              NULL, 
-    filename         VARCHAR2(100)     NULL, 
+    filename         VARCHAR2(100)     NULL,
+    tempfile		 VARCHAR2(100)	   NULL,	
     readcount        NUMBER(10)        NULL, 
     noti_del         NUMBER(1)         NULL, 
     CONSTRAINT NOTICEBBS_PK PRIMARY KEY (noti_index)
@@ -237,6 +262,10 @@ CREATE TABLE noticeBbs
 
 
 -- members Table Create SQL
+--  2020-02-18
+--	김종현
+--  mgr_delDate 맴버의 삭제 날짜를 남기기 위해서 칼럼추가. 
+--  mgr_joinDate 맴버 입사일 추가.
 CREATE TABLE managerMember
 (
     mgr_index    NUMBER(6)       NOT NULL, 
@@ -245,12 +274,14 @@ CREATE TABLE managerMember
     mgr_pw       VARCHAR2(20)    NULL, 
     mgr_name     VARCHAR2(20)    NULL, 
     mgr_loc      NUMBER(3)       NULL, 
-    mgr_cell     NUMBER(12)      NULL, 
+    mgr_cell     VARCHAR2(12)      NULL,
+    mgr_joinDate DATE			NULL,
+    mgr_delDate	 DATE			NULL,
     mgr_del      NUMBER(1)       NULL, 
     CONSTRAINT MANAGERMEMBER_PK PRIMARY KEY (mgr_index)
 );
  
-
+SELECT * FROM managerMember;
 
 
 
@@ -275,10 +306,6 @@ CREATE TABLE asReview
 --작성자: 박지훈
 --날짜 : 2020- 02 - 07
 --기능 : 설치신청을 저장하는 테이블
-
-
-
-
 
 CREATE TABLE INSTALL(
 	--제품설치 인덱스(PK)
@@ -332,15 +359,17 @@ ALTER TABLE asReview
 
 
 ALTER TABLE orderReview
-    ADD CONSTRAINT FK_orderReview_pur_index_asApp FOREIGN KEY (pur_index)
-        REFERENCES asApplication (as_index);
+    ADD CONSTRAINT FK_orderReview_pur_index_pur FOREIGN KEY (pur_index)
+        REFERENCES purchase (pur_index);
  
 
 ALTER TABLE orderReview
-    ADD CONSTRAINT FK_orderReview_mem_id_members_ FOREIGN KEY (mem_id)
+    ADD CONSTRAINT FK_orderReview_mem_id_members FOREIGN KEY (mem_id)
         REFERENCES members (mem_id);
         
-
+ALTER TABLE orderReview
+    ADD CONSTRAINT FK_orderReview_ins_index_ins FOREIGN KEY (ins_index)
+        REFERENCES install (ins_index);
 
 
 ALTER TABLE qnaBbs
