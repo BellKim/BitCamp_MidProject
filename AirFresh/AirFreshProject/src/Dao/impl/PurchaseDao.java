@@ -235,11 +235,11 @@ public class PurchaseDao implements PurchaseDaoInterface {
 	}/**/
 	@Override
 	public List<PurchaseNameDto> memPurchaseList(String mem_id) {
-		String sql = " SELECT r.re_index, p.pur_index, p.mem_id, p.prd_index, m.prd_name, m.prd_model_name,pur_date,"
+		String sql = " SELECT p.pur_index, p.mem_id, p.prd_index, m.prd_name, m.prd_model_name,pur_date,"
 				+ " p.ins_date, order_num, review, order_auth, i.ins_state "
-				+ " FROM  purchase p, modellist m, install i, orderreview r "
+				+ " FROM  purchase p, modellist m, install i "
 				+ " where p.prd_index = m.prd_index and i.pur_index = p.pur_index "
-				+ " and p.pur_index= r.pur_index and p.mem_id =? "
+				+ " and p.mem_id =? "
 				+ " ORDER BY p.PUR_DATE DESC ";
 		
 		Connection conn = null;
@@ -260,7 +260,6 @@ public class PurchaseDao implements PurchaseDaoInterface {
 			while(rs.next()) {
 				int i = 1;
 				PurchaseNameDto dto = new PurchaseNameDto(
-						rs.getInt(i++),//re_index
 						rs.getInt(i++),//pur_index, 
 						rs.getString(i++),//mem_id, 
 						rs.getInt(i++),//prd_index, 
