@@ -3,12 +3,31 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
-    <%
-    	List<ModelDto> list = (List<ModelDto>)request.getAttribute("modelList");
-    %>
 	    
 <%@ include file="./../include/header.jsp" %>
 
+  <%
+  	int totalPage = (Integer)request.getAttribute("totalPage");
+  	int nowPage = (Integer)request.getAttribute("nowPage");
+  	List<ModelDto> list = (List<ModelDto>)request.getAttribute("modelList");
+
+  %>
+  
+    <style>
+  	div.itemwrap{
+  		overflow: hidden;
+  		display: block;
+  	}
+  	div .itemwrap > .col-lg-4 {
+  		position: relative;
+	    display: inline-block;
+	    width: 350px;
+	    margin-right: 15px;
+	    vertical-align: top;
+	    margin-top: 30px;
+  	}
+  
+  </style>
 <div class = "container" style="margin-bottom: 30px;">
 	<h1 class="mt-4 mb-3">공기청정기</h1>
 
@@ -16,22 +35,16 @@
 		<li class="breadcrumb-item"><a href="<%=request.getContextPath()%>/index.jsp">Home</a></li>
 		<li class="breadcrumb-item active">렌탈하기</li>
 	</ol>
+	
+<div class="itemwrap">
 <%
 	int w = 0; //루프형변수
-	int d = list.size()/3;
-	for(int i = 0; i < d; i++){
-		for(int j=0; j< 3; j++){
-			if((j+1)%4==0||j==0){	// 4번째 이미지일때 row생성 + 
-				%>
-				<div class = "row">
-				<%
-			}
+	for(int i = 0; i < list.size(); i++){
 %>
 <div class ="col-lg-4">
 	<div class = "bs-component">
 		<div class="card mb-3">
- 			<h3 class="card-header"><%=list.get(w).getPrd_name()%></h3>
-   			<%--  <a href ="./client_view/rental/rentalDetail.jsp?seq=<%=list.get(i).getPrd_index() %>"> modelDetail --%>
+ 			<h3 class="card-header" align="center" style="font-size: 18pt;"><%=list.get(w).getPrd_name()%></h3>
    			<input type="hidden" name="command" value="detail">
    			<a href ="<%=request.getContextPath()%>/modelDetail?seq=<%=list.get(w).getPrd_index() %>&command=detail"> 
    			<img src="<%=request.getContextPath()%>/client_view/model/prd_img/<%=list.get(w).getPrd_model_name()%>.png" width="300"></a>
@@ -39,25 +52,39 @@
 	</div>
 </div>
 			<%
-			if((j+1)%3==0){
-			%>
-			</div>
-			<%
-			}//.if
 			w++;
-		}//.for j
 		if(w==list.size()) break;	
 	}//.for i
 %>
-		<!-- <div align="center" style="margin: 50px auto;">
-		<button type="button" class="btn btn-primary" style="padding: 10px 100px;"
-			onclick="moreItem()">더보기</button>
-		</div> -->
 </div>
-
+		<div class="paging" align="center" style="margin: 50px auto;">
+			<%
+				for(int i=0; i < totalPage; i++){
+					if(nowPage == i){ //현재페이지
+			%>
+					<span style="font-size: 26px;margin: 0 10px;border-bottom: 1px solid #000;"><%=i + 1 %></span>
+			<%
+				} else {
+			%>
+					<a href="<%=request.getContextPath()%>/modelist?nowPage=<%=i %>" title="<%=i+1%>페이지" style="font-size: 20px;">
+					
+					<%= i+1 %></a>
+			<%
+				}//.else
+			}//.for
+			%>
+		</div> 
+</div>
+<script>
+	<%-- function goPage(pageNum) {
+		location.href = <%=request.getContextPath()%>+"/modelist?nowPage="+pageNum;
+		
+		
+	} --%>
+</script>
 
 <!--  -->
-<%	
+<%-- <%	
 	//as버튼을 눌렀는데 구매내역이 없을때 이동했을때 창을 띄우기 위한 변수
 	int jc = request.getAttribute("jc")==null?0:(int)request.getAttribute("jc");
 
@@ -69,7 +96,8 @@
 			});		
 		</script>
 		<%
+	
 	}
-%>
+%> --%>
 <%@ include file="./../include/footer.jsp" %>
 

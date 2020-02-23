@@ -57,6 +57,15 @@ public class QnaBbsList extends HttpServlet {
 			req.setAttribute("qnalist", list);
 			ProjectUtil.forward("./client_view/board/qnalist.jsp", req, resp);
 			
+			//TODO qnapersonallist.jsp mypage.jsp
+			/*
+			 * } else if(command.contentEquals("personal")) { List<QnaBbsDto> list =
+			 * s.qbs.getQnaPaging(opt, keyword, pageNumber); int len =
+			 * s.qbs.getAllQnaLength(opt, keyword); req.setAttribute("len", len);
+			 * req.setAttribute("qnalist", list);
+			 * ProjectUtil.forward("./client_view/board/qnalist.jsp", req, resp);
+			 */
+			
 		} else if(command.contentEquals("admin")) {
 			List<QnaBbsDto> list = s.qbs.getQnaPaging(opt, keyword, pageNumber);
 			int len = s.qbs.getAllQnaLength(opt, keyword);

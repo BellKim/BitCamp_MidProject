@@ -77,9 +77,9 @@
 						</tr>			
 						<tr>
 							<th scope="row">진행상태</th>
-							<% if(dto.getComp_date()== null){ %>
+							<% if(dto.getIns_state()==0){ %>
 								<td colspan='3'>설치진행 중</td>
-							<% } else { %>
+							<% } else if(dto.getIns_state()==1) { %>
 								<td colspan='3'>설치완료</td>
 							<%
 								}
@@ -94,10 +94,15 @@
 									<a href="<%=request.getContextPath()%>/printPurchase">돌아가기</a>
 								</li>
 								<li class="btnli">
-									<% if(dto.getComp_date() != null){ %>
-										<a href="#">리뷰작성</a>										
-									<% } else { 
-										// 설치 완료되지않았을때
+									<% if( dto.getComp_date() != null && dto.getReview()==0 ){ %>
+										<a href="<%=request.getContextPath() %>/reviewWrite?pur=<%=dto.getPur_index() %>">리뷰작성</a>										
+									<% } else if(dto.getReview() ==1 ){
+									%>
+										<a href="<%=request.getContextPath() %>/renReDetail?pur=<%=dto.getPur_index() %>">리뷰보기</a>
+									<%	
+									}
+										else if(dto.getComp_date() == null && dto.getReview()==0 ) { 
+										// 설치 완료되지않았고 리뷰가 작성되지않았을때
 									%>
 										<a href="<%=request.getContextPath()%>/delPur?seq=<%= dto.getPur_index()%>&del=detail" 
 										onclick="del()">취소하기</a>

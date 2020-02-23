@@ -118,14 +118,14 @@
 				</div>
 				<div class="form-group" style="float: left">
 					<button type="button" class="btn btn-primary"
-						onclick="searchNotice()">검색</button>
+						onclick="searchqna()">검색</button>
 				</div>
 			</div>
 			<div style="clear: left"></div>
 			<div style="clear: right"></div>
 	</div>
 <script type="text/javascript">
-	function searchNotice(){
+	function searchqna(){
 		var opt = document.getElementById("opt").value;
 		var keyword = $("#keyword").val();
 		if(keyword == ""){

@@ -1,72 +1,91 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ include file="./../include/header.jsp"%>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-<div class="container" align="center">
-	<h1 class="mt-4 mb-3">회원가입</h1>
-	<div>
-		<span><span> 1단계</span> 약관동의</span>
-		<span><span>[현재] 2단계</span> 정보입력</span>
-		<span><span>3단계</span> 가입완료</span>
-	</div>
-
+<div class="container" style = "margin-bottom : 40px">
+	<h1 class="mt-4 mb-3">Air Fresh 회원가입</h1>
+<hr>
+<div class="row justify-content-center">
+<div class="col-lg-9">
+	<div class="card border-0 rounded-lg mt-9">
 	<form id="frm" onsubmit="return validate();"
 		action="<%=request.getContextPath()%>/addmem" method="post">
+		<fieldset>
 		<input type="hidden" name="command" value="addAf">
-		<table class="table table-hover">
-			<tr>
-				<td>이름</td>
-				<td><input type="text" id="mem_name" name="mem_name" size="20"
-					placeholder="이름"></td>
-			</tr>
-			<tr>
-				<td>아이디(이메일)</td>
-				<td><input type="text" id="mem_id" name="mem_id" size="20"
-					placeholder="ID@email_account.com" maxlength="50">
-					<p id="idcheck" style="margin-left: 10px; padding-top: 10px;">id
-						확인</p>
-					<button type="button" id="_btnid">id check</button></td>
-			</tr>
-			<tr>
-				<td>패스워드</td>
-				<td><input type="password" id="mem_pw" name="mem_pw" size="20"
-					placeholder="6자리 이상 입력해주세요." maxlength="20"><br> <input
-					type="password" id="mem_pw1" size="20" placeholder="비밀번호 재확인"
-					maxlength="20"> <font id="chkNotice" size="2"></font>
-					<p style="font-size: 8px; color: gray;">영문,숫자,특수문자 3가지를 조합한 6자리
-						이상으로 입력해주세요.</p></td>
-			</tr>
-			<tr>
-				<td>휴대폰번호</td>
-				<td><input type="text" id="mem_cell" name="mem_cell" size="20"
-					placeholder="- 없이 숫자만 입력해주세요." maxlength="12"></td>
-			</tr>
-			<tr>
-				<td>생년월일</td>
-				<td><input type="text" id="mem_birth" name="mem_birth"
-					size="20" placeholder="ex) 19801012"></td>
-			</tr>
-			<tr>
-				<td>주소</td>
-				<td><input type="text" id="mem_addr1" name="mem_addr1"
-					placeholder="우편번호" readonly="readonly" onclick="sample6_execDaumPostcode();"> <input type="button"
-					onclick="sample6_execDaumPostcode()" value="우편번호 찾기"><br>
-					<input type="text" id="mem_addr2" name="mem_addr2" placeholder="주소" readonly="readonly"><br>
-					<input type="text" id="mem_addr3" name="mem_addr3"
-					placeholder="상세주소"> <input type="text"
-					id="sample6_extraAddress" placeholder="참고항목" readonly="readonly"></td>
-			</tr>
-			<tr>
-				<td colspan="2" align="center"><input type="button"
-					value="회원가입" id="_btnJoin"> 
-				</td>
-			</tr>
-
-		</table>
+		
+		<div class="form-group" >
+      		<label class="col-sm-2 col-form-label">이름</label>
+      		<div class="col-sm-4">
+        		<input type="text" class="form-control" id="mem_name" name="mem_name" placeholder="이름">
+     		 </div>
+    	</div>
+    	<div class="form-group">
+      		<label class="col-sm-2 col-form-label">아이디(E-Mail)</label>
+      		<div class="col-sm-6">
+      			<div style="float:left;margin-right:10px;">
+        		<input type="text" class="form-control" id="mem_id" name="mem_id" placeholder="ID@email_account.com" maxlength="50">
+        		</div>
+        		<div style="float:left; padding-top:3px;">
+        		<button type="button" id="_btnid" class="btn btn-primary btn-sm">ID check</button>
+        		</div>
+        		<div style="clear:left;"><p id="idcheck" style="font-size:8pt; padding-top:3px;">id 확인</p></div>
+     		 </div>
+    	</div>
+    	<div class="form-group">
+      		<label class="col-sm-4 col-form-label">패스워드<small style="font-size:8pt">(영문, 숫자, 특수문자 3가지를 조합한 6자리 이상)</small></label>
+      		<div class="col-sm-4" style="margin-bottom:5px;">
+        		<input type="password" class="form-control" id="mem_pw" name="mem_pw" placeholder="6자리 이상 입력해주세요." maxlength="20">
+        	</div>
+        	<div class="col-sm-4">
+        		<input type="password" class="form-control" id="mem_pw1" name="mem_pw" placeholder="비밀번호 재확인" maxlength="20"><div style="height:30px;"><font id="chkNotice" size="2"></font></div>  		
+     		 </div>
+    	</div>
+    	<div class="form-group">
+      		<label class="col-sm-2 col-form-label">휴대폰번호</label>
+      		<div class="col-sm-4">
+        		<input type="text" class="form-control" id="mem_cell" name="mem_cell" placeholder="- 없이 숫자만 입력해주세요." maxlength="11">
+     		 </div>
+    	</div>
+    	<div class="form-group">
+      		<label class="col-sm-2 col-form-label">생년월일</label>
+      		<div class="col-sm-4">
+        		<input type="text" class="form-control" id="mem_birth" name="mem_birth" placeholder="ex) 19801012" maxlength="8">
+     		 </div>
+    	</div>
+    	<div class="form-group">
+      		<label class="col-sm-2 col-form-label">주소</label>
+      		<div class="col-sm-6">
+      			<div style="float:left;margin-right:10px;">
+        		<input type="text" class="form-control" id="mem_addr1" name="mem_addr1"
+					placeholder="우편번호" readonly="readonly" onclick="sample6_execDaumPostcode();">
+				</div>
+				<div style="float:left; padding-top:3px;">
+				<input type="button" class ="btn btn-primary btn-sm" onclick="sample6_execDaumPostcode()" value="우편번호 찾기">
+				</div>
+				<div style="clear:left;"></div>				
+     		 </div>	 
+     		 <div class="form-group" style="margin-top:3px">
+      			<div class="col-sm-9">
+      			<div style="float:left;margin-right:10px;">
+        			<input type="text" class="form-control" id="mem_addr2" name="mem_addr2" placeholder="주소" readonly="readonly">
+        		</div>
+        		<div style="float:left; padding-top:3px;">
+        			<input type="text" class="form-control" id="mem_addr3" name="mem_addr3" placeholder="상세주소">
+        			</div>
+        			<div style="clear:left;"></div>	
+     		 	</div>
+    		</div>
+        		<input type="hidden" class="form-control" id="sample6_extraAddress" placeholder="참고항목" readonly="readonly">
+    	</div>
+    	<div class="form-group" align="center" style ="margin-top:20px; margin-bottom:30px;">
+    	<input type="button" class ="btn btn-primary btn-lg"
+					value="회원가입" id="_btnJoin">
+    	</div>
+	</fieldset>
 
 	</form>
-
+	</div>
+	</div>
+	</div>
 </div>
 
 <script
@@ -230,8 +249,14 @@ function validate() {
 	var pw = $("#mem_pw").val();	// 특수문자 / 문자 / 숫자 포함 형태의 6~20자리 이내의 암호 정규식
 	var pwReg = /^.*(?=^.{6,20}$)(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$/;
 		
-	var cell= $("#mem_cell").val();	// 핸드폰번호 정규식
-	var cellReg = /^01([0|1|6|7|8|9]?)?([0-9]{3,4})?([0-9]{4})$/;
+	var cell = $("#mem_cell").val();	// 핸드폰번호 정규식
+	var cellReg = /^01[0179][0-9]{7,8}$/;
+						
+	var birth = $("#mem_birth").val();
+	var birthReg = /^(19|20)[0-9]{2}(0[1-9]|1[1-2])(0[1-9]|[1-2][0-9]|3[0-1])$/;
+				// /^(19|20)[0-9]{2}(0[1-9]|1[1-2])(0[1-9]|[1-2][0-9]|3[0-1])$/;
+				// /^[1-2]{1}[0-9]{3}[0-1]{1}[0-9]{1}[0-3]{1}[0-9]{1}$/;		
+	// ex) 19801012
 	
 	if(idReg.test(id)==false){
 		alert("적합하지 않은 이메일 형식입니다.");
@@ -247,6 +272,11 @@ function validate() {
 		alert("적합하지 않은 휴대폰번호 형식입니다.");
 		cell = "";
 		$("#mem_cell").focus();
+		return false;
+	}else if(birthReg.test(birth)==false){
+		alert("적합하지 않은 생년월일 형식입니다.");
+		bitrh = "";
+		$("#mem_birth").focus();
 		return false;
 	}
 	return true;	

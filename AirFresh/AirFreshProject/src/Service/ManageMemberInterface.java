@@ -16,4 +16,6 @@ public interface ManageMemberInterface {
 	
 	public boolean setSelectedIndexChange(int number);
 
+	public boolean managerMemberUpdate(ManagerMemberDto managermemdto);
+
 }//end of interface

@@ -1,3 +1,5 @@
+<%@page import="Dto.ModelReviewPurDto"%>
+<%@page import="java.util.List"%>
 <%@page import="java.text.DecimalFormat"%>
 <%@ include file="./../include/header.jsp" %>
 
@@ -5,16 +7,14 @@
 <%@page import="Dto.ModelDto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
+
 <%
-	//제품 index get
-	/* String seq = request.getParameter("seq");
-	System.out.println("seq: "+seq); */
-	
+
 	ModelDto model = (ModelDto)request.getAttribute("model");
 	//System.out.println("model :"+model.toString());
 
 	MemberDto mem = (MemberDto)session.getAttribute("login"); 
+	List<ModelReviewPurDto> list = (List<ModelReviewPurDto>) request.getAttribute("list");
 	
 	//model session
 	session.setAttribute("model", model);
@@ -24,7 +24,33 @@
 	String sprice = formatter.format(price);
 
 %>
+<style>
+      a.top {
+        position: fixed;
+        bottom:10px;
+        right:10px;
+        display: none;
+      }
+</style>
 
+<!-- <a href="#" class="top">Top</a> -->
+<a href="#" class="top" title=”맨위로"><img src="<%= request.getContextPath()%>/client_view/img/btn_top.png" style="width: 80px;"></a>
+<script>
+$( document ).ready( function() {
+    $( window ).scroll( function() {
+      if ( $( this ).scrollTop() > 200 ) {
+        $( '.top' ).fadeIn();
+      } else {
+        $( '.top' ).fadeOut();
+      }
+    } );
+    $( '.top' ).click( function() {
+      $( 'html, body' ).animate( { scrollTop : 0 }, 600 );
+      return false;
+    } );
+  } );
+</script>
+</script>
   <!-- Page Content -->
   <div class="container">
 
@@ -116,7 +142,6 @@
 
     </div>
     <!-- /.row -->
-
     <!-- Related Projects Row -->
     <script>
 	  /* 이미지 전환 */
@@ -160,6 +185,65 @@
       </div>
 
     </div>
+
+    <!-- 해당상품 review -->
+	<div style="margin-top:80px;">
+		 <h3 class="my-4">상품 리뷰</h3>
+		<div style="width:100%; height: 300px;">
+				<table class="table table-hover">
+				<col width="70">
+				<col width="200">
+				<col width="250">
+				<col width="120">
+				<col width="100">
+				<col width="70">
+				<thead>
+					<tr align="center">
+						<th scope="col">번호</th>
+						<th scope="col">제목</th>
+						<th scope="col">내용</th>
+						<th scope="col">작성일</th>
+						<th scope="col">작성자</th>
+						<th scope="col">별점</th>
+					</tr>
+				</thead>
+				<tbody>
+
+					<%
+						if (list.size() == 0 || list == null) {
+					%>
+					<tr align="center">
+						<th colspan="6">작성된 리뷰가없습니다.</th>
+					</tr>
+
+					<%
+						} else {
+							for (int i = 0; i < list.size(); i++) {
+								ModelReviewPurDto dto = list.get(i);
+								if(dto.getRe_auth()==0){
+					%>
+					<tr align="center" title="클릭하면 전체보기로 이동합니다." 
+						onclick="location.href='<%= request.getContextPath() %>/reviewDetail?seq=<%=dto.getRe_index() %>'"  style="cursor:pointer;">
+						<th><%= i+1 %></th>
+						<td><%= dto.getOrder_re_title()%></td>
+						<td align="left">
+						<%= dto.getOrder_re_content() %>
+						</td>
+						<td><%=dto.getWdate().substring(0,10) %></td>
+						<td><%=dto.getMem_id()%></td>
+						<td><%=dto.getRating() %></td>
+					</tr>
+					<%
+								}//.if
+							}//.for
+						}//.if문
+					%>
+				</tbody>
+			</table>
+		</div>
+	</div>
+	<!-- /.review -->
+	
     <!-- /.row -->
    <!-- 상세이미지 -->
   	<div id="pd_detail_cont"
@@ -171,6 +255,7 @@
 			alt="">
 	</div>
 	<!-- /.상세이미지 -->
+
   </div>
   <!-- /.container -->
 

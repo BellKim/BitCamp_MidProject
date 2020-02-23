@@ -1,15 +1,14 @@
 package controller.MemberController;
 
 import java.io.IOException;
+import java.net.URLEncoder;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import projectutil.ProjectUtil;
 import singleton.singleton;
 
 @WebServlet("/findidpw")
@@ -43,21 +42,27 @@ public class FindIDPW extends HttpServlet {
 		else if(command.equals("FID")) {	
 			System.out.println(_name + " " + _cell);
 			String id = s.ms.findID(_name, _cell);			
-			//req.getSession().setAttribute("foundid", id);
-			System.out.println("FindIDPW 도착2");
-			//ProjectUtil.forward("./client_view/member/findid.jsp", req, resp);
-			resp.sendRedirect(req.getContextPath() + "/client_view/member/finding.jsp?command=find&id=" + id);	
-			//req.getContextPath() + 
+			System.out.println("FindID 도착2");
+			System.out.println("id:" + id);
+			if(id != null && !id.equals("")) {
+				String idx = URLEncoder.encode(id);					
+				resp.sendRedirect(req.getContextPath() + "/client_view/member/finding.jsp?command=findi&id=" + idx);
+			}else if(id == null || id.equals("")){					
+				resp.sendRedirect(req.getContextPath() + "/client_view/member/finding.jsp?command=findi&id=" + id);
+			}
 		}
 		else if(command.equals("FPW")) {				
 			System.out.println(_id + " " + _name);
-			String pw = s.ms.findPW(_id, _name);			
-			//req.getSession().setAttribute("foundpw", pw);
-			System.out.println("FindIDPW 도착2");
-			//ProjectUtil.forward("./client_view/member/findpw.jsp", req, resp);			
-			resp.sendRedirect(req.getContextPath() + "/client_view/member/finding.jsp?command=find&pw=" + pw);			
-			//req.getContextPath() +
+			String pw = s.ms.findPW(_id, _name);					
+			System.out.println("FindPW 도착2");
+			System.out.println("pw:" + pw);
+			if(pw != null && !pw.equals("")) {
+				String pwx = URLEncoder.encode(pw);									
+				resp.sendRedirect(req.getContextPath() + "/client_view/member/finding.jsp?command=findp&pw=" + pwx);
+			}else if(pw == null || pw.equals("")){
+				resp.sendRedirect(req.getContextPath() + "/client_view/member/finding.jsp?command=findp&pw=" + pw);
+			}
 		}		
-	}		
-
+	}
+	
 }

@@ -3,7 +3,7 @@
 <%@ include file="./../include/header.jsp"%>
 
 <!-- SK매직몰 이용약관 -->
-<div id="container">
+<div class="container">
 		<div id="content">
 			<div class="termWrap">
 				<div class="mt-4 mb-3"><h2>이용약관</h2></div>

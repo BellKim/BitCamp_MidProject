@@ -21,4 +21,14 @@ public class ModelService implements ModelServiceInterface {
 		return mdi.getModelDetail(prd_index);
 	}
 
+	@Override
+	public List<ModelDto> getModelPagingList(int page) {
+		return mdi.getModelPagingList(page);
+	}
+
+	@Override
+	public int getAllPrd() {
+		return mdi.getAllPrd();
+	}
+
 }

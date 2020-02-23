@@ -37,7 +37,6 @@
 
 <div class="container-fluid">
 	<h1 class="mt-4 mb-3">렌탈 리스트</h1>
-	<hr>
 	<form id="noticelistForm" method="post">
 		<input type="hidden" name="command" value="multiDelete">
 		<table class="table table-hover" width="100%" cellspacing="0">

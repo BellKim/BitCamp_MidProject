@@ -9,6 +9,7 @@ import java.util.List;
 
 import Dao.MemberDaoInterface;
 import Dto.MemberDto;
+import Dto.PurchaseNameDto;
 import db.DBClose;
 import db.DBConnection;
 
@@ -209,7 +210,12 @@ public class MemberDao implements MemberDaoInterface{
 		PreparedStatement psmt = null;
 		ResultSet rs = null;
 		
-		String _id = "";
+		String _id = null;
+		
+		System.out.println("sql:" + sql);
+		
+		System.out.println("mem_name:" + mem_name);
+		System.out.println("mem_cell:" + mem_cell);
 		
 		try {
 			conn = DBConnection.getConnection();
@@ -241,6 +247,8 @@ public class MemberDao implements MemberDaoInterface{
 		ResultSet rs = null;
 		
 		String _pw = null;
+		
+		System.out.println("sql:" + sql);
 		
 		try {
 			conn = DBConnection.getConnection();
@@ -275,6 +283,7 @@ public class MemberDao implements MemberDaoInterface{
 		int count = 0;
 		
 		System.out.println("sql:" + sql);
+		System.out.println(dto.toString());
 		
 		try {
 			conn = DBConnection.getConnection();
@@ -370,6 +379,89 @@ public class MemberDao implements MemberDaoInterface{
 	public List<MemberDto> getMemberList(String opt, String keyword, int page) {
 
 		return null;
+	}
+
+	@Override
+	public List<MemberDto> getAdminMemList(int pageNumber) {
+		String sql = " SELECT mem_id, mem_pw, mem_name, mem_cell, mem_birth, mem_addr1, mem_addr2,"
+				+ " mem_addr3, mem_in_date, mem_out_date, mem_auth, mem_delete "
+				+ " FROM (select ROWNUM AS RNUM, mem_id, mem_pw, mem_name, mem_cell, mem_birth, mem_addr1, mem_addr2, "
+				+ " mem_addr3, mem_in_date, mem_out_date, mem_auth, mem_delete "
+				+ " FROM (SELECT * FROM members "
+				+ " ORDER BY mem_in_date desc) ) "
+				+ " WHERE RNUM >= ? AND RNUM <= ?  ";
+		
+		
+		Connection conn = null;
+		PreparedStatement psmt = null;
+		ResultSet rs = null;
+		
+		int start, end;
+		start = 1 + 10 * pageNumber;	// 0 -> 1	1 -> 11
+		end = 10 + 10 * pageNumber;	// 0 -> 10  1 -> 20
+		
+		List<MemberDto> list = new ArrayList<MemberDto>();
+		try {
+			conn = DBConnection.getConnection();
+			System.out.println("1/6 getAdminMemList success");
+			psmt = conn.prepareStatement(sql);
+			psmt.setInt(1, start);
+			psmt.setInt(2, end);	
+			System.out.println("2/6 getAdminMemList success");
+			
+			rs = psmt.executeQuery();
+			while(rs.next()) {
+				int i = 1;
+				MemberDto dto = new MemberDto(rs.getString(i++), 
+												rs.getString(i++), 
+												rs.getString(i++), 
+												rs.getString(i++), 
+												rs.getString(i++), 
+												rs.getString(i++),
+												rs.getString(i++), 
+												rs.getString(i++), 
+												rs.getString(i++), 
+												rs.getString(i++), 
+												rs.getInt(i++),
+												rs.getInt(i++)
+						
+						);
+				
+				list.add(dto);
+			}
+			
+			System.out.println("3/6 getAdminMemList success");
+			
+		} catch (SQLException e) {
+			System.out.println("getAdminMemList fail");
+			e.printStackTrace();
+		}
+		
+		return list;
+	}
+
+	@Override
+	public int getMemLength() {
+		String sql = " SELECT COUNT(*) FROM members ";
+		Connection conn = null;
+		PreparedStatement psmt = null;
+		ResultSet rs = null;
+		int len = 0;
+		
+		try {
+			conn = DBConnection.getConnection();
+			psmt = conn.prepareStatement(sql);
+			rs = psmt.executeQuery();
+			if(rs.next()) {
+				len = rs.getInt(1);
+			}			
+		} catch (SQLException e) {
+			System.out.println("getMemLength fail");
+			e.printStackTrace();
+		} finally {
+			DBClose.close(psmt, conn, rs);			
+		}
+		return len;	
 	}
 
 

@@ -25,7 +25,10 @@ public interface PurchaseDaoInterface {
     
     //구매 상세 dto 보기 
 	RentalDetailDto getDetail(int pur_index);
-	    
+	
+	//리뷰 상세 dto 보기 
+	RentalDetailDto getReDetail(int pur_index);
+	
     //model name뽑아오기
     List<PurchaseNameDto> getModelName(String mem_id);
     
@@ -39,4 +42,7 @@ public interface PurchaseDaoInterface {
     
     //회원이 렌탈(구매)를 했는지 안했는지 판단하는 메소드 
     public boolean userPurConfirm(String userID);
+    
+    //관리자 페이지 메인 5개
+    public List<PurchaseNameDto> getMainPurchaseList();
 }

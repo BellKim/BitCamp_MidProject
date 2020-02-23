@@ -1,5 +1,5 @@
 
-<%@page import="com.sun.org.apache.regexp.internal.RE"%>
+
 <%@page import="Dto.RentalDetailDto"%>
 <%@page import="Dto.PurchaseNameDto"%>
 <%@page import="java.util.List"%>

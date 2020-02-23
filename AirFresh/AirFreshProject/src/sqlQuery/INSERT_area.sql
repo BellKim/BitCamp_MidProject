@@ -23,6 +23,28 @@ values (managerMember_SEQ.NEXTVAL, 3, '456', '456', '김공사', 1, 01012341234,
 SELECT * FROM managerMember;
 
 
+UPDATE managerMember
+SET
+mgr_id='qwe',
+mgr_pw='qwe'
+WHERE
+mgr_index=60000;
+
+
+
+
+UPDATE managerMember
+SET
+mgr_id='k_admin',
+mgr_pw='1234'
+WHERE
+mgr_index=60001;
+
+
+UPDATE managerMember  
+SET mgr_name=?, 
+mgr_cell=?, 
+WHERE mgr_index=?;
 
 
 ----------------------------------------------------------------------------------------------------------------------
@@ -120,23 +142,23 @@ select * from PURCHASE;
 
 INSERT INTO install(ins_index, pur_index, ins_date, comp_date, mgr_index, ins_state)
 VALUES( INSTALL_SEQ.nextval, 20000, TO_DATE('2020/02/18','YYYY/MM/DD'), NULL,
-        null, 0)
+        null, 0);
 
 INSERT INTO install(ins_index, pur_index, ins_date, comp_date, mgr_index, ins_state)
 VALUES( INSTALL_SEQ.nextval, 20001, TO_DATE('2020/02/18','YYYY/MM/DD'), NULL,
-        null, 0)
+        null, 0);
 
 INSERT INTO install(ins_index, pur_index, ins_date, comp_date, mgr_index, ins_state)
 VALUES( INSTALL_SEQ.nextval, 20002, TO_DATE('2020/02/18','YYYY/MM/DD'), NULL,
-        null, 0)
+        null, 0);
 
 INSERT INTO install(ins_index, pur_index, ins_date, comp_date, mgr_index, ins_state)
-VALUES( INSTALL_SEQ.nextval, 20003, TO_DATE('2020/02/18','YYYY/MM/DD'), NULL, NULL, 0)        
+VALUES( INSTALL_SEQ.nextval, 20003, TO_DATE('2020/02/18','YYYY/MM/DD'), NULL, NULL, 0);        
 
 INSERT INTO install(ins_index, pur_index, ins_date, comp_date, mgr_index, ins_state)
-VALUES( INSTALL_SEQ.nextval, 20004, TO_DATE('2020/02/18','YYYY/MM/DD'), NULL, NULL, 0)           
-        
-select * from install   
+VALUES( INSTALL_SEQ.nextval, 20004, TO_DATE('2020/02/18','YYYY/MM/DD'), NULL, NULL, 0);          
+
+select * from install;
 
 
 
@@ -167,10 +189,30 @@ select * from ORDERREVIEW;
 --		noticebbs insert
 ----------------------------------------------------------------------------------------------------------------------
 
---INSERT INTO noticebbs(noti_index, noti_title, noti_content, noti_catagory, noti_writer, noti_wdate,
---filename, tempfile, readcount, noti_del)
---VALUES(NOTICEBBS_SEQ.nextval,)
-
+INSERT INTO noticebbs(noti_index, noti_title, noti_content, noti_catagory, noti_writer, noti_wdate,
+filename, tempfile, readcount, noti_del)
+VALUES(NOTICEBBS_SEQ.nextval, '렌탈', '냉무',2, '관리자', sysdate, null, null, 0, 0);
+INSERT INTO noticebbs(noti_index, noti_title, noti_content, noti_catagory, noti_writer, noti_wdate,
+filename, tempfile, readcount, noti_del)
+VALUES(NOTICEBBS_SEQ.nextval, '렌탈', '냉무',1, '관리자', sysdate, null, null, 0, 0);
+INSERT INTO noticebbs(noti_index, noti_title, noti_content, noti_catagory, noti_writer, noti_wdate,
+filename, tempfile, readcount, noti_del)
+VALUES(NOTICEBBS_SEQ.nextval, '렌탈', '냉무',2, '관리자', sysdate, null, null, 0, 0);
+INSERT INTO noticebbs(noti_index, noti_title, noti_content, noti_catagory, noti_writer, noti_wdate,
+filename, tempfile, readcount, noti_del)
+VALUES(NOTICEBBS_SEQ.nextval, '렌탈', '냉무',1, '관리자', sysdate, null, null, 0, 0);
+INSERT INTO noticebbs(noti_index, noti_title, noti_content, noti_catagory, noti_writer, noti_wdate,
+filename, tempfile, readcount, noti_del)
+VALUES(NOTICEBBS_SEQ.nextval, '렌탈', '냉무',2, '관리자', sysdate, null, null, 0, 0);
+INSERT INTO noticebbs(noti_index, noti_title, noti_content, noti_catagory, noti_writer, noti_wdate,
+filename, tempfile, readcount, noti_del)
+VALUES(NOTICEBBS_SEQ.nextval, '렌탈', '냉무',1, '관리자', sysdate, null, null, 0, 0);
+INSERT INTO noticebbs(noti_index, noti_title, noti_content, noti_catagory, noti_writer, noti_wdate,
+filename, tempfile, readcount, noti_del)
+VALUES(NOTICEBBS_SEQ.nextval, '렌탈', '냉무',2, '관리자', sysdate, null, null, 0, 0);
+INSERT INTO noticebbs(noti_index, noti_title, noti_content, noti_catagory, noti_writer, noti_wdate,
+filename, tempfile, readcount, noti_del)
+VALUES(NOTICEBBS_SEQ.nextval, '렌탈', '냉무',1, '관리자', sysdate, null, null, 0, 0);
 
 select * from noticebbs;
 

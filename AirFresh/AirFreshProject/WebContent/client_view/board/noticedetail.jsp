@@ -55,7 +55,7 @@
 			%>
 	<p class="card-text">
 
-				<pre><%=notice.getNoti_title()%></pre></p>
+				<pre><%=notice.getNoti_content()%></pre></p>
 	</div>
 </div>
 		<div align="center" style="padding :10px;">

@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import Dto.ManagerMemberDto;
-import projectutil.ProjectUtil;
 import singleton.singleton;
 
 @WebServlet("/addMrgMember")
@@ -37,7 +36,8 @@ public class AddMrgMember extends HttpServlet {
 		} else {
 			System.out.println("AddMrgMember 오류. 로직 확인해주세요 ");
 		}
-			
+		
+
 	}//end of receiveManagerMember
 	
 	public void receiveManagerAll(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
@@ -50,8 +50,7 @@ public class AddMrgMember extends HttpServlet {
 		String Str_mgr_auth = req.getParameter("authLevel");
 		int mgr_auth = Integer.parseInt(Str_mgr_auth);
 		
-		String Str_mgr_cell= req.getParameter("manager_phNum");
-		int mgr_cell = Integer.parseInt(Str_mgr_cell);
+		String mgr_cell= req.getParameter("manager_phNum");
 		String mgr_joinDate =  "SYSDATE";
 		
 		System.out.println("test1 = " + mgr_id + " " +
@@ -62,15 +61,14 @@ public class AddMrgMember extends HttpServlet {
 				" " + mgr_joinDate);
 		int mgr_index = 0;
 		int mgr_del = 0;  
+		
 		ManagerMemberDto managermem =
-				new ManagerMemberDto(mgr_index, mgr_auth, mgr_id, mgr_pw, mgr_name, mgr_loc, mgr_cell,  mgr_joinDate);
+				new ManagerMemberDto(mgr_index, mgr_auth, mgr_id, mgr_pw, mgr_name, mgr_loc, mgr_cell, mgr_joinDate);
 		System.out.println(managermem);
 		singleton si = singleton.getInstance();
 		boolean res = si.managerMember.insertManagerMember(managermem);
 		System.out.println("AddMrgMember insert result  =  " + res );
-		
 		if(res==true) {
-			
 //			forward("admin_view/manageMgr/showManagerAll.jsp", req, resp);
 			resp.setContentType("text/html;charset=utf-8"); 
 			forward("showMrgMember", req, resp);
@@ -80,7 +78,7 @@ public class AddMrgMember extends HttpServlet {
 		
 		
 		
-	}
+	}//end of service 
 	
 	public void forward(String link, HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		RequestDispatcher dispatch = req.getRequestDispatcher(link);

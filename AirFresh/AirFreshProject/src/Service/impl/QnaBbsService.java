@@ -30,6 +30,11 @@ public class QnaBbsService implements QnaBbsServiceInterface {
 	public QnaBbsDto getQnaBbs(int qna_index) {
 		return qbd.getQnaBbs(qna_index);
 	}
+
+	/*
+	 * @Override public QnaBbsDto getPersonalQna(String mem_id) { return
+	 * qbd.getPersonalQna(mem_id); }
+	 */
 	@Override
 	public boolean reComentQna(int qna_index, String re_content) {
 		return qbd.reComentQna(qna_index, re_content);

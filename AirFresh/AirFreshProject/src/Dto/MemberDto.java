@@ -23,7 +23,7 @@ public class MemberDto implements Serializable {
 	public MemberDto(String mem_id, String mem_pw, String mem_cell, String mem_addr1, String mem_addr2, String mem_addr3) {
 		super();
 		this.mem_id = mem_id;
-		this.mem_name = mem_pw;
+		this.mem_pw = mem_pw;
 		this.mem_cell = mem_cell;		
 		this.mem_addr1 = mem_addr1;
 		this.mem_addr2 = mem_addr2;

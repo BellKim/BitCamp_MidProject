@@ -28,6 +28,7 @@ public interface PurchaseServiceInterface {
 	 //구매 상세 dto 보기
 	RentalDetailDto getDetailDto(int pur_index);
 	
+	public RentalDetailDto getReDetail(int pur_index);
 	
    //model name뽑아오기
     List<PurchaseNameDto> getModelName(String mem_id);
@@ -37,4 +38,6 @@ public interface PurchaseServiceInterface {
     
     //회원이 렌탈(구매)를 했는지 안했는지 판단하는 메소드 
     public boolean userPurConfirm(String userID);
+    
+    public List<PurchaseNameDto> getMainPurchaseList();
 }
